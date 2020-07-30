@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>COVID-19 DataViz: Dashboard</title>
+
+    <!-- amCharts includes -->
+    <script src="deps/amcharts4/core.js"></script>
+    <script src="deps/amcharts4/charts.js"></script>
+    <script src="deps/amcharts4/maps.js"></script>
+    
+    <script src="deps/amcharts4/themes/dark.js"></script>
+    <script src="deps/amcharts4/themes/animated.js"></script>
+
+    <script src="deps/amcharts4-geodata/greeceLow.js"></script>
+    <script src="deps/amcharts4-geodata/data/states_gr.js"></script>
+
+    <!-- DataTables includes -->
+    <script src="deps/jquery/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" media="all" href="deps/datatables/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" media="all" href="deps/datatables/css/select.dataTables.min.css" />
+    <script src="deps/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="deps/datatables/js/dataTables.select.min.js"></script>
+
+    <!-- Data  -->
+    <script src="data/js/myfunctions.js"></script>
+    <!--<script src="data/js/us_total_timeline.js"></script>-->
+    
+    <!--<script src="data/js/us_timeline.js"></script>-->
+    <!--<script src="data/js/us_total_timeline.js"></script>-->
+    
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" media="all" href="dark.css" />
+
+    <!-- Main app -->
+    <script src="app.js"></script>
+			<!--
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-174177919-1');
+		</script>
+		  -->
+  </head>
+	<style type="text/css">
+	      #items {
+	        padding-bottom: 100px;
+	      }
+
+	      #info {
+	        position: absolute;
+	        background: #444;
+	        box-sizing: border-box;
+	        padding: 5px;
+	        bottom: 0;
+	        margin-right: 20px;
+	        margin-bottom: 0px;
+	      }
+
+	      p {
+	        margin: 5px;
+	      }
+
+	      a {
+	        color: #fff;
+	      }
+
+	      small {
+	        color: #777;
+	      }
+
+	      .tools {
+	        margin-top: 1em;
+	      }
+
+	      .button {
+	        float: right;
+	        display: inline-block;
+	        padding: 5px 10px;
+	        border-radius: 10px;
+	        background: #5276b0;
+	        font-size: 0.8em;
+	        color: #fff;
+	        text-decoration: none;
+	      }
+
+	      .button:hover {
+	        background: #525ab0;
+	      }
+	</style>
+  <body>
+    <div class="flexbox">
+      <div id="chartdiv"></div>
+      <div id="list">
+      	<div id="items">
+        <table id="areas" class="compact hover order-column row-border">
+          <thead>
+            <tr>
+              <th>State</th>
+              <th>Confirmed</th>
+              <th>Deaths</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+			<div id="info">
+			<p><strong>Statistics</strong></p>
+			<p>This is a COVID-19 data visualization dashboard for Greece based on regional data. Values are updated every 6 hours.</p>
+			<p class="tools">
+			<small>Data updated: <span id="updated">---</span></small>
+			<a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" class="button" target="_blank">View EODY data</a>
+			</p>
+			</div>
+			</div>
+    </div>
+  </body>
+</html>
