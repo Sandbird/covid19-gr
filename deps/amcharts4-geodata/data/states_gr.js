@@ -33,6 +33,6 @@ var am4geodata_data_states_en = {
 	'GR-M': 'Crete',
 	'GR-I': 'Attica',
 	'GR-69': 'Mount Athos',
-	'GR-W': 'Without permanent residency in Greece',
-	'GR-U': 'Under Investigation'
+	'GR-W': '* Without permanent residency in Greece',
+	'GR-U': '* Under Investigation'
 };
