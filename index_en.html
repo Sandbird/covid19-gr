@@ -1,0 +1,639 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta property="og:url" content="https://toyokeizai.net/sp/visual/tko/covid19/" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Coronavirus Disease (COVID-19) Situation Report in Greece" />
+		<meta property="og:description" content="Confirmed cases of COVID-19 in Greece. Data provided by the Ministry of Health." />
+		<meta name="twitter:card" content="summary_large_image" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="lib/katex.min.css">
+		<title>Coronavirus Disease (COVID-19) Situation Report in Greece</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="js/script.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+		<script src="lib/auto-render.min.js"></script>
+		<script src="lib/katex.min.js"></script>
+    <script>
+		var html$3 = "\n<style>\ndt-math[block] {\n  display: block;\n}\n</style>\n";
+		var DTMath = function(dom, data) {
+		  var equationElements = [].slice.call(dom.querySelectorAll("dt-math"));
+		  equationElements.forEach(function (el) {
+		    var content = el.textContent;
+		    var displayMode = el.hasAttribute("block") ? true : false;
+		    el.innerHTML = html$3 + katex.renderToString(content, {displayMode: displayMode});
+		  });
+		};
+		var data = {};
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      DTMath(window.document, data);
+    });
+    </script>
+  </head>
+  <body>
+	<div id="math-cache" style="display: none;">
+	  <dt-math class="star">\star</dt-math>
+	  <dt-math class="plus">+</dt-math>
+	  <dt-math class="minus">-</dt-math>
+	  <dt-math class="equals">=</dt-math>
+	  <dt-math class="alpha">\alpha</dt-math>
+	  <dt-math class="lambda">\lambda</dt-math>
+	  <dt-math class="beta">\beta</dt-math>
+	  <dt-math class="r">R_{j}= \displaystyle\sum_{i} p_{ij}</dt-math>
+	  <dt-math class="alpha-equals">\alpha=</dt-math>
+	  <dt-math class="offset">\Delta</dt-math>
+	  <dt-math class="offset-equals">\Delta=</dt-math>
+	  <dt-math class="beta-equals">\beta=</dt-math>
+	  <dt-math class="beta-equals-zero">\beta = 0</dt-math>
+	  <dt-math class="beta-equals-one">\beta=1</dt-math>
+	  <dt-math class="alpha-equals-one-over-lambda-i">\alpha = 1/\lambda_i</dt-math>
+	  <dt-math class="model">\text{model}</dt-math>
+	  <dt-math class="p">0 p_1</dt-math>
+	  <dt-math class="phat">0 \bar{p}_1</dt-math>
+	  <dt-math class="two-sqrt-beta">2\sqrt{\beta}</dt-math>
+	  <dt-math class="lambda-i">\lambda_i</dt-math>
+	  <dt-math class="lambda-i-equals-zero">\lambda_i = 0</dt-math>
+	  <dt-math class="alpha-gt-one-over-lambda-i">\alpha > 1/\lambda_i</dt-math>
+	  <dt-math class="max-sigma-one">\max\{|\sigma_1|,|\sigma_2|\} > 1</dt-math>
+	  <dt-math class="x-i-k">x_i^k - x_i^*</dt-math>
+	  <dt-math class="xi-i">\xi_i</dt-math>
+	  <dt-math class="beta-equals-one-minus">\beta = (1 - \sqrt{\alpha \lambda_i})^2</dt-math>
+	  <dt-math class="pij">p_{ij}</dt-math>
+	  <dt-math class="power">7 * 10^{82}</dt-math>
+	</div>
+    <div id="cover-block">
+      <div>
+        <p>Loading data…</p>
+        <p><a href="./">Refresh page</a><br />if nothing visible.</p>
+      </div>
+    </div>
+    <div id="container">
+      <div id="title-block">
+        <h1><span>Coronavirus Disease (COVID-19) Situation Report in Greece</span></h1>
+        <p>Confirmed cases of COVID-19 in Greece. Data provided by the Ministry of Health.</p>
+        <p><a href="index_en.html">Greek Version</a></p>
+        <p class="updated-last"><br /></p>
+      </div>
+      <div id="main-block">
+        <h2>Nationwide Situation</h2>
+        <div class="flex-container">
+          <div class="flex-row">
+            <div class="box transition nationwide" code="carriers" pref="">
+              <h3>Tested Positive</h3>
+              <div class="latest">
+                <div>
+                  <span class="type"></span>
+                  <span class="value"></span>
+                  <span class="unit"></span>
+                </div>
+                <div class="change"></div>
+              </div>
+              <h5 class="updated"><br /></h5>
+              <div class="switches">
+                <div class="switch selected" value="new">NEW</div>
+                <div class="switch" value="total">TOTAL</div>
+              </div>
+              <div class="charts-wrapper">
+                <div class="main-chart-wrapper">
+                  <div class="main-chart"></div>
+                </div>
+                <div class="axis-chart"></div>
+                <div class="axis-cover"></div>
+              </div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+              </div>
+              <p class="notes">Data source: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. On <span style="color:#FEA">March 28th</span>, all flights to and from Germany and the Netherlands, excluding flights from Germany to Athens were suspended. On the <span style="color:#5987A5">June 1st</span> international flights to and from Athens International Airport resumed for EU+ countries, excluding flights between Greece and Italy, Spain, Sweden, the United Kingdom, and the Netherlands. On the <span style="color:#3BA9B0">June 15th</span> international flights between Greece and Albania, Italy, North Macedonia, Spain, and the Netherlands were resumed, international flights to and from Thessaloniki Airport Makedonia were resumed. Also borders with Bulgaria reopened for non-essential travel. On the <span style="color:#86E18D">July 1st</span> international flights between Greece and Algeria, Australia, Canada, Georgia, Japan, Montenegro, Morocco, New Zealand, Rwanda, Serbia, South Korea, Thailand, Tunisia, and Uruguay were resumed. Also international travel by sea between Italy and Patras and Igoumenitsa ports werer resumed. On the <span style="color:#D5F474">July 15th</span> borders were opened to Serbian citizens, international flights between Greece and the United Kingdom were resumed. On the <span style="color:#FB8">July 20th</span> international flights between Greece and Sweden resumed. <a class="more">READ MORE</a></p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box transition nationwide" code="active" pref="">
+              <h3>Active Cases</h3>
+              <div class="latest">
+                <div>
+                  <span class="type"></span>
+                  <span class="value"></span>
+                  <span class="unit"></span>
+                </div>
+                <div class="change"></div>
+              </div>
+              <h5 class="updated"><br /></h5>
+              <div class="switches">
+                <div class="switch" value="new">NEW</div>
+                <div class="switch selected" value="total">TOTAL</div>
+              </div>
+              <div class="charts-wrapper">
+                <div class="main-chart-wrapper">
+                  <div class="main-chart"></div>
+                </div>
+                <div class="axis-chart"></div>
+                <div class="axis-cover"></div>
+              </div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+              </div>
+							<p class="notes">Formula: Translate reported cases by adding all the cumulative tested positive cases that existed from 17 days ago (Most people recover from mild COVID-19 within two weeks and more serious disease within three weeks, giving a absolute median of 17). Some smoothing has also been applied due to some cases being from tourists that tested positive at the borders. <a href="#footer-notes">See below</a> for further information. <a class="more">READ MORE</a></p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box transition nationwide" code="infected_distribution" pref="">
+              <h3>Infection Distribution</h3>
+              <div class="latest">
+                <div>
+                  <span class="type"></span>
+                  <span class="value"></span>
+                  <span class="unit"></span>
+                </div>
+                <div class="change"></div>
+              </div>
+              <h5 class="updated"><br /></h5>
+              <div class="switches">
+                <div class="switch" value="new">NEW</div>
+                <div class="switch selected" value="total">TOTAL</div>
+              </div>
+              <div class="charts-wrapper">
+                <div class="main-chart-wrapper">
+                  <div class="main-chart"></div>
+                </div>
+                <div class="axis-chart"></div>
+                <div class="axis-cover"></div>
+              </div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+              </div>
+              <p class="notes">Data source: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Some data are missing because EODY didnt announce them.</p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box transition nationwide" code="deaths" pref="">
+              <h3>Deaths</h3>
+              <div class="latest">
+                <div>
+                  <span class="type"></span>
+                  <span class="value"></span>
+                  <span class="unit"></span>
+                </div>
+                <div class="change"></div>
+              </div>
+              <h5 class="updated"><br /></h5>
+              <div class="switches">
+                <div class="switch selected" value="new">NEW</div>
+                <div class="switch" value="total">TOTAL</div>
+              </div>
+              <div class="charts-wrapper">
+                <div class="main-chart-wrapper">
+                  <div class="main-chart"></div>
+                </div>
+                <div class="axis-chart"></div>
+                <div class="axis-cover"></div>
+              </div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+              </div>
+              <p class="notes">Data source: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a></p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box transition nationwide" code="serious" pref="">
+              <h3>Critically Ill</h3>
+              <div class="latest">
+                <div>
+                  <span class="type"></span>
+                  <span class="value"></span>
+                  <span class="unit"></span>
+                </div>
+                <div class="change"></div>
+              </div>
+              <h5 class="updated"><br /></h5>
+              <div class="switches">
+                <div class="switch selected" value="new">NEW</div>
+                <div class="switch" value="total">TOTAL</div>
+              </div>
+              <div class="charts-wrapper">
+                <div class="main-chart-wrapper">
+                  <div class="main-chart"></div>
+                </div>
+                <div class="axis-chart"></div>
+                <div class="axis-cover"></div>
+              </div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+              </div>
+              <p class="notes">Data source: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. See this link or <a href="#footer-notes">notes below</a> for further information.</p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box transition nationwide" code="tests" pref="">
+              <h3>Tests</h3>
+              <div class="latest">
+                <div>
+                  <span class="type"></span>
+                  <span class="value"></span>
+                  <span class="unit"></span>
+                </div>
+                <div class="change"></div>
+              </div>
+              <h5 class="updated"><br /></h5>
+              <div class="switches">
+                <div class="switch selected" value="new">NEW</div>
+                <div class="switch" value="total">TOTAL</div>
+              </div>
+              <div class="charts-wrapper">
+                <div class="main-chart-wrapper">
+                  <div class="main-chart"></div>
+                </div>
+                <div class="axis-chart"></div>
+                <div class="axis-cover"></div>
+              </div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+              </div>
+              <p class="notes">Data source: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a></p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box" id="demography-box">
+              <h3>Age distribution of confirmed cases (total)</h3>
+              <h5 class="updated-demography-sum"><br></h5>
+              <div id="demography-chart"></div>
+              <p class="notes"></p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box" id="demography-box-men">
+              <h3>Age distribution of confirmed cases (men)</h3>
+              <h5 class="updated-demography-men"><br></h5>
+              <div id="demography-chart-men"></div>
+              <p class="notes"></p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box" id="demography-box-women">
+              <h3>Age distribution of confirmed cases (women)</h3>
+              <h5 class="updated-demography-women"><br></h5>
+              <div id="demography-chart-women"></div>
+              <p class="notes"></p>
+            </div>
+          </div>
+        </div>
+        <h2>Predictions</h2>
+        <div class="flex-container">
+        <!--
+          <div class="flex-row">
+            <div class="box transition nationwide" code="reproduction_rj_infected" pref="">
+              <h3>Epidemic curve based on Rj</h3>
+              <div class="latest">
+                <div>
+                  <span class="type"></span>
+                  <span class="value"></span>
+                  <span class="unit"></span>
+                </div>
+                <div class="change"></div>
+              </div>
+              <h5 class="updated"><br /></h5>
+              <div class="charts-wrapper">
+                <div class="main-chart-wrapper">
+                  <div class="main-chart"></div>
+                </div>
+                <div class="axis-chart"></div>
+                <div class="axis-cover"></div>
+              </div>
+							<p class="notes">Formula: Translate reported cases by subtracting all the cumulative tested positive cases that existed from 17 days ago, from total cases (Most people recover from mild COVID-19 within two weeks and more serious disease within three weeks, giving a absolute median of 17). Some smoothing has also been applied due to some cases being from tourists that tested positive at the borders. (Keeping only ~20% of the final value. This number is created by finding the percentage of ((Travel from abroad cases / Total cases) * 100) from the Infection Distribution table) <a class="more">READ MORE</a></p>
+            </div>
+          </div>
+          -->
+          <div class="flex-row">
+            <div class="box transition nationwide" code="rt_repro" pref="">
+              <h3>Effective Reproduction Number R_t (estimate)</h3>
+              <div class="latest">
+                <div>
+                  <span class="type"></span>
+                  <span class="value"></span>
+                  <span class="unit"></span>
+                </div>
+                <div class="change"></div>
+              </div>
+              <h5 class="updated"><br /></h5>
+              <div class="charts-wrapper">
+                <div class="main-chart-wrapper">
+                  <div class="main-chart"></div>
+                </div>
+                <div class="axis-chart"></div>
+                <div class="axis-cover"></div>
+              </div>
+              <p class="notes">R estimates are merely estimates rather than precise values, and is only based on deaths data. Refer to <a href="https://covid19-projections.com/about/#assumptions" target="_blank">covid19-projections.com</a> for all assumptions made. <a class="more">READ MORE</a></p>
+            </div>
+          </div> 
+          <div class="flex-row">
+            <div class="box transition nationwide" code="rj_repro" pref="">
+              <h3>Effective Reproduction Number R_j (estimate)</h3>
+              <div class="latest">
+                <div>
+                  <span class="type"></span>
+                  <span class="value"></span>
+                  <span class="unit"></span>
+                </div>
+                <div class="change"></div>
+              </div>
+              <h5 class="updated"><br /></h5>
+              <div class="charts-wrapper">
+                <div class="main-chart-wrapper">
+                  <div class="main-chart"></div>
+                </div>
+                <div class="axis-chart"></div>
+                <div class="axis-cover"></div>
+              </div>
+              <p class="notes">A likelihood-based estimation procedure that infers the temporal pattern of effective reproduction numbers from an observed epidemic curve. The shown epidemic curve comprises all captured cases assigned to their estimated symptom onset date. Formula uses: Based on the selected data an offset average <dt-math>\Delta (=5)</dt-math> has been applied to assign the cases to their estimated symptom onset date. <dt-math>num of Incubation Days=5</dt-math>, <dt-math>infectivity period Days=5</dt-math>. See <a href="#rj-notes">notes below</a> for further information. <a class="more">READ MORE</a></p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box transition nationwide" code="predicted_deaths" pref="">
+              <h3>Predicted deaths (estimate)</h3>
+              <div class="latest">
+                <div>
+                  <span class="type"></span>
+                  <span class="value"></span>
+                  <span class="unit"></span>
+                </div>
+              </div>
+              <h5 class="updated"><br /></h5>
+              <div class="charts-wrapper">
+                <div class="main-chart-wrapper">
+                  <div class="main-chart"></div>
+                </div>
+                <div class="axis-chart"></div>
+                <div class="axis-cover"></div>
+              </div>
+              <p class="notes">Mean, 2.5th, and 97.5th percentile of daily deaths projections. Data source: <a href="https://github.com/youyanggu/covid19_projections/tree/master/projections" target="_blank">covid19-projections.com</a>.<a class="more">READ MORE</a></p>
+            </div>
+          </div>
+          <!--
+          <div class="flex-row">
+            <div class="box transition nationwide" code="pcrtests" pref="">
+              <h3>PCR Tests</h3>
+              <div class="latest">
+                <div>
+                  <span class="type"></span>
+                  <span class="value"></span>
+                  <span class="unit"></span>
+                </div>
+                <div class="change"></div>
+              </div>
+              <h5 class="updated"><br /></h5>
+              <div class="switches">
+                <div class="switch selected" value="new">NEW</div>
+                <div class="switch" value="total">TOTAL</div>
+              </div>
+              <div class="charts-wrapper">
+                <div class="main-chart-wrapper">
+                  <div class="main-chart"></div>
+                </div>
+                <div class="axis-chart"></div>
+                <div class="axis-cover"></div>
+              </div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+              </div>
+              <p class="notes">Formula: (New cases in past 7 days / New cases in 7 days before that) ^ (mean generation time / length of reporting interval). Mean generation time is supposed to be 5 days, and length of reporting interval is supposed to be 7 days. For the purpose of understanding current trends in real time, this formula is simplified and based on reporting dates. Note that this formula is a simplified version and may be affected by reporting delays. Model and supervised by Professor Hiroshi Nishiura of Hokkaido University Graduate School of Medicine. Refer to <a href="https://github.com/contactmodel/COVID19-Japan-Reff" target="_blank">GitHub repository</a> published by Prof. Nishiura for further details.<a class="more">READ MORE</a></p>
+            </div>
+          </div>
+					-->
+        </div>	
+        <div class="flex-container">
+          <div class="flex-row">
+            <h2>Prefectures</h2>
+            <select id="select-pref-type">
+              <option value="carriers">Tested Positive</option>
+              <option value="deaths">Deaths</option>
+            </select>
+            <div class="box" id="region-box">
+              <div id="japan-map"></div>
+              <div id="region-chart"></div>
+            </div>
+          </div>
+          <div class="flex-row t02">
+            <h2 id="index-each-prefecture">Each Prefecture</h2>            
+            <select id="select-prefecture">
+              <option value="1">Attica</option>
+              <option value="2">Central Greece</option>
+              <option value="3">Central Macedonia</option>
+              <option value="4">Crete</option>
+              <option value="5">Eastern Macedonia and Thrace</option>
+              <option value="6">Epirus</option>
+              <option value="7">Ionian Islands</option>
+              <option value="8">Mount Athos</option>
+              <option value="9">North Aegean</option>
+              <option value="10">Peloponnese</option>
+              <option value="11">South Aegean</option>
+              <option value="12">Thessaly</option>
+              <option value="13">Western Greece</option>
+              <option value="14">Western Macedonia</option>
+              <option value="15">Without permanent residency in Greece</option>
+              <option value="16">Under Investigation</option>
+            </select>
+            <div class="flex-container">
+              <div class="flex-row t03">
+                <div class="box transition prefecture" code="carriers" pref="">
+                  <h3>Tested Positive in <span></span></h3>
+                  <div class="latest">
+                    <div>
+                      <span class="type"></span>
+                      <span class="value"></span>
+                      <span class="unit"></span>
+                    </div>
+                    <div class="change"></div>
+                  </div>
+                  <h5 class="updated"><br /></h5>
+                  <div class="switches">
+                    <div class="switch selected" value="new">NEW</div>
+                    <div class="switch" value="total">TOTAL</div>
+                  </div>
+                  <div class="charts-wrapper">
+                    <div class="main-chart-wrapper">
+                      <div class="main-chart"></div>
+                    </div>
+                    <div class="axis-chart"></div>
+                    <div class="axis-cover"></div>
+                  </div>
+                  <div class="checkboxes">
+                    <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+                  </div>
+                  <p class="notes">Data source: <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a>. On the <span style="color:#5987A5">June 1st</span> international flights to and from Athens International Airport resumed for EU+ countries, excluding flights between Greece and Italy, Spain, Sweden, the United Kingdom, and the Netherlands. On the <span style="color:#5987A5">June 15th</span> international flights to and from Thessaloniki Airport Makedonia were resumed. Also borders with Bulgaria reopened for non-essential travel. <a class="more">READ MORE</a></p>
+                </div>
+              </div>
+              <!--
+              <div class="flex-row t03">
+                <div class="box transition prefecture" code="discharged" pref="">
+                  <h3>Discharged in <span></span></h3>
+                  <div class="latest">
+                    <div>
+                      <span class="type"></span>
+                      <span class="value"></span>
+                      <span class="unit"></span>
+                    </div>
+                    <div class="change"></div>
+                  </div>
+                  <h5 class="updated"><br /></h5>
+                  <div class="switches">
+                    <div class="switch selected" value="new">NEW</div>
+                    <div class="switch" value="total">TOTAL</div>
+                  </div>
+                  <div class="charts-wrapper">
+                    <div class="main-chart-wrapper">
+                      <div class="main-chart"></div>
+                    </div>
+                    <div class="axis-chart"></div>
+                    <div class="axis-cover"></div>
+                  </div>
+                  <div class="checkboxes">
+                    <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+                  </div>
+                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. See chart annotations in "Nationwide Situation" section or <a href="#footer-notes">footer notes</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
+                </div>
+              </div>
+              -->
+              <div class="flex-row t03">
+                <div class="box transition prefecture" code="deaths" pref="">
+                  <h3>Deaths in <span></span></h3>
+                  <div class="latest">
+                    <div>
+                      <span class="type"></span>
+                      <span class="value"></span>
+                      <span class="unit"></span>
+                    </div>
+                    <div class="change"></div>
+                  </div>
+                  <h5 class="updated"><br /></h5>
+                  <div class="switches">
+                    <div class="switch selected" value="new">NEW</div>
+                    <div class="switch" value="total">TOTAL</div>
+                  </div>
+                  <div class="charts-wrapper">
+                    <div class="main-chart-wrapper">
+                      <div class="main-chart"></div>
+                    </div>
+                    <div class="axis-chart"></div>
+                    <div class="axis-cover"></div>
+                  </div>
+                  <div class="checkboxes">
+                    <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+                  </div>
+                  <p class="notes">Data source: <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_deaths.csv" target="_blank">iMEdD-Lab</a>.</p>
+                </div>
+              </div>
+              <!--
+               <div class="flex-row t03">
+                <div class="box transition prefecture" code="reproduction_rj" pref="">
+                  <h3>Effective Reproduction Number in <span></span></h3>
+                  <div class="latest">
+                    <div>
+                      <span class="type"></span>
+                      <span class="value"></span>
+                      <span class="unit"></span>
+                    </div>
+                    <div class="change"></div>
+                  </div>
+                  <h5 class="updated"><br /></h5>
+                  <div class="charts-wrapper">
+                    <div class="main-chart-wrapper">
+                      <div class="main-chart"></div>
+                    </div>
+                    <div class="axis-chart"></div>
+                    <div class="axis-cover"></div>
+                  </div>
+                  <p class="notes">In prefectures with fewer cases, a few case variations may bring a large fluctuation of effective reproduction number. In uncountable cases, such as zero new positives in the previous week, the number of effective reproduction number is also assumed to be zero. See chart annotations in "Nationwide Situation" section or <a href="#footer-notes">footer notes</a> for further information such as definition or notes. <a class="more">READ MORE</a></p>
+                </div>
+              </div>
+              
+              <div class="flex-row t03">
+                <div class="box transition prefecture" code="pcrtested" pref="">
+                  <h3>PCR Tested in <span></span></h3>
+                  <div class="latest">
+                    <div>
+                      <span class="type"></span>
+                      <span class="value"></span>
+                      <span class="unit"></span>
+                    </div>
+                    <div class="change"></div>
+                  </div>
+                  <h5 class="updated"><br /></h5>
+                  <div class="switches">
+                    <div class="switch selected" value="new">NEW</div>
+                    <div class="switch" value="total">TOTAL</div>
+                  </div>
+                  <div class="charts-wrapper">
+                    <div class="main-chart-wrapper">
+                      <div class="main-chart"></div>
+                    </div>
+                    <div class="axis-chart"></div>
+                    <div class="axis-cover"></div>
+                  </div>
+                  <div class="checkboxes">
+                    <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+                  </div>
+                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. On weekends and holidays, the number of PCR tests may be announced as "0" because MHLW did not receive the report, even if tests have been performed. The past data will be corrected if the number of previous tests was known. If not, the number of tests on weekdays and holidays will be added on the next weekday. On and after 18 June in Hyogo and 21 June in Shizuoka, the number includes tests covered by private testing institutions. The number in Tokyo includes medical insurance inspection results from 7 May, Antigen tested positive from 13 May, and Antigen tested negative from from 17 June. See <a href="#faqs">Frequently Asked Questions</a> for further information. Aichi in 3/16-22 excludes number of Nagoya city. Akita in 3/11 is the number of only Akita city. The figures for Chiba are only counted from 3/21, Osaka from 3/22, and Kanagawa from 3/23. See chart annotations in "Nationwide Situation" section or <a href="#footer-notes">footer notes</a> for further information such as definition or notes. <a class="more">READ MORE</a></p>
+                </div>
+              </div>
+              -->
+            </div>
+        </div>
+      </div>
+      <div id="footer-block">
+        <p class="notes" id="footer-notes">Notes: Moving averages are 7-day backward. The number is based on the daily value. It is assumed to be the same as the previous day if not updated. On the days with no continuity from the previous day due to change of standards, "New" number is treated as 0 and the bar color is changed. Data may be corrected by the developer when it is considered as an obvious misstatement, such as minus value of Tested Positive.</p>
+        <p class="notes">Resources: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Measures by <a href="https://github.com/Covid-19-Response-Greece/covid19-data-greece/blob/master/data/greece/Measures/greece_social_distancing_measures_timeline.json" target="_blank">Covid-19-Response-Greece</a>. Data on prefectures was taken from <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a>. Predictions were taken from <a href="https://covid19-projections.com/greece" target="_blank">covid19-projections.com</a>. Effective Reproduction number RJ algorithm taken from <a href="https://academic.oup.com/aje/article/160/6/509/79472?fbclid=IwAR2nDT0TyBciFQuNOU0vW3z4OcAJBRPh_x1E8HwCI-i9a4y5KLimY5D3aG4" target="blank">American Journal of Epidemiology</a> and <a href="https://mshfd.github.io/reproduction-number/" target="_blank">Richard Schubert</a>. Used <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> to draw charts. Original script by: TOYO KEIZAI ONLINE</p>
+        <p class="notes"><br><a href="https://github.com/Sandbird/covid19-Greece" target="_blank">Download CSV data</a></p>
+        <div id="faqs">
+          <h3>Frequently Asked Questions</h3>
+          <section>
+            <h4>Q. Why do some values record minus, even though they should not be?</h4>
+            <p>A. It happens when the past data have been corrected. Since EODY only discloses the latest total number of each items, only values on the latest day are corrected when the past numbers contain errors.</p>
+          </section>
+          <section>
+            <h4>Q. How accurate is the Active Cases section?</h4>
+            <p>A. It is only an estimate based on the assumption that most people recover from mild COVID-19 within two weeks and more serious cases within three weeks (resulting in either death or recovery), giving a absolute median of 17 days. Given the fact that some of the cases are from tourists that tested positive at the borders, some smoothing has to be applied to the number by keeping only ~26% of the final value. (This number is created by finding the percentage of ((Travel from abroad cases / Total cases) * 100) from the Infection Distribution table. To give you an example, the sum of all the cumulative tested positive cases that existed from 17 days before the 7th of August was 1222. Removing about 26.6% of that value gives us 896 active cases. Why remove the foreign cases from the equation? For two reasons. First, they are not permanent residents of this country, meaning they are only staying for a few days to about two weeks (in most cases). Second, since there are strict measures taken by the goverment when it comes to tourists, they will either be placed into quarantine (if tested positive) or return to their respective countries, both cases leading to a very small chance of increasing the infectiong rate thus lowering the active cases.</p>
+          </section>
+          <section>
+            <h4>Q. What is Effective Reproduction Number R_t?</h4>
+            <p>A. Effective Reproduction Number (ERN, also known as R0) is an index to see how many people are infected by one carrier and it is one of the most important properties for any infectious disease. Rather than pre-setting this value based on assumptions, our model is able to learn the value that most closely matches the data. For Italy, the R0 is found to be around 2.4-2.8, while for New York City, the <dt-math>R0</dt-math> is 5.4-5.8. This means that on average, an infected person in New York City will infect 5.4 to 5.8 additional people. For most regions, the R0 is found to be around 2, which matches the WHO findings.<br>
+            Our <dt-math>R</dt-math> estimates are merely estimates rather than precise values, and is only based on deaths data. We correct for reporting lags, so how deaths are changing today is a reflection of how the <dt-math>R</dt-math> value was changing 3-4 weeks ago. We then apply additional assumptions to interpolate the R value since then. As a result, the current <dt-math>R</dt-math> value estimates are more of a byproduct of our assumptions than a result of any measurable data. As we receive more data in the future, we then update our R estimates to most closely reflect the observed data. An increase in this indicator means the infection is spreading rapidly. On the other hand, if it continues to be less than 1, it means that the infection is on the phase of receding. To understand the current status of the infection, check other indicators such as the number of positive cases.</p>
+          </section>
+          <section>
+            <h4>Q. What is Effective Reproduction Number Rj?</h4>
+					   <p id="rj-notes">
+					    Often, estimation of the effective reproduction number is a complicated affair, because only the epidemic curve is observed and there is no information about who infected whom. Recent analyses of closely monitored epidemics have shown that it is possible to estimate the probability that one person has infected another if the spatial locations of the infected persons are available. However, when only times of symptom onset are available, most investigators resort to approximating <dt-math>R</dt-math> by assuming an exponential increase in the number of cases over time or by fitting a specific model that summarizes assumptions about the epidemiology of the disease. Such assumptions can be avoided by using a likelihood-based estimation procedure that infers "who infected whom" from the observed dates of symptom onset as provided by the epidemic curve. However, the computational burden of a straightforward numerical evaluation of the likelihood appears to be enormous, since it requires consideration of all possible infection networks, and even for a small outbreak of 50 cases there are almost <dt-math>7 * 10^{82}</dt-math> possible infection networks.
+					    It is possible to obtain likelihood-based estimates of <dt-math>R</dt-math>. The relative likelihood <dt-math>p_{ij}</dt-math> that
+					    case <dt-math>i</dt-math> has been infected by case <dt-math>j</dt-math>, given their difference in time of symptom
+					    onset <dt-math>t_i-t_j</dt-math>, can be expressed in terms of the probability distribution for the generation
+					    interval. This distribution for the generation interval is available for many infectious diseases, and we denote it
+					    by <dt-math>w(\tau)</dt-math>. The relative likelihood that case <dt-math>i</dt-math> has been infected by case
+					    <dt-math>j</dt-math> is then the likelihood that case <dt-math>i</dt-math> has been infected by case <dt-math>j
+					    </dt-math>, normalized by the likelihood that case <dt-math>i</dt-math> has been
+					    infected by any other case <dt-math>k</dt-math>:
+					    <dt-math block>
+					      \Large p_{ij}= \frac{w(t_i-t_j)}{\displaystyle\sum_{{i} \ne {k}} w(t_i-t_k)}
+					    </dt-math>
+					    The effective reproduction number for case <dt-math>j</dt-math> is the sum over all cases <dt-math>i</dt-math>, weighted by the relative likelihood that case <dt-math>i</dt-math> has been infected by case <dt-math>j</dt-math>:
+					    <dt-math block>
+					    	R_{j}= \displaystyle\sum_{i} p_{ij}
+					    </dt-math>
+					    <span class="katex-display"><img src="img/pij.png"></span>
+					    The estimation algorithm allows estimation of the effective reproduction numbers for infectious diseases at a finer temporal resolution under more general assumptions than was previously possible.
+					  </p>
+          </section>
+          <section>
+            <h4>Q. What is the definition of "Critically Ill"?</h4>
+            <p>A. It means cases putting on a ventilator or treated in an Intensive Care Unit (ICU).</p>
+          </section>
+          <section>
+            <h4>Q. Can I use the data?</h4>
+            <p>A. Yes, feel free to use it for both commercial or non-commercial use. If you'd like just mention my name "Sandbird". Other specific standards are based on the <a href="LICENSE" target="_blank">MIT license</a>.</p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
