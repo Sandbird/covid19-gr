@@ -291,30 +291,6 @@
         </div>
         <h2>Predictions</h2>
         <div class="flex-container">
-        <!--
-          <div class="flex-row">
-            <div class="box transition nationwide" code="reproduction_rj_infected" pref="">
-              <h3>Epidemic curve based on Rj</h3>
-              <div class="latest">
-                <div>
-                  <span class="type"></span>
-                  <span class="value"></span>
-                  <span class="unit"></span>
-                </div>
-                <div class="change"></div>
-              </div>
-              <h5 class="updated"><br /></h5>
-              <div class="charts-wrapper">
-                <div class="main-chart-wrapper">
-                  <div class="main-chart"></div>
-                </div>
-                <div class="axis-chart"></div>
-                <div class="axis-cover"></div>
-              </div>
-							<p class="notes">Formula: Translate reported cases by subtracting all the cumulative tested positive cases that existed from 17 days ago, from total cases (Most people recover from mild COVID-19 within two weeks and more serious disease within three weeks, giving a absolute median of 17). Some smoothing has also been applied due to some cases being from tourists that tested positive at the borders. (Keeping only ~20% of the final value. This number is created by finding the percentage of ((Travel from abroad cases / Total cases) * 100) from the Infection Distribution table) <a class="more">READ MORE</a></p>
-            </div>
-          </div>
-          -->
           <div class="flex-row">
             <div class="box transition nationwide" code="rt_repro" pref="">
               <h3>Effective Reproduction Number R_t (estimate)</h3>
@@ -380,37 +356,6 @@
               <p class="notes">Mean, 2.5th, and 97.5th percentile of daily deaths projections. Data source: <a href="https://github.com/youyanggu/covid19_projections/tree/master/projections" target="_blank">covid19-projections.com</a>.<a class="more">READ MORE</a></p>
             </div>
           </div>
-          <!--
-          <div class="flex-row">
-            <div class="box transition nationwide" code="pcrtests" pref="">
-              <h3>PCR Tests</h3>
-              <div class="latest">
-                <div>
-                  <span class="type"></span>
-                  <span class="value"></span>
-                  <span class="unit"></span>
-                </div>
-                <div class="change"></div>
-              </div>
-              <h5 class="updated"><br /></h5>
-              <div class="switches">
-                <div class="switch selected" value="new">NEW</div>
-                <div class="switch" value="total">TOTAL</div>
-              </div>
-              <div class="charts-wrapper">
-                <div class="main-chart-wrapper">
-                  <div class="main-chart"></div>
-                </div>
-                <div class="axis-chart"></div>
-                <div class="axis-cover"></div>
-              </div>
-              <div class="checkboxes">
-                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
-              </div>
-              <p class="notes">Formula: (New cases in past 7 days / New cases in 7 days before that) ^ (mean generation time / length of reporting interval). Mean generation time is supposed to be 5 days, and length of reporting interval is supposed to be 7 days. For the purpose of understanding current trends in real time, this formula is simplified and based on reporting dates. Note that this formula is a simplified version and may be affected by reporting delays. Model and supervised by Professor Hiroshi Nishiura of Hokkaido University Graduate School of Medicine. Refer to <a href="https://github.com/contactmodel/COVID19-Japan-Reff" target="_blank">GitHub repository</a> published by Prof. Nishiura for further details.<a class="more">READ MORE</a></p>
-            </div>
-          </div>
-					-->
         </div>	
         <div class="flex-container">
           <div class="flex-row">
@@ -474,37 +419,6 @@
                   <p class="notes">Data source: <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a>. On the <span style="color:#5987A5">June 1st</span> international flights to and from Athens International Airport resumed for EU+ countries, excluding flights between Greece and Italy, Spain, Sweden, the United Kingdom, and the Netherlands. On the <span style="color:#5987A5">June 15th</span> international flights to and from Thessaloniki Airport Makedonia were resumed. Also borders with Bulgaria reopened for non-essential travel. <a class="more">READ MORE</a></p>
                 </div>
               </div>
-              <!--
-              <div class="flex-row t03">
-                <div class="box transition prefecture" code="discharged" pref="">
-                  <h3>Discharged in <span></span></h3>
-                  <div class="latest">
-                    <div>
-                      <span class="type"></span>
-                      <span class="value"></span>
-                      <span class="unit"></span>
-                    </div>
-                    <div class="change"></div>
-                  </div>
-                  <h5 class="updated"><br /></h5>
-                  <div class="switches">
-                    <div class="switch selected" value="new">NEW</div>
-                    <div class="switch" value="total">TOTAL</div>
-                  </div>
-                  <div class="charts-wrapper">
-                    <div class="main-chart-wrapper">
-                      <div class="main-chart"></div>
-                    </div>
-                    <div class="axis-chart"></div>
-                    <div class="axis-cover"></div>
-                  </div>
-                  <div class="checkboxes">
-                    <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
-                  </div>
-                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. See chart annotations in "Nationwide Situation" section or <a href="#footer-notes">footer notes</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
-                </div>
-              </div>
-              -->
               <div class="flex-row t03">
                 <div class="box transition prefecture" code="deaths" pref="">
                   <h3>Deaths in <span></span></h3>
@@ -534,60 +448,6 @@
                   <p class="notes">Data source: <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_deaths.csv" target="_blank">iMEdD-Lab</a>.</p>
                 </div>
               </div>
-              <!--
-               <div class="flex-row t03">
-                <div class="box transition prefecture" code="reproduction_rj" pref="">
-                  <h3>Effective Reproduction Number in <span></span></h3>
-                  <div class="latest">
-                    <div>
-                      <span class="type"></span>
-                      <span class="value"></span>
-                      <span class="unit"></span>
-                    </div>
-                    <div class="change"></div>
-                  </div>
-                  <h5 class="updated"><br /></h5>
-                  <div class="charts-wrapper">
-                    <div class="main-chart-wrapper">
-                      <div class="main-chart"></div>
-                    </div>
-                    <div class="axis-chart"></div>
-                    <div class="axis-cover"></div>
-                  </div>
-                  <p class="notes">In prefectures with fewer cases, a few case variations may bring a large fluctuation of effective reproduction number. In uncountable cases, such as zero new positives in the previous week, the number of effective reproduction number is also assumed to be zero. See chart annotations in "Nationwide Situation" section or <a href="#footer-notes">footer notes</a> for further information such as definition or notes. <a class="more">READ MORE</a></p>
-                </div>
-              </div>
-              
-              <div class="flex-row t03">
-                <div class="box transition prefecture" code="pcrtested" pref="">
-                  <h3>PCR Tested in <span></span></h3>
-                  <div class="latest">
-                    <div>
-                      <span class="type"></span>
-                      <span class="value"></span>
-                      <span class="unit"></span>
-                    </div>
-                    <div class="change"></div>
-                  </div>
-                  <h5 class="updated"><br /></h5>
-                  <div class="switches">
-                    <div class="switch selected" value="new">NEW</div>
-                    <div class="switch" value="total">TOTAL</div>
-                  </div>
-                  <div class="charts-wrapper">
-                    <div class="main-chart-wrapper">
-                      <div class="main-chart"></div>
-                    </div>
-                    <div class="axis-chart"></div>
-                    <div class="axis-cover"></div>
-                  </div>
-                  <div class="checkboxes">
-                    <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
-                  </div>
-                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. On weekends and holidays, the number of PCR tests may be announced as "0" because MHLW did not receive the report, even if tests have been performed. The past data will be corrected if the number of previous tests was known. If not, the number of tests on weekdays and holidays will be added on the next weekday. On and after 18 June in Hyogo and 21 June in Shizuoka, the number includes tests covered by private testing institutions. The number in Tokyo includes medical insurance inspection results from 7 May, Antigen tested positive from 13 May, and Antigen tested negative from from 17 June. See <a href="#faqs">Frequently Asked Questions</a> for further information. Aichi in 3/16-22 excludes number of Nagoya city. Akita in 3/11 is the number of only Akita city. The figures for Chiba are only counted from 3/21, Osaka from 3/22, and Kanagawa from 3/23. See chart annotations in "Nationwide Situation" section or <a href="#footer-notes">footer notes</a> for further information such as definition or notes. <a class="more">READ MORE</a></p>
-                </div>
-              </div>
-              -->
             </div>
         </div>
       </div>
@@ -603,7 +463,7 @@
           </section>
           <section>
             <h4>Q. How accurate is the Active Cases section?</h4>
-            <p>A. It is only an estimate based on the assumption that most people recover from mild COVID-19 within two weeks and more serious cases within three weeks (resulting in either death or recovery), giving a absolute median of 17 days. Given the fact that some of the cases are from tourists that tested positive at the borders, some smoothing has to be applied to the number by keeping only ~26% of the final value. (This number is created by finding the percentage of ((Travel from abroad cases / Total cases) * 100) from the Infection Distribution table. To give you an example, the sum of all the cumulative tested positive cases that existed from 17 days before the 7th of August was 1222. Removing about 26.6% of that value gives us 896 active cases. Why remove the foreign cases from the equation? For two reasons. First, they are not permanent residents of this country, meaning they are only staying for a few days to about two weeks (in most cases). Second, since there are strict measures taken by the goverment when it comes to tourists, they will either be placed into quarantine (if tested positive) or return to their respective countries, both cases leading to a very small chance of increasing the infectiong rate thus lowering the active cases.</p>
+            <p>A. It is only an estimate based on the assumption that most people recover from mild COVID-19 within two weeks and more serious cases within three weeks (resulting in either death or recovery), giving a absolute median of 17 days. Given the fact that some of the cases are from tourists that tested positive at the borders, some smoothing has to be applied to the number by keeping only ~26% of the final value. (This number is created by finding the percentage of ((Travel from abroad cases / Total cases) * 100) from the Infection Distribution table. To give you an example, the sum of all the cumulative tested positive cases that existed from 17 days before the 7th of August was 1222. Removing about 26.6% of that value gives us 896 active cases. Why remove the foreign cases from the equation? For two reasons. First, they are not permanent residents of this country, meaning they are only staying for a few days to about two weeks (in most cases). Second, since there are strict measures taken by the goverment when it comes to tourists, they will either be placed into quarantine (if tested positive) or return to their respective countries, both cases leading to a very small chance of increasing the active cases rate thus lowering the real active cases value.</p>
           </section>
           <section>
             <h4>Q. What is Effective Reproduction Number R_t?</h4>

@@ -291,30 +291,6 @@
         </div>
         <h2>Προβλέψεις</h2>
         <div class="flex-container">
-        <!--
-          <div class="flex-row">
-            <div class="box transition nationwide" code="reproduction_rj_infected" pref="">
-              <h3>Epidemic curve based on Rj</h3>
-              <div class="latest">
-                <div>
-                  <span class="type"></span>
-                  <span class="value"></span>
-                  <span class="unit"></span>
-                </div>
-                <div class="change"></div>
-              </div>
-              <h5 class="updated"><br /></h5>
-              <div class="charts-wrapper">
-                <div class="main-chart-wrapper">
-                  <div class="main-chart"></div>
-                </div>
-                <div class="axis-chart"></div>
-                <div class="axis-cover"></div>
-              </div>
-							<p class="notes">Formula: Translate reported cases by subtracting all the cumulative tested positive cases that existed from 17 days ago, from total cases (Most people recover from mild COVID-19 within two weeks and more serious disease within three weeks, giving a absolute median of 17). Some smoothing has also been applied due to some cases being from tourists that tested positive at the borders. (Keeping only ~20% of the final value. This number is created by finding the percentage of ((Travel from abroad cases / Total cases) * 100) from the Infection Distribution table) <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
-            </div>
-          </div>
-          -->
           <div class="flex-row">
             <div class="box transition nationwide" code="rt_repro" pref="">
               <h3>Αριθμός αναπαραγωγής R_t (εκτίμηση)</h3>
@@ -380,37 +356,6 @@
               <p class="notes">Πηγή: <a href="https://github.com/youyanggu/covid19_projections/tree/master/projections" target="_blank">covid19-projections.com</a>. Μέση τιμή, 2.5, και 97.5 εκατοστημόριο των ημερήσιων προβλέψεων σε θανάτους. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
             </div>
           </div>
-          <!--
-          <div class="flex-row">
-            <div class="box transition nationwide" code="pcrtests" pref="">
-              <h3>PCR Tests</h3>
-              <div class="latest">
-                <div>
-                  <span class="type"></span>
-                  <span class="value"></span>
-                  <span class="unit"></span>
-                </div>
-                <div class="change"></div>
-              </div>
-              <h5 class="updated"><br /></h5>
-              <div class="switches">
-                <div class="switch selected" value="new">ΝΕΑ</div>
-                <div class="switch" value="total">ΣΥΝΟΛΟ</div>
-              </div>
-              <div class="charts-wrapper">
-                <div class="main-chart-wrapper">
-                  <div class="main-chart"></div>
-                </div>
-                <div class="axis-chart"></div>
-                <div class="axis-cover"></div>
-              </div>
-              <div class="checkboxes">
-                <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
-              </div>
-              <p class="notes">Formula: (New cases in past 7 days / New cases in 7 days before that) ^ (mean generation time / length of reporting interval). Mean generation time is supposed to be 5 days, and length of reporting interval is supposed to be 7 days. For the purpose of understanding current trends in real time, this formula is simplified and based on reporting dates. Note that this formula is a simplified version and may be affected by reporting delays. Model and supervised by Professor Hiroshi Nishiura of Hokkaido University Graduate School of Medicine. Refer to <a href="https://github.com/contactmodel/COVID19-Japan-Reff" target="_blank">GitHub repository</a> published by Prof. Nishiura for further details.<a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
-            </div>
-          </div>
-					-->
         </div>	
         <div class="flex-container">
           <div class="flex-row">
@@ -474,37 +419,6 @@
                   <p class="notes">Πηγή: <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a>. Στις <span style="color:#5987A5">1η Ιουνίου</span> συνεχίστηκαν οι διεθνείς πτήσεις προς και από το Διεθνές Αεροδρόμιο Αθηνών για τις χώρες της ΕΕ+, εξαιρουμένων των πτήσεων μεταξύ Ελλάδας και Ιταλίας, Ισπανίας, Σουηδίας, Ηνωμένου Βασιλείου και Ολλανδίας. Στις <span style="color:#3BA9B0">15 Ιουνίου</span> συνεχίστηκαν οι διεθνείς πτήσεις μεταξύ Ελλάδας και Αλβανίας, Ιταλίας, Βόρειας Μακεδονίας, Ισπανίας και Ολλανδίας, καθώς επίσης και οι διεθνείς πτήσεις από και προς το αεροδρόμιο Μακεδονία Θεσσαλονίκης. Επίσης, άνοιξαν ξανά τα σύνορα με τη Βουλγαρία για όλα τα μη απαραίτητα ταξίδια. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
                 </div>
               </div>
-              <!--
-              <div class="flex-row t03">
-                <div class="box transition prefecture" code="discharged" pref="">
-                  <h3>Discharged in <span></span></h3>
-                  <div class="latest">
-                    <div>
-                      <span class="type"></span>
-                      <span class="value"></span>
-                      <span class="unit"></span>
-                    </div>
-                    <div class="change"></div>
-                  </div>
-                  <h5 class="updated"><br /></h5>
-                  <div class="switches">
-                    <div class="switch selected" value="new">ΝΕΑ</div>
-                    <div class="switch" value="total">ΣΥΝΟΛΟ</div>
-                  </div>
-                  <div class="charts-wrapper">
-                    <div class="main-chart-wrapper">
-                      <div class="main-chart"></div>
-                    </div>
-                    <div class="axis-chart"></div>
-                    <div class="axis-cover"></div>
-                  </div>
-                  <div class="checkboxes">
-                    <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
-                  </div>
-                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. See chart annotations in "Nationwide Situation" section or <a href="#footer-notes">footer notes</a> for further information such as definition or notes.<a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
-                </div>
-              </div>
-              -->
               <div class="flex-row t03">
                 <div class="box transition prefecture" code="deaths" pref="">
                   <h3>Θάνατοι, <span></span></h3>
@@ -534,66 +448,12 @@
                   <p class="notes">Πηγή: <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_deaths.csv" target="_blank">iMEdD-Lab</a>.</p>
                 </div>
               </div>
-              <!--
-               <div class="flex-row t03">
-                <div class="box transition prefecture" code="reproduction_rj" pref="">
-                  <h3>Effective Reproduction Number in <span></span></h3>
-                  <div class="latest">
-                    <div>
-                      <span class="type"></span>
-                      <span class="value"></span>
-                      <span class="unit"></span>
-                    </div>
-                    <div class="change"></div>
-                  </div>
-                  <h5 class="updated"><br /></h5>
-                  <div class="charts-wrapper">
-                    <div class="main-chart-wrapper">
-                      <div class="main-chart"></div>
-                    </div>
-                    <div class="axis-chart"></div>
-                    <div class="axis-cover"></div>
-                  </div>
-                  <p class="notes">In prefectures with fewer cases, a few case variations may bring a large fluctuation of effective reproduction number. In uncountable cases, such as zero new positives in the previous week, the number of effective reproduction number is also assumed to be zero. See chart annotations in "Nationwide Situation" section or <a href="#footer-notes">footer notes</a> for further information such as definition or notes. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
-                </div>
-              </div>
-              
-              <div class="flex-row t03">
-                <div class="box transition prefecture" code="pcrtested" pref="">
-                  <h3>PCR Tested in <span></span></h3>
-                  <div class="latest">
-                    <div>
-                      <span class="type"></span>
-                      <span class="value"></span>
-                      <span class="unit"></span>
-                    </div>
-                    <div class="change"></div>
-                  </div>
-                  <h5 class="updated"><br /></h5>
-                  <div class="switches">
-                    <div class="switch selected" value="new">ΝΕΑ</div>
-                    <div class="switch" value="total">ΣΥΝΟΛΟ</div>
-                  </div>
-                  <div class="charts-wrapper">
-                    <div class="main-chart-wrapper">
-                      <div class="main-chart"></div>
-                    </div>
-                    <div class="axis-chart"></div>
-                    <div class="axis-cover"></div>
-                  </div>
-                  <div class="checkboxes">
-                    <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
-                  </div>
-                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. On weekends and holidays, the number of PCR tests may be announced as "0" because MHLW did not receive the report, even if tests have been performed. The past data will be corrected if the number of previous tests was known. If not, the number of tests on weekdays and holidays will be added on the next weekday. On and after 18 June in Hyogo and 21 June in Shizuoka, the number includes tests covered by private testing institutions. The number in Tokyo includes medical insurance inspection results from 7 May, Antigen tested positive from 13 May, and Antigen tested negative from from 17 June. See <a href="#faqs">Frequently Asked Questions</a> for further information. Aichi in 3/16-22 excludes number of Nagoya city. Akita in 3/11 is the number of only Akita city. The figures for Chiba are only counted from 3/21, Osaka from 3/22, and Kanagawa from 3/23. See chart annotations in "Nationwide Situation" section or <a href="#footer-notes">footer notes</a> for further information such as definition or notes. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
-                </div>
-              </div>
-              -->
             </div>
         </div>
       </div>
       <div id="footer-block">
-        <p class="notes" id="footer-notes">Σημειώσεις: Οι κινούμενοι μέσοι όροι βγαίνουν από 7 ημέρες πίσω. Ο αριθμός βασίζεται στην ημερήσια τιμή. Θεωρείται ότι είναι ο ίδιος με την προηγούμενη ημέρα, εάν δεν έχει ενημερωθεί. Τις ημέρες χωρίς συνέχεια από την προηγούμενη ημέρα ο αριθμός των "Νέων" κρουσμάτων αντιμετωπίζεται ως 0. Τα δεδομένα μπορεί να διορθωθούν από τον προγραμματιστή όταν βρίσκονται προφανής ανακρίβειες, όπως αρνητική τιμή στα Κρούσματα.</p>
-        <p class="notes">Δεδομένα: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Οι ημερομηνίες των μέτρων ελήφθησαν από <a href="https://github.com/Covid-19-Response-Greece/covid19-data-greece/blob/master/data/greece/Measures/greece_social_distancing_measures_timeline.json" target="_blank">Covid-19-Response-Greece</a>. Τα δεδομένα για τους νομούς ελήφθησαν από <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a>. Οι προβλέψεις ελήφθησαν από <a href="https://covid19-projections.com/greece" target="_blank">covid19-projections.com</a>. Ο αλγόριθμος του αριθμού αναπαραγωγής Rj προέρχεται από <a href="https://academic.oup.com/aje/article/160/6/509/79472?fbclid=IwAR2nDT0TyBciFQuNOU0vW3z4OcAJBRPh_x1E8HwCI-i9a4y5KLimY5D3aG4" target="blank">American Journal of Epidemiology</a> και από <a href="https://mshfd.github.io/reproduction-number/" target="_blank">Richard Schubert</a>. Χρησιμοποιήθηκε το <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> για τα διαγράμματα. Original script by: TOYO KEIZAI ONLINE</p>
+        <p class="notes" id="footer-notes">Σημειώσεις: Οι κινούμενοι μέσοι όροι βγαίνουν από 7 ημέρες προς τα πίσω. Ο αριθμός βασίζεται στην ημερήσια τιμή. Θεωρείται ότι είναι ο ίδιος με την προηγούμενη ημέρα, εάν δεν έχει ενημερωθεί. Τις ημέρες χωρίς συνέχεια από την προηγούμενη, ο αριθμός των "Νέων" κρουσμάτων αντιμετωπίζεται ως 0. Τα δεδομένα μπορεί να διορθωθούν από τον προγραμματιστή όταν βρεθούν ανακρίβειες, όπως αρνητική τιμή στα Κρούσματα.</p>
+        <p class="notes">Δεδομένα: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Οι ημερομηνίες των μέτρων ελήφθησαν από <a href="https://github.com/Covid-19-Response-Greece/covid19-data-greece/blob/master/data/greece/Measures/greece_social_distancing_measures_timeline.json" target="_blank">Covid-19-Response-Greece</a>. Τα δεδομένα για τους νομούς ελήφθησαν από <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a>. Οι προβλέψεις ελήφθησαν από <a href="https://covid19-projections.com/greece" target="_blank">covid19-projections.com</a>. Ο αλγόριθμος του αριθμού αναπαραγωγής Rj προέρχεται από <a href="https://academic.oup.com/aje/article/160/6/509/79472?fbclid=IwAR2nDT0TyBciFQuNOU0vW3z4OcAJBRPh_x1E8HwCI-i9a4y5KLimY5D3aG4" target="blank">American Journal of Epidemiology</a> και από <a href="https://mshfd.github.io/reproduction-number/" target="_blank">Richard Schubert</a>. Χρησιμοποιήθηκε εισαγωγικό κείμενο για τον R_t από <a href="https://www.capital.gr/health/3451248/to-r0-kai-to-rt-kai-pos-fotografizoun-tin-exelixi-tis-pandimias" target="_blank">capital.gr</a>. Χρησιμοποιήθηκε το <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> για τα διαγράμματα. Original script by: TOYO KEIZAI ONLINE</p>
         <p class="notes"><br><a href="https://github.com/Sandbird/covid19-Greece" target="_blank">Κατεβάστε τα δεδομένα</a></p>
         <div id="faqs">
           <h3>Συχνές Ερωτήσεις</h3>
@@ -603,7 +463,7 @@
           </section>
           <section>
             <h4>Ε. Πόσο ακριβής είναι η ενότητα «Ενεργά κρούσματα»;</h4>
-            <p>A. Είναι μόνο μια εκτίμηση που βασίζεται στην υπόθεση ότι οι περισσότεροι άνθρωποι αναρρώνουν από ήπια μορφής COVID-19 μέσα σε δύο εβδομάδες και στις πιο σοβαρές περιπτώσεις εντός τριών εβδομάδων (μέσο όρο), δίνοντας ένα απόλυτο διάμεσο 17 ημερών. Δεδομένου ότι ορισμένες από τις περιπτώσεις προέρχονται από τουρίστες που βρέθηκαν θετικοί κατά την είσοδο τους στην χώρα, κάποια εξομάλυνση πρέπει να εφαρμοστεί στον τελικό αριθμό διατηρώντας μόνο το ~26% της τελικής τιμής. (Αυτός ο αριθμός βρίσκεται με την εύρεση του ποσοστού ((Σχετιζόμενα με ταξίδι από το εξωτερικό / Συνολικές περιπτώσεις) * 100) από την ενότητα «Κατανομή κρουσμάτων». Για να σας δώσω ένα παράδειγμα, το άθροισμα όλων των περιπτώσεων που βρέθηκαν θετικοί, 17 ημέρες πριν από τις 7 Αυγούστου ήταν 1222. Η αφαίρεση περίπου του 26,6% αυτής της τιμής μας δίνει 896 ενεργές περιπτώσεις. Γιατί να αφαιρέσουμε αυτές τις περιπτώσεις από την εξίσωση; Για δύο λόγους. Πρώτον, δεν είναι μόνιμοι κάτοικοι αυτής της χώρας, που σημαίνει ότι θα βρίσκονται εντός της χώρας μόνο για μερικές ημέρες έως περίπου δύο εβδομάδες (στις περισσότερες περιπτώσεις). Δεύτερον, δεδομένου ότι υπάρχουν αυστηρά μέτρα από την κυβέρνηση, όσον αφορά τους τουρίστες, είτε θα τεθούν σε καραντίνα (εάν βρεθούν θετικοί) είτε θα επιστρέψουν στις αντίστοιχες χώρες τους. Και στις δύο περιπτώσεις συμβάλλουν σε πολύ μικρή πιθανότητα αύξησης του ποσοστού μόλυνσης με αποτέλσμα την μείωση των ενεργών κρουσμάτων.</p>
+            <p>A. Είναι μόνο μια εκτίμηση που βασίζεται στην υπόθεση ότι οι περισσότεροι άνθρωποι αναρρώνουν από ήπια μορφής COVID-19 μέσα σε δύο εβδομάδες και στις πιο σοβαρές περιπτώσεις εντός τριών εβδομάδων (μέσο όρο), δίνοντας ένα απόλυτο διάμεσο 17 ημερών. Δεδομένου ότι ορισμένες από τις περιπτώσεις προέρχονται από τουρίστες που βρέθηκαν θετικοί κατά την είσοδο τους στην χώρα, κάποια εξομάλυνση πρέπει να εφαρμοστεί στον τελικό αριθμό διατηρώντας μόνο το ~26% της τελικής τιμής. (Αυτός ο αριθμός βρίσκεται με την εύρεση του ποσοστού ((Σχετιζόμενα με ταξίδι από το εξωτερικό / Συνολικές περιπτώσεις) * 100) από την ενότητα «Κατανομή κρουσμάτων». Για να σας δώσω ένα παράδειγμα, το άθροισμα όλων των περιπτώσεων που βρέθηκαν θετικοί, 17 ημέρες πριν από τις 7 Αυγούστου ήταν 1222. Η αφαίρεση περίπου του 26,6% αυτής της τιμής μας δίνει 896 ενεργές περιπτώσεις. Γιατί να αφαιρέσουμε αυτές τις περιπτώσεις από την εξίσωση; Για δύο λόγους. Πρώτον, δεν είναι μόνιμοι κάτοικοι αυτής της χώρας, που σημαίνει ότι θα βρίσκονται εντός της χώρας μόνο για μερικές ημέρες έως περίπου δύο εβδομάδες (στις περισσότερες περιπτώσεις). Δεύτερον, δεδομένου ότι υπάρχουν αυστηρά μέτρα από την κυβέρνηση, όσον αφορά τους τουρίστες, είτε θα τεθούν σε καραντίνα (εάν βρεθούν θετικοί) είτε θα επιστρέψουν στις αντίστοιχες χώρες τους. Και στις δύο περιπτώσεις συμβάλλουν σε πολύ μικρή πιθανότητα αύξησης του ποσοστού των ενεργών κρουσμάτων με αποτέλσμα την μείωση του πραγματικού αριθμού.</p>
           </section>
           <section>
             <h4>Ε. Τι είναι ο Αριθμός αναπαραγωγής R_t;</h4>
