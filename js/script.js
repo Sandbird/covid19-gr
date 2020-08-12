@@ -37,7 +37,7 @@ const LABELS = {
       predicted_deaths: ["χαμηλότερο εύρος", "πρόβλεψη", "ανώτερο εύρος"],
       serious: ["Κρίσιμη κατάσταση"],
       deaths: ["Θάνατοι"],
-      tests: ["Δείγματα που έχουν ελεγχθεί", "Κρούσματα"],
+      tests: ["Δείγματα που έχουν ελεγχθεί", "Βρέθηκαν θετικά"],
       pcrtests: [""],
       rt_repro: ["Βασικός αναπαραγωγικός αριθμός"],
       rj_repro: ["Αναπαραγωγικός αριθμός"],
@@ -286,18 +286,29 @@ const init = () => {
       let valueTotal  = 0;
       let valueLatest = 0;
 
-      for (let i = 0; i < rows.length; i++) {
+      for (let i = 0; i < rows.length; i++) {   		
         for (let j = 0; j < rows[0].length; j++) {
           valueTotal += rows[i][j];
           if (i === rows.length - 1) valueLatest += rows[i][j];
         }
       }
+      
+     if ($box.attr("code") === "tests") {
+			var middle_column_sum = rows.reduce(function (r, a) {
+			        a.forEach(function (b, i) {
+			            r[i] = (r[i] || 0) + b;
+			        });
+			        return r;
+			    }, []);
+       let lastItem = rows[rows.length - 1];
+       valueTotal  = precisionRound(middle_column_sum[0], 1);
+       valueLatest = valueLatest - lastItem[1];
+      }      
 
       if ($box.attr("code") === "rj_repro") {
         valueTotal  = Math.round(rows[rows.length - 1][0] * 100) / 100;
         valueLatest = Math.round((rows[rows.length - 1][0] - rows[rows.length - 2][0]) * 100) / 100;
       }
-
 
       if ($box.attr("code") === "rt_repro") {
         valueTotal  = Math.round(rows[rows.length - 1][0] * 100) / 100;
