@@ -2,7 +2,7 @@
 The state of the infection of the new coronavirus (COVID19) in Greece was summarized visually from a press release from the Ministry of Health.
 
 ### Public page
-- http://covid19-greece.tk
+- https://covid19-greece.tk
 
 ### JSON Data
 - https://github.com/Sandbird/covid19-Greece
