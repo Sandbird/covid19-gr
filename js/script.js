@@ -23,6 +23,8 @@ const COLORS = {
   infected_distribution: "#6F6587,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","), 
   predicted_deaths: "#6F6587,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","), 
   pcrtests: "#3DC,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","),
+  measures: "#3DC,#8FBDE0,#689AAB,#AADCD2,#90CFB5,#88BBAA,#BADDAD,#BBCDB3,#FAF28C,#DFEA8B,#F3EF89,#F4F4B2,#CCAC8E,#FBDEDE,#F8B2BC,#F59598,#EFA796,#FEBD7D,#CEB4D6,#B5B3DA".split(","),
+  measures2: "#3DC,#FEA,#5987A5,#3BA9B0,#86E18D,#D5F474,#FB8,#EC2,#CAF0F8".split(","),
   dark: "#399",
   selected: "#EC2"
 };
@@ -182,12 +184,14 @@ const init = () => {
 
       if (prefCode === "") {
         if (code === "carriers") {
-          if (ymd >= 20200328) ret = COLORS.second; //All flights to and from Germany and the Netherlands, excluding flights from Germany to Athens, suspended
-          if (ymd >= 20200601) ret = COLORS.athensopen; //International flights to and from Athens International Airport resumed for EU+ countries, excluding flights between Greece and Italy, Spain, Sweden, the United Kingdom, and the Netherlands
-          if (ymd >= 20200615) ret = COLORS.thessopen; //International flights to and from Thessaloniki Airport Makedonia resumed
-          if (ymd >= 20200701) ret = COLORS.infected_distribution[j+4]; //International flights between Greece and Algeria, Australia, Canada, Georgia, Japan, Montenegro, Morocco, New Zealand, Rwanda, Serbia, South Korea, Thailand, Tunisia, and Uruguay resumed
-        	if (ymd >= 20200715) ret = COLORS.infected_distribution[j+5]; //Borders opened to Serbian citizens, International flights between Greece and the United Kingdom resumed
-        	if (ymd >= 20200720) ret = COLORS.deaths; //International flights between Greece and Sweeden resumed
+        	if (ymd < 20200328) ret = COLORS.measures[j];
+          if (ymd >= 20200328) ret = COLORS.measures[j+1]; //All flights to and from Germany and the Netherlands, excluding flights from Germany to Athens, suspended
+          if (ymd >= 20200601) ret = COLORS.measures[j+3]; //International flights to and from Athens International Airport resumed for EU+ countries, excluding flights between Greece and Italy, Spain, Sweden, the United Kingdom, and the Netherlands
+          if (ymd >= 20200615) ret = COLORS.measures[j+5]; //International flights to and from Thessaloniki Airport Makedonia resumed
+          if (ymd >= 20200701) ret = COLORS.measures[j+7]; //International flights between Greece and Algeria, Australia, Canada, Georgia, Japan, Montenegro, Morocco, New Zealand, Rwanda, Serbia, South Korea, Thailand, Tunisia, and Uruguay resumed
+        	if (ymd >= 20200715) ret = COLORS.measures[j+9]; //Borders opened to Serbian citizens, International flights between Greece and the United Kingdom resumed
+        	if (ymd >= 20200720) ret = COLORS.measures[j+2]; //International flights between Greece and Sweeden resumed
+        	if (ymd >= 20200815) ret = COLORS.measures[j+4]; //International flights between Greece and Sweeden resumed
         }
 
         if (code === "active") {
