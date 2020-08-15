@@ -61,7 +61,7 @@ const LABELS = {
     demography: {
       cases: "Κρούσματα",
       deaths: "Θάνατοι",
-      serious: "Διασωληνωμένοι"
+      serious: "Νοσηλεία"
     },
     age: [
       "65+",
@@ -551,6 +551,17 @@ const init = () => {
     };
 
     
+	if(code == 'infected_distribution'){
+		config.options.tooltips.caretSize=0;
+		config.options.tooltips.titleFontSize=12;
+		config.options.tooltips.bodyFontSize=11;
+		config.options.tooltips.bodySpacing=0;
+		config.options.tooltips.titleSpacing=0;
+		config.options.tooltips.xPadding=10;
+		config.options.tooltips.yPadding=10;
+		config.options.tooltips.cornerRadius=2;
+		config.options.tooltips.titleMarginBottom=2;
+	} 
 
     for (let i = 0; i < rows[0].length; i++) {
       config.data.datasets.push({
