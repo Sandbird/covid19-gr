@@ -748,7 +748,7 @@ const init = () => {
           data: []
         },{
           label: LABELS[LANG].demography.women,
-          backgroundColor: COLORS.women,
+          backgroundColor: "#BBCDB3",
           borderWidth: 0.5,
           borderColor: "#242a3c",
           data: []
@@ -861,7 +861,7 @@ const init = () => {
           data: []
         },{
           label: LABELS[LANG].demography.women,
-          backgroundColor: COLORS.women,
+          backgroundColor: "#BBCDB3",
           borderWidth: 0.5,
           borderColor: "#242a3c",
           data: []
@@ -974,7 +974,7 @@ const init = () => {
           data: []
         },{
           label: LABELS[LANG].demography.women,
-          backgroundColor: COLORS.women,
+          backgroundColor: "#BBCDB3",
           borderWidth: 0.5,
           borderColor: "#242a3c",
           data: []
