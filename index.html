@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="lib/katex.min.css">
 		<title>Coronavirus Disease (COVID-19) Situation Report in Greece</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="js/script.min.js"></script>
+    <script src="js/script.min.js?v=1"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 		<script src="lib/auto-render.min.js"></script>
 		<script src="lib/katex.min.js"></script>
@@ -265,9 +265,12 @@
               <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a></p>
             </div>
           </div>
+        </div>
+        <h2>Ηλικιακές κατανομές κρουσμάτων</h2>
+        <div class="flex-container">
           <div class="flex-row">
             <div class="box" id="demography-box">
-              <h3>Ηλικιακή κατανομή κρουσμάτων (σύνολο)</h3>
+              <h3>Ποσοστιαία κατανομή (σύνολο)</h3>
               <h5 class="updated-demography-sum"><br></h5>
               <div id="demography-chart"></div>
               <p class="notes"></p>
@@ -275,7 +278,7 @@
           </div>
           <div class="flex-row">
             <div class="box" id="demography-box-men">
-              <h3>Ηλικιακή κατανομή κρουσμάτων (άνδρες)</h3>
+              <h3>Ποσοστιαία κατανομή (άνδρες)</h3>
               <h5 class="updated-demography-men"><br></h5>
               <div id="demography-chart-men"></div>
               <p class="notes"></p>
@@ -283,12 +286,36 @@
           </div>
           <div class="flex-row">
             <div class="box" id="demography-box-women">
-              <h3>Ηλικιακή κατανομή κρουσμάτων (γυναίκες)</h3>
+              <h3>Ποσοστιαία κατανομή (γυναίκες)</h3>
               <h5 class="updated-demography-women"><br></h5>
               <div id="demography-chart-women"></div>
               <p class="notes"></p>
             </div>
           </div>
+          <div class="flex-row">
+            <div class="box" id="demography-box">
+              <h3>Κρούσματα κατά φύλο</h3>
+              <h5 class="updated-demography-cases"><br></h5>
+              <div id="demography-chart-cases"></div>
+              <p class="notes"></p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box" id="demography-box-men">
+              <h3>Θάνατοι κατά φύλο</h3>
+              <h5 class="updated-demography-men"><br></h5>
+              <div id="demography-chart-deaths"></div>
+              <p class="notes"></p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box" id="demography-box-women">
+              <h3>Νοσηλείες κατά φύλο</h3>
+              <h5 class="updated-demography-women"><br></h5>
+              <div id="demography-chart-serious"></div>
+              <p class="notes"></p>
+            </div>
+          </div>          
         </div>
         <h2>Προβλέψεις</h2>
         <div class="flex-container">

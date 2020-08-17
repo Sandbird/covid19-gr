@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="lib/katex.min.css">
 		<title>Coronavirus Disease (COVID-19) Situation Report in Greece</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="js/script.min.js"></script>
+    <script src="js/script.min.js?v=1"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 		<script src="lib/auto-render.min.js"></script>
 		<script src="lib/katex.min.js"></script>
@@ -265,9 +265,12 @@
               <p class="notes">Data source: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a></p>
             </div>
           </div>
+        </div>
+        <h2>Age distribution of confirmed cases</h2>
+        <div class="flex-container">
           <div class="flex-row">
             <div class="box" id="demography-box">
-              <h3>Age distribution of confirmed cases (total)</h3>
+              <h3>Percentage distribution (total)</h3>
               <h5 class="updated-demography-sum"><br></h5>
               <div id="demography-chart"></div>
               <p class="notes"></p>
@@ -275,7 +278,7 @@
           </div>
           <div class="flex-row">
             <div class="box" id="demography-box-men">
-              <h3>Age distribution of confirmed cases (men)</h3>
+              <h3>Percentage distribution (men)</h3>
               <h5 class="updated-demography-men"><br></h5>
               <div id="demography-chart-men"></div>
               <p class="notes"></p>
@@ -283,9 +286,33 @@
           </div>
           <div class="flex-row">
             <div class="box" id="demography-box-women">
-              <h3>Age distribution of confirmed cases (women)</h3>
+              <h3>Percentage distribution (women)</h3>
               <h5 class="updated-demography-women"><br></h5>
               <div id="demography-chart-women"></div>
+              <p class="notes"></p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box" id="demography-box">
+              <h3>Cases by gender</h3>
+              <h5 class="updated-demography-cases"><br></h5>
+              <div id="demography-chart-cases"></div>
+              <p class="notes"></p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box" id="demography-box-men">
+              <h3>Deaths by gender</h3>
+              <h5 class="updated-demography-men"><br></h5>
+              <div id="demography-chart-deaths"></div>
+              <p class="notes"></p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box" id="demography-box-women">
+              <h3>Hospitalizations by gender</h3>
+              <h5 class="updated-demography-women"><br></h5>
+              <div id="demography-chart-serious"></div>
               <p class="notes"></p>
             </div>
           </div>
