@@ -1,39 +1,39 @@
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
-    <meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=no">
-		<meta name="format-detection" content="telephone=no">
-		<meta property="og:url" content="https://covid19-greece.tk" />
-		<meta property="og:image" content="https://covid19-greece.tk/img/site_s.jpg" />
-		<meta property="og:type" content="article" />
-		<meta property="og:title" content="Coronavirus Disease (COVID-19) Situation Report in Greece" />
-		<meta property="og:description" content="Confirmed cases of COVID-19 in Greece. Data provided by the Ministry of Health." />
-		<meta name="twitter:card" content="summary_large_image" />
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP|Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="lib/katex.min.css">
-		<title>Coronavirus Disease (COVID-19) Situation Report in Greece</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="js/script.min.js?v=1"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-		<script src="lib/auto-render.min.js"></script>
-		<script src="lib/katex.min.js"></script>
-    <script>
-		var html$3 = "\n<style>\ndt-math[block] {\n  display: block;\n}\n</style>\n";
-		var DTMath = function(dom, data) {
-		  var equationElements = [].slice.call(dom.querySelectorAll("dt-math"));
-		  equationElements.forEach(function (el) {
-		    var content = el.textContent;
-		    var displayMode = el.hasAttribute("block") ? true : false;
-		    el.innerHTML = html$3 + katex.renderToString(content, {displayMode: displayMode});
-		  });
-		};
-		var data = {};
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      DTMath(window.document, data);
-    });
-    </script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta property="og:url" content="https://covid19-greece.tk" />
+	<meta property="og:image" content="https://covid19-greece.tk/img/site_s.jpg" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Coronavirus Disease (COVID-19) Situation Report in Greece" />
+	<meta property="og:description" content="Confirmed cases of COVID-19 in Greece. Data provided by the Ministry of Health." />
+	<meta name="twitter:card" content="summary_large_image" />
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP|Roboto&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="lib/katex.min.css">
+	<title>Coronavirus Disease (COVID-19) Situation Report in Greece</title>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="js/script.min.js?v=1"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script src="lib/auto-render.min.js"></script>
+	<script src="lib/katex.min.js"></script>
+	<script>
+	var html$3 = "\n<style>\ndt-math[block] {\n  display: block;\n}\n</style>\n";
+	var DTMath = function(dom, data) {
+	  var equationElements = [].slice.call(dom.querySelectorAll("dt-math"));
+	  equationElements.forEach(function (el) {
+	    var content = el.textContent;
+	    var displayMode = el.hasAttribute("block") ? true : false;
+	    el.innerHTML = html$3 + katex.renderToString(content, {displayMode: displayMode});
+	  });
+	};
+	var data = {};
+	window.document.addEventListener("DOMContentLoaded", function (event) {
+	  DTMath(window.document, data);
+	});
+	</script>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-174177919-1"></script>
 	<script>
@@ -45,36 +45,6 @@
 	</script>
   </head>
   <body>
-	<div id="math-cache" style="display: none;">
-	  <dt-math class="star">\star</dt-math>
-	  <dt-math class="plus">+</dt-math>
-	  <dt-math class="minus">-</dt-math>
-	  <dt-math class="equals">=</dt-math>
-	  <dt-math class="alpha">\alpha</dt-math>
-	  <dt-math class="lambda">\lambda</dt-math>
-	  <dt-math class="beta">\beta</dt-math>
-	  <dt-math class="r">R_{j}= \displaystyle\sum_{i} p_{ij}</dt-math>
-	  <dt-math class="alpha-equals">\alpha=</dt-math>
-	  <dt-math class="offset">\Delta</dt-math>
-	  <dt-math class="offset-equals">\Delta=</dt-math>
-	  <dt-math class="beta-equals">\beta=</dt-math>
-	  <dt-math class="beta-equals-zero">\beta = 0</dt-math>
-	  <dt-math class="beta-equals-one">\beta=1</dt-math>
-	  <dt-math class="alpha-equals-one-over-lambda-i">\alpha = 1/\lambda_i</dt-math>
-	  <dt-math class="model">\text{model}</dt-math>
-	  <dt-math class="p">0 p_1</dt-math>
-	  <dt-math class="phat">0 \bar{p}_1</dt-math>
-	  <dt-math class="two-sqrt-beta">2\sqrt{\beta}</dt-math>
-	  <dt-math class="lambda-i">\lambda_i</dt-math>
-	  <dt-math class="lambda-i-equals-zero">\lambda_i = 0</dt-math>
-	  <dt-math class="alpha-gt-one-over-lambda-i">\alpha > 1/\lambda_i</dt-math>
-	  <dt-math class="max-sigma-one">\max\{|\sigma_1|,|\sigma_2|\} > 1</dt-math>
-	  <dt-math class="x-i-k">x_i^k - x_i^*</dt-math>
-	  <dt-math class="xi-i">\xi_i</dt-math>
-	  <dt-math class="beta-equals-one-minus">\beta = (1 - \sqrt{\alpha \lambda_i})^2</dt-math>
-	  <dt-math class="pij">p_{ij}</dt-math>
-	  <dt-math class="power">7 * 10^{82}</dt-math>
-	</div>
     <div id="cover-block">
       <div>
         <p>Loading data…</p>
@@ -536,5 +506,35 @@
         </div>
       </div>
     </div>
+		<div id="math-cache" style="display: none;">
+		  <dt-math class="star">\star</dt-math>
+		  <dt-math class="plus">+</dt-math>
+		  <dt-math class="minus">-</dt-math>
+		  <dt-math class="equals">=</dt-math>
+		  <dt-math class="alpha">\alpha</dt-math>
+		  <dt-math class="lambda">\lambda</dt-math>
+		  <dt-math class="beta">\beta</dt-math>
+		  <dt-math class="r">R_{j}= \displaystyle\sum_{i} p_{ij}</dt-math>
+		  <dt-math class="alpha-equals">\alpha=</dt-math>
+		  <dt-math class="offset">\Delta</dt-math>
+		  <dt-math class="offset-equals">\Delta=</dt-math>
+		  <dt-math class="beta-equals">\beta=</dt-math>
+		  <dt-math class="beta-equals-zero">\beta = 0</dt-math>
+		  <dt-math class="beta-equals-one">\beta=1</dt-math>
+		  <dt-math class="alpha-equals-one-over-lambda-i">\alpha = 1/\lambda_i</dt-math>
+		  <dt-math class="model">\text{model}</dt-math>
+		  <dt-math class="p">0 p_1</dt-math>
+		  <dt-math class="phat">0 \bar{p}_1</dt-math>
+		  <dt-math class="two-sqrt-beta">2\sqrt{\beta}</dt-math>
+		  <dt-math class="lambda-i">\lambda_i</dt-math>
+		  <dt-math class="lambda-i-equals-zero">\lambda_i = 0</dt-math>
+		  <dt-math class="alpha-gt-one-over-lambda-i">\alpha > 1/\lambda_i</dt-math>
+		  <dt-math class="max-sigma-one">\max\{|\sigma_1|,|\sigma_2|\} > 1</dt-math>
+		  <dt-math class="x-i-k">x_i^k - x_i^*</dt-math>
+		  <dt-math class="xi-i">\xi_i</dt-math>
+		  <dt-math class="beta-equals-one-minus">\beta = (1 - \sqrt{\alpha \lambda_i})^2</dt-math>
+		  <dt-math class="pij">p_{ij}</dt-math>
+		  <dt-math class="power">7 * 10^{82}</dt-math>
+		</div>
   </body>
 </html>
