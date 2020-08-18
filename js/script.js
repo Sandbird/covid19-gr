@@ -141,7 +141,7 @@ const init = () => {
       let values = [];
       gData["prefectures-data"].forEach(function(pref, i){
       	if(pref[thType] === "carriers" || pref[thType] === "deaths"){
-        	values.push(getValuesTotal(pref[thType].values));
+        	values.push(getValuesTotal(pref[thType].values), pref.code);
       	}
       });
 
@@ -314,7 +314,12 @@ const init = () => {
        let lastItem = rows[rows.length - 1];
        valueTotal  = precisionRound(middle_column_sum[0], 1);
        valueLatest = valueLatest - lastItem[1];
-      }      
+      }
+      
+      if ($box.attr("code") === "carriers" && prefCode == 16) {
+        valueTotal  = Math.round(rows[rows.length - 1][0] * 100) / 100;
+        valueLatest = Math.round(rows[rows.length - 1][0] * 100) / 100;
+      }
 
       if ($box.attr("code") === "rj_repro") {
         valueTotal  = Math.round(rows[rows.length - 1][0] * 100) / 100;
@@ -612,22 +617,23 @@ const init = () => {
 	        ds.borderColor = "#EC2";
       	}
       }
-      
-      
-      
+
     }
 
     let prevBarColor = "";
     let totalValues = [];
         for (let i = 0; i < rows[0].length; i++) {totalValues.push(0);}
-
     rows.forEach(function(row, i){
 
       let curBarColor = getBarColor(code, prefCode, from, i, 0);
       config.data.labels.push(getDateValue(from, i, false));
 
       for (let j = 0; j < rows[0].length; j++) {
-        totalValues[j] += row[j];
+      	if(prefCode == 16 && code == "carriers"){
+        	totalValues[j] = row[j];
+      	}else{
+        	totalValues[j] += row[j];
+      	}
 
         let value = row[j];
 
@@ -699,22 +705,26 @@ const init = () => {
     $wrapper.animate({scrollLeft: $chart.width()}, 0);
   }
 
-  const getValuesTotal = (values) => {
+  const getValuesTotal = (values, code) => {
     let ret = 0;
-
+    let prefcode = code;
     values.forEach(function(row, i){
       row.forEach(function(val, j){
-        ret += val;
+      	if(prefcode != 16){
+        	ret += val;
+      	}else{
+      		ret = val;
+      	}
       });
     });
 
     return ret;
   }
 
-  const getPrefColor = (prefCode) => {
+  const getPrefColor = (pref) => {
     let type = $("#select-pref-type").val();
     let ret = "rgba(90, 90, 90, 0.6)";
-    let value = getValuesTotal(gData["prefectures-data"][parseInt(prefCode) - 1][type].values);
+    let value = getValuesTotal(gData["prefectures-data"][parseInt(pref.code) - 1][type].values, pref.code);
 
     if (value >= 1) {
       ret = COLORS.dark;
@@ -1484,7 +1494,7 @@ const init = () => {
     gData["prefectures-data"].forEach(function(pref, i){
       prefs.push({
         name: gData["prefectures-data"][i][LANG],
-        value: getValuesTotal(pref[dataType].values),
+        value: getValuesTotal(pref[dataType].values, pref.code),
         code: (i + 1).toString()
       });
     });
@@ -1502,7 +1512,7 @@ const init = () => {
       if (prefCode == pref.code) {
         config.data.datasets[0].backgroundColor.push(COLORS.selected);
       } else {
-        config.data.datasets[0].backgroundColor.push(getPrefColor(pref.code));
+        config.data.datasets[0].backgroundColor.push(getPrefColor(pref));
       }
     });
 
