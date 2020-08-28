@@ -23,7 +23,7 @@ const COLORS = {
   infected_distribution: "#6F6587,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","), 
   predicted_deaths: "#6F6587,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","), 
   pcrtests: "#3DC,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","),
-  measures: "#3DC,#8FBDE0,#689AAB,#AADCD2,#90CFB5,#88BBAA,#BADDAD,#BBCDB3,#FAF28C,#DFEA8B,#F3EF89,#F4F4B2,#CCAC8E,#FBDEDE,#F8B2BC,#F59598,#EFA796,#FEBD7D,#CEB4D6,#B5B3DA".split(","),
+  measures: "#90CFB5,#8FBDE0,#689AAB,#AADCD2,#3DC,#88BBAA,#BADDAD,#BBCDB3,#FAF28C,#DFEA8B,#F3EF89,#F4F4B2,#CCAC8E,#FBDEDE,#F8B2BC,#F59598,#EFA796,#FEBD7D,#CEB4D6,#B5B3DA".split(","),
   measures2: "#3DC,#FEA,#5987A5,#3BA9B0,#86E18D,#D5F474,#FB8,#EC2,#CAF0F8".split(","),
   dark: "#399",
   selected: "#EC2"
@@ -37,12 +37,14 @@ const LABELS = {
       active: ["Ενεργά κρούσματα"],
       infected_distribution: ["Υπό διερεύνηση ή άγνωστης προέλευσης", "Σχετιζόμενα με ήδη γνωστό κρούσμα", "Σχετιζόμενα με ταξίδι από το εξωτερικό"],
       predicted_deaths: ["χαμηλότερο εύρος", "πρόβλεψη", "ανώτερο εύρος"],
+      predicted_true_inf: ["Με βάση την ημερήσια ενημέρωση","«Πραγματικός» αριθμός μολύνσεων"],
       serious: ["Κρίσιμη κατάσταση"],
       deaths: ["Θάνατοι"],
       tests: ["Δείγματα που έχουν ελεγχθεί", "Βρέθηκαν θετικοί"],
       pcrtests: [""],
       rt_repro: ["Βασικός αναπαραγωγικός αριθμός"],
       rj_repro: ["Αναπαραγωγικός αριθμός"],
+      infection_fatality_rate: ["IIFR"]
       //reproduction_rj_infected: ""
     },
     unit: {
@@ -50,12 +52,14 @@ const LABELS = {
       active: "",
       infected_distribution: "",
       predicted_deaths: "",
+      predicted_true_inf: "",
       serious: "",
       deaths: "",
       tests: "",
       pcrtests: "",
       rt_repro: "",
       rj_repro: "",
+      infection_fatality_rate: ["%"]
       //reproduction_rj_infected: "",
     },
     demography: {
@@ -82,25 +86,29 @@ const LABELS = {
       active: ["Active Cases"],
       infected_distribution: ["Still under investigation or of unknown origin", "Related to an already known case", "Related to travel from abroad"],
       predicted_deaths: ["lower range", "projected", "upper range"],
+      predicted_true_inf: ["From daily report", "True number of newly infected"],
       serious: ["Serious"],
       deaths: ["Deaths"],
       tests: ["Tested", "Found Positive"],
       pcrtests: ["National Institute of Infectious Diseases","Quarantine Stations","Public Health Institute, Public Health Center","Private Testing Companies","Universities","Medical Institutions"],
       rj_repro: ["Reproduction Number"],
       //reproduction_rj_infected: ["Num. of cases"],
-      rt_repro: ["Effective Reproduction Number"]
+      rt_repro: ["Effective Reproduction Number"],
+      infection_fatality_rate: ["IIFR"]
     },
     unit: {
       carriers: "",
       active: "",
       infected_distribution: "",
       predicted_deaths: "",
+      predicted_true_inf: "",
       serious: "",
       deaths: "",
       tests: "",
       pcrtests: "",
       rt_repro: "",
       rj_repro: "",
+      infection_fatality_rate: ""
       //reproduction_rj_infected: ""
     },
     demography: {
@@ -246,6 +254,10 @@ const init = () => {
         ret = COLORS.pcrtests[j];
       }
       
+      if (prefCode === "" && code === "predicted_true_inf") {
+        ret = COLORS.pcrtests[j];
+      }
+      
       
       if (prefCode === "" && code === "predicted_deaths") {
         ret = COLORS.predicted_deaths[j];
@@ -256,7 +268,16 @@ const init = () => {
       }
 
       if (code === "rt_repro") {
-        ret = "#242A3C";
+				const today = new Date()
+				const year = today.getFullYear()
+				const month = `${today.getMonth() + 1}`.padStart(2, "0")
+				const day = `${today.getDate()}`.padStart(2, "0")
+				const stringDate = [year, month, day].join("");
+      	if (ymd <= stringDate) {
+       		ret = COLORS.default;
+      	}else{
+       		ret = "#242A3C";
+      	}
       }
 
       return ret;
@@ -316,19 +337,27 @@ const init = () => {
        valueLatest = valueLatest - lastItem[1];
       }
       
+     if ($box.attr("code") === "predicted_true_inf") {
+			var middle_column_sum = rows.reduce(function (r, a) {
+			        a.forEach(function (b, i) {
+			            r[i] = (r[i] || 0) + b;
+			        });
+			        return r;
+			    }, []);
+       let lastItem = rows[rows.length - 1];
+       valueTotal  = precisionRound(middle_column_sum[1], 1);
+       valueLatest = valueLatest - lastItem[1];
+      } 
+            
+      
       if ($box.attr("code") === "carriers" && prefCode == 16) {
         valueTotal  = Math.round(rows[rows.length - 1][0] * 100) / 100;
         valueLatest = Math.round(rows[rows.length - 1][0] * 100) / 100;
       }
 
-      if ($box.attr("code") === "rj_repro") {
-        valueTotal  = Math.round(rows[rows.length - 1][0] * 100) / 100;
-        valueLatest = Math.round((rows[rows.length - 1][0] - rows[rows.length - 2][0]) * 100) / 100;
-      }
-
-      if ($box.attr("code") === "rt_repro") {
-        valueTotal  = Math.round(rows[rows.length - 1][0] * 100) / 100;
-        valueLatest = Math.round((rows[rows.length - 1][0] - rows[rows.length - 2][0]) * 100) / 100;
+      if ($box.attr("code") === "rj_repro" || $box.attr("code") === "rt_repro" || $box.attr("code") === "infection_fatality_rate") {
+        valueTotal  = Math.round(rows[rows.length - 1][0] * 1000) / 1000;
+        valueLatest = Math.round((rows[rows.length - 1][0] - rows[rows.length - 2][0]) * 1000) / 1000;
       }
       
       if ($box.attr("code") === "predicted_deaths") {
@@ -456,7 +485,7 @@ const init = () => {
     drawLatestValue($box, rows);
 
 		var disableBeginAtZero = true;
-    if (code == "rt_repro"){
+    if (code == "rt_repro" || code == "infection_fatality_rate"){
       disableBeginAtZero = false;
   	}
 
@@ -501,9 +530,20 @@ const init = () => {
 	                  total += ds.data[tooltipItem.index];
 	                }
               	}else if(code == 'predicted_deaths'){
-	                if (!hasMovingAverage || i >= 1) {
-	                  ret.push(ds.label + ": " + addCommas(ds.data[tooltipItem.index]) + " " + LABELS[LANG].unit[code]);
-	                }
+	                	//dont show prediction text for real values
+	                	root_pd = gData.transition['predicted_deaths']['values'];
+	                	var rparr = root_pd[tooltipItem.index];
+	                	if(rparr[0] == 0 && rparr[2] == 0){
+	                		if(ds.label == "πρόβλεψη" || ds.label == "projected"){
+	                			ret.push(LABELS[LANG].transition['deaths'] + ": " + addCommas(ds.data[tooltipItem.index]));
+	                		}
+	                	}
+	                	else{
+	                		ret.push(ds.label + ": " + addCommas(ds.data[tooltipItem.index]) + " " + LABELS[LANG].unit[code]);
+	                	}
+              	}else if(code == 'infection_fatality_rate'){
+	                  ret.push(ds.label + ": " + addCommas(ds.data[tooltipItem.index]) + LABELS[LANG].unit[code]);
+	                  total += ds.data[tooltipItem.index];
               	} else{
 	                if (!hasMovingAverage || i >= 1) {
 	                  ret.push(ds.label + ": " + addCommas(ds.data[tooltipItem.index]) + " " + LABELS[LANG].unit[code]);
@@ -585,7 +625,7 @@ const init = () => {
 			
 			//prefecture
 			
-      if (code === "rj_repro") {
+      if (code === "rj_repro" || code === "rt_repro" || code === "infection_fatality_rate") {
         let ds = config.data.datasets[config.data.datasets.length - 1];
         ds.type = "line";
         ds.fill = false;
@@ -598,22 +638,14 @@ const init = () => {
         let ds = config.data.datasets[config.data.datasets.length - 1];
       }
 */
-      if (code === "rt_repro") {
-        let ds = config.data.datasets[config.data.datasets.length- 1];
-        ds.type = "line";
-        ds.fill = false;
-        ds.pointRadius = 2;
-        ds.pointBorderColor = "#EC2";
-        ds.borderColor = "#EC2";
-      }
       
       if (code === "predicted_deaths") {
         let ds = config.data.datasets[config.data.datasets.length- 1];
-				if(ds.label == "projected"){
+				if(ds.label == "πρόβλεψη" || ds.label == "projected"){
 	        ds.type = "line";
 	        ds.fill = false;
 	        ds.pointRadius = 2;
-	        ds.pointBorderColor = "#FFA562";
+	        ds.pointBorderColor = "#EC2";
 	        ds.borderColor = "#EC2";
       	}
       }
@@ -622,7 +654,7 @@ const init = () => {
 
     let prevBarColor = "";
     let totalValues = [];
-        for (let i = 0; i < rows[0].length; i++) {totalValues.push(0);}
+    for (let i = 0; i < rows[0].length; i++) {totalValues.push(0);}
     rows.forEach(function(row, i){
 
       let curBarColor = getBarColor(code, prefCode, from, i, 0);
@@ -638,6 +670,10 @@ const init = () => {
         let value = row[j];
 
         if ((prevBarColor !== curBarColor) && (code !== "rj_repro")) {
+          //value = 0;
+        }
+        
+        if ((prevBarColor !== curBarColor) && (code !== "infection_fatality_rate")) {
           //value = 0;
         }
 
@@ -734,7 +770,344 @@ const init = () => {
     if (value >= gThresholds[type] && gThresholds[type] >= 1) ret = COLORS.default;
     return ret;
   }
+	
+  const drawDemographyChart_sum = () => {
+    $wrapper = $("#demography-chart").empty().html('<canvas></canvas>');
+    $canvas = $wrapper.find("canvas")[0];
 
+    let config = {
+      type: "horizontalBar",
+      data: {
+        labels: [],
+        datasets: [{
+          label: LABELS[LANG].demography.serious,
+          backgroundColor: COLORS.serious,
+          borderWidth: 0.5,
+          borderColor: "#242a3c",
+          data: []
+        },{
+          label: LABELS[LANG].demography.deaths,
+          backgroundColor: COLORS.deaths,
+          borderWidth: 0.5,
+          borderColor: "#242a3c",
+          data: []
+        },{
+          label: LABELS[LANG].demography.cases,
+          backgroundColor: COLORS.default,
+          borderWidth: 0.5,
+          borderColor: "#242a3c",
+          data: []
+        }]
+      },
+      options: {
+        aspectRatio: 0.9,
+        responsive: true,
+        legend: {
+          display: true,
+          labels: {
+            fontColor: "rgba(255, 255, 255, 0.7)"
+          }
+        },
+        title: {
+          display: false
+        },
+        tooltips: {
+          xPadding: 24,
+          yPadding: 12,
+          displayColors: true,
+          callbacks: {
+            title: function(tooltipItem){
+              let suffix = {
+                gr: "",
+                en: "cases"
+              };
+              let age = tooltipItem[0].yLabel;
+              let total = 0;
+              tooltipItem.forEach(function(item, i){
+                total += item.xLabel;
+              });
+
+              return age + ": " + total + " " + suffix[LANG];
+            },
+            label: function(tooltipItem, data){
+              let suffix = {
+                gr: "",
+                en: " cases"
+              };
+              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + suffix[LANG];
+            }
+          }
+        },
+        scales: {
+          xAxes: [{
+            stacked: true,
+            position: "top",
+            gridLines: {
+              color: "rgba(255,255,255,0.2)",
+              zeroLineColor: "rgba(255,255,255,0.2)",
+              borderDash: [3, 1]
+            },
+            ticks: {
+              suggestedMin: 0,
+              fontColor: "rgba(255,255,255,0.7)",
+              callback: function(value, index, values) {
+                return addCommas(value);
+              }
+            }
+          }],
+          yAxes: [{
+            stacked: true,
+            barPercentage: 0.5,
+            gridLines: {
+              color: "rgba(255,255,255,0.1)"
+            },
+            ticks: {
+              fontColor: "rgba(255,255,255,0.7)"
+            }
+          }]
+        }
+      }
+    };
+
+    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 2.1;
+    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 2.3;
+
+    gData.demography_sum.forEach(function(age, index){
+      config.data.labels.push(LABELS[LANG].age[index]);
+      for (let i = 0; i < 3; i++) {
+        config.data.datasets[i].data.push(age[i]);
+      }
+    });
+
+    let ctx = $canvas.getContext('2d');
+    window.myChart = new Chart(ctx, config);
+  }
+  
+  const drawDemographyChart_men = () => {
+    $wrapper = $("#demography-chart-men").empty().html('<canvas></canvas>');
+    $canvas = $wrapper.find("canvas")[0];
+
+    let config = {
+      type: "horizontalBar",
+      data: {
+        labels: [],
+        datasets: [{
+          label: LABELS[LANG].demography.serious,
+          backgroundColor: COLORS.serious,
+          borderWidth: 0.5,
+          borderColor: "#242a3c",
+          data: []
+        },{
+          label: LABELS[LANG].demography.deaths,
+          backgroundColor: COLORS.deaths,
+          borderWidth: 0.5,
+          borderColor: "#242a3c",
+          data: []
+        },{
+          label: LABELS[LANG].demography.cases,
+          backgroundColor: COLORS.default,
+          borderWidth: 0.5,
+          borderColor: "#242a3c",
+          data: []
+        }]
+      },
+      options: {
+        aspectRatio: 0.9,
+        responsive: true,
+        legend: {
+          display: true,
+          labels: {
+            fontColor: "rgba(255, 255, 255, 0.7)"
+          }
+        },
+        title: {
+          display: false
+        },
+        tooltips: {
+          xPadding: 24,
+          yPadding: 12,
+          displayColors: true,
+          callbacks: {
+            title: function(tooltipItem){
+              let suffix = {
+                gr: "",
+                en: "cases"
+              };
+              let age = tooltipItem[0].yLabel;
+              let total = 0;
+              tooltipItem.forEach(function(item, i){
+                total += item.xLabel;
+              });
+
+              return age + ": " + total + " " + suffix[LANG];
+            },
+            label: function(tooltipItem, data){
+              let suffix = {
+                gr: "",
+                en: " cases"
+              };
+              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + suffix[LANG];
+            }
+          }
+        },
+        scales: {
+          xAxes: [{
+            stacked: true,
+            position: "top",
+            gridLines: {
+              color: "rgba(255,255,255,0.2)",
+              zeroLineColor: "rgba(255,255,255,0.2)",
+              borderDash: [3, 1]
+            },
+            ticks: {
+              suggestedMin: 0,
+              fontColor: "rgba(255,255,255,0.7)",
+              callback: function(value, index, values) {
+                return addCommas(value);
+              }
+            }
+          }],
+          yAxes: [{
+            stacked: true,
+            barPercentage: 0.5,
+            gridLines: {
+              color: "rgba(255,255,255,0.1)"
+            },
+            ticks: {
+              fontColor: "rgba(255,255,255,0.7)"
+            }
+          }]
+        }
+      }
+    };
+
+    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 2.1;
+    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 2.3;
+
+    gData.demography_men.forEach(function(age, index){
+      config.data.labels.push(LABELS[LANG].age[index]);
+      for (let i = 0; i < 3; i++) {
+        config.data.datasets[i].data.push(age[i]);
+      }
+    });
+
+    let ctx = $canvas.getContext('2d');
+    window.myChart = new Chart(ctx, config);
+  }
+  
+  const drawDemographyChart_women = () => {
+    $wrapper = $("#demography-chart-women").empty().html('<canvas></canvas>');
+    $canvas = $wrapper.find("canvas")[0];
+
+    let config = {
+      type: "horizontalBar",
+      data: {
+        labels: [],
+        datasets: [{
+          label: LABELS[LANG].demography.serious,
+          backgroundColor: COLORS.serious,
+          borderWidth: 0.5,
+          borderColor: "#242a3c",
+          data: []
+        },{
+          label: LABELS[LANG].demography.deaths,
+          backgroundColor: COLORS.deaths,
+          borderWidth: 0.5,
+          borderColor: "#242a3c",
+          data: []
+        },{
+          label: LABELS[LANG].demography.cases,
+          backgroundColor: COLORS.default,
+          borderWidth: 0.5,
+          borderColor: "#242a3c",
+          data: []
+        }]
+      },
+      options: {
+        aspectRatio: 0.9,
+        responsive: true,
+        legend: {
+          display: true,
+          labels: {
+            fontColor: "rgba(255, 255, 255, 0.7)"
+          }
+        },
+        title: {
+          display: false
+        },
+        tooltips: {
+          xPadding: 24,
+          yPadding: 12,
+          displayColors: true,
+          callbacks: {
+            title: function(tooltipItem){
+              let suffix = {
+                gr: "",
+                en: "cases"
+              };
+              let age = tooltipItem[0].yLabel;
+              let total = 0;
+              tooltipItem.forEach(function(item, i){
+                total += item.xLabel;
+              });
+
+              return age + ": " + total + " " + suffix[LANG];
+            },
+            label: function(tooltipItem, data){
+              let suffix = {
+                gr: "",
+                en: " cases"
+              };
+              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + suffix[LANG];
+            }
+          }
+        },
+        scales: {
+          xAxes: [{
+            stacked: true,
+            position: "top",
+            gridLines: {
+              color: "rgba(255,255,255,0.2)",
+              zeroLineColor: "rgba(255,255,255,0.2)",
+              borderDash: [3, 1]
+            },
+            ticks: {
+              suggestedMin: 0,
+              fontColor: "rgba(255,255,255,0.7)",
+              callback: function(value, index, values) {
+                return addCommas(value);
+              }
+            }
+          }],
+          yAxes: [{
+            stacked: true,
+            barPercentage: 0.5,
+            gridLines: {
+              color: "rgba(255,255,255,0.1)"
+            },
+            ticks: {
+              fontColor: "rgba(255,255,255,0.7)"
+            }
+          }]
+        }
+      }
+    };
+
+    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 2.1;
+    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 2.3;
+
+    gData.demography_women.forEach(function(age, index){
+      config.data.labels.push(LABELS[LANG].age[index]);
+      for (let i = 0; i < 3; i++) {
+        config.data.datasets[i].data.push(age[i]);
+      }
+    });
+
+    let ctx = $canvas.getContext('2d');
+    window.myChart = new Chart(ctx, config);
+  }
+  
+	//krousmata kata fulo
   const drawDemographyChart_cases = () => {
     $wrapper = $("#demography-chart-cases").empty().html('<canvas></canvas>');
     $canvas = $wrapper.find("canvas")[0];
@@ -1072,342 +1445,6 @@ const init = () => {
     let ctx = $canvas.getContext('2d');
     window.myChart = new Chart(ctx, config);
   }
-  
-  const drawDemographyChart_sum = () => {
-    $wrapper = $("#demography-chart").empty().html('<canvas></canvas>');
-    $canvas = $wrapper.find("canvas")[0];
-
-    let config = {
-      type: "horizontalBar",
-      data: {
-        labels: [],
-        datasets: [{
-          label: LABELS[LANG].demography.serious,
-          backgroundColor: COLORS.serious,
-          borderWidth: 0.5,
-          borderColor: "#242a3c",
-          data: []
-        },{
-          label: LABELS[LANG].demography.deaths,
-          backgroundColor: COLORS.deaths,
-          borderWidth: 0.5,
-          borderColor: "#242a3c",
-          data: []
-        },{
-          label: LABELS[LANG].demography.cases,
-          backgroundColor: COLORS.default,
-          borderWidth: 0.5,
-          borderColor: "#242a3c",
-          data: []
-        }]
-      },
-      options: {
-        aspectRatio: 0.9,
-        responsive: true,
-        legend: {
-          display: true,
-          labels: {
-            fontColor: "rgba(255, 255, 255, 0.7)"
-          }
-        },
-        title: {
-          display: false
-        },
-        tooltips: {
-          xPadding: 24,
-          yPadding: 12,
-          displayColors: true,
-          callbacks: {
-            title: function(tooltipItem){
-              let suffix = {
-                gr: "",
-                en: "cases"
-              };
-              let age = tooltipItem[0].yLabel;
-              let total = 0;
-              tooltipItem.forEach(function(item, i){
-                total += item.xLabel;
-              });
-
-              return age + ": " + total + " " + suffix[LANG];
-            },
-            label: function(tooltipItem, data){
-              let suffix = {
-                gr: "",
-                en: " cases"
-              };
-              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + suffix[LANG];
-            }
-          }
-        },
-        scales: {
-          xAxes: [{
-            stacked: true,
-            position: "top",
-            gridLines: {
-              color: "rgba(255,255,255,0.2)",
-              zeroLineColor: "rgba(255,255,255,0.2)",
-              borderDash: [3, 1]
-            },
-            ticks: {
-              suggestedMin: 0,
-              fontColor: "rgba(255,255,255,0.7)",
-              callback: function(value, index, values) {
-                return addCommas(value);
-              }
-            }
-          }],
-          yAxes: [{
-            stacked: true,
-            barPercentage: 0.5,
-            gridLines: {
-              color: "rgba(255,255,255,0.1)"
-            },
-            ticks: {
-              fontColor: "rgba(255,255,255,0.7)"
-            }
-          }]
-        }
-      }
-    };
-
-    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 2.1;
-    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 2.3;
-
-    gData.demography_sum.forEach(function(age, index){
-      config.data.labels.push(LABELS[LANG].age[index]);
-      for (let i = 0; i < 3; i++) {
-        config.data.datasets[i].data.push(age[i]);
-      }
-    });
-
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
-  }
-  
-  const drawDemographyChart_men = () => {
-    $wrapper = $("#demography-chart-men").empty().html('<canvas></canvas>');
-    $canvas = $wrapper.find("canvas")[0];
-
-    let config = {
-      type: "horizontalBar",
-      data: {
-        labels: [],
-        datasets: [{
-          label: LABELS[LANG].demography.serious,
-          backgroundColor: COLORS.serious,
-          borderWidth: 0.5,
-          borderColor: "#242a3c",
-          data: []
-        },{
-          label: LABELS[LANG].demography.deaths,
-          backgroundColor: COLORS.deaths,
-          borderWidth: 0.5,
-          borderColor: "#242a3c",
-          data: []
-        },{
-          label: LABELS[LANG].demography.cases,
-          backgroundColor: COLORS.default,
-          borderWidth: 0.5,
-          borderColor: "#242a3c",
-          data: []
-        }]
-      },
-      options: {
-        aspectRatio: 0.9,
-        responsive: true,
-        legend: {
-          display: true,
-          labels: {
-            fontColor: "rgba(255, 255, 255, 0.7)"
-          }
-        },
-        title: {
-          display: false
-        },
-        tooltips: {
-          xPadding: 24,
-          yPadding: 12,
-          displayColors: true,
-          callbacks: {
-            title: function(tooltipItem){
-              let suffix = {
-                gr: "",
-                en: "cases"
-              };
-              let age = tooltipItem[0].yLabel;
-              let total = 0;
-              tooltipItem.forEach(function(item, i){
-                total += item.xLabel;
-              });
-
-              return age + ": " + total + " " + suffix[LANG];
-            },
-            label: function(tooltipItem, data){
-              let suffix = {
-                gr: "",
-                en: " cases"
-              };
-              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + suffix[LANG];
-            }
-          }
-        },
-        scales: {
-          xAxes: [{
-            stacked: true,
-            position: "top",
-            gridLines: {
-              color: "rgba(255,255,255,0.2)",
-              zeroLineColor: "rgba(255,255,255,0.2)",
-              borderDash: [3, 1]
-            },
-            ticks: {
-              suggestedMin: 0,
-              fontColor: "rgba(255,255,255,0.7)",
-              callback: function(value, index, values) {
-                return addCommas(value);
-              }
-            }
-          }],
-          yAxes: [{
-            stacked: true,
-            barPercentage: 0.5,
-            gridLines: {
-              color: "rgba(255,255,255,0.1)"
-            },
-            ticks: {
-              fontColor: "rgba(255,255,255,0.7)"
-            }
-          }]
-        }
-      }
-    };
-
-    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 2.1;
-    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 2.3;
-
-    gData.demography_men.forEach(function(age, index){
-      config.data.labels.push(LABELS[LANG].age[index]);
-      for (let i = 0; i < 3; i++) {
-        config.data.datasets[i].data.push(age[i]);
-      }
-    });
-
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
-  }
-  
-  const drawDemographyChart_women = () => {
-    $wrapper = $("#demography-chart-women").empty().html('<canvas></canvas>');
-    $canvas = $wrapper.find("canvas")[0];
-
-    let config = {
-      type: "horizontalBar",
-      data: {
-        labels: [],
-        datasets: [{
-          label: LABELS[LANG].demography.serious,
-          backgroundColor: COLORS.serious,
-          borderWidth: 0.5,
-          borderColor: "#242a3c",
-          data: []
-        },{
-          label: LABELS[LANG].demography.deaths,
-          backgroundColor: COLORS.deaths,
-          borderWidth: 0.5,
-          borderColor: "#242a3c",
-          data: []
-        },{
-          label: LABELS[LANG].demography.cases,
-          backgroundColor: COLORS.default,
-          borderWidth: 0.5,
-          borderColor: "#242a3c",
-          data: []
-        }]
-      },
-      options: {
-        aspectRatio: 0.9,
-        responsive: true,
-        legend: {
-          display: true,
-          labels: {
-            fontColor: "rgba(255, 255, 255, 0.7)"
-          }
-        },
-        title: {
-          display: false
-        },
-        tooltips: {
-          xPadding: 24,
-          yPadding: 12,
-          displayColors: true,
-          callbacks: {
-            title: function(tooltipItem){
-              let suffix = {
-                gr: "",
-                en: "cases"
-              };
-              let age = tooltipItem[0].yLabel;
-              let total = 0;
-              tooltipItem.forEach(function(item, i){
-                total += item.xLabel;
-              });
-
-              return age + ": " + total + " " + suffix[LANG];
-            },
-            label: function(tooltipItem, data){
-              let suffix = {
-                gr: "",
-                en: " cases"
-              };
-              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + suffix[LANG];
-            }
-          }
-        },
-        scales: {
-          xAxes: [{
-            stacked: true,
-            position: "top",
-            gridLines: {
-              color: "rgba(255,255,255,0.2)",
-              zeroLineColor: "rgba(255,255,255,0.2)",
-              borderDash: [3, 1]
-            },
-            ticks: {
-              suggestedMin: 0,
-              fontColor: "rgba(255,255,255,0.7)",
-              callback: function(value, index, values) {
-                return addCommas(value);
-              }
-            }
-          }],
-          yAxes: [{
-            stacked: true,
-            barPercentage: 0.5,
-            gridLines: {
-              color: "rgba(255,255,255,0.1)"
-            },
-            ticks: {
-              fontColor: "rgba(255,255,255,0.7)"
-            }
-          }]
-        }
-      }
-    };
-
-    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 2.1;
-    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 2.3;
-
-    gData.demography_women.forEach(function(age, index){
-      config.data.labels.push(LABELS[LANG].age[index]);
-      for (let i = 0; i < 3; i++) {
-        config.data.datasets[i].data.push(age[i]);
-      }
-    });
-
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
-  }
 
   const drawRegionChart = (prefCode) => {
     let $wrapper = $("#region-chart").empty().html('<canvas></canvas>');
@@ -1602,6 +1639,10 @@ const init = () => {
   bindEvents();
 };
 
+function isInt(value) {
+    var er = /^-?[0-9]+$/;
+    return er.test(value);
+}
 
 $(function(){
   init();

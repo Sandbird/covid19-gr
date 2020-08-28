@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="lib/katex.min.css">
 	<title>Coronavirus Disease (COVID-19) Situation Report in Greece</title>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<script src="js/script.min.js?v=1"></script>
+	<script src="js/script.min.js?v=2"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="lib/auto-render.min.js"></script>
 	<script src="lib/katex.min.js"></script>
@@ -87,7 +87,7 @@
               <div class="checkboxes">
                 <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
               </div>
-              <p class="notes">Data source: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. On <span style="color:#8FBDE0">March 28th</span>, all flights to and from Germany and the Netherlands, excluding flights from Germany to Athens were suspended. On the <span style="color:#AADCD2">June 1st</span> international flights to and from Athens International Airport resumed for EU+ countries, excluding flights between Greece and Italy, Spain, Sweden, the United Kingdom, and the Netherlands. On the <span style="color:#88BBAA">June 15th</span> international flights between Greece and Albania, Italy, North Macedonia, Spain, and the Netherlands were resumed, international flights to and from Thessaloniki Airport Makedonia were resumed. Also borders with Bulgaria reopened for non-essential travel. On the <span style="color:#BBCDB3">July 1st</span> international flights between Greece and Algeria, Australia, Canada, Georgia, Japan, Montenegro, Morocco, New Zealand, Rwanda, Serbia, South Korea, Thailand, Tunisia, and Uruguay were resumed. Also international travel by sea between Italy and Patras and Igoumenitsa ports werer resumed. On the <span style="color:#DFEA8B">July 15th</span> borders were opened to Serbian citizens, international flights between Greece and the United Kingdom were resumed. On the <span style="color:#689AAB">July 20th</span> international flights between Greece and Sweden resumed. On the <span style="color:#90CFB5">August 15th</span> international flights between Greece and Albania, North Macedonia, and Turkey resumed<a class="more">READ MORE</a></p>
+              <p class="notes">Data source: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. On <span style="color:#8FBDE0">March 28th</span>, all flights to and from Germany and the Netherlands, excluding flights from Germany to Athens were suspended. On the <span style="color:#AADCD2">June 1st</span> international flights to and from Athens International Airport resumed for EU+ countries, excluding flights between Greece and Italy, Spain, Sweden, the United Kingdom, and the Netherlands. On the <span style="color:#88BBAA">June 15th</span> international flights between Greece and Albania, Italy, North Macedonia, Spain, and the Netherlands were resumed, international flights to and from Thessaloniki Airport Makedonia were resumed. Also borders with Bulgaria reopened for non-essential travel. On the <span style="color:#BBCDB3">July 1st</span> international flights between Greece and Algeria, Australia, Canada, Georgia, Japan, Montenegro, Morocco, New Zealand, Rwanda, Serbia, South Korea, Thailand, Tunisia, and Uruguay were resumed. Also international travel by sea between Italy and Patras and Igoumenitsa ports werer resumed. On the <span style="color:#DFEA8B">July 15th</span> borders were opened to Serbian citizens, international flights between Greece and the United Kingdom were resumed. On the <span style="color:#689AAB">July 20th</span> international flights between Greece and Sweden resumed. On the <span style="color:#3DC">August 15th</span> international flights between Greece and Albania, North Macedonia, and Turkey resumed. See <a href="#discrepancies">notes below</a> for further information.<a class="more">READ MORE</a></p>
             </div>
           </div>
           <div class="flex-row">
@@ -116,7 +116,7 @@
               <div class="checkboxes">
                 <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
               </div>
-							<p class="notes">Formula: Translate reported cases by adding all the cumulative tested positive cases that existed from 17 days ago (Most people recover from mild COVID-19 within two weeks and more serious disease within three weeks, giving a absolute median of 17). Some smoothing has also been applied due to some cases being from tourists that tested positive at the borders. <a href="#footer-notes">See below</a> for further information. <a class="more">READ MORE</a></p>
+							<p class="notes">Formula: Translate reported cases by adding all the cumulative tested positive cases that existed from 17 days ago (Most people recover from mild COVID-19 within two weeks and more serious disease within three weeks, giving a absolute median of 17). Some smoothing has also been applied due to some cases being from tourists that tested positive at the borders. See <a href="#active_cases">notes below</a> for further information. <a class="more">READ MORE</a></p>
             </div>
           </div>
           <div class="flex-row">
@@ -203,7 +203,7 @@
               <div class="checkboxes">
                 <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
               </div>
-              <p class="notes">Data source: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. See this link or <a href="#footer-notes">notes below</a> for further information.</p>
+              <p class="notes">Data source: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. See <a href="#negative">notes below</a> for further information.</p>
             </div>
           </div>
           <div class="flex-row">
@@ -333,6 +333,53 @@
               <p class="notes">A likelihood-based estimation procedure that infers the temporal pattern of effective reproduction numbers from an observed epidemic curve. The shown epidemic curve comprises all captured cases assigned to their estimated symptom onset date. Formula uses: Based on the selected data an offset average <dt-math>\Delta (=5)</dt-math> has been applied to assign the cases to their estimated symptom onset date. <dt-math>num of Incubation Days=5</dt-math>, <dt-math>infectivity period Days=5</dt-math>. See <a href="#rj-notes">notes below</a> for further information. <a class="more">READ MORE</a></p>
             </div>
           </div>
+	        <div class="flex-row">
+	          <div class="box transition nationwide" code="infection_fatality_rate" pref="">
+	            <h3>Implied Infection Fatality Rate (IIFR)</h3>
+	            <div class="latest">
+	              <div>
+	                <span class="type"></span>
+	                <span class="value"></span>
+	                <span class="unit"></span>
+	              </div>
+	              <div class="change"></div>
+	            </div>
+	            <h5 class="updated"><br /></h5>
+	            <div class="charts-wrapper">
+	              <div class="main-chart-wrapper">
+	                <div class="main-chart"></div>
+	              </div>
+	              <div class="axis-chart"></div>
+	              <div class="axis-cover"></div>
+	            </div>
+	            <p class="notes">Using the estimates of true infections we can compute the implied infection fatality rate (IIFR), by taking the reported deaths from 28 days into the future (7-day moving average) and dividing it by the true infections (7-day moving average). Note that we assume that reported deaths is roughly equal to true deaths. If there is a significant amount of excess/unreported COVID-19 deaths, then our IIFR estimate will be an underestimate of the true IFR.<b>It is not age-adjusted</b>. As a result, if there is an increasing prevalence of the disease in a younger population, then the IFR will decrease, despite the deadliness of the virus remaining unchanged among a particular age group. See <a href="#ifr_notes">notes below</a> for further information. <a href="https://covid19-projections.com/about/#infection-fatality-rate-ifr" target="_blank">covid19-projections.com</a> for all assumptions made. <a class="more">READ MORE</a></p>
+	          </div>
+	        </div> 
+	        <div class="flex-row">
+	          <div class="box transition nationwide" code="predicted_true_inf" pref="">
+	            <h3>«True» number of infections (estimate)</h3>
+	            <div class="latest">
+	              <div>
+	                <span class="type"></span>
+	                <span class="value"></span>
+	                <span class="unit"></span>
+	              </div>
+	            </div>
+	            <h5 class="updated"><br /></h5>
+	            <div class="switches">
+                <div class="switch selected" value="new">NEW</div>
+                <div class="switch" value="total">TOTAL</div>
+	            </div>
+	            <div class="charts-wrapper">
+	              <div class="main-chart-wrapper">
+	                <div class="main-chart"></div>
+	              </div>
+	              <div class="axis-chart"></div>
+	              <div class="axis-cover"></div>
+	            </div>
+							<p class="notes">The core idea behind this method is that we can use the <a href="#positive_rate">positivity rate</a> to roughly determine the ratio of true infections to reported cases. The hypothesis is that as positivity rate increases, the higher the true prevalence in a region relative to the reported cases. Note that all values used are 7-day moving averages. See <a href="#true_infection">notes below</a> or further information. <a href="https://covid19-projections.com/estimating-true-infections/" target="_blank">covid19-projections.com</a> for all assumptions made. <a class="more">READ MORE</a></p>
+	          </div>
+	        </div>
           <div class="flex-row">
             <div class="box transition nationwide" code="predicted_deaths" pref="">
               <h3>Predicted deaths (estimate)</h3>
@@ -451,19 +498,24 @@
       </div>
       <div id="footer-block">
         <p class="notes" id="footer-notes">Notes: Moving averages are 7-day backward. The number is based on the daily value. It is assumed to be the same as the previous day if not updated. On the days with no continuity from the previous day due to change of standards, "New" number is treated as 0 and the bar color is changed. Data may be corrected by the developer when it is considered as an obvious misstatement, such as minus value of Tested Positive.</p>
-        <p class="notes">Resources: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Measures by <a href="https://github.com/Covid-19-Response-Greece/covid19-data-greece/blob/master/data/greece/Measures/greece_social_distancing_measures_timeline.json" target="_blank">Covid-19-Response-Greece</a>. Data on prefectures was taken from <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a>. Predictions were taken from covid19-projections.com, <a href="https://covid19-projections.com/greece" target="_blank">link1</a> and <a href="https://github.com/youyanggu/covid19_projections/tree/master/projections" target="_blank">link2</a>. Effective Reproduction number RJ algorithm taken from <a href="https://academic.oup.com/aje/article/160/6/509/79472?fbclid=IwAR2nDT0TyBciFQuNOU0vW3z4OcAJBRPh_x1E8HwCI-i9a4y5KLimY5D3aG4" target="blank">American Journal of Epidemiology</a> and <a href="https://mshfd.github.io/reproduction-number/" target="_blank">Richard Schubert</a>. Used <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> to draw charts. Original script by: TOYO KEIZAI ONLINE</p>
+        <p class="notes">Resources: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Measures by <a href="https://github.com/Covid-19-Response-Greece/covid19-data-greece/blob/master/data/greece/Measures/greece_social_distancing_measures_timeline.json" target="_blank">Covid-19-Response-Greece</a>. Data on prefectures was taken from <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a>. Predictions were taken from covid19-projections.com, (<a href="https://covid19-projections.com/greece" target="_blank">link1</a>, <a href="https://github.com/youyanggu/covid19_projections/tree/master/projections" target="_blank">link2</a>). Used introductory text for IIFR from <a href="https://www.who.int/news-room/commentaries/detail/estimating-mortality-from-covid-19" target="_blank">WHO</a> and prediction model from (<a href="https://covid19-projections.com/estimating-true-infections/" target="_blank">link1</a>, <a href="https://covid19-projections.com/about/#infection-fatality-rate-ifr" target="_blank">link2</a>, <a href="https://github.com/youyanggu/covid19_projections/tree/master/implied_ifr" target="_blank">link3</a>).
+        Effective Reproduction number RJ algorithm taken from <a href="https://academic.oup.com/aje/article/160/6/509/79472?fbclid=IwAR2nDT0TyBciFQuNOU0vW3z4OcAJBRPh_x1E8HwCI-i9a4y5KLimY5D3aG4" target="blank">American Journal of Epidemiology</a> and <a href="https://mshfd.github.io/reproduction-number/" target="_blank">Richard Schubert</a>. Used <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> to draw charts. Original script by: TOYO KEIZAI ONLINE</p>
         <p class="notes"><br><a href="https://github.com/Sandbird/covid19-Greece" target="_blank">Download CSV data</a></p>
         <div id="faqs">
           <h3>Frequently Asked Questions</h3>
-          <section>
+          <section id="discrepancies">
+            <h4>Q. Why do some daily changes reported by EODY not coincide with the graphs?</h4>
+            <p>A. It happens when the previous day's numbers contain errors or need corrections. These changes occur in the next daily report.</p>
+          </section>
+          <section id="negative">
             <h4>Q. Why do some values record minus, even though they should not be?</h4>
             <p>A. It happens when the previous data have been corrected or there are no available data on the next day. When previous numbers contain errors, any corrections to the final values are made in the next daily report. The above does not apply in the cases of "Critically Ill" section. Negative values in this section means a patient has either left the intensive or sadly has died.</p>
           </section>
           <section>
-            <h4>Q. Why do some daily changes reported by EODY not coincide with the graphs?</h4>
-            <p>A. It happens when the previous day's numbers contain errors or need corrections. These changes occur in the next daily report.</p>
+            <h4>Q. What is the definition of "Critically Ill"?</h4>
+            <p>A. It means cases putting on a ventilator or treated in an Intensive Care Unit (ICU).</p>
           </section>
-          <section>
+          <section id="active_cases">
             <h4>Q. How accurate is the Active Cases section?</h4>
             <p>A. It is only an estimate based on the assumption that most people recover from mild COVID-19 within two weeks and more serious cases within three weeks (resulting in either death or recovery), giving a absolute median of 17 days. Given the fact that some of the cases are from tourists that tested positive at the borders, some smoothing has to be applied to the number by keeping only ~26% of the final value. (This number is created by finding the percentage of ((Travel from abroad cases / Total cases) * 100) from the Infection Distribution table. To give you an example, the sum of all the cumulative tested positive cases that existed from 17 days before the 7th of August was 1222. Removing about 26.6% of that value gives us 896 active cases. Why remove the foreign cases from the equation? For two reasons. First, they are not permanent residents of this country, meaning they are only staying for a few days to about two weeks (in most cases). Second, since there are strict measures taken by the goverment when it comes to tourists, they will either be placed into quarantine (if tested positive) or return to their respective countries, both cases leading to a very small chance of increasing the active cases rate thus lowering the real active cases value.</p>
           </section>
@@ -472,9 +524,9 @@
             <p>A. Effective Reproduction Number (ERN, also known as R0) is an index to see how many people are infected by one carrier and it is one of the most important properties for any infectious disease. Rather than pre-setting this value based on assumptions, our model is able to learn the value that most closely matches the data. For Italy, the R0 is found to be around 2.4-2.8, while for New York City, the <dt-math>R0</dt-math> is 5.4-5.8. This means that on average, an infected person in New York City will infect 5.4 to 5.8 additional people. For most regions, the R0 is found to be around 2, which matches the WHO findings.<br>
             Our <dt-math>R</dt-math> estimates are merely estimates rather than precise values, and is only based on deaths data. We correct for reporting lags, so how deaths are changing today is a reflection of how the <dt-math>R</dt-math> value was changing 3-4 weeks ago. We then apply additional assumptions to interpolate the R value since then. As a result, the current <dt-math>R</dt-math> value estimates are more of a byproduct of our assumptions than a result of any measurable data. As we receive more data in the future, we then update our R estimates to most closely reflect the observed data. An increase in this indicator means the infection is spreading rapidly. On the other hand, if it continues to be less than 1, it means that the infection is on the phase of receding. To understand the current status of the infection, check other indicators such as the number of positive cases.</p>
           </section>
-          <section>
+          <section id="rj-notes">
             <h4>Q. What is Effective Reproduction Number Rj?</h4>
-					   <p id="rj-notes">
+					   <p>
 					    Often, estimation of the effective reproduction number is a complicated affair, because only the epidemic curve is observed and there is no information about who infected whom. Recent analyses of closely monitored epidemics have shown that it is possible to estimate the probability that one person has infected another if the spatial locations of the infected persons are available. However, when only times of symptom onset are available, most investigators resort to approximating <dt-math>R</dt-math> by assuming an exponential increase in the number of cases over time or by fitting a specific model that summarizes assumptions about the epidemiology of the disease. Such assumptions can be avoided by using a likelihood-based estimation procedure that infers "who infected whom" from the observed dates of symptom onset as provided by the epidemic curve. However, the computational burden of a straightforward numerical evaluation of the likelihood appears to be enormous, since it requires consideration of all possible infection networks, and even for a small outbreak of 50 cases there are almost <dt-math>7 * 10^{82}</dt-math> possible infection networks.
 					    It is possible to obtain likelihood-based estimates of <dt-math>R</dt-math>. The relative likelihood <dt-math>p_{ij}</dt-math> that
 					    case <dt-math>i</dt-math> has been infected by case <dt-math>j</dt-math>, given their difference in time of symptom
@@ -495,10 +547,43 @@
 					    The estimation algorithm allows estimation of the effective reproduction numbers for infectious diseases at a finer temporal resolution under more general assumptions than was previously possible.
 					  </p>
           </section>
-          <section>
-            <h4>Q. What is the definition of "Critically Ill"?</h4>
-            <p>A. It means cases putting on a ventilator or treated in an Intensive Care Unit (ICU).</p>
-          </section>
+	        <section id="true_infection">
+	          <h4>Q. How is the «True» number of infections been produced?</h4>
+					   <p>Knowing the true number of people who are infected with COVID-19 is an essential step towards understanding the disease. But estimating this number is not a simple task. The true number of infections is many times greater than the reported number of cases because the majority of infected individuals do not get tested due to several reasons: 1) they are asymptomatic, 2) they are only mildly symptomatic, 3) they do not have easy access to testing, or 4) they simply do not want to.
+					   	The core idea behind this method is that we can use the positivity rate to roughly determine the ratio of true infections to reported cases. The hypothesis is that as positivity rate increases, the higher the true prevalence in a region relative to the reported cases. This also makes sense intuitively: if you test everyone, then the positvity rate will be very low, and you will catch every case. But if testing is not widely available, then you will catch only the severe cases, resulting in a higher positivity rate. This phenomenon is sometimes referred to as preferential testing. The exact relationship varies from region to region and across time. But if one were to take the average across all of the data, one can generate a theoretical curve. This relationship can be approximated by a root function of the following form: prevalenceRatio = a * (positivityRate)^(b) + c, where <dt-math>a</dt-math>, <dt-math>b</dt-math>, <dt-math>c</dt-math> are unknown constants. <a href="https://covid19-projections.com/estimating-true-infections/#prevalence-ratio" target="_blank">Through curve fitting on historical test positivity and serological surveys, as well as trial & error</a>, the following square root approximation function works well:
+					   	<dt-math block>prevalenceRatio = 16 * \sqrt[2]{positivityRate} + 2.5</dt-math>
+					   The next step is to map all reported cases to true new infections based on the true prevalence ratio. We can compute the true prevalence ratio simply by inserting the positivity rate into the function above. We then multiple the ratio by the daily confirmed cases to get the true daily infections:
+					   <dt-math block>TrueNewDailyInfections = dailyConfirmedCases * prevalenceRatio</dt-math>
+					   For all computation purposes, we use the 7-day average of confirmed cases and positivity rates. Combining the two functions from above, we get:
+						 <dt-math block>T_{inf} = D_{cases} * (16 * \sqrt[2]{posRate} + 2.5)</dt-math>
+						 As an example, on the 9th of August there have been <dt-math>202</dt-math> new cases of infection with a <a href="https://ourworldindata.org/grapher/positive-rate-daily-smoothed?tab=chart&time=2020-03-17..latest&country=~GRC" target="_blank">positivity rate of 0,80%</a>. This would result in a true prevalence ratio of: 16*sqrt(0.008)+2.5 = <dt-math>3.93</dt-math>. We can then multiply this ratio by the confirmed cases to get the true new infections. In this example, we estimate there to be 3.93 * 202 = ~<dt-math>793</dt-math> true new infections. Because reported cases lag infections by roughly 2 weeks, we must shift the result back by two weeks. So the 793 true infections actually took place approximately 14 days before August 9th, on 26th of July. All the above gives us the following formula in which we can find the "true" number of infections for any (n) day.
+						 <dt-math block>T_{inf}(n) = dailyConfirmedCases(n+14) * (16 * \sqrt[2]{posRate(n+14)} + 2.5)</dt-math>
+					  </p>
+	        </section>
+	        <section id="positive_rate">
+	          <h4>Q. What is the positivity rate?</h4>
+	          <p>A. The positivity rate is often thought of in terms of the share of tests that yield a positive result. In our calculations is slightly different. It is calculated as the number of confirmed cases (i.e. people with a positive result) divided by the number of tests performed. These differ because people may be tested more than once. A 7-day average is used in all of our calculations, so the same applies here.
+	          <dt-math block>{\text{Positivity Rate}~(7day~ma)} = \frac{dailyConfirmedCases~(7day~ma)} {dailyTests~(7day~ma)}</dt-math>
+	          </p>
+	        </section>
+	        <section id="ifr_notes">
+	          <h4>Q. What is the Implied Infection Fatality Rate (IIFR)?</h4>
+					  <p>A. An important characteristic of an infectious disease, particularly one caused by a novel pathogen like SARS-CoV-2, is its severity, the ultimate measure of which is its ability to cause death. Fatality rates help us understand the severity of a disease, identify at-risk populations, and evaluate quality of healthcare. There are two measures used to assess the proportion of infected individuals with fatal outcomes. The first is infection fatality ratio (IFR), which estimates this proportion of deaths among all infected individuals. The second is case fatality ratio (CFR), which estimates this proportion of deaths among identified confirmed cases. There are two measures used to assess the proportion of infected individuals with fatal outcomes. The first is infection fatality ratio (IFR), which estimates this proportion of deaths among all infected individuals. The second is case fatality ratio (CFR), which estimates this proportion of deaths among identified confirmed cases. To measure IFR accurately, a complete picture of the number of infections of, and deaths caused by, the disease must be known. Consequently, at this early stage of the pandemic, most estimates of fatality ratios have been based on cases detected through surveillance and calculated using crude methods, giving rise to widely variable estimates of CFR by country – from less than 0.1% to over 25%. For COVID-19, as for many infectious diseases, the true level of transmission is frequently underestimated because a substantial proportion of people with the infection are undetected either because they are asymptomatic or have only mild symptoms and thus typically fail to present at healthcare facilities. Since a complete picture of the number of infections and deaths is not yet possible, as the pandemic is still ongoing, we can express all of the above in an equation using the values of the "true" number of infections and reported deaths. Although this is by no means a complete equation, at least in this way we approach (within a reasonable framework) a value that helps us to better understand the changing dynamics of this disease and its impact on the population.<br>
+					  The IIFR is a metric derived by taking the reported deaths and dividing them by the true infections estimate (after accounting for lag, 28 days delay). Note that we assume that the reported deaths are approximately equal to the actual deaths. If there is a significant number of exaggerated / unreported COVID-19 deaths, then the IIFR estimate will be lower than the actual IFR. For all values, a 7-day average was used.
+						<dt-math block>IIFR(n) =\frac{\text{Daily deaths}(n+28)}{\text{True Inf.estimate}(n)}</dt-math>
+					  A few explanations as to why the IIFR could decreased significantly would be:<br>
+					  - Lower median age of infection<br>
+						- Better protection of vulnerable populations<br>
+						- Improved treatment (new drugs, better allocation of resources, more experience among staff, etc)<br>
+						- Earlier detection<br>
+						The above are explanations that would explain a <i>true</i> decrease in IFR. A lower median age of infection and better protection of high-risk populations are probably the primary drivers behind the decrease in IIFR. Below are some reasons that could skew the IIFR lower, but not change the true IFR:<br>
+						- More comprehensive reporting of confirmed cases<br>
+						- Changes in the distribution of age groups tested (e.g. more younger people getting tested would skew IIFR down)<br>
+						- Inflation of the test positivity rate (e.g. double-counting positives, not reporting negatives, etc)<br>
+						- Longer lag in death reporting<br>
+						- Underreporting of deaths
+						</p>
+	        </section>
           <section>
             <h4>Q. Can I use the data?</h4>
             <p>A. Yes, feel free to use it for both commercial or non-commercial use. If you'd like just mention my name "Sandbird". Other specific standards are based on the <a href="LICENSE" target="_blank">MIT license</a>.</p>

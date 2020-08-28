@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="lib/katex.min.css">
 	<title>Coronavirus Disease (COVID-19) Situation Report in Greece</title>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<script src="js/script.min.js?v=1"></script>
+	<script src="js/script.min.js?v=2"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="lib/auto-render.min.js"></script>
 	<script src="lib/katex.min.js"></script>
@@ -44,295 +44,342 @@
 	  gtag('config', 'UA-174177919-1');
 	</script>
   </head>
-  <body>
-    <div id="cover-block">
-      <div>
-        <p>Loading data…</p>
-        <p><a href="./">Refresh page</a><br />if nothing visible.</p>
-      </div>
-    </div>
-    <div id="container">
-      <div id="title-block">
-        <h1><span>Η εξάπλωση της νόσου του Κορωνοϊού στην Ελλάδα</span></h1>
-        <p>Επιβεβαιωμένα κρούσματα COVID-19 στην Ελλάδα. Τα στοιχεία παρέχονται από τον Εθνικό Οργανισμό Δημόσιας Υγείας.</p>
-        <p><a href="index_en.html">English Version</a></p>
-        <p class="updated-last"><br /></p>
-      </div>
-      <div id="main-block">
-        <h2>Η Εξέλιξη των Κρουσμάτων</h2>
-        <div class="flex-container">
-          <div class="flex-row">
-            <div class="box transition nationwide" code="carriers" pref="">
-              <h3>Κρούσματα</h3>
-              <div class="latest">
-                <div>
-                  <span class="type"></span>
-                  <span class="value"></span>
-                  <span class="unit"></span>
-                </div>
-                <div class="change"></div>
-              </div>
-              <h5 class="updated"><br /></h5>
-              <div class="switches">
-                <div class="switch selected" value="new">ΝΕΑ</div>
-                <div class="switch" value="total">ΣΥΝΟΛΟ</div>
-              </div>
-              <div class="charts-wrapper">
-                <div class="main-chart-wrapper">
-                  <div class="main-chart"></div>
-                </div>
-                <div class="axis-chart"></div>
-                <div class="axis-cover"></div>
-              </div>
-              <div class="checkboxes">
-                <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
-              </div>
-              <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Στις <span style="color:#8FBDE0">28 Μαρτίου</span>, όλες οι πτήσεις προς και από τη Γερμανία και την Ολλανδία, εξαιρουμένων των πτήσεων από τη Γερμανία προς την Αθήνα, τέθηκαν σε αναστολή. Στις <span style="color:#AADCD2">1η Ιουνίου</span> συνεχίστηκαν οι διεθνείς πτήσεις προς και από το Διεθνές Αεροδρόμιο Αθηνών για τις χώρες της ΕΕ+, εξαιρουμένων των πτήσεων μεταξύ Ελλάδας και Ιταλίας, Ισπανίας, Σουηδίας, Ηνωμένου Βασιλείου και Ολλανδίας. Στις <span style="color:#88BBAA">15 Ιουνίου</span> συνεχίστηκαν οι διεθνείς πτήσεις μεταξύ Ελλάδας και Αλβανίας, Ιταλίας, Βόρειας Μακεδονίας, Ισπανίας και Ολλανδίας, καθώς επίσης και οι διεθνείς πτήσεις από και προς το αεροδρόμιο Μακεδονία Θεσσαλονίκης. Επίσης, άνοιξαν ξανά τα σύνορα με τη Βουλγαρία για όλα τα μη απαραίτητα ταξίδια. Στις <span style="color:#BBCDB3">1η Ιουλίου</span> συνεχίστηκαν οι διεθνείς πτήσεις μεταξύ Ελλάδας και Αλγερίας, Αυστραλίας, Καναδά, Γεωργίας, Ιαπωνίας, Μαυροβουνίου, Μαρόκου, Νέας Ζηλανδίας, Ρουάντα, Σερβίας, Νότιας Κορέας, Ταϊλάνδης, Τυνησίας και Ουρουγουάης. Επίσης, ξεκίνησαν τα διεθνή θαλάσσια ταξίδια μεταξύ Ιταλίας, Πατρών και Ηγουμενίτσας. Στις <span style="color:#DFEA8B">15 Ιουλίου</span> άνοιξαν τα σύνορα για Σέρβους πολίτες, και οι διεθνείς πτήσεις μεταξύ Ελλάδας και Ηνωμένου Βασιλείου. Στις <span style="color:#689AAB">20 Ιουλίου</span> συνεχίστηκαν οι διεθνείς πτήσεις μεταξύ Ελλάδας και Σουηδίας. Στις <span style="color:#90CFB5">15 Αυγούστου</span> συνεχίστηκαν οι διεθνείς πτήσεις μεταξύ Ελλάδας και Αλβανίας, Βόρειας Μακεδονίας, και Τουρκίας.<a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
-            </div>
-          </div>
-          <div class="flex-row">
-            <div class="box transition nationwide" code="active" pref="">
-              <h3>Ενεργά κρούσματα</h3>
-              <div class="latest">
-                <div>
-                  <span class="type"></span>
-                  <span class="value"></span>
-                  <span class="unit"></span>
-                </div>
-                <div class="change"></div>
-              </div>
-              <h5 class="updated"><br /></h5>
-              <div class="switches">
-                <div class="switch" value="new">ΝΕΑ</div>
-                <div class="switch selected" value="total">ΣΥΝΟΛΟ</div>
-              </div>
-              <div class="charts-wrapper">
-                <div class="main-chart-wrapper">
-                  <div class="main-chart"></div>
-                </div>
-                <div class="axis-chart"></div>
-                <div class="axis-cover"></div>
-              </div>
-              <div class="checkboxes">
-                <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
-              </div>
-							<p class="notes">Προσθήκη όλων των ημερήσιων θετικών κρουσμάτων από 17 ημέρες πριν έως και σήμερα (Οι περισσότεροι άνθρωποι αναρρώνουν από ήπιας μορφής COVID-19 μέσα σε δύο εβδομάδες και οι πιο σοβαρές περιπτώσεις σε τρείς εβδομάδες, δίνοντας απόλυτη διάμεση τιμή το 17). Κάποια εξομάλυνση στην τελική τιμή έχει επίσης εφαρμοστεί λόγω των θετικών κρουσμάτων που βρέθηκαν στα σύνορα. <a href="#footer-notes">Δείτε παρακάτω</a> για περισσότερες πληροφορίες. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
-            </div>
-          </div>
-          <div class="flex-row">
-            <div class="box transition nationwide" code="infected_distribution" pref="">
-              <h3>Κατανομή κρουσμάτων</h3>
-              <div class="latest">
-                <div>
-                  <span class="type"></span>
-                  <span class="value"></span>
-                  <span class="unit"></span>
-                </div>
-                <div class="change"></div>
-              </div>
-              <h5 class="updated"><br /></h5>
-              <div class="switches">
-                <div class="switch" value="new">ΝΕΑ</div>
-                <div class="switch selected" value="total">ΣΥΝΟΛΟ</div>
-              </div>
-              <div class="charts-wrapper">
-                <div class="main-chart-wrapper">
-                  <div class="main-chart"></div>
-                </div>
-                <div class="axis-chart"></div>
-                <div class="axis-cover"></div>
-              </div>
-              <div class="checkboxes">
-                <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
-              </div>
-              <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Μερικά δεδομένα λείπουν επειδή ο EODY δεν τα ανακοίνωσε.</p>
-            </div>
-          </div>
-          <div class="flex-row">
-            <div class="box transition nationwide" code="deaths" pref="">
-              <h3>Θάνατοι</h3>
-              <div class="latest">
-                <div>
-                  <span class="type"></span>
-                  <span class="value"></span>
-                  <span class="unit"></span>
-                </div>
-                <div class="change"></div>
-              </div>
-              <h5 class="updated"><br /></h5>
-              <div class="switches">
-                <div class="switch selected" value="new">ΝΕΑ</div>
-                <div class="switch" value="total">ΣΥΝΟΛΟ</div>
-              </div>
-              <div class="charts-wrapper">
-                <div class="main-chart-wrapper">
-                  <div class="main-chart"></div>
-                </div>
-                <div class="axis-chart"></div>
-                <div class="axis-cover"></div>
-              </div>
-              <div class="checkboxes">
-                <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
-              </div>
-              <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a></p>
-            </div>
-          </div>
-          <div class="flex-row">
-            <div class="box transition nationwide" code="serious" pref="">
-              <h3>Σε κρίσιμη κατάσταση</h3>
-              <div class="latest">
-                <div>
-                  <span class="type"></span>
-                  <span class="value"></span>
-                  <span class="unit"></span>
-                </div>
-                <div class="change"></div>
-              </div>
-              <h5 class="updated"><br /></h5>
-              <div class="switches">
-                <div class="switch selected" value="new">ΝΕΑ</div>
-                <div class="switch" value="total">ΣΥΝΟΛΟ</div>
-              </div>
-              <div class="charts-wrapper">
-                <div class="main-chart-wrapper">
-                  <div class="main-chart"></div>
-                </div>
-                <div class="axis-chart"></div>
-                <div class="axis-cover"></div>
-              </div>
-              <div class="checkboxes">
-                <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
-              </div>
-              <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. <a href="#footer-notes">Δείτε παρακάτω</a> για περισσότερες πληροφορίες.</p>
-            </div>
-          </div>
-          <div class="flex-row">
-            <div class="box transition nationwide" code="tests" pref="">
-              <h3>Εργαστηριακά δείγματα</h3>
-              <div class="latest">
-                <div>
-                  <span class="type"></span>
-                  <span class="value"></span>
-                  <span class="unit"></span>
-                </div>
-                <div class="change"></div>
-              </div>
-              <h5 class="updated"><br /></h5>
-              <div class="switches">
-                <div class="switch selected" value="new">ΝΕΑ</div>
-                <div class="switch" value="total">ΣΥΝΟΛΟ</div>
-              </div>
-              <div class="charts-wrapper">
-                <div class="main-chart-wrapper">
-                  <div class="main-chart"></div>
-                </div>
-                <div class="axis-chart"></div>
-                <div class="axis-cover"></div>
-              </div>
-              <div class="checkboxes">
-                <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
-              </div>
-              <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a></p>
-            </div>
-          </div>
-        </div>
-        <h2>Ηλικιακές κατανομές κρουσμάτων</h2>
-        <div class="flex-container">
-          <div class="flex-row">
-            <div class="box" id="demography-box">
-              <h3>Ποσοστιαία κατανομή (σύνολο)</h3>
-              <h5 class="updated-demography-sum"><br></h5>
-              <div id="demography-chart"></div>
-              <p class="notes"></p>
-            </div>
-          </div>
-          <div class="flex-row">
-            <div class="box" id="demography-box-men">
-              <h3>Ποσοστιαία κατανομή (άνδρες)</h3>
-              <h5 class="updated-demography-men"><br></h5>
-              <div id="demography-chart-men"></div>
-              <p class="notes"></p>
-            </div>
-          </div>
-          <div class="flex-row">
-            <div class="box" id="demography-box-women">
-              <h3>Ποσοστιαία κατανομή (γυναίκες)</h3>
-              <h5 class="updated-demography-women"><br></h5>
-              <div id="demography-chart-women"></div>
-              <p class="notes"></p>
-            </div>
-          </div>
-          <div class="flex-row">
-            <div class="box" id="demography-box">
-              <h3>Κρούσματα κατά φύλο</h3>
-              <h5 class="updated-demography-cases"><br></h5>
-              <div id="demography-chart-cases"></div>
-              <p class="notes"></p>
-            </div>
-          </div>
-          <div class="flex-row">
-            <div class="box" id="demography-box-men">
-              <h3>Θάνατοι κατά φύλο</h3>
-              <h5 class="updated-demography-men"><br></h5>
-              <div id="demography-chart-deaths"></div>
-              <p class="notes"></p>
-            </div>
-          </div>
-          <div class="flex-row">
-            <div class="box" id="demography-box-women">
-              <h3>Διασωλην. κατά φύλο</h3>
-              <h5 class="updated-demography-women"><br></h5>
-              <div id="demography-chart-serious"></div>
-              <p class="notes"></p>
-            </div>
-          </div>          
-        </div>
-        <h2>Προβλέψεις</h2>
-        <div class="flex-container">
-          <div class="flex-row">
-            <div class="box transition nationwide" code="rt_repro" pref="">
-              <h3>Αριθμός αναπαραγωγής R_t (εκτίμηση)</h3>
-              <div class="latest">
-                <div>
-                  <span class="type"></span>
-                  <span class="value"></span>
-                  <span class="unit"></span>
-                </div>
-                <div class="change"></div>
-              </div>
-              <h5 class="updated"><br /></h5>
-              <div class="charts-wrapper">
-                <div class="main-chart-wrapper">
-                  <div class="main-chart"></div>
-                </div>
-                <div class="axis-chart"></div>
-                <div class="axis-cover"></div>
-              </div>
-              <p class="notes">Οι εκτιμήσεις του αριθμού R είναι απλώς εκτιμήσεις και όχι ακριβείς τιμές και βασίζονται μόνο στα δεδομένα θανάτων. Δείτε την ιστοσελίδα <a href="https://covid19-projections.com/about/#assumptions" target="_blank">covid19-projections.com</a> για όλες τις υποθέσεις που έγιναν για τον ορισμό της τιμής. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
-            </div>
-          </div> 
-          <div class="flex-row">
-            <div class="box transition nationwide" code="rj_repro" pref="">
-              <h3>Αριθμός αναπαραγωγής R_j (εκτίμηση)</h3>
-              <div class="latest">
-                <div>
-                  <span class="type"></span>
-                  <span class="value"></span>
-                  <span class="unit"></span>
-                </div>
-                <div class="change"></div>
-              </div>
-              <h5 class="updated"><br /></h5>
-              <div class="charts-wrapper">
-                <div class="main-chart-wrapper">
-                  <div class="main-chart"></div>
-                </div>
-                <div class="axis-chart"></div>
-                <div class="axis-cover"></div>
-              </div>
-              <p class="notes">Η καμπύλη επιδημίας που εμφανίζεται περιλαμβάνει όλα τα καταγεγραμμένα κρούσματα που έχουν ανατεθεί στην εκτιμώμενη ημερομηνία έναρξης των συμπτωμάτων τους. Ο μαθηματικός αλγόριθμος χρησιμοποιεί: Με βάση τα επιλεγμένα δεδομένα, έχουν εφαρμοστεί <dt-math>\Delta(=5)</dt-math> (ένας μέσος όρος μετατόπισης σε ημέρες για την εκχώρηση των κρουσμάτων στην εκτιμώμενη ημερομηνία έναρξης των συμπτωμάτων), <dt-math>numofincubationdays=5</dt-math> (αριθμός επώασης σε ημέρες), <dt-math>infectivityperiodDays=5</dt-math> (περίοδο μολυσματικότητας σε ημέρες). <a href="#rj-notes">Δείτε παρακάτω</a> για περισσότερες πληροφορίες. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
-            </div>
-          </div>
+	<body>
+	  <div id="cover-block">
+	    <div>
+	      <p>Loading data…</p>
+	      <p><a href="./">Refresh page</a><br />if nothing visible.</p>
+	    </div>
+	  </div>
+	  <div id="container">
+	    <div id="title-block">
+	      <h1><span>Η εξάπλωση της νόσου του Κορωνοϊού στην Ελλάδα</span></h1>
+	      <p>Επιβεβαιωμένα κρούσματα COVID-19 στην Ελλάδα. Τα στοιχεία παρέχονται από τον Εθνικό Οργανισμό Δημόσιας Υγείας.</p>
+	      <p><a href="index_en.html">English Version</a></p>
+	      <p class="updated-last"><br /></p>
+	    </div>
+	    <div id="main-block">
+	      <h2>Η Εξέλιξη των Κρουσμάτων</h2>
+	      <div class="flex-container">
+	        <div class="flex-row">
+	          <div class="box transition nationwide" code="carriers" pref="">
+	            <h3>Κρούσματα</h3>
+	            <div class="latest">
+	              <div>
+	                <span class="type"></span>
+	                <span class="value"></span>
+	                <span class="unit"></span>
+	              </div>
+	              <div class="change"></div>
+	            </div>
+	            <h5 class="updated"><br /></h5>
+	            <div class="switches">
+	              <div class="switch selected" value="new">ΝΕΑ</div>
+	              <div class="switch" value="total">ΣΥΝΟΛΟ</div>
+	            </div>
+	            <div class="charts-wrapper">
+	              <div class="main-chart-wrapper">
+	                <div class="main-chart"></div>
+	              </div>
+	              <div class="axis-chart"></div>
+	              <div class="axis-cover"></div>
+	            </div>
+	            <div class="checkboxes">
+	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
+	            </div>
+	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Στις <span style="color:#8FBDE0">28 Μαρτίου</span>, όλες οι πτήσεις προς και από τη Γερμανία και την Ολλανδία, εξαιρουμένων των πτήσεων από τη Γερμανία προς την Αθήνα, τέθηκαν σε αναστολή. Στις <span style="color:#AADCD2">1η Ιουνίου</span> συνεχίστηκαν οι διεθνείς πτήσεις προς και από το Διεθνές Αεροδρόμιο Αθηνών για τις χώρες της ΕΕ+, εξαιρουμένων των πτήσεων μεταξύ Ελλάδας και Ιταλίας, Ισπανίας, Σουηδίας, Ηνωμένου Βασιλείου και Ολλανδίας. Στις <span style="color:#88BBAA">15 Ιουνίου</span> συνεχίστηκαν οι διεθνείς πτήσεις μεταξύ Ελλάδας και Αλβανίας, Ιταλίας, Βόρειας Μακεδονίας, Ισπανίας και Ολλανδίας, καθώς επίσης και οι διεθνείς πτήσεις από και προς το αεροδρόμιο Μακεδονία Θεσσαλονίκης. Επίσης, άνοιξαν ξανά τα σύνορα με τη Βουλγαρία για όλα τα μη απαραίτητα ταξίδια. Στις <span style="color:#BBCDB3">1η Ιουλίου</span> συνεχίστηκαν οι διεθνείς πτήσεις μεταξύ Ελλάδας και Αλγερίας, Αυστραλίας, Καναδά, Γεωργίας, Ιαπωνίας, Μαυροβουνίου, Μαρόκου, Νέας Ζηλανδίας, Ρουάντα, Σερβίας, Νότιας Κορέας, Ταϊλάνδης, Τυνησίας και Ουρουγουάης. Επίσης, ξεκίνησαν τα διεθνή θαλάσσια ταξίδια μεταξύ Ιταλίας, Πατρών και Ηγουμενίτσας. Στις <span style="color:#DFEA8B">15 Ιουλίου</span> άνοιξαν τα σύνορα για Σέρβους πολίτες, και οι διεθνείς πτήσεις μεταξύ Ελλάδας και Ηνωμένου Βασιλείου. Στις <span style="color:#689AAB">20 Ιουλίου</span> συνεχίστηκαν οι διεθνείς πτήσεις μεταξύ Ελλάδας και Σουηδίας. Στις <span style="color:#3DC">15 Αυγούστου</span> συνεχίστηκαν οι διεθνείς πτήσεις μεταξύ Ελλάδας και Αλβανίας, Βόρειας Μακεδονίας, και Τουρκίας. <a href="#discrepancies">Δείτε παρακάτω</a> για περισσότερες πληροφορίες.<a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	          </div>
+	        </div>
+	        <div class="flex-row">
+	          <div class="box transition nationwide" code="active" pref="">
+	            <h3>Ενεργά κρούσματα</h3>
+	            <div class="latest">
+	              <div>
+	                <span class="type"></span>
+	                <span class="value"></span>
+	                <span class="unit"></span>
+	              </div>
+	              <div class="change"></div>
+	            </div>
+	            <h5 class="updated"><br /></h5>
+	            <div class="switches">
+	              <div class="switch" value="new">ΝΕΑ</div>
+	              <div class="switch selected" value="total">ΣΥΝΟΛΟ</div>
+	            </div>
+	            <div class="charts-wrapper">
+	              <div class="main-chart-wrapper">
+	                <div class="main-chart"></div>
+	              </div>
+	              <div class="axis-chart"></div>
+	              <div class="axis-cover"></div>
+	            </div>
+	            <div class="checkboxes">
+	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
+	            </div>
+							<p class="notes">Προσθήκη όλων των ημερήσιων θετικών κρουσμάτων από 17 ημέρες πριν έως και σήμερα (Οι περισσότεροι άνθρωποι αναρρώνουν από ήπιας μορφής COVID-19 μέσα σε δύο εβδομάδες και οι πιο σοβαρές περιπτώσεις σε τρείς εβδομάδες, δίνοντας απόλυτη διάμεση τιμή το 17). Κάποια εξομάλυνση στην τελική τιμή έχει επίσης εφαρμοστεί λόγω των θετικών κρουσμάτων που βρέθηκαν στα σύνορα. <a href="#active_cases">Δείτε παρακάτω</a> για περισσότερες πληροφορίες. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	          </div>
+	        </div>
+	        <div class="flex-row">
+	          <div class="box transition nationwide" code="infected_distribution" pref="">
+	            <h3>Κατανομή κρουσμάτων</h3>
+	            <div class="latest">
+	              <div>
+	                <span class="type"></span>
+	                <span class="value"></span>
+	                <span class="unit"></span>
+	              </div>
+	              <div class="change"></div>
+	            </div>
+	            <h5 class="updated"><br /></h5>
+	            <div class="switches">
+	              <div class="switch" value="new">ΝΕΑ</div>
+	              <div class="switch selected" value="total">ΣΥΝΟΛΟ</div>
+	            </div>
+	            <div class="charts-wrapper">
+	              <div class="main-chart-wrapper">
+	                <div class="main-chart"></div>
+	              </div>
+	              <div class="axis-chart"></div>
+	              <div class="axis-cover"></div>
+	            </div>
+	            <div class="checkboxes">
+	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
+	            </div>
+	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Μερικά δεδομένα λείπουν επειδή ο EODY δεν τα ανακοίνωσε.</p>
+	          </div>
+	        </div>
+	        <div class="flex-row">
+	          <div class="box transition nationwide" code="deaths" pref="">
+	            <h3>Θάνατοι</h3>
+	            <div class="latest">
+	              <div>
+	                <span class="type"></span>
+	                <span class="value"></span>
+	                <span class="unit"></span>
+	              </div>
+	              <div class="change"></div>
+	            </div>
+	            <h5 class="updated"><br /></h5>
+	            <div class="switches">
+	              <div class="switch selected" value="new">ΝΕΑ</div>
+	              <div class="switch" value="total">ΣΥΝΟΛΟ</div>
+	            </div>
+	            <div class="charts-wrapper">
+	              <div class="main-chart-wrapper">
+	                <div class="main-chart"></div>
+	              </div>
+	              <div class="axis-chart"></div>
+	              <div class="axis-cover"></div>
+	            </div>
+	            <div class="checkboxes">
+	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
+	            </div>
+	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a></p>
+	          </div>
+	        </div>
+	        <div class="flex-row">
+	          <div class="box transition nationwide" code="serious" pref="">
+	            <h3>Σε κρίσιμη κατάσταση</h3>
+	            <div class="latest">
+	              <div>
+	                <span class="type"></span>
+	                <span class="value"></span>
+	                <span class="unit"></span>
+	              </div>
+	              <div class="change"></div>
+	            </div>
+	            <h5 class="updated"><br /></h5>
+	            <div class="switches">
+	              <div class="switch selected" value="new">ΝΕΑ</div>
+	              <div class="switch" value="total">ΣΥΝΟΛΟ</div>
+	            </div>
+	            <div class="charts-wrapper">
+	              <div class="main-chart-wrapper">
+	                <div class="main-chart"></div>
+	              </div>
+	              <div class="axis-chart"></div>
+	              <div class="axis-cover"></div>
+	            </div>
+	            <div class="checkboxes">
+	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
+	            </div>
+	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. <a href="#negative">Δείτε παρακάτω</a> για περισσότερες πληροφορίες.</p>
+	          </div>
+	        </div>
+	        <div class="flex-row">
+	          <div class="box transition nationwide" code="tests" pref="">
+	            <h3>Εργαστηριακά δείγματα</h3>
+	            <div class="latest">
+	              <div>
+	                <span class="type"></span>
+	                <span class="value"></span>
+	                <span class="unit"></span>
+	              </div>
+	              <div class="change"></div>
+	            </div>
+	            <h5 class="updated"><br /></h5>
+	            <div class="switches">
+	              <div class="switch selected" value="new">ΝΕΑ</div>
+	              <div class="switch" value="total">ΣΥΝΟΛΟ</div>
+	            </div>
+	            <div class="charts-wrapper">
+	              <div class="main-chart-wrapper">
+	                <div class="main-chart"></div>
+	              </div>
+	              <div class="axis-chart"></div>
+	              <div class="axis-cover"></div>
+	            </div>
+	            <div class="checkboxes">
+	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
+	            </div>
+	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a></p>
+	          </div>
+	        </div>
+	      </div>
+	      <h2>Ηλικιακές κατανομές κρουσμάτων</h2>
+	      <div class="flex-container">
+	        <div class="flex-row">
+	          <div class="box" id="demography-box">
+	            <h3>Ποσοστιαία κατανομή (σύνολο)</h3>
+	            <h5 class="updated-demography-sum"><br></h5>
+	            <div id="demography-chart"></div>
+	            <p class="notes"></p>
+	          </div>
+	        </div>
+	        <div class="flex-row">
+	          <div class="box" id="demography-box-men">
+	            <h3>Ποσοστιαία κατανομή (άνδρες)</h3>
+	            <h5 class="updated-demography-men"><br></h5>
+	            <div id="demography-chart-men"></div>
+	            <p class="notes"></p>
+	          </div>
+	        </div>
+	        <div class="flex-row">
+	          <div class="box" id="demography-box-women">
+	            <h3>Ποσοστιαία κατανομή (γυναίκες)</h3>
+	            <h5 class="updated-demography-women"><br></h5>
+	            <div id="demography-chart-women"></div>
+	            <p class="notes"></p>
+	          </div>
+	        </div>
+	        <div class="flex-row">
+	          <div class="box" id="demography-box">
+	            <h3>Κρούσματα κατά φύλο</h3>
+	            <h5 class="updated-demography-cases"><br></h5>
+	            <div id="demography-chart-cases"></div>
+	            <p class="notes"></p>
+	          </div>
+	        </div>
+	        <div class="flex-row">
+	          <div class="box" id="demography-box-men">
+	            <h3>Θάνατοι κατά φύλο</h3>
+	            <h5 class="updated-demography-men"><br></h5>
+	            <div id="demography-chart-deaths"></div>
+	            <p class="notes"></p>
+	          </div>
+	        </div>
+	        <div class="flex-row">
+	          <div class="box" id="demography-box-women">
+	            <h3>Νοσηλείες κατά φύλο</h3>
+	            <h5 class="updated-demography-women"><br></h5>
+	            <div id="demography-chart-serious"></div>
+	            <p class="notes"></p>
+	          </div>
+	        </div>
+	      </div>
+	      <h2>Προβλέψεις/Εκτιμήσεις</h2>
+	      <div class="flex-container">
+	        <div class="flex-row">
+	          <div class="box transition nationwide" code="rt_repro" pref="">
+	            <h3>Αριθμός αναπαραγωγής R_t (εκτίμηση)</h3>
+	            <div class="latest">
+	              <div>
+	                <span class="type"></span>
+	                <span class="value"></span>
+	                <span class="unit"></span>
+	              </div>
+	              <div class="change"></div>
+	            </div>
+	            <h5 class="updated"><br /></h5>
+	            <div class="charts-wrapper">
+	              <div class="main-chart-wrapper">
+	                <div class="main-chart"></div>
+	              </div>
+	              <div class="axis-chart"></div>
+	              <div class="axis-cover"></div>
+	            </div>
+	            <p class="notes">Οι εκτιμήσεις του αριθμού R είναι απλώς εκτιμήσεις και όχι ακριβείς τιμές και βασίζονται μόνο στα δεδομένα θανάτων. Δείτε την ιστοσελίδα <a href="https://covid19-projections.com/about/#assumptions" target="_blank">covid19-projections.com</a> για όλες τις υποθέσεις που έγιναν για τον ορισμό της τιμής. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	          </div>
+	        </div> 
+	        <div class="flex-row">
+	          <div class="box transition nationwide" code="rj_repro" pref="">
+	            <h3>Αριθμός αναπαραγωγής R_j (εκτίμηση)</h3>
+	            <div class="latest">
+	              <div>
+	                <span class="type"></span>
+	                <span class="value"></span>
+	                <span class="unit"></span>
+	              </div>
+	              <div class="change"></div>
+	            </div>
+	            <h5 class="updated"><br /></h5>
+	            <div class="charts-wrapper">
+	              <div class="main-chart-wrapper">
+	                <div class="main-chart"></div>
+	              </div>
+	              <div class="axis-chart"></div>
+	              <div class="axis-cover"></div>
+	            </div>
+	            <p class="notes">Η καμπύλη επιδημίας που εμφανίζεται περιλαμβάνει όλα τα καταγεγραμμένα κρούσματα που έχουν ανατεθεί στην εκτιμώμενη ημερομηνία έναρξης των συμπτωμάτων τους. Ο μαθηματικός αλγόριθμος χρησιμοποιεί: Με βάση τα επιλεγμένα δεδομένα, έχουν εφαρμοστεί <dt-math>\Delta(=5)</dt-math> (ένας μέσος όρος μετατόπισης σε ημέρες για την εκχώρηση των κρουσμάτων στην εκτιμώμενη ημερομηνία έναρξης των συμπτωμάτων), <dt-math>numofincubationdays=5</dt-math> (αριθμός επώασης σε ημέρες), <dt-math>infectivityperiodDays=5</dt-math> (περίοδο μολυσματικότητας σε ημέρες). <a href="#rj-notes">Δείτε παρακάτω</a> για περισσότερες πληροφορίες. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	          </div>
+	        </div>
+	        <div class="flex-row">
+	          <div class="box transition nationwide" code="infection_fatality_rate" pref="">
+	            <h3>Υπονοούμενο ποσοστό θνητότητας (IIFR)</h3>
+	            <div class="latest">
+	              <div>
+	                <span class="type"></span>
+	                <span class="value"></span>
+	                <span class="unit"></span>
+	              </div>
+	              <div class="change"></div>
+	            </div>
+	            <h5 class="updated"><br /></h5>
+	            <div class="charts-wrapper">
+	              <div class="main-chart-wrapper">
+	                <div class="main-chart"></div>
+	              </div>
+	              <div class="axis-chart"></div>
+	              <div class="axis-cover"></div>
+	            </div>
+	            <p class="notes">Χρησιμοποιώντας τις εκτιμήσεις των «πραγματικών» κρουσμάτων μπορούμε να υπολογίσουμε το υπονοούμενο ποσοστό θνητότητας (IIFR), λαμβάνοντας τους αναφερόμενους θανάτους από 28 ημέρες στο μέλλον (μέσο όρο 7 ημερών) και διαιρώντας τον αριθμό αυτό με τις «πραγματικές» λοιμώξεις (μέσο όρο 7 ημερών). Σημειώστε ότι η χρήση του όρου IFR αναφέρεται σε αληθινούς θανάτους διαιρεμένους με αληθινές λοιμώξεις. <b>Δεν είναι προσαρμοσμένος ηλικιακά</b>. Ως αποτέλεσμα, εάν υπάρχει ένας αυξανόμενος επιπολασμός της νόσου σε έναν νεότερο πληθυσμό, τότε το IFR θα μειωθεί, παρά του ότι η θνησιμότητα του ιού παραμένει αμετάβλητη σε μια συγκεκριμένη ηλικιακή ομάδα. <a href="#ifr_notes">Δείτε παρακάτω</a> για περισσότερες πληροφορίες. <a href="https://covid19-projections.com/about/#infection-fatality-rate-ifr" target="_blank">covid19-projections.com</a> για όλες τις υποθέσεις που έγιναν για τον ορισμό της τιμής. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	          </div>
+	        </div> 
+	        <div class="flex-row">
+	          <div class="box transition nationwide" code="predicted_true_inf" pref="">
+	            <h3>«Πραγματικά» κρούσματα (εκτίμηση)</h3>
+	            <div class="latest">
+	              <div>
+	                <span class="type"></span>
+	                <span class="value"></span>
+	                <span class="unit"></span>
+	              </div>
+	            </div>
+	            <h5 class="updated"><br /></h5>
+	            <div class="switches">
+	              <div class="switch selected" value="new">ΝΕΑ</div>
+	              <div class="switch" value="total">ΣΥΝΟΛΟ</div>
+	            </div>
+	            <div class="charts-wrapper">
+	              <div class="main-chart-wrapper">
+	                <div class="main-chart"></div>
+	              </div>
+	              <div class="axis-chart"></div>
+	              <div class="axis-cover"></div>
+	            </div>
+							<p class="notes">Η βασική ιδέα πίσω από τη μέθοδο που παραγάγει τις παραπάνω τιμές είναι ότι μπορούμε να χρησιμοποιήσουμε το <a href="#positive_rate">ποσοστό θετικότητας (positivity rate)</a> για να προσδιορίσουμε περίπου την αναλογία των πραγματικών μολύνσεων προς τις αναφερόμενες από τον ΕΟΔΥ περιπτώσεις. Η υπόθεση είναι ότι όσο αυξάνεται ο ρυθμός θετικότητας, τόσο υψηλότερος είναι ο πραγματικός επιπολασμός σε μια περιοχή σε σχέση με τις αναφερόμενες περιπτώσεις. Για όλες τις τιμές, χρησιμοποιήθηκε μέσος όρος 7 ημερών επιβεβαιωμένων περιπτώσεων και ποσοστών θετικότητας. <a href="#true_infection">Δείτε παρακάτω</a> για περισσότερες πληροφορίες. <a href="https://covid19-projections.com/estimating-true-infections/" target="_blank">covid19-projections.com</a> για όλες τις υποθέσεις που έγιναν για τον ορισμό της τιμής. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	          </div>
+	        </div>
           <div class="flex-row">
             <div class="box transition nationwide" code="predicted_deaths" pref="">
               <h3>Πρόβλεψη θανάτων (εκτίμηση)</h3>
@@ -354,129 +401,133 @@
               <p class="notes">Πηγή: <a href="https://github.com/youyanggu/covid19_projections/tree/master/projections" target="_blank">covid19-projections.com</a>. Μέση τιμή, 2.5, και 97.5 εκατοστημόριο των ημερήσιων προβλέψεων σε θανάτους. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
             </div>
           </div>
-        </div>	
-        <div class="flex-container">
-          <div class="flex-row">
-            <h2>Περιφέρειες</h2>
-            <select id="select-pref-type">
-              <option value="carriers">Κρούσματα</option>
-              <option value="deaths">Θάνατοι</option>
-            </select>
-            <div class="box" id="region-box">
-              <div id="japan-map"></div>
-              <div id="region-chart"></div>
-            </div>
-          </div>
-          <div class="flex-row t02">
-            <h2 id="index-each-prefecture">Περιφέρεια</h2>            
-            <select id="select-prefecture">
-              <option value="8">Άγιο Όρος</option>
-              <option value="5">Ανατολική Μακεδονία & Θράκη</option>
-              <option value="1">Αττική</option>
-              <option value="9">Βόρειο Αιγαίο</option>
-              <option value="13">Δυτική Ελλάδα</option>
-              <option value="14">Δυτική Μακεδονία</option>
-              <option value="7">Επτάνησα</option>
-              <option value="6">Ήπειρος</option>
-              <option value="12">Θεσσαλία</option>
-              <option value="2">Κεντρική Ελλάδα</option>
-              <option value="3">Κεντρική Μακεδονία</option>
-              <option value="4">Κρήτη</option>
-              <option value="11">Νότιο Αιγαίο</option>
-              <option value="10">Πελοπόννησος</option>
-              <option value="16">Υπό διερεύνηση</option>
-              <option value="15">Χωρίς μόνιμη κατοικία στην Ελλάδα</option>
-            </select>
-            <div class="flex-container">
-              <div class="flex-row t03">
-                <div class="box transition prefecture" code="carriers" pref="">
-                  <h3>Κρούσματα, <span></span></h3>
-                  <div class="latest">
-                    <div>
-                      <span class="type"></span>
-                      <span class="value"></span>
-                      <span class="unit"></span>
-                    </div>
-                    <div class="change"></div>
-                  </div>
-                  <h5 class="updated"><br /></h5>
-                  <div class="switches">
-                    <div class="switch selected" value="new">ΝΕΑ</div>
-                    <div class="switch" value="total">ΣΥΝΟΛΟ</div>
-                  </div>
-                  <div class="charts-wrapper">
-                    <div class="main-chart-wrapper">
-                      <div class="main-chart"></div>
-                    </div>
-                    <div class="axis-chart"></div>
-                    <div class="axis-cover"></div>
-                  </div>
-                  <div class="checkboxes">
-                    <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
-                  </div>
-                  <p class="notes">Πηγή: <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a>. Στις <span style="color:#5987A5">1η Ιουνίου</span> συνεχίστηκαν οι διεθνείς πτήσεις προς και από το Διεθνές Αεροδρόμιο Αθηνών για τις χώρες της ΕΕ+, εξαιρουμένων των πτήσεων μεταξύ Ελλάδας και Ιταλίας, Ισπανίας, Σουηδίας, Ηνωμένου Βασιλείου και Ολλανδίας. Στις <span style="color:#3BA9B0">15 Ιουνίου</span> συνεχίστηκαν οι διεθνείς πτήσεις μεταξύ Ελλάδας και Αλβανίας, Ιταλίας, Βόρειας Μακεδονίας, Ισπανίας και Ολλανδίας, καθώς επίσης και οι διεθνείς πτήσεις από και προς το αεροδρόμιο Μακεδονία Θεσσαλονίκης. Επίσης, άνοιξαν ξανά τα σύνορα με τη Βουλγαρία για όλα τα μη απαραίτητα ταξίδια. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
-                </div>
-              </div>
-              <div class="flex-row t03">
-                <div class="box transition prefecture" code="deaths" pref="">
-                  <h3>Θάνατοι, <span></span></h3>
-                  <div class="latest">
-                    <div>
-                      <span class="type"></span>
-                      <span class="value"></span>
-                      <span class="unit"></span>
-                    </div>
-                    <div class="change"></div>
-                  </div>
-                  <h5 class="updated"><br /></h5>
-                  <div class="switches">
-                    <div class="switch selected" value="new">ΝΕΑ</div>
-                    <div class="switch" value="total">ΣΥΝΟΛΟ</div>
-                  </div>
-                  <div class="charts-wrapper">
-                    <div class="main-chart-wrapper">
-                      <div class="main-chart"></div>
-                    </div>
-                    <div class="axis-chart"></div>
-                    <div class="axis-cover"></div>
-                  </div>
-                  <div class="checkboxes">
-                    <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
-                  </div>
-                  <p class="notes">Πηγή: <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_deaths.csv" target="_blank">iMEdD-Lab</a>.</p>
-                </div>
-              </div>
-            </div>
-        </div>
-      </div>
-      <div id="footer-block">
-        <p class="notes" id="footer-notes">Σημειώσεις: Οι κινούμενοι μέσοι όροι βγαίνουν από 7 ημέρες προς τα πίσω. Ο αριθμός βασίζεται στην ημερήσια τιμή. Θεωρείται ότι είναι ο ίδιος με την προηγούμενη ημέρα, εάν δεν έχει ενημερωθεί. Τις ημέρες χωρίς συνέχεια από την προηγούμενη, ο αριθμός των "Νέων" κρουσμάτων αντιμετωπίζεται ως 0. Τα δεδομένα μπορεί να διορθωθούν από τον προγραμματιστή όταν βρεθούν ανακρίβειες, όπως αρνητική τιμή στα Κρούσματα.</p>
-        <p class="notes">Δεδομένα: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Οι ημερομηνίες των μέτρων ελήφθησαν από <a href="https://github.com/Covid-19-Response-Greece/covid19-data-greece/blob/master/data/greece/Measures/greece_social_distancing_measures_timeline.json" target="_blank">Covid-19-Response-Greece</a>. Τα δεδομένα για τους νομούς ελήφθησαν από <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a>. Οι προβλέψεις ελήφθησαν από <a href="https://covid19-projections.com/greece" target="_blank">covid19-projections.com</a>. Ο αλγόριθμος του αριθμού αναπαραγωγής Rj προέρχεται από <a href="https://academic.oup.com/aje/article/160/6/509/79472?fbclid=IwAR2nDT0TyBciFQuNOU0vW3z4OcAJBRPh_x1E8HwCI-i9a4y5KLimY5D3aG4" target="blank">American Journal of Epidemiology</a> και από <a href="https://mshfd.github.io/reproduction-number/" target="_blank">Richard Schubert</a>. Χρησιμοποιήθηκε εισαγωγικό κείμενο για τον R_t από <a href="https://www.capital.gr/health/3451248/to-r0-kai-to-rt-kai-pos-fotografizoun-tin-exelixi-tis-pandimias" target="_blank">capital.gr</a> και οι τιμές από <a href="https://github.com/youyanggu/covid19_projections/tree/master/projections" target="_blank">covid19-projections.com</a>. Χρησιμοποιήθηκε το <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> για τα διαγράμματα. Original script by: TOYO KEIZAI ONLINE</p>
-        <p class="notes"><br><a href="https://github.com/Sandbird/covid19-Greece" target="_blank">Κατεβάστε τα δεδομένα</a></p>
-        <div id="faqs">
-          <h3>Συχνές Ερωτήσεις</h3>
-          <section>
-            <h4>Ε. Γιατί ορισμένες τιμές είναι αρνητικές, παρόλο που δεν θα έπρεπε να είναι;</h4>
-            <p>A. Συμβαίνει όταν τα προηγούμενα δεδομένα έχουν διορθωθεί ή δεν υπάρχουν δεδομένα την επόμενη μέρα. Όταν οι προηγούμενοι αριθμοί περιέχουν σφάλματα, οποιεσδήποτε διορθώσεις στις τελικές τιμές γίνονται στην επόμενη ημερήσια αναφορά. Το παραπάνω δεν ισχύει στις περιπτώσεις της ενότητας «Σε κρίσιμη κατάσταση». Αρνητικές τιμές στην ενότητα αυτή σημαίνει ο ασθενής έχει εξέλθει από την εντατική ή δυστυχώς κατέληξε.</p>
-          </section>
-          <section>
-            <h4>Ε. Γιατί ορισμένες ημερήσιες μεταβολές που αναφέρει ο ΕΟΔΥ δεν συμπίπτουν με τα γραφήματα;</h4>
-            <p>A. Συμβαίνει όταν οι αριθμοί της προηγούμενης μέρας περιέχουν σφάλματα ή χρειάζονται διορθώσεις στις τελικές τιμές οι οποίες και γίνονται στην επόμενη ημερήσια αναφορά.</p>
-          </section>
-          <section>
-            <h4>Ε. Πόσο ακριβής είναι η ενότητα «Ενεργά κρούσματα»;</h4>
-            <p>A. Είναι μόνο μια εκτίμηση που βασίζεται στην υπόθεση ότι οι περισσότεροι άνθρωποι αναρρώνουν από ήπια μορφής COVID-19 μέσα σε δύο εβδομάδες και στις πιο σοβαρές περιπτώσεις εντός τριών εβδομάδων (μέσο όρο), δίνοντας ένα απόλυτο διάμεσο 17 ημερών. Δεδομένου ότι ορισμένες από τις περιπτώσεις προέρχονται από τουρίστες που βρέθηκαν θετικοί κατά την είσοδο τους στην χώρα, κάποια εξομάλυνση πρέπει να εφαρμοστεί στον τελικό αριθμό διατηρώντας μόνο το ~26% της τελικής τιμής. (Αυτός ο αριθμός βρίσκεται με την εύρεση του ποσοστού ((Σχετιζόμενα με ταξίδι από το εξωτερικό / Συνολικές περιπτώσεις) * 100) από την ενότητα «Κατανομή κρουσμάτων». Για να σας δώσω ένα παράδειγμα, το άθροισμα όλων των περιπτώσεων που βρέθηκαν θετικοί, 17 ημέρες πριν από τις 7 Αυγούστου ήταν 1222. Η αφαίρεση περίπου του 26,6% αυτής της τιμής μας δίνει 896 ενεργές περιπτώσεις. Γιατί να αφαιρέσουμε αυτές τις περιπτώσεις από την εξίσωση; Για δύο λόγους. Πρώτον, δεν είναι μόνιμοι κάτοικοι αυτής της χώρας, που σημαίνει ότι θα βρίσκονται εντός της χώρας μόνο για μερικές ημέρες έως περίπου δύο εβδομάδες (στις περισσότερες περιπτώσεις). Δεύτερον, δεδομένου ότι υπάρχουν αυστηρά μέτρα από την κυβέρνηση, όσον αφορά τους τουρίστες, είτε θα τεθούν σε καραντίνα (εάν βρεθούν θετικοί) είτε θα επιστρέψουν στις αντίστοιχες χώρες τους. Και στις δύο περιπτώσεις συμβάλλουν σε πολύ μικρή πιθανότητα αύξησης του ποσοστού των ενεργών κρουσμάτων με αποτέλσμα την μείωση του πραγματικού αριθμού.</p>
-          </section>
-          <section>
-            <h4>Ε. Τι είναι ο Αριθμός αναπαραγωγής R_t;</h4>
-            <p>A. Συχνά, η εκτίμηση του βασικού αριθμού αναπαραγωγής <dt-math>R0</dt-math> είναι μια περίπλοκη υπόθεση. Το R0 εκφράζει πόσα άτομα μπορεί να μολύνει ένα κρούσμα στην αρχή της επιδημίας, όταν δηλαδή στον πληθυσμό δεν υπάρχει ανοσία και δεν έχουν αρχίσει να εφαρμόζονται παρεμβάσεις για τον περιορισμό της μετάδοσης. Αν, για παράδειγμα, το <dt-math>R0</dt-math>  είναι ίσο με 3, κάθε κρούσμα μπορεί να μολύνει άλλα 3 άτομα κατά μέσο όρο, και αυτά με τη σειρά τους άλλα 3 το καθένα κ.ο.κ. Κατά συνέπεια, ο αριθμός των κρουσμάτων αυξάνει σταδιακά και ακολουθεί εκτεταμένη διασπορά. Αν το <dt-math>R0</dt-math> είναι μικρότερο από 1, τότε δεν υπάρχει κίνδυνος επιδημίας. Αυτό συμβαίνει γιατί, στην περίπτωση αυτή, ένα κρούσμα μπορεί να μολύνει άλλο ένα άτομο και επομένως η μετάδοση σταδιακά φθίνει. Όταν εφαρμόζονται παρεμβάσεις για τον περιορισμό της μετάδοσης, όπως για παράδειγμα τα μέτρα κοινωνικής αποστασιοποίησης, το ενδιαφέρον μετατοπίζεται από το <dt-math>R0</dt-math> στον ενεργό αριθμό αναπαραγωγής <dt-math>R_t</dt-math>. Αυτός ο δείκτης εκφράζει τον αριθμό των ατόμων που μπορεί να μολύνει ένα κρούσμα παρουσία αυτών των παρεμβάσεων. Η τιμή του μπορεί να μεταβάλλεται διαχρονικά μιας και η σταδιακή εισαγωγή μέτρων και η αλλαγή συμπεριφοράς του πληθυσμού (π.χ. υγιεινή χεριών, περιορισμός επαφών) καθιστούν τη μετάδοση ολοένα και πιο δύσκολη. Στόχος είναι να μειωθεί σε επίπεδο μικρότερο του 1 μιας και αυτό υποδηλώνει ότι επιτεύχθηκε έλεγχος της επιδημίας. 
-						Οι εκτιμήσεις που εμφανίζονται στην ενότητα <dt-math>R_t</dt-math> είναι απλώς εκτιμήσεις και όχι ακριβείς τιμές και βασίζονται μόνο στα πραγματατικά νούμερα των θανάτων. Ο χρόνος αναφοράς των θανάτων στις περισσότερες περιπτώσεις (ανα κράτος) είναι μεταβαλόμενος και αυτό λαμβάνεται δυστυχώς υπόψιν στον συγκεκριμένο αλγόριθμο, οπότε ο τρόπος με τον οποίο οι θάνατοι αλλάζουν σήμερα αντικατοπτρίζει τον τρόπο με τον οποίο άλλαξε η τιμή του <dt-math>R</dt-math> πριν από 3-4 εβδομάδες. Στη συνέχεια εφαρμόζονται επιπλέον παραδοχές και ως αποτέλεσμα, οι τρέχουσες εκτιμήσεις τιμών <dt-math>R</dt-math> είναι περισσότερο υποπροϊόν των παραδοχών παρά αποτέλεσμα οποιωνδήποτε πραγματικών δεδομένων. Καθώς λαμβάνονται περισσότερα δεδομένα, στη συνέχεια ενημερώνονται οι εκτιμήσεις του <dt-math>R</dt-math> για να αντανακλούν πιο προσεκτικά τα παρατηρούμενα δεδομένα. Η αύξηση αυτού του δείκτη σημαίνει ότι η λοίμωξη εξαπλώνεται γρήγορα. Από την άλλη πλευρά, εάν συνεχίσει να είναι μικρότερη από 1, αυτό σημαίνει ότι η λοίμωξη βρίσκεται στη φάση υποχώρησης. Για να κατανοήσετε την τρέχουσα κατάσταση της λοίμωξης, ελέγξτε και άλλους δείκτες, όπως ο αριθμός των θετικών Κρουσμάτων.</p>
-          </section>
-          <section>
-            <h4>Ε. Τι είναι ο Αριθμός αναπαραγωγής R_j;</h4>
-					   <p id="rj-notes">
+	      </div>	
+	      <div class="flex-container">
+	        <div class="flex-row">
+	          <h2>Περιφέρειες</h2>
+	          <select id="select-pref-type">
+	            <option value="carriers">Κρούσματα</option>
+	            <option value="deaths">Θάνατοι</option>
+	          </select>
+	          <div class="box" id="region-box">
+	            <div id="japan-map"></div>
+	            <div id="region-chart"></div>
+	          </div>
+	        </div>
+	        <div class="flex-row t02">
+	          <h2 id="index-each-prefecture">Περιφέρεια</h2>            
+	          <select id="select-prefecture">
+	            <option value="8">Άγιο Όρος</option>
+	            <option value="5">Ανατολική Μακεδονία & Θράκη</option>
+	            <option value="1">Αττική</option>
+	            <option value="9">Βόρειο Αιγαίο</option>
+	            <option value="13">Δυτική Ελλάδα</option>
+	            <option value="14">Δυτική Μακεδονία</option>
+	            <option value="7">Επτάνησα</option>
+	            <option value="6">Ήπειρος</option>
+	            <option value="12">Θεσσαλία</option>
+	            <option value="2">Κεντρική Ελλάδα</option>
+	            <option value="3">Κεντρική Μακεδονία</option>
+	            <option value="4">Κρήτη</option>
+	            <option value="11">Νότιο Αιγαίο</option>
+	            <option value="10">Πελοπόννησος</option>
+	            <option value="16">Υπό διερεύνηση</option>
+	            <option value="15">Χωρίς μόνιμη κατοικία στην Ελλάδα</option>
+	          </select>
+	          <div class="flex-container">
+	            <div class="flex-row t03">
+	              <div class="box transition prefecture" code="carriers" pref="">
+	                <h3>Κρούσματα, <span></span></h3>
+	                <div class="latest">
+	                  <div>
+	                    <span class="type"></span>
+	                    <span class="value"></span>
+	                    <span class="unit"></span>
+	                  </div>
+	                  <div class="change"></div>
+	                </div>
+	                <h5 class="updated"><br /></h5>
+	                <div class="switches">
+	                  <div class="switch selected" value="new">ΝΕΑ</div>
+	                  <div class="switch" value="total">ΣΥΝΟΛΟ</div>
+	                </div>
+	                <div class="charts-wrapper">
+	                  <div class="main-chart-wrapper">
+	                    <div class="main-chart"></div>
+	                  </div>
+	                  <div class="axis-chart"></div>
+	                  <div class="axis-cover"></div>
+	                </div>
+	                <div class="checkboxes">
+	                  <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
+	                </div>
+	                <p class="notes">Πηγή: <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a>. Στις <span style="color:#5987A5">1η Ιουνίου</span> συνεχίστηκαν οι διεθνείς πτήσεις προς και από το Διεθνές Αεροδρόμιο Αθηνών για τις χώρες της ΕΕ+, εξαιρουμένων των πτήσεων μεταξύ Ελλάδας και Ιταλίας, Ισπανίας, Σουηδίας, Ηνωμένου Βασιλείου και Ολλανδίας. Στις <span style="color:#3BA9B0">15 Ιουνίου</span> συνεχίστηκαν οι διεθνείς πτήσεις μεταξύ Ελλάδας και Αλβανίας, Ιταλίας, Βόρειας Μακεδονίας, Ισπανίας και Ολλανδίας, καθώς επίσης και οι διεθνείς πτήσεις από και προς το αεροδρόμιο Μακεδονία Θεσσαλονίκης. Επίσης, άνοιξαν ξανά τα σύνορα με τη Βουλγαρία για όλα τα μη απαραίτητα ταξίδια. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	              </div>
+	            </div>
+	            <div class="flex-row t03">
+	              <div class="box transition prefecture" code="deaths" pref="">
+	                <h3>Θάνατοι, <span></span></h3>
+	                <div class="latest">
+	                  <div>
+	                    <span class="type"></span>
+	                    <span class="value"></span>
+	                    <span class="unit"></span>
+	                  </div>
+	                  <div class="change"></div>
+	                </div>
+	                <h5 class="updated"><br /></h5>
+	                <div class="switches">
+	                  <div class="switch selected" value="new">ΝΕΑ</div>
+	                  <div class="switch" value="total">ΣΥΝΟΛΟ</div>
+	                </div>
+	                <div class="charts-wrapper">
+	                  <div class="main-chart-wrapper">
+	                    <div class="main-chart"></div>
+	                  </div>
+	                  <div class="axis-chart"></div>
+	                  <div class="axis-cover"></div>
+	                </div>
+	                <div class="checkboxes">
+	                  <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
+	                </div>
+	                <p class="notes">Πηγή: <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_deaths.csv" target="_blank">iMEdD-Lab</a>.</p>
+	              </div>
+	            </div>
+	          </div>
+	      </div>
+	    </div>
+	    <div id="footer-block">
+	      <p class="notes" id="footer-notes">Σημειώσεις: Οι κινούμενοι μέσοι όροι βγαίνουν από 7 ημέρες προς τα πίσω. Ο αριθμός βασίζεται στην ημερήσια τιμή. Θεωρείται ότι είναι ο ίδιος με την προηγούμενη ημέρα, εάν δεν έχει ενημερωθεί. Τις ημέρες χωρίς συνέχεια από την προηγούμενη, ο αριθμός των "Νέων" κρουσμάτων αντιμετωπίζεται ως 0. Τα δεδομένα μπορεί να διορθωθούν από τον προγραμματιστή όταν βρεθούν ανακρίβειες, όπως αρνητική τιμή στα Κρούσματα.</p>
+	      <p class="notes">Δεδομένα: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Οι ημερομηνίες των μέτρων ελήφθησαν από <a href="https://github.com/Covid-19-Response-Greece/covid19-data-greece/blob/master/data/greece/Measures/greece_social_distancing_measures_timeline.json" target="_blank">Covid-19-Response-Greece</a>. Τα δεδομένα για τους νομούς ελήφθησαν από <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a>. Οι προβλέψεις ελήφθησαν από <a href="https://covid19-projections.com/greece" target="_blank">covid19-projections.com</a>. Ο αλγόριθμος του αριθμού αναπαραγωγής Rj προέρχεται από <a href="https://academic.oup.com/aje/article/160/6/509/79472?fbclid=IwAR2nDT0TyBciFQuNOU0vW3z4OcAJBRPh_x1E8HwCI-i9a4y5KLimY5D3aG4" target="blank">American Journal of Epidemiology</a> και από <a href="https://mshfd.github.io/reproduction-number/" target="_blank">Richard Schubert</a>. Χρησιμοποιήθηκε εισαγωγικό κείμενο για τον R_t από <a href="https://www.capital.gr/health/3451248/to-r0-kai-to-rt-kai-pos-fotografizoun-tin-exelixi-tis-pandimias" target="_blank">capital.gr</a> και οι τιμές από <a href="https://github.com/youyanggu/covid19_projections/tree/master/projections" target="_blank">covid19-projections.com</a>. Χρησιμοποιήθηκε εισαγωγικό κείμενο για τον IIFR από <a href="https://el.wikipedia.org/wiki/%CE%98%CE%BD%CE%B7%CF%84%CF%8C%CF%84%CE%B7%CF%84%CE%B1" target="_blank">wikipedia</a> και ο αλγόριθμος και τα δεδομένα από (<a href="https://covid19-projections.com/estimating-true-infections/" target="_blank">link1</a>, <a href="https://covid19-projections.com/about/#infection-fatality-rate-ifr" target="_blank">link2</a>, <a href="https://github.com/youyanggu/covid19_projections/tree/master/implied_ifr" target="_blank">link3</a>). Χρησιμοποιήθηκε το <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> για τα διαγράμματα. Original script by: TOYO KEIZAI ONLINE</p>
+	      <p class="notes"><br><a href="https://github.com/Sandbird/covid19-Greece" target="_blank">Κατεβάστε τα δεδομένα</a></p>
+	      <div id="faqs">
+	        <h3>Συχνές Ερωτήσεις</h3>
+	        <section id="discrepancies">
+	          <h4>Ε. Γιατί ορισμένες ημερήσιες μεταβολές που αναφέρει ο ΕΟΔΥ δεν συμπίπτουν με τα γραφήματα;</h4>
+	          <p>A. Συμβαίνει όταν οι αριθμοί της προηγούμενης μέρας περιέχουν σφάλματα ή χρειάστηκαν διορθώσεις στις τελικές τιμές οι οποίες και γίνονται στην επόμενη ημερήσια αναφορά.</p>
+	        </section>
+	        <section id="negative">
+	          <h4>Ε. Γιατί ορισμένες τιμές είναι αρνητικές, παρόλο που δεν θα έπρεπε να είναι;</h4>
+	          <p>A. Συμβαίνει όταν τα προηγούμενα δεδομένα έχουν διορθωθεί ή δεν υπάρχουν δεδομένα την επόμενη μέρα. Όταν οι προηγούμενοι αριθμοί περιέχουν σφάλματα, οποιεσδήποτε διορθώσεις στις τελικές τιμές γίνονται στην επόμενη ημερήσια αναφορά. Το παραπάνω δεν ισχύει στις περιπτώσεις της ενότητας «Σε κρίσιμη κατάσταση». Αρνητικές τιμές στην ενότητα αυτή σημαίνει ο ασθενής έχει εξέλθει από την εντατική ή δυστυχώς κατέληξε.</p>
+	        </section>
+	        <section>
+	          <h4>Ε. Ποιος είναι ο ορισμός του «σε κρίσιμη κατάσταση»;</h4>
+	          <p>A. Σημαίνει περιπτώσεις που παρέχεται αναπνευστική υποστήριξη στον ασθενή ή θεραπεία σε μονάδα εντατικής θεραπείας (ΜΕΘ).</p>
+	        </section>
+	        <section id="active_cases">
+	          <h4>Ε. Πόσο ακριβής είναι η ενότητα «Ενεργά κρούσματα»;</h4>
+	          <p>A. Είναι μόνο μια εκτίμηση που βασίζεται στην υπόθεση ότι οι περισσότεροι άνθρωποι αναρρώνουν από ήπια μορφής COVID-19 μέσα σε δύο εβδομάδες και στις πιο σοβαρές περιπτώσεις εντός τριών εβδομάδων (μέσο όρο), δίνοντας ένα απόλυτο διάμεσο 17 ημερών. Δεδομένου ότι ορισμένες από τις περιπτώσεις προέρχονται από τουρίστες που βρέθηκαν θετικοί κατά την είσοδο τους στην χώρα, κάποια εξομάλυνση πρέπει να εφαρμοστεί στον τελικό αριθμό διατηρώντας μόνο το ~26% της τελικής τιμής. (Αυτός ο αριθμός βρίσκεται με την εύρεση του ποσοστού ((Σχετιζόμενα με ταξίδι από το εξωτερικό / Συνολικές περιπτώσεις) * 100) από την ενότητα «Κατανομή κρουσμάτων». Για να σας δώσω ένα παράδειγμα, το άθροισμα όλων των περιπτώσεων που βρέθηκαν θετικοί, 17 ημέρες πριν από τις 7 Αυγούστου ήταν 1222. Η αφαίρεση περίπου του 26,6% αυτής της τιμής μας δίνει 896 ενεργές περιπτώσεις. Γιατί να αφαιρέσουμε αυτές τις περιπτώσεις από την εξίσωση; Για δύο λόγους. Πρώτον, δεν είναι μόνιμοι κάτοικοι αυτής της χώρας, που σημαίνει ότι θα βρίσκονται εντός της χώρας μόνο για μερικές ημέρες έως περίπου δύο εβδομάδες (στις περισσότερες περιπτώσεις). Δεύτερον, δεδομένου ότι υπάρχουν αυστηρά μέτρα από την κυβέρνηση, όσον αφορά τους τουρίστες, είτε θα τεθούν σε καραντίνα (εάν βρεθούν θετικοί) είτε θα επιστρέψουν στις αντίστοιχες χώρες τους. Και στις δύο περιπτώσεις συμβάλλουν σε πολύ μικρή πιθανότητα αύξησης του ποσοστού των ενεργών κρουσμάτων με αποτέλεσμα την μείωση του πραγματικού αριθμού.</p>
+	        </section>
+	        <section>
+	          <h4>Ε. Τι είναι ο Αριθμός αναπαραγωγής R_t;</h4>
+	          <p>A. Συχνά, η εκτίμηση του βασικού αριθμού αναπαραγωγής <dt-math>R0</dt-math> είναι μια περίπλοκη υπόθεση. Το R0 εκφράζει πόσα άτομα μπορεί να μολύνει ένα κρούσμα στην αρχή της επιδημίας, όταν δηλαδή στον πληθυσμό δεν υπάρχει ανοσία και δεν έχουν αρχίσει να εφαρμόζονται παρεμβάσεις για τον περιορισμό της μετάδοσης. Αν, για παράδειγμα, το <dt-math>R0</dt-math>  είναι ίσο με 3, κάθε κρούσμα μπορεί να μολύνει άλλα 3 άτομα κατά μέσο όρο, και αυτά με τη σειρά τους άλλα 3 το καθένα κ.ο.κ. Κατά συνέπεια, ο αριθμός των κρουσμάτων αυξάνει σταδιακά και ακολουθεί εκτεταμένη διασπορά. Αν το <dt-math>R0</dt-math> είναι μικρότερο από 1, τότε δεν υπάρχει κίνδυνος επιδημίας. Αυτό συμβαίνει γιατί, στην περίπτωση αυτή, ένα κρούσμα μπορεί να μολύνει άλλο ένα άτομο και επομένως η μετάδοση σταδιακά φθίνει. Όταν εφαρμόζονται παρεμβάσεις για τον περιορισμό της μετάδοσης, όπως για παράδειγμα τα μέτρα κοινωνικής αποστασιοποίησης, το ενδιαφέρον μετατοπίζεται από το <dt-math>R0</dt-math> στον ενεργό αριθμό αναπαραγωγής <dt-math>R_t</dt-math>. Αυτός ο δείκτης εκφράζει τον αριθμό των ατόμων που μπορεί να μολύνει ένα κρούσμα παρουσία αυτών των παρεμβάσεων. Η τιμή του μπορεί να μεταβάλλεται διαχρονικά μιας και η σταδιακή εισαγωγή μέτρων και η αλλαγή συμπεριφοράς του πληθυσμού (π.χ. υγιεινή χεριών, περιορισμός επαφών) καθιστούν τη μετάδοση ολοένα και πιο δύσκολη. Στόχος είναι να μειωθεί σε επίπεδο μικρότερο του 1 μιας και αυτό υποδηλώνει ότι επιτεύχθηκε έλεγχος της επιδημίας. 
+						Οι εκτιμήσεις που εμφανίζονται στην ενότητα <dt-math>R_t</dt-math> είναι απλώς εκτιμήσεις και όχι ακριβείς τιμές και βασίζονται μόνο στα πραγματικά νούμερα των θανάτων. Ο χρόνος αναφοράς των θανάτων στις περισσότερες περιπτώσεις (ανά κράτος) είναι μεταβαλλόμενος και αυτό λαμβάνεται δυστυχώς υπόψιν στον συγκεκριμένο αλγόριθμο, οπότε ο τρόπος με τον οποίο οι θάνατοι αλλάζουν σήμερα αντικατοπτρίζει τον τρόπο με τον οποίο άλλαξε η τιμή του <dt-math>R</dt-math> πριν από 3-4 εβδομάδες. Στη συνέχεια εφαρμόζονται επιπλέον παραδοχές και ως αποτέλεσμα, οι τρέχουσες εκτιμήσεις τιμών <dt-math>R</dt-math> είναι περισσότερο υποπροϊόν των παραδοχών παρά αποτέλεσμα οποιωνδήποτε πραγματικών δεδομένων. Καθώς λαμβάνονται περισσότερα δεδομένα, στη συνέχεια ενημερώνονται οι εκτιμήσεις του <dt-math>R</dt-math> για να αντανακλούν πιο προσεκτικά τα παρατηρούμενα δεδομένα. Η αύξηση αυτού του δείκτη σημαίνει ότι η λοίμωξη εξαπλώνεται γρήγορα. Από την άλλη πλευρά, εάν συνεχίσει να είναι μικρότερη από 1, αυτό σημαίνει ότι η λοίμωξη βρίσκεται στη φάση υποχώρησης. Για να κατανοήσετε την τρέχουσα κατάσταση της λοίμωξης, ελέγξτε και άλλους δείκτες, όπως ο αριθμός των θετικών Κρουσμάτων.</p>
+	        </section>
+	        <section id="rj-notes">
+	          <h4>Ε. Τι είναι ο Αριθμός αναπαραγωγής R_j;</h4>
+					   <p>
 					   	Πρόσφατες αναλύσεις των στενά παρακολουθούμενων επιδημιών έχουν δείξει ότι είναι δυνατόν να εκτιμηθεί η πιθανότητα ότι ένα άτομο έχει μολύνει κάποιο άλλο εάν είναι γνωστές οι τοποθεσίες της κάθε μόλυνσης. Ωστόσο, όταν είναι διαθέσιμοι μόνο οι χρόνοι έναρξης συμπτωμάτων, οι περισσότεροι ερευνητές καταφεύγουν στην προσέγγιση του <dt-math>R</dt-math> υποθέτοντας μια εκθετική αύξηση του αριθμού των κρουσμάτων με την πάροδο του χρόνου ή εφαρμόζοντας ένα συγκεκριμένο μοντέλο που συνοψίζει τις υποθέσεις για την επιδημιολογία της νόσου. Ωστόσο, η υπολογιστική επιβάρυνση μιας απλής αριθμητικής αξιολόγησης της πιθανότητας φαίνεται να είναι τεράστια, δεδομένου ότι απαιτεί εξέταση όλων των πιθανών δικτύων λοίμωξης, και ακόμη και για ένα μικρό ξέσπασμα 50 περιπτώσεων υπάρχουν σχεδόν <dt-math>7 * 10^{82}</dt-math> πιθανά δίκτυα μόλυνσης.
-					   	Παρ'όλα αυτά, είναι δυνατή η απόκτηση μιας εκτιμώμενης τιμής του <dt-math>R</dt-math>. Η σχετική πιθανότητα <dt-math>p_{ij}</dt-math> ότι ένα άτομο <dt-math>i</dt-math> έχει μολυνθεί από κάποιο άλλο άτομο <dt-math>j</dt-math>, δεδομένης της διαφοράς τους στο χρόνο εκδήλωσης των συμπτωμάτων <dt-math>t_i-t_j</dt-math>, μπορεί να εκφραστεί με όρους πιθανοτήτων για το διάστημα παραγωγής γενεών. Αυτή η κατανομή για το διάστημα παραγωγής γενεών είναι διαθέσιμη για πολλές μολυσματικές ασθένειες, και την υποδηλώνουμε με τον τύπο: <dt-math>w(\tau)</dt-math>. Η σχετική πιθανότητα η περίπτωση <dt-math>i</dt-math> να έχει μολυνθεί από την περίπτωση <dt-math>j</dt-math> είναι τότε η πιθανότητα η περίπτωση <dt-math>i</dt-math> να έχει μολυνθεί από την περίπτωση <dt-math>j</dt-math>, με την κανονικοποίηση της να έχει μολυνθεί από οποιαδύποτε περίπτωση <dt-math>k</dt-math>:
+					   	Παρ'όλα αυτά, είναι δυνατή η απόκτηση μιας εκτιμώμενης τιμής του <dt-math>R</dt-math>. Η σχετική πιθανότητα <dt-math>p_{ij}</dt-math> ότι ένα άτομο <dt-math>i</dt-math> έχει μολυνθεί από κάποιο άλλο άτομο <dt-math>j</dt-math>, δεδομένης της διαφοράς τους στο χρόνο εκδήλωσης των συμπτωμάτων <dt-math>t_i-t_j</dt-math>, μπορεί να εκφραστεί με όρους πιθανοτήτων για το διάστημα παραγωγής γενεών. Αυτή η κατανομή για το διάστημα παραγωγής γενεών είναι διαθέσιμη για πολλές μολυσματικές ασθένειες, και την υποδηλώνουμε με τον τύπο: <dt-math>w(\tau)</dt-math>. Η σχετική πιθανότητα η περίπτωση <dt-math>i</dt-math> να έχει μολυνθεί από την περίπτωση <dt-math>j</dt-math> είναι τότε η πιθανότητα η περίπτωση <dt-math>i</dt-math> να έχει μολυνθεί από την περίπτωση <dt-math>j</dt-math>, με την κανονικοποίηση της να έχει μολυνθεί από οποιαδήποτε περίπτωση <dt-math>k</dt-math>:
 					    <dt-math block>
 					      \Large p_{ij}= \frac{w(t_i-t_j)}{\displaystyle\sum_{{i} \ne {k}} w(t_i-t_k)}
 					    </dt-math>
@@ -487,18 +538,51 @@
 					    <span class="katex-display"><img src="img/pij.png"></span>
 					    Αυτός ο αλγόριθμος εκτίμησης επιτρέπει την εκτίμηση των αριθμών αναπαραγωγής για μολυσματικές ασθένειες σε μία λεπτότερη χρονική ανάλυση υπό πιο γενικές παραδοχές από ότι ήταν δυνατόν στο παρελθόν.
 					  </p>
-          </section>
-          <section>
-            <h4>Ε. Ποιος είναι ο ορισμός του «σε κρίσιμη κατάσταση»;</h4>
-            <p>A. Σημαίνει περιπτώσεις που παρέχεται αναπνευστική υποστήριξη στον ασθενή ή θεραπεία σε μονάδα εντατικής θεραπείας (ΜΕΘ).</p>
-          </section>
-          <section>
-            <h4>Ε. Μπορώ να χρησιμοποιήσω τα δεδομένα;</h4>
-            <p>A. Ναι, μη διστάσετε να τα χρησιμοποιήσετε για εμπορική ή μη εμπορική χρήση. Αν θέλετε απλώς αναφέρετε το όνομά μου "Sandbird". Για οτιδήποτε άλλο δείτε την άδεια του <a href="LICENSE" target="_blank">MIT</a>.</p>
-          </section>
-        </div>
-      </div>
-    </div>
+	        </section>
+	        <section id="true_infection">
+	          <h4>Ε. Πως παράγεται ο «πραγματικός» αριθμός μολύνσεων;</h4>
+					   <p>Ο πραγματικός αριθμός των μολύνσεων είναι πολλές φορές μεγαλύτερος από τον αναφερόμενο αριθμό Κρουσμάτων, επειδή η πλειοψηφία των μολυσμένων ατόμων δεν κάνουν εξετάσεις για διάφορους λόγους: 1) είναι ασυμπτωματικοί, 2) έχουν μόνο ήπια συμπτώματα, 3) δεν έχουν πρόσβαση σε δοκιμαστήρια (οικονομικοί λόγοι, περιοχή, φόβος προσέλευσης κτλ), ή 4) απλά δεν θέλουν. Η βασική ιδέα πίσω από τη μέθοδο που παραγάγει τις παραπάνω τιμές είναι ότι μπορούμε να χρησιμοποιήσουμε το <a href="#positive_rate">ποσοστό θετικότητας (positivity rate)</a> για να προσδιορίσουμε περίπου την αναλογία των πραγματικών μολύνσεων προς τις αναφερόμενες από τον ΕΟΔΥ περιπτώσεις. Η υπόθεση είναι ότι όσο αυξάνεται ο ρυθμός θετικότητας, τόσο υψηλότερος είναι και ο πραγματικός επιπολασμός σε μια περιοχή σε σχέση με τις αναφερόμενες περιπτώσεις. Αυτό έχει κάποια λογική: Αν για παράδειγμα εξεταστεί εργαστηριακά όλος ο πληθυσμός, τότε το ποσοστό θετικότητας θα είναι πολύ χαμηλό. Αλλά αν τα τεστ δεν είναι ευρέως διαθέσιμα, τότε θα βρεθούν μόνο οι σοβαρές περιπτώσεις, με αποτέλεσμα ένα υψηλότερο ποσοστό θετικότητας. Η ακριβής σχέση μεταξύ του ποσοστού θετικότητας και του λόγου του πραγματικού επιπολασμού ποικίλλει από περιοχή σε περιοχή καθώς και με την πάροδο του χρόνου. Η σχέση των δύο μπορεί να προσεγγιστεί από μια βασική συνάρτηση της ακόλουθης φόρμας: prevalenceRatio = a * (positivityRate)^(b) + c, όπου <dt-math>a</dt-math>, <dt-math>b</dt-math>, <dt-math>c</dt-math> είναι άγνωστες σταθερές. Έπειτα από <a href="https://covid19-projections.com/estimating-true-infections/#prevalence-ratio" target="_blank">μελέτη</a> που έγινε με machine learning οι άγνωστες αυτές τιμές προσδιορίστηκαν ως έχει: <dt-math block>prevalenceRatio = 16 * \sqrt[2]{positivityRate} + 2.5</dt-math>
+					   Το επόμενο βήμα είναι να αντιστοιχηθούν όλες οι αναφερόμενες περιπτώσεις σε πραγματικές νέες μολύνσεις με βάση τον πραγματικό λόγο επιπολασμού (prevalence ratio). Μπορούμε να υπολογίσουμε τον πραγματικό λόγο επιπολασμού απλά εισάγοντας το ρυθμό θετικότητας στη παραπάνω συνάρτηση. Στη συνέχεια πολλαπλασιάζουμε την αναλογία με τις καθημερινές επιβεβαιωμένες περιπτώσεις για να πάρουμε τις πραγματικές καθημερινές μολύνσεις:
+					   <dt-math block>TrueNewDailyInfections = dailyConfirmedCases * prevalenceRatio</dt-math>
+					   Για όλους τους υπολογισμούς, χρησιμοποιήθηκε μέσος όρος 7 ημερών επιβεβαιωμένων κρουσμάτων και ποσοστών θετικότητας. Συνδυάζοντας τους 2 παραπάνω τύπους, έχουμε:
+						 <dt-math block>T_{inf} = dailyConfirmedCases * (16 * \sqrt[2]{posRate} + 2.5)</dt-math>
+						 Για παράδειγμα, στις 9 Αυγούστου βρέθηκαν <dt-math>202</dt-math> νέα κρούσματα με <a href="https://ourworldindata.org/grapher/positive-rate-daily-smoothed?tab=chart&time=2020-03-17..latest&country=~GRC" target="_blank">ποσοστό θετικότητας 0,80%</a>. Αυτό θα είχε ως αποτέλεσμα ο πραγματικός επιπολασμός να είναι 16*sqrt(0.008)+2.5 = <dt-math>3.93</dt-math>. Μπορούμε τότε να πολλαπλασιάσουμε αυτήν την αναλογία με τις επιβεβαιωμένες περιπτώσεις για να πάρουμε τις πραγματικές νέες μολύνσεις. Σε αυτό το παράδειγμα, εκτιμούμε ότι υπάρχουν 3.93 * 202 = ~<dt-math>793</dt-math> πραγματικές νέες μολύνσεις. Επειδή οι αναφερόμενες περιπτώσεις καθυστερούν από τον πραγματικό χρόνο μόλυνσης κατά περίπου 2 εβδομάδες, πρέπει να μεταφέρουμε το αποτέλεσμα πίσω κατά δύο εβδομάδες. Έτσι, οι 793 μολύνσεις έλαβαν χώρα περίπου 14 ημέρες πριν τις 9 Αυγούστου, δηλαδή στις 26 Ιουλίου. Αν χρησιμοποιήσουμε μέσους όρους 7 ημερών στις τιμές τότε έχουμε: 3.93 * 137.2 = ~539 «πραγματικές» νέες μολύνσεις στις 26 Ιουλίου. (Η τιμή 3.93 είναι ήδη μέσος όρος 7 ημερών). Όλα τα παραπάνω μας δίνουν τον παρακάτω τύπο με τον οποίο μπορούμε να βρούμε τον «πραγματικό» αριθμό μολύνσεων για οποιαδήποτε (n) ημέρα.
+						 <dt-math block>T_{inf}(n) = dailyConfirmedCases(n+14) * (16 * \sqrt[2]{posRate(n+14)} + 2.5)</dt-math>
+					  </p>
+	        </section>
+	        <section id="positive_rate">
+	          <h4>Ε. Τι είναι το ποσοστό θετικότητας (positivity rate);</h4>
+	          <p>A. Το ποσοστό θετικότητας είναι απλώς το κλάσμα των δοκιμών(τεστ) που επανέρχονται θετικά. Υπολογίζεται διαιρώντας τον αριθμό των θετικών εργαστηριακών δειγμάτων με τον συνολικό αριθμό των τεστ που γίνανε. Επειδή σε όλους τους υπολογισμούς που πραγματοποιούμε όμως χρησιμοποιούμε μέσο όρο 7 ημερών, η παραπάνω διατύπωση διαφοροποιείτα ως εξής:<br>
+	          <dt-math block>{\text{Positivity Rate}~(7day~ma)} = \frac{dailyConfirmedCases~(7day~ma)} {dailyTests~(7day~ma)}</dt-math>
+	          </p>
+	        </section>
+	        <section id="ifr_notes">
+	          <h4>Ε. Τι είναι το Υπονοούμενο ποσοστό θνητότητας (IIFR);</h4>
+					  <p>A. Υπάρχει μία σύγχυση ανάμεσα στους όρους θνητότητα (fatality) και θνησιμότητα (mortality) σχετικά με την Covid-19. H θνησιμότητα –που συχνά συγχέεται με την θνητότητα– μετράει την αριθμό των θανάτων σε ένα πληθυσμό (είτε γενικά είτε λόγω συγκεκριμένης αιτίας) σε δεδομένο χρονικό διάστημα σε σχέση με το μέγεθος του πληθυσμού. Η θνητότητα παίρνει τιμές από 0 μέχρι και 1 (ή από 0% μέχρι και 100%), επομένως μετράει τον κίνδυνο. Με άλλα λόγια είναι πιθανότητα ή αναλογία επίπτωσης, η οποία ονομάζεται και αθροιστική επίπτωση. Δεν είναι λόγος, εφόσον οι λόγοι παίρνουν τιμές και εκτός του διαστήματος 0 με 1. Επίσης, η θνητότητα δεν είναι ρυθμός (rate) ή πυκνότητα επίπτωσης, εφόσον δεν μετράει αλλαγές με την πάροδο του χρόνου, αλλά απλή αναλογία, εφόσον εκφράζεται ως ο αριθμός των θανάτων από κάποια νόσο σε σχέση με τον συνολικό αριθμό ανθρώπων που έχουν διαγνωστεί με την νόσο σε δεδομένο χρονικό διάστημα. Η μεγαλύτερη δυσκολία στην εκτίμηση της θνητότητας είναι η διασφάλιση της ακρίβειας του αριθμητή και του παρονομαστή. Για παράδειγμα, όσο μεγαλύτερη είναι η διάρκεια μιας νόσου, αυξάνεται η πιθανότητα ότι ο ασθενής θα πεθάνει από αιτία που δεν σχετίζεται με την συγκεκριμένη νόσο. Αν αυτό συμβεί, τότε θα υπερεκτιμηθεί η θνητότητα της ασθένειας. Αυτό εξηγεί γιατί η θνητότητα χρησιμοποιείται κυρίως για οξείες λοιμώδεις νόσους. Ακόμα και σε αυτές τις περιπτώσεις όμως υπάρχει πιθανότητα λανθασμένης εκτίμησης. Για παράδειγμα, κατά την διάρκεια μιας έξαρσης κρουσμάτων με υψηλές ημερήσιες αυξήσεις και μεγάλη περίοδο μέχρι την οριστική έκβαση, είναι πιθανό να υποεκτιμηθεί η θνητότητα. Από την άλλη, σε μια έξαρση όπου καταγράφονται μόνο τα κρούσματα με σοβαρά συμπτώματα και όπου πολλοί ασθενείς με ήπια ή καθόλου συμπτώματα δεν προσέρχονται για διάγνωση, η θνητότητα θα υπερεκτιμηθεί. Η θνητότητα θεωρείται οριστική όταν καταγραφεί η έκβαση όλων των κρουσμάτων (ίαση ή θάνατος). Είναι σημαντικό να σημειωθεί ότι η θνητότητα μιας ασθένειας δεν είναι σταθερή. Διαφέρει μεταξύ πληθυσμών και μεταβάλλεται με τον χρόνο, λόγω της αλληλεπίδρασης μεταξύ του αιτιολογικού παράγοντα της νόσου, του ξενιστή και του περιβάλλοντος, όπως επίσης και των διαθέσιμων θεραπειών και της ποιότητας της ιατρικής φροντίδας. Εφόσον μια πλήρης εικόνα του αριθμού των λοιμώξεων και των θανάτων δεν είναι ακόμα εφικτή, αφού η πανδημία βρίσκεται ακόμα σε εξέλιξη, μπορούμε να εκφράσουμε όλα τα παραπάνω σε μία εξίσωση χρησιμοποιώντας τις τιμές του «πραγματικού» αριθμού μολύνσεων και των αναφερόμενων θανάτων. Παρόλο που σε καμία περίπτωση δεν πρόκειται για μια ολοκληρωμένη εξίσωση, τουλάχιστον με αυτόν τον τρόπο πλησιάζουμε (μέσα σε λογικά πλαίσια) σε μια τιμή που μας βοηθάει στην καλύτερη κατανόηση της μεταβαλλόμενης δυναμικής αυτής της ασθένειας και την επίπτωση της στον πληθυσμό.<br>
+						Το IIFR (Implied Infection Fatality Rate) είναι μια μέτρηση που υπολογίζεται λαμβάνοντας τους αναφερόμενους θανάτους και διαιρώντας τους με την πραγματική εκτίμηση των μολύνσεων (ο αριθμός των θανάτων ως προς τον αριθμό των κρουσμάτων) αφού ληφθεί υπόψιν και ο χρόνος (καθυστέρηση 28 ημερών). 
+					  Σημειώστε ότι υποθέτουμε ότι οι αναφερόμενοι θάνατοι είναι περίπου ίσοι με τους πραγματικούς θανάτους. Εάν υπάρχει σημαντικός αριθμός υπερβολικών/μη αναφερόμενων θανάτων COVID-19, τότε η εκτίμηση IIFR θα είναι υποτιμημένη του πραγματικού IFR. Για όλες τις τιμές, χρησιμοποιήθηκε μέσος όρος 7 ημερών.
+					  <dt-math block>IIFR(n) =\frac{\text{Daily deaths}(n+28)}{\text{True Inf.estimate}(n)}</dt-math>
+					  Σε γενικές γραμμές μειωμένες τιμές του IIFR θα μπορούσαν να εξηγηθούν από τα παρακάτω:<br>
+					  - Χαμηλότερη μέση ηλικία μόλυνσης<br>
+						- Καλύτερη προστασία του ευάλωτου πληθυσμού<br>
+						- Βελτιωμένη θεραπεία (νέα φάρμακα, καλύτερη κατανομή πόρων, περισσότερη εμπειρία στο προσωπικό κλπ.)<br>
+						- Πρώιμη ανίχνευση<br>
+						Τα παραπάνω είναι λόγοι που θα εξηγούσαν μια <i>πραγματική</i> μείωση του ποσοστού θνητότητας (IFR). Η χαμηλότερη μέση ηλικία των ατόμων που μολύνονται και η καλύτερη προστασία των ατόμων υψηλού κινδύνου πιθανολογείται είναι οι κύριοι οδηγοί πίσω από τη μείωση της τιμής του IIFR.
+						Ορισμένοι λόγοι που θα μπορούσαν επίσης να παραποιήσουν το IIFR ακόμα χαμηλότερα, αλλά να μην αλλάξουν το πραγματικό IFR:<br>
+						- Πιο ολοκληρωμένη αναφορά επιβεβαιωμένων κρουσμάτων<br>
+						- Αλλαγές στην κατανομή των ηλικιακών ομάδων στους οποίους γίνονται τα τεστ (π.χ. σε περισσότερες νεαρές ηλικίες)<br>
+						- Πληθωρισμός του ποσοστού θετικών αποτελεσμάτων (π.χ. διπλομετρημένα θετικά αποτελέσματα, μη αναφορά αρνητικών κ.λπ.)<br>
+						- Μεγαλύτερη καθυστέρηση στην αναφορά θανάτων<br>
+						- Η ελλιπή καταγραφή των θανάτων<br>
+						</p>
+	        </section>
+	        <section>
+	          <h4>Ε. Μπορώ να χρησιμοποιήσω τα δεδομένα;</h4>
+	          <p>A. Ναι, μη διστάσετε να τα χρησιμοποιήσετε για εμπορική ή μη εμπορική χρήση. Αν θέλετε απλώς αναφέρετε το όνομά μου "Sandbird". Για οτιδήποτε άλλο δείτε την άδεια του <a href="LICENSE" target="_blank">MIT</a>.</p>
+	        </section>
+	      </div>
+	    </div>
+	  </div>
 		<div id="math-cache" style="display: none;">
 		  <dt-math class="star">\star</dt-math>
 		  <dt-math class="plus">+</dt-math>
