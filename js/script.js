@@ -206,7 +206,8 @@ const init = () => {
           if (ymd >= 20200701) ret = COLORS.measures[j+7]; //International flights between Greece and Algeria, Australia, Canada, Georgia, Japan, Montenegro, Morocco, New Zealand, Rwanda, Serbia, South Korea, Thailand, Tunisia, and Uruguay resumed
         	if (ymd >= 20200715) ret = COLORS.measures[j+9]; //Borders opened to Serbian citizens, International flights between Greece and the United Kingdom resumed
         	if (ymd >= 20200720) ret = COLORS.measures[j+2]; //International flights between Greece and Sweeden resumed
-        	if (ymd >= 20200815) ret = COLORS.measures[j+4]; //International flights between Greece and Sweeden resumed
+        	if (ymd >= 20200815) ret = COLORS.measures[j+6]; //International flights between Albania, NM, Turkey
+        	if (ymd >= 20200914) ret = COLORS.measures[j+4]; //Schools reopen
         }
 
         if (code === "active") {
