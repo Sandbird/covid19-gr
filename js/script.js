@@ -41,7 +41,7 @@ const LABELS = {
       serious: ["Κρίσιμη κατάσταση"],
       deaths: ["Θάνατοι"],
       tests: ["Δείγματα που έχουν ελεγχθεί", "Βρέθηκαν θετικοί"],
-      pcrtests: [""],
+      agtests: ["Rapid Ag"],
       rt_repro: ["Βασικός αναπαραγωγικός αριθμός"],
       rj_repro: ["Αναπαραγωγικός αριθμός"],
       infection_fatality_rate: ["IIFR"]
@@ -56,7 +56,7 @@ const LABELS = {
       serious: "",
       deaths: "",
       tests: "",
-      pcrtests: "",
+      agtests: "",
       rt_repro: "",
       rj_repro: "",
       infection_fatality_rate: ["%"]
@@ -90,7 +90,7 @@ const LABELS = {
       serious: ["Serious"],
       deaths: ["Deaths"],
       tests: ["Tested", "Found Positive"],
-      pcrtests: ["National Institute of Infectious Diseases","Quarantine Stations","Public Health Institute, Public Health Center","Private Testing Companies","Universities","Medical Institutions"],
+      agtests: ["Rapid Ag"],
       rj_repro: ["Reproduction Number"],
       //reproduction_rj_infected: ["Num. of cases"],
       rt_repro: ["Effective Reproduction Number"],
@@ -105,7 +105,7 @@ const LABELS = {
       serious: "",
       deaths: "",
       tests: "",
-      pcrtests: "",
+      agtests: "",
       rt_repro: "",
       rj_repro: "",
       infection_fatality_rate: ""
@@ -264,7 +264,7 @@ const init = () => {
         ret = COLORS.predicted_deaths[j];
       }
 
-      if (prefCode === "" && code === "pcrtests") {
+      if (prefCode === "" && code === "agtests") {
         ret = COLORS.pcrtests[j];
       }
 
@@ -682,7 +682,7 @@ const init = () => {
           value = 0;
         }
 
-        if (value < 0 && (switchValue === "total" || code === "carriers" || code === "infected_distribution" || code === "predicted_deaths" || code === "deaths" || code === "tests" || code === "pcrtests")) {
+        if (value < 0 && (switchValue === "total" || code === "carriers" || code === "infected_distribution" || code === "predicted_deaths" || code === "deaths" || code === "tests" || code === "agtests")) {
           value = 0;
         }
 
