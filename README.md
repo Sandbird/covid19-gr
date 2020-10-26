@@ -1,6 +1,8 @@
 # Coronavirus Disease (COVID-19) Situation Report in Greece
 The state of the infection of the new coronavirus (COVID19) in Greece was summarized visually from a press release from the Ministry of Health.
 
+[![preview.jpg](https://i.postimg.cc/85JV60yG/preview.jpg)](https://postimg.cc/Fd4qtD5C)
+
 ### Public page
 - https://covid19-greece.tk
 

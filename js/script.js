@@ -21,7 +21,7 @@ const COLORS = {
   deaths: "#FB8",
   serious: "#FEA",
   infected_distribution: "#6F6587,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","), 
-  predicted_deaths: "#6F6587,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","), 
+  predicted_deaths: "#3DC,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","), 
   pcrtests: "#3DC,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","),
   measures: "#90CFB5,#8FBDE0,#689AAB,#AADCD2,#3DC,#88BBAA,#BADDAD,#BBCDB3,#FAF28C,#DFEA8B,#F3EF89,#F4F4B2,#CCAC8E,#FBDEDE,#F8B2BC,#F59598,#EFA796,#FEBD7D,#CEB4D6,#B5B3DA".split(","),
   measures2: "#3DC,#FEA,#5987A5,#3BA9B0,#86E18D,#D5F474,#FB8,#EC2,#CAF0F8".split(","),
@@ -36,6 +36,7 @@ const LABELS = {
       carriers: ["Κρούσματα"],
       active: ["Ενεργά κρούσματα"],
       infected_distribution: ["Υπό διερεύνηση ή άγνωστης προέλευσης", "Σχετιζόμενα με ήδη γνωστό κρούσμα", "Σχετιζόμενα με ταξίδι από το εξωτερικό"],
+      infected_distribution_men: ["0-17", "18-39", "40-64", "65+"],
       predicted_deaths: ["χαμηλότερο εύρος", "πρόβλεψη", "ανώτερο εύρος"],
       predicted_true_inf: ["Με βάση την ημερήσια ενημέρωση","«Πραγματικός» αριθμός μολύνσεων"],
       serious: ["Κρίσιμη κατάσταση"],
@@ -51,6 +52,7 @@ const LABELS = {
       carriers: "",
       active: "",
       infected_distribution: "",
+      infected_distribution_men: "",
       predicted_deaths: "",
       predicted_true_inf: "",
       serious: "",
@@ -69,13 +71,27 @@ const LABELS = {
       cases: "Κρούσμ.",
       deaths: "Θάνατοι",
       serious: "Διασωλην."
-      
+    },
+    prefectures: {
+    	increasing: "αυξητική",
+    	decreasing: "καθοδική",
+    	flat: "επίπεδη",
+    	green: "Επίπεδο 1. Ετοιμότητας",
+    	yellow: "Επίπεδο 2. Επιτήρησης",
+    	orange: "Επίπεδο 3. Αυξημένης Επιτήρησης",
+    	red: "Επίπεδο 4. Αυξημένου Κινδύνου"
     },
     age: [
       "65+",
       "40-64",
       "18-39",
       "0-17"
+    ],
+    age2: [
+      "65",
+      "40_64",
+      "18_39",
+      "0_17"
     ]
   },
   en: {
@@ -85,6 +101,7 @@ const LABELS = {
       carriers: ["Tested Positive"],
       active: ["Active Cases"],
       infected_distribution: ["Still under investigation or of unknown origin", "Related to an already known case", "Related to travel from abroad"],
+      demography_total2: ["","",""],
       predicted_deaths: ["lower range", "projected", "upper range"],
       predicted_true_inf: ["From daily report", "True number of newly infected"],
       serious: ["Serious"],
@@ -99,6 +116,7 @@ const LABELS = {
     unit: {
       carriers: "",
       active: "",
+      demography_total2: "",
       infected_distribution: "",
       predicted_deaths: "",
       predicted_true_inf: "",
@@ -119,11 +137,26 @@ const LABELS = {
       deaths: "Deaths",
       serious: "Serious"
     },
+    prefectures: {
+    	increasing: "increasing",
+    	decreasing: "decreasing",
+    	flat: "flat",
+    	green: "Επίπεδο 1. Ετοιμότητας",
+    	yellow: "Επίπεδο 2. Επιτήρησης",
+    	orange: "Επίπεδο 3. Αυξημένης Επιτήρησης",
+    	red: "Επίπεδο 4. Αυξημένου Κινδύνου"
+    },
     age: [
       "65+",
       "40-64",
       "18-39",
       "0-17"
+    ],
+    age2: [
+      "65",
+      "40_64",
+      "18_39",
+      "0_17"
     ]
   }
 };
@@ -280,7 +313,7 @@ const init = () => {
        		ret = "#242A3C";
       	}
       }
-
+      
       return ret;
     }
 
@@ -338,7 +371,7 @@ const init = () => {
        valueLatest = valueLatest - lastItem[1];
       }
       
-     if ($box.attr("code") === "predicted_true_inf") {
+     if ($box.attr("code") === "predicted_true_inf" || $box.attr("code") === "predicted_deaths") {
 			var middle_column_sum = rows.reduce(function (r, a) {
 			        a.forEach(function (b, i) {
 			            r[i] = (r[i] || 0) + b;
@@ -350,27 +383,18 @@ const init = () => {
        valueLatest = valueLatest - lastItem[1];
       } 
             
-      
+      /*
       if ($box.attr("code") === "carriers" && prefCode == 16) {
         valueTotal  = Math.round(rows[rows.length - 1][0] * 100) / 100;
         valueLatest = Math.round(rows[rows.length - 1][0] * 100) / 100;
       }
+      */
 
       if ($box.attr("code") === "rj_repro" || $box.attr("code") === "rt_repro" || $box.attr("code") === "infection_fatality_rate") {
         valueTotal  = Math.round(rows[rows.length - 1][0] * 1000) / 1000;
         valueLatest = Math.round((rows[rows.length - 1][0] - rows[rows.length - 2][0]) * 1000) / 1000;
       }
       
-      if ($box.attr("code") === "predicted_deaths") {
-			var middle_column_sum = rows.reduce(function (r, a) {
-			        a.forEach(function (b, i) {
-			            r[i] = (r[i] || 0) + b;
-			        });
-			        return r;
-			    }, []);
-        valueTotal  = precisionRound(middle_column_sum[1], 1);
-        valueLatest = Math.round((rows[rows.length - 1][1] - rows[rows.length - 2][1]) * 100) / 100;
-      }
             
       var about_sign = "";
       if ($box.attr("code") === "active") {
@@ -540,7 +564,12 @@ const init = () => {
 	                		}
 	                	}
 	                	else{
-	                		ret.push(ds.label + ": " + addCommas(ds.data[tooltipItem.index]) + " " + LABELS[LANG].unit[code]);
+	                		if(ds.label == "πρόβλεψη" || ds.label == "projected"){
+	                			var cutval = parseFloat(addCommas(ds.data[tooltipItem.index])).toFixed(2);
+	                		}else{
+	                			var cutval = addCommas(ds.data[tooltipItem.index]);
+	                		}
+	                		ret.push(ds.label + ": " + cutval + " " + LABELS[LANG].unit[code]);
 	                	}
               	}else if(code == 'infection_fatality_rate'){
 	                  ret.push(ds.label + ": " + addCommas(ds.data[tooltipItem.index]) + LABELS[LANG].unit[code]);
@@ -603,6 +632,45 @@ const init = () => {
       }
     };
     
+    if(code == 'predicted_true_inf'){
+			config.options.scales.xAxes= [
+				{	
+					stacked: true,
+					gridLines: {
+						drawOnChartArea:false,
+						tickMarkLength: 10,
+						color: "rgba(255, 255, 255, 0.3)"
+						},
+					ticks: {
+							autoSkip: true,
+              fontColor: "rgba(255,255,255,0.7)",
+              maxRotation: 0,
+              minRotation: 0,
+              callback: (label) => {
+                return " " + label + " ";
+              }
+            }
+				}];
+			config.options.scales.yAxes= [{	
+					stacked: false,
+					gridLines: {
+						display:true,
+            zeroLineColor: "rgba(255,255,255,0.7)",
+            borderDash: [3, 1],
+            color: "rgba(255, 255, 255, 0.3)"
+						},
+					ticks: {
+						fontColor: "transparent",
+						userCallback: function(value, index, values) {
+							value = value.toString();
+							value = value.split(/(?=(?:...)*$)/);
+							value = value.join(',');
+							return value; },
+					},
+			}];	
+    }
+    
+
 		if(code == 'infected_distribution'){
 			config.options.tooltips.caretSize=0;
 			config.options.tooltips.titleFontSize=12;
@@ -614,7 +682,45 @@ const init = () => {
 			config.options.tooltips.cornerRadius=2;
 			config.options.tooltips.titleMarginBottom=2;
 		} 
-    
+/*
+		if (code === "predicted_deaths") {
+			config.options.scales.xAxes= [
+				{	
+					stacked: true,
+					gridLines: {
+						drawOnChartArea:false,
+						tickMarkLength: 10,
+						color: "rgba(255, 255, 255, 0.3)"
+						},
+					ticks: {
+							autoSkip: true,
+              fontColor: "rgba(255,255,255,0.7)",
+              maxRotation: 0,
+              minRotation: 0,
+              callback: (label) => {
+                return " " + label + " ";
+              }
+            }
+				}];
+			config.options.scales.yAxes= [{	
+					stacked: false,
+					gridLines: {
+						display:true,
+            zeroLineColor: "rgba(255,255,255,0.7)",
+            borderDash: [3, 1],
+            color: "rgba(255, 255, 255, 0.3)"
+						},
+					ticks: {
+						fontColor: "transparent",
+						userCallback: function(value, index, values) {
+							value = value.toString();
+							value = value.split(/(?=(?:...)*$)/);
+							value = value.join(',');
+							return value; },
+					},
+			}];			
+		};
+*/
 
     for (let i = 0; i < rows[0].length; i++) {
       config.data.datasets.push({
@@ -630,7 +736,7 @@ const init = () => {
         let ds = config.data.datasets[config.data.datasets.length - 1];
         ds.type = "line";
         ds.fill = false;
-        ds.pointRadius = 2;
+      	ds.pointRadius = 2;
         ds.pointBorderColor = "#EC2";
         ds.borderColor = "#EC2";
       }
@@ -639,7 +745,7 @@ const init = () => {
         let ds = config.data.datasets[config.data.datasets.length - 1];
       }
 */
-      
+     
       if (code === "predicted_deaths") {
         let ds = config.data.datasets[config.data.datasets.length- 1];
 				if(ds.label == "πρόβλεψη" || ds.label == "projected"){
@@ -650,6 +756,7 @@ const init = () => {
 	        ds.borderColor = "#EC2";
       	}
       }
+    
 
     }
 
@@ -662,11 +769,11 @@ const init = () => {
       config.data.labels.push(getDateValue(from, i, false));
 
       for (let j = 0; j < rows[0].length; j++) {
-      	if(prefCode == 16 && code == "carriers"){
-        	totalValues[j] = row[j];
-      	}else{
+      	//if(prefCode == 16 && code == "carriers"){
+        //	totalValues[j] = row[j];
+      	//}else{
         	totalValues[j] += row[j];
-      	}
+      	//}
 
         let value = row[j];
 
@@ -747,11 +854,11 @@ const init = () => {
     let prefcode = code;
     values.forEach(function(row, i){
       row.forEach(function(val, j){
-      	if(prefcode != 16){
+      	//if(prefcode != 16){
         	ret += val;
-      	}else{
-      		ret = val;
-      	}
+      	//}else{
+      	//	ret = val;
+      	//}
       });
     });
 
@@ -1108,6 +1215,329 @@ const init = () => {
     window.myChart = new Chart(ctx, config);
   }
   
+  const drawDemographyChart_group_cases = () => {
+    $wrapper = $("#demography-chart-group-cases").empty().html('<canvas></canvas>');
+    $canvas = $wrapper.find("canvas")[0];
+    
+    let config = {
+      navigation: {
+          buttonOptions: {
+              enabled: false
+          }
+      },
+	    credits: {
+	        enabled: false
+	    },
+      chart: {
+          type: 'column'
+      },
+      title: {
+          text: ''
+      },
+      xAxis: {
+          categories: []
+      },
+      yAxis: {
+          min: 0,
+          title: {
+              text: 'Κρούσματα'
+          }
+      },
+      tooltip: {
+          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+              '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+          footerFormat: '</table>',
+          shared: true,
+          useHTML: true
+      },
+      plotOptions: {
+          column: {
+              pointPadding: 0.2,
+              borderWidth: 0
+          }
+      },
+      series: []
+    };
+    
+    config.xAxis.categories = gData.demography_group_cases.categories;
+    gData.demography_group_cases.age_groups.forEach(function(age, i){
+      config.series.push({
+        name: age,
+        data: gData.demography_group_cases.cases[i]
+      });
+    });
+    //console.log(config)
+    /*
+    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 2.1;
+    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 2.3;
+
+    gData.demography_women.forEach(function(age, index){
+      config.data.labels.push(LABELS[LANG].age[index]);
+      for (let i = 0; i < 3; i++) {
+        config.data.datasets[i].data.push(age[i]);
+      }
+    });
+		*/
+    $('#demography-chart-group-cases').highcharts(config);
+	}
+	
+  const drawDemographyChart_group_deaths = () => {
+    $wrapper = $("#demography-chart-group-deaths").empty().html('<canvas></canvas>');
+    $canvas = $wrapper.find("canvas")[0];
+    
+    let config = {
+      navigation: {
+          buttonOptions: {
+              enabled: false
+          }
+      },
+	    credits: {
+	        enabled: false
+	    },
+      chart: {
+          type: 'column'
+      },
+      title: {
+          text: ''
+      },
+      xAxis: {
+          categories: []
+      },
+      yAxis: {
+          min: 0,
+          title: {
+              text: 'Θάνατοι'
+          }
+      },
+      tooltip: {
+          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+              '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+          footerFormat: '</table>',
+          shared: true,
+          useHTML: true
+      },
+      plotOptions: {
+          column: {
+              pointPadding: 0.2,
+              borderWidth: 0
+          }
+      },
+      series: []
+    };
+    
+    config.xAxis.categories = gData.demography_group_deaths.categories;
+    gData.demography_group_deaths.age_groups.forEach(function(age, i){
+      config.series.push({
+        name: age,
+        data: gData.demography_group_deaths.deaths[i]
+      });
+    });
+    //console.log(config)
+    /*
+    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 2.1;
+    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 2.3;
+
+    gData.demography_women.forEach(function(age, index){
+      config.data.labels.push(LABELS[LANG].age[index]);
+      for (let i = 0; i < 3; i++) {
+        config.data.datasets[i].data.push(age[i]);
+      }
+    });
+		*/
+    $('#demography-chart-group-deaths').highcharts(config);
+	}
+  
+  const drawGreeceMap = () => {
+    $("#greece-map").empty();
+   
+		// Prepare demo data
+		// Data is joined to map using value of 'hc-key' property by default.
+		// See API docs for 'joinBy' for more info on linking data and map.
+		var data = [
+		    ['gr-at', [1,"Attica"]],
+		    ['gr-gc', [2,"Central Greece"]],
+		    ['gr-mc', [3,"Central Macedonia"]],
+		    ['gr-cr', [4,"Crete"]],
+		    ['gr-mt', [5,"Eastern Macedonia and Thrace"]],
+		    ['gr-ep', [6,"Epirus"]],
+		    ['gr-ii', [7,"Ionian Islands"]],
+		    ['gr-ma', [8,"Mount Athos"]],
+		    ['gr-an', [9,"North Aegean"]],
+		    ['gr-pp', [10,"Peloponnese"]],
+		    ['gr-as', [11,"South Aegean"]],
+		    ['gr-ts', [12,"Thessaly"]],
+		    ['gr-gw', [13,"Western Greece"]],
+		    ['gr-mw', [14,"Western Macedonia"]]
+		];
+
+		// Create the chart
+		Highcharts.mapChart('greece-map', {
+        navigation: {
+            buttonOptions: {
+                enabled: false
+            }
+        },        
+        legend: {
+            enabled: false
+        },
+		    credits: {
+		        enabled: false
+		    },			
+		    chart: {
+		        map: 'countries/gr/gr-all'
+		    },
+		    title: {
+		        text: ''
+		    },
+		    subtitle: {
+		        text: ''
+		    },
+		    mapNavigation: {
+		        enabled: false
+		    },
+				tooltip: {
+				     formatter: function () {
+				     			var arrayinfo = this.point.value;
+				     			var prefvalue;
+				     			var tooltip = '';
+		              gData["prefectures-data"].forEach(function(pref, i){
+		                if (pref.gr === arrayinfo[1] || pref.en === arrayinfo[1]) {
+		                	prefvalue = pref.value;
+		                  //if ($("#select-prefecture").val() !== pref.code) {
+		                  //  drawPrefectureCharts(pref.code);
+		                  //}
+											//console.log(newobj);
+		                  //console.log(  indexOf(newobj, pref[LANG])  );
+		                  tooltip += '<span style="color:' + COLORS.selected + '">' + pref[LANG] + '</span>' + '<br>'+LABELS[LANG].transition.carriers+' : ' + prefvalue;
+		                }
+		              });
+				          //return this.point.value[1] + tooltip;
+				          return tooltip;
+				     }
+				},
+		    series: [{
+		    	 	stickyTracking: true,
+		        data: data,
+		        name: '',
+            borderColor: 'black',
+            borderWidth: 0.1,
+		        states: {
+		            hover: {
+		                color: '#eecc22'
+		            }
+		        },
+		        dataLabels: {
+		            enabled: false,
+		            format: '{point.name}'
+		        },
+						point: {
+	            events: {
+	                mouseOver: function (e) {
+						        drawRegionChart(e.target.value[0]);
+						        drawPrefectureCharts(e.target.value[0]);
+	                }
+	            }
+          	}
+		    }]
+		});
+
+  }
+  
+	//krousmata kata fulo
+  const drawDemographyChart_radar = () => {
+    $wrapper = $("#demography-chart-radar").empty().html('<canvas></canvas>');
+    $canvas = $wrapper.find("canvas")[0];
+		var color = Chart.helpers.color;
+		window.chartColors = {
+			red: 'rgb(255, 99, 132)',
+			orange: 'rgb(255, 159, 64)',
+			yellow: 'rgb(255, 205, 86)',
+			green: 'rgb(75, 192, 192)',
+			blue: 'rgb(54, 162, 235)',
+			purple: 'rgb(153, 102, 255)',
+			grey: 'rgb(201, 203, 207)'
+		};
+
+
+    let config = {
+      type: "radar",
+      data: {
+        labels: ['65+', '40-64', '18-39', '0-17'],
+        datasets: [{
+        	hidden: true,
+          label: LABELS[LANG].demography.sum,
+          backgroundColor: color(COLORS.default).alpha(0.8).rgbString(),
+          pointBackgroundColor: COLORS.default,
+          data: []
+        },{
+          label: LABELS[LANG].demography.men,
+          backgroundColor: color(COLORS.men).alpha(0.8).rgbString(),
+          pointBackgroundColor: COLORS.men,
+          data: []
+        },{
+          label: LABELS[LANG].demography.women,
+          backgroundColor: color(COLORS.women).alpha(0.8).rgbString(),
+          pointBackgroundColor: COLORS.women,
+          data: []
+        }]
+      },
+			options: {
+        responsive: true,
+        legend: {
+        	position: 'top',
+          display: true,
+          labels: {
+						fontColor: "rgba(255, 255, 255, 1)",
+          }
+        },
+				title: {
+					display: false,
+				},
+        tooltips: {
+          callbacks: {
+            label: function(tooltipItem, data){
+              let suffix = {
+                gr: "",
+                en: ""
+              };
+              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.yLabel + suffix[LANG];
+            }
+          }
+        },
+				scale: {
+			    angleLines: {
+			        color: "rgba(255, 255, 255, 0.2)"
+			    },
+			    pointLabels:{
+			       fontColor:"white",
+			    },
+          gridLines: {
+          	color: "rgba(255, 255, 255, 0.2)",
+          	circular: false,
+            zeroLineColor: "rgba(255,255,255,0.6)",
+            borderDash: [3, 1]
+          },
+					ticks: {
+						//display: false,
+						fontColor: "rgba(255, 255, 255, 0.2)",
+						backdropColor: "rgba(255, 255, 255, 0.0)",
+						beginAtZero: true,
+					}
+				}
+			}
+    };
+
+    gData.demography_cases.forEach(function(age, index){
+      for (let i = 0; i < 3; i++) {
+        config.data.datasets[i].data.push(age[i]);
+      }
+    });
+    let ctx = $canvas.getContext('2d');
+    window.myChart = new Chart(ctx, config);
+  }
+  
 	//krousmata kata fulo
   const drawDemographyChart_cases = () => {
     $wrapper = $("#demography-chart-cases").empty().html('<canvas></canvas>');
@@ -1222,6 +1652,7 @@ const init = () => {
     window.myChart = new Chart(ctx, config);
   }
   
+  
   const drawDemographyChart_deaths = () => {
     $wrapper = $("#demography-chart-deaths").empty().html('<canvas></canvas>');
     $canvas = $wrapper.find("canvas")[0];
@@ -1334,7 +1765,7 @@ const init = () => {
     let ctx = $canvas.getContext('2d');
     window.myChart = new Chart(ctx, config);
   }
-  
+
   const drawDemographyChart_serious = () => {
     $wrapper = $("#demography-chart-serious").empty().html('<canvas></canvas>');
     $canvas = $wrapper.find("canvas")[0];
@@ -1445,6 +1876,89 @@ const init = () => {
 
     let ctx = $canvas.getContext('2d');
     window.myChart = new Chart(ctx, config);
+  }
+  
+
+  const drawPrefectureDetails = () => {
+		//This table shows a red, yellow, green scale so you can see progress by key measures by state. Covid+ is the number of positive Covid-19 test cases. ICU capacity is red &gt; 90%, yellow &gt; 70%, green &lt; 70%. Test target is based on a 500K/day goal. 
+		//Increasing or decreasing describes the overall Covid+ trend. 
+		//Covid+ % is red > 15%, yellow > 5%, green > 5%.
+  	
+  	gData["prefectures-details"].forEach(function(pref, i){
+	  	var prefname = gData["prefectures-details"][i][LANG];
+	  	var pref_twoweek = pref.twoweektrendlatest
+	  	var newcasesperweekpop = pref.newcasesperweekpop;
+	  	var intvalue = Math.floor( newcasesperweekpop );
+	  	var twoweek_class, twoweek_text;
+	  	var myvalues = pref.last14days_rolling.values;
+	  	var map_color = pref.color;
+	  	var titletxt = LABELS[LANG].prefectures[pref.color];
+	  	var rjclass, rjtext = "";
+	  	var rj_value = Array.isArray(pref.rj_value) ? pref.rj_value[1].slice(-1).pop() : "";
+	  	
+	  	if(Array.isArray(pref.rj_value)){
+
+	  		if(pref.rj_value[0][1] < pref.rj_value[1][1]){
+	  			rjclass = "increasing";
+	  			rjtext = LABELS[LANG].prefectures['increasing'];
+	  		}else if (pref.rj_value[0][1] > pref.rj_value[1][1]){
+	  			rjclass = "decreasing";
+	  			rjtext = LABELS[LANG].prefectures['decreasing'];
+	  		}else{
+	  			rjclass = "flat";
+	  			rjtext = LABELS[LANG].prefectures['flat'];
+	  		}
+	  	}
+
+	  	if(pref_twoweek >= 0 && pref_twoweek <= 5 ){
+	  		twoweek_class = "flat";
+	  		twoweek_text = LABELS[LANG].prefectures['flat'];
+	  	}else if (pref_twoweek > 5){
+	  		twoweek_class = "increasing";
+	  		twoweek_text = LABELS[LANG].prefectures['increasing'];
+	  	}else{
+	  		twoweek_class = "decreasing";	
+	  		twoweek_text = LABELS[LANG].prefectures['decreasing'];
+	  	}
+	  	
+			$('#tbodyid').append(`<tr>
+			<td class="${map_color}" title="${titletxt}">${prefname}</td>
+				<td class="${twoweek_class}"><h4 class="m-0 font-weight-bold" style="color: inherit;">${pref.twoweektrendlatest}%</h4><span class="${twoweek_class}">${twoweek_text}</span></td>
+				<td><span id="sparkline${i}"></span></td>
+				<td><h4 class="m-0" style="color: inherit;">${pref.totalcases}</h4></td>
+				<td><div class="progress"><div role="progressbar" aria-valuenow="${newcasesperweekpop}" aria-valuemin="0" aria-valuemax="200" class="progress-bar ${map_color}" style="width: ${intvalue}%;color: #fff!important;">${newcasesperweekpop}</div></div></td>
+				<td class="${rjclass}"><h4 class="m-0 font-weight-bold" style="color: inherit;">${rj_value}</h4><span>${rjtext}</span></td>
+				<td><h4 class="m-0" style="color: inherit;">${pref.population}</h4></td>
+			</tr>`);
+			
+			$('#sparkline'+i).sparkline(myvalues, {
+				type: "line",
+				width: 100,
+				height: 50,
+				lineColor: "#0083CD",
+				fillColor: "rgba(0,131,205,0.2)",
+				minSpotColor: !0,
+				maxSpotColor: !0
+			});
+		});
+				
+	  $("#search-nomous").on("keyup", function() {
+	    var value = $(this).val().toLowerCase();
+	    $("#tbodyid tr").filter(function() {
+	      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+	    });
+	  });
+		$("#prefectures").tablesorter({
+			theme: 'blackice', 
+			widgets: ["saveSort"],
+	    widgetOptions: {
+	      // enable/disable saveSort dynamically
+	      saveSort: true
+	    },
+			sortList: [[0,0]] 
+			});
+			
+			$("#pref-updated").text(gData.updated.lastprefecture[LANG]);
   }
 
   const drawRegionChart = (prefCode) => {
@@ -1570,6 +2084,7 @@ const init = () => {
 
   const showUpdateDate = () => {
     $(".updated-last").text(gData.updated.last[LANG]);
+    //$(".updated-demography-radar").text(gData.updated.demography[LANG]);
     $(".updated-demography-cases").text(gData.updated.demography[LANG]);
     $(".updated-demography-deaths").text(gData.updated.demography[LANG]);
     $(".updated-demography-serious").text(gData.updated.demography[LANG]);
@@ -1579,20 +2094,31 @@ const init = () => {
   }
 
   const loadData = () => {
-  		$.getJSON("https://raw.githubusercontent.com/Sandbird/covid19-Greece/master/greece.json", function(data){
+  	  $.getJSON("https://raw.githubusercontent.com/Sandbird/covid19-Greece/master/greece.json", function(data){
       gData = data;
       updateThresholds();
       drawTransitionBoxes();
-      drawDemographyChart_cases();
-      drawDemographyChart_deaths();
+      	//drawDemographyChart_radar();
+      //drawDemographyChart_cases();
+      //drawDemographyChart_deaths();
+      drawDemographyChart_group_cases();
+      drawDemographyChart_group_deaths();
       drawDemographyChart_serious();
       drawDemographyChart_sum();
       drawDemographyChart_men();
       drawDemographyChart_women();
+      drawGreeceMap();
       drawRegionChart("");   //disabled for now
       drawPrefectureCharts("1");
+      drawPrefectureDetails();
       showUpdateDate();
       updateAxisChartHeight();
+      
+      //Scroll death to current week
+	    var leftPos = $('#predicted_scroller').scrollLeft();
+	    var today = new Date();
+	    var weekno = today.getWeek();
+    	$("#predicted_scroller").animate({scrollLeft: leftPos - (weekno*10)}, 800);
       $("#cover-block").fadeOut();
     })
   }
@@ -1640,11 +2166,18 @@ const init = () => {
   bindEvents();
 };
 
+Date.prototype.getWeek = function() {
+    var onejan = new Date(this.getFullYear(),0,1);
+    var today = new Date(this.getFullYear(),this.getMonth(),this.getDate());
+    var dayOfYear = ((today - onejan +1)/86400000);
+    return Math.ceil(dayOfYear/7)
+};
+
 function isInt(value) {
     var er = /^-?[0-9]+$/;
     return er.test(value);
 }
 
 $(function(){
-  init();
+  init();  
 });

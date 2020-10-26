@@ -10,15 +10,28 @@
 	<meta property="og:title" content="Coronavirus Disease (COVID-19) Situation Report in Greece" />
 	<meta property="og:description" content="Confirmed cases of COVID-19 in Greece. Data provided by the Ministry of Health." />
 	<meta name="twitter:card" content="summary_large_image" />
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP|Roboto&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/table.css"/>
+	<link rel="stylesheet" href="css/jquery.tablesorter/theme.blackice.min.css">
+	<link rel="stylesheet" href="css/simptip.min.css"/>
 	<link rel="stylesheet" href="lib/katex.min.css">
 	<title>Coronavirus Disease (COVID-19) Situation Report in Greece</title>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<script src="js/script.min.js?v=2"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+	<script src="js/script.min.js?v=4"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="lib/auto-render.min.js"></script>
 	<script src="lib/katex.min.js"></script>
+	<script type="text/javascript" src="js/jquery.tablesorter/jquery.tablesorter.min.js"></script>
+	<script type="text/javascript" src="js/jquery.tablesorter/jquery.tablesorter.widgets.min.js"></script>
+	<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+	<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/mapdata/countries/gr/gr-all.js"></script>
+	<script src="js/dark.js"></script>
 	<script>
 	var html$3 = "\n<style>\ndt-math[block] {\n  display: block;\n}\n</style>\n";
 	var DTMath = function(dom, data) {
@@ -43,12 +56,23 @@
 
 	  gtag('config', 'UA-174177919-1');
 	</script>
+	<style>
+		#greece-map {
+		    height: 500px; 
+		    min-width: 310px; 
+		    max-width: 800px; 
+		    margin: 0 auto; 
+		}
+		.highcharts-credits {
+	    font-size: 9px!important;
+		}
+	</style>
   </head>
   <body>
     <div id="cover-block">
       <div>
         <p>Loading data…</p>
-        <p><a href="./">Refresh page</a><br />if nothing visible.</p>
+	      <p><a href="./">Refresh page</a><br />if nothing is visible.</p>
       </div>
     </div>
     <div id="container">
@@ -263,18 +287,16 @@
             </div>
           </div>
           <div class="flex-row">
-            <div class="box" id="demography-box">
+	          <div class="box" id="demography-box-group-cases">
               <h3>Cases by gender</h3>
-              <h5 class="updated-demography-cases"><br></h5>
-              <div id="demography-chart-cases"></div>
+	            <div id="demography-chart-group-cases"></div>
               <p class="notes"></p>
             </div>
           </div>
           <div class="flex-row">
-            <div class="box" id="demography-box-men">
+	          <div class="box" id="demography-box-group-deaths">
               <h3>Deaths by gender</h3>
-              <h5 class="updated-demography-men"><br></h5>
-              <div id="demography-chart-deaths"></div>
+	            <div id="demography-chart-group-deaths"></div>
               <p class="notes"></p>
             </div>
           </div>
@@ -289,28 +311,6 @@
         </div>
         <h2>Predictions</h2>
         <div class="flex-container">
-          <div class="flex-row">
-            <div class="box transition nationwide" code="rt_repro" pref="">
-              <h3>Effective Reproduction Number R_t (estimate)</h3>
-              <div class="latest">
-                <div>
-                  <span class="type"></span>
-                  <span class="value"></span>
-                  <span class="unit"></span>
-                </div>
-                <div class="change"></div>
-              </div>
-              <h5 class="updated"><br /></h5>
-              <div class="charts-wrapper">
-                <div class="main-chart-wrapper">
-                  <div class="main-chart"></div>
-                </div>
-                <div class="axis-chart"></div>
-                <div class="axis-cover"></div>
-              </div>
-              <p class="notes">R estimates are merely estimates rather than precise values, and is only based on deaths data. Refer to <a href="https://covid19-projections.com/about/#assumptions" target="_blank">covid19-projections.com</a> for all assumptions made. <a class="more">READ MORE</a></p>
-            </div>
-          </div> 
           <div class="flex-row">
             <div class="box transition nationwide" code="rj_repro" pref="">
               <h3>Effective Reproduction Number R_j (estimate)</h3>
@@ -421,13 +421,13 @@
               </div>
               <h5 class="updated"><br /></h5>
               <div class="charts-wrapper">
-                <div class="main-chart-wrapper">
+                <div class="main-chart-wrapper" id="predicted_scroller">
                   <div class="main-chart"></div>
                 </div>
                 <div class="axis-chart"></div>
                 <div class="axis-cover"></div>
               </div>
-              <p class="notes">Mean, 2.5th, and 97.5th percentile of daily deaths projections. Data source: <a href="https://github.com/youyanggu/covid19_projections/tree/master/projections" target="_blank">covid19-projections.com</a>.<a class="more">READ MORE</a></p>
+              <p class="notes">Data Source: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (22-10-2020)</a></p>
             </div>
           </div>
         </div>	
@@ -439,7 +439,7 @@
               <option value="deaths">Deaths</option>
             </select>
             <div class="box" id="region-box">
-              <div id="japan-map"></div>
+              <div id="greece-map"></div>
               <div id="region-chart"></div>
             </div>
           </div>
@@ -490,7 +490,7 @@
                   <div class="checkboxes">
                     <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
                   </div>
-                  <p class="notes">Data source: <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a>. On the <span style="color:#5987A5">June 1st</span> international flights to and from Athens International Airport resumed for EU+ countries, excluding flights between Greece and Italy, Spain, Sweden, the United Kingdom, and the Netherlands. On the <span style="color:#5987A5">June 15th</span> international flights to and from Thessaloniki Airport Makedonia were resumed. Also borders with Bulgaria reopened for non-essential travel. <a class="more">READ MORE</a></p>
+	                <p class="notes">Data Source: <a href="https://twitter.com/Nyrros" target="_blank">@Nyrros</a>.</p>
                 </div>
               </div>
               <div class="flex-row t03">
@@ -525,10 +525,38 @@
             </div>
         </div>
       </div>
+	    	<div class="flex-container">
+	    		<div class="flex-row t12">
+	    			<h2>Per Prefecture
+	    				<span class="features simptip-position-right simptip-multiline" data-tooltip="The prefectures colors reflect the epidemiological situation based on covid19.gov.gr. The 14-day trend is divided into 3 categories: red >5%, yellow >0% and <5%, green <0%. Cases per 100,000 inhabitants are based on the sum of cases with a mean of 7 days. The Rj value is calculated without any smoothing, ie it results from the absolute values of the daily cases.">
+	    				<button type="button" class="btn el-tooltip btn-link"><i class="fa fa-info-circle text-info fa-2x info-cursor pl-1 mb-2"></i></button></span>
+	    				<span><small id="pref-updated"></small></span>
+	    				</h2>
+	    			<div class="box" id="prefectures-box">
+							<p style="margin-bottom:10px"><input id="search-nomous" type="text" placeholder="Search.."></p>
+							<table class="table tablesorter table-responsive" id="prefectures">
+								<thead>
+									<tr>
+									<th class="active">Prefecture / Risk Levels</th>
+									<th>14-day trend of COVID (moving medium)</th>
+									<th>Last 14 days (moving medium)</th>
+									<th>Total cases</th>
+									<th>Cases per 100,000 (14 days)</th>
+									<th>Rj (before 14 days)</th>
+									<th>Population</th>
+									</tr>
+								</thead>
+								<tbody id="tbodyid">
+								</tbody>
+							</table>
+	    			</div>
+	    		</div>
+	    	</div>
+
       <div id="footer-block">
         <p class="notes" id="footer-notes">Notes: Moving averages are 7-day backward. The number is based on the daily value. It is assumed to be the same as the previous day if not updated. On the days with no continuity from the previous day due to change of standards, "New" number is treated as 0 and the bar color is changed. Data may be corrected by the developer when it is considered as an obvious misstatement, such as minus value of Tested Positive.</p>
-        <p class="notes">Resources: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Measures by <a href="https://github.com/Covid-19-Response-Greece/covid19-data-greece/blob/master/data/greece/Measures/greece_social_distancing_measures_timeline.json" target="_blank">Covid-19-Response-Greece</a>. Data on prefectures was taken from <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a>. Predictions were taken from covid19-projections.com, (<a href="https://covid19-projections.com/greece" target="_blank">link1</a>, <a href="https://github.com/youyanggu/covid19_projections/tree/master/projections" target="_blank">link2</a>). Used introductory text for IIFR from <a href="https://www.who.int/news-room/commentaries/detail/estimating-mortality-from-covid-19" target="_blank">WHO</a> and prediction model from (<a href="https://covid19-projections.com/estimating-true-infections/" target="_blank">link1</a>, <a href="https://covid19-projections.com/about/#infection-fatality-rate-ifr" target="_blank">link2</a>, <a href="https://github.com/youyanggu/covid19_projections/tree/master/implied_ifr" target="_blank">link3</a>).
-        Effective Reproduction number RJ algorithm taken from <a href="https://academic.oup.com/aje/article/160/6/509/79472?fbclid=IwAR2nDT0TyBciFQuNOU0vW3z4OcAJBRPh_x1E8HwCI-i9a4y5KLimY5D3aG4" target="blank">American Journal of Epidemiology</a> and <a href="https://mshfd.github.io/reproduction-number/" target="_blank">Richard Schubert</a>. Used <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> to draw charts. Original script by: TOYO KEIZAI ONLINE</p>
+        <p class="notes">Resources: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Measures by <a href="https://github.com/Covid-19-Response-Greece/covid19-data-greece/blob/master/data/greece/Measures/greece_social_distancing_measures_timeline.json" target="_blank">Covid-19-Response-Greece</a>. Data on prefectures was taken from <a href="https://twitter.com/Nyrros" target="_blank">@Nyrros</a>, <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a> and <a href="http://covid19.gov.gr/" target="_blank">covid19.gov.gr</a>. Predictions were taken from c<a href="https://covid19-projections.com/greece" target="_blank">covid19-projections.com</a>, <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org</a>. Used introductory text for IIFR from <a href="https://www.who.int/news-room/commentaries/detail/estimating-mortality-from-covid-19" target="_blank">WHO</a> and prediction model from (<a href="https://covid19-projections.com/estimating-true-infections/" target="_blank">link1</a>, <a href="https://covid19-projections.com/about/#infection-fatality-rate-ifr" target="_blank">link2</a>, <a href="https://github.com/youyanggu/covid19_projections/tree/master/implied_ifr" target="_blank">link3</a>).
+        Effective Reproduction number RJ algorithm taken from <a href="https://academic.oup.com/aje/article/160/6/509/79472?fbclid=IwAR2nDT0TyBciFQuNOU0vW3z4OcAJBRPh_x1E8HwCI-i9a4y5KLimY5D3aG4" target="blank">American Journal of Epidemiology</a> and <a href="https://mshfd.github.io/reproduction-number/" target="_blank">Richard Schubert</a>. Used <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> and <a href="https://www.highcharts.com/" target="_blank">highcharts</a> to draw the charts. Original script by: TOYO KEIZAI ONLINE</p>
         <p class="notes"><br><a href="https://github.com/Sandbird/covid19-Greece" target="_blank">Download CSV data</a></p>
         <div id="faqs">
           <h3>Frequently Asked Questions</h3>
@@ -548,11 +576,13 @@
             <h4>Q. How accurate is the Active Cases section?</h4>
             <p>A. It is only an estimate based on the assumption that most people recover from mild COVID-19 within two weeks and more serious cases within three weeks (resulting in either death or recovery), giving a absolute median of 17 days. Given the fact that some of the cases are from tourists that tested positive at the borders, some smoothing has to be applied to the number by keeping only ~26% of the final value. (This number is created by finding the percentage of ((Travel from abroad cases / Total cases) * 100) from the Infection Distribution table. To give you an example, the sum of all the cumulative tested positive cases that existed from 17 days before the 7th of August was 1222. Removing about 26.6% of that value gives us 896 active cases. Why remove the foreign cases from the equation? For two reasons. First, they are not permanent residents of this country, meaning they are only staying for a few days to about two weeks (in most cases). Second, since there are strict measures taken by the goverment when it comes to tourists, they will either be placed into quarantine (if tested positive) or return to their respective countries, both cases leading to a very small chance of increasing the active cases rate thus lowering the real active cases value.</p>
           </section>
+          <!--
           <section>
             <h4>Q. What is Effective Reproduction Number R_t?</h4>
             <p>A. Effective Reproduction Number (ERN, also known as R0) is an index to see how many people are infected by one carrier and it is one of the most important properties for any infectious disease. Rather than pre-setting this value based on assumptions, our model is able to learn the value that most closely matches the data. For Italy, the R0 is found to be around 2.4-2.8, while for New York City, the <dt-math>R0</dt-math> is 5.4-5.8. This means that on average, an infected person in New York City will infect 5.4 to 5.8 additional people. For most regions, the R0 is found to be around 2, which matches the WHO findings.<br>
             Our <dt-math>R</dt-math> estimates are merely estimates rather than precise values, and is only based on deaths data. We correct for reporting lags, so how deaths are changing today is a reflection of how the <dt-math>R</dt-math> value was changing 3-4 weeks ago. We then apply additional assumptions to interpolate the R value since then. As a result, the current <dt-math>R</dt-math> value estimates are more of a byproduct of our assumptions than a result of any measurable data. As we receive more data in the future, we then update our R estimates to most closely reflect the observed data. An increase in this indicator means the infection is spreading rapidly. On the other hand, if it continues to be less than 1, it means that the infection is on the phase of receding. To understand the current status of the infection, check other indicators such as the number of positive cases.</p>
           </section>
+          -->
           <section id="rj-notes">
             <h4>Q. What is Effective Reproduction Number Rj?</h4>
 					   <p>

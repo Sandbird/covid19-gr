@@ -4,16 +4,18 @@
   padding: 0;
   outline: none;
   box-sizing: border-box;
-  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif;
-  font-weight: normal;
-  font-size: 16px;
-  color: #fafafa;
-  letter-spacing: 0.03em; }
+}
 
 body {
   width: 100%;
   background-color: #061a2b;
-  overflow-y: scroll; }
+  overflow-y: scroll; 
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  color: #fafafa;
+  letter-spacing: 0.03em;
+}
 
 #cover-block {
   position: fixed;
@@ -110,7 +112,11 @@ body {
     font-size: 20px;
     font-weight: bold;
     border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
+    }
+    #container #main-block h2 small{
+    	font-size:0.35em;
+    }
     @media only screen and (min-width: 720px) {
       #container #main-block h2 {
         font-size: 24px; } }
@@ -118,6 +124,11 @@ body {
       #container #main-block h2 {
         font-size: 28px; } }
   #container #main-block select {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  color: #fafafa;
+  letter-spacing: 0.03em; 
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -133,9 +144,9 @@ body {
     padding: 8px 96px 8px 24px; }
     #container #main-block select::-ms-expand {
       display: none; }
-  #container #main-block .flex-container {
-    display: flex;
-    flex-wrap: wrap; }
+	  #container #main-block .flex-container {
+	    display: flex;
+	    flex-wrap: wrap; }
     #container #main-block .flex-container .flex-row {
       width: 100%; }
       @media only screen and (min-width: 720px) {
@@ -153,6 +164,12 @@ body {
       @media only screen and (min-width: 1080px) {
         #container #main-block .flex-container .flex-row.t03 {
           width: calc(100% / 2); } }
+      @media only screen and (min-width: 720px) {
+        #container #main-block .flex-container .flex-row.t12 {
+          width: 100%; } }
+      @media only screen and (min-width: 1080px) {
+        #container #main-block .flex-container .flex-row.t12 {
+          width: 100%; } }
   #container #main-block .box {
     position: relative;
     margin: 16px 8px 0 8px;
@@ -413,3 +430,5 @@ body {
           font-size: 13px; }
 
 /*# sourceMappingURL=style.css.map */
+
+
