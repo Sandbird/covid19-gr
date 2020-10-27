@@ -32,6 +32,21 @@ const LABELS = {
   gr: {
     change: "Τελευταία μεταβολή: ",
     total: "Σύνολο: ",
+    male: "Ανδ.",
+    female: "Γυν.",
+    months: {
+			'Jan': 'Ιαν',
+			'Feb': 'Φεβρ',
+			'Mar': 'Μαρτ',
+			'Apr': 'Απρ',
+			'May': 'Μαι',
+			'Jun': 'Ιουν',
+			'Jul': 'Ιουλ',
+			'Aug': 'Αυγ',
+			'Sep': 'Σεπτ',
+			'Oct': 'Οκτ',
+			'Nov': 'Νοε',
+			'Dec': 'Δεκ'},
     transition: {
       carriers: ["Κρούσματα"],
       active: ["Ενεργά κρούσματα"],
@@ -97,6 +112,21 @@ const LABELS = {
   en: {
     change: "Daily: ",
     total: "Total: ",
+    male: "Male",
+    female: "Fem.",
+    months: {
+			'Jan': 'Jan',
+			'Feb': 'Feb',
+			'Mar': 'Mar',
+			'Apr': 'Apr',
+			'May': 'May',
+			'Jun': 'Jun',
+			'Jul': 'Jul',
+			'Aug': 'Aug',
+			'Sep': 'Sep',
+			'Oct': 'Oct',
+			'Nov': 'Nov',
+			'Dec': 'Dec'},
     transition: {
       carriers: ["Tested Positive"],
       active: ["Active Cases"],
@@ -1260,8 +1290,16 @@ const init = () => {
       series: []
     };
     
-    config.xAxis.categories = gData.demography_group_cases.categories;
+    var categories_renamed = {};
+		gData.demography_group_cases.categories.forEach(function(cat, index){
+			categories_renamed[index] = LABELS[LANG].months[cat];
+		});
+    config.xAxis.categories = categories_renamed;
+    //config.xAxis.categories = gData.demography_group_cases.categories;
     gData.demography_group_cases.age_groups.forEach(function(age, i){
+    	var age = age.replace("Male", LABELS[LANG].male);
+    	age = age.replace("Female", LABELS[LANG].female);
+    	
       config.series.push({
         name: age,
         data: gData.demography_group_cases.cases[i]
@@ -1327,8 +1365,16 @@ const init = () => {
       series: []
     };
     
-    config.xAxis.categories = gData.demography_group_deaths.categories;
+    var categories_renamed = {};
+		gData.demography_group_deaths.categories.forEach(function(cat, index){
+			categories_renamed[index] = LABELS[LANG].months[cat];
+		});
+    config.xAxis.categories = categories_renamed;
+    //config.xAxis.categories = gData.demography_group_cases.categories;
     gData.demography_group_deaths.age_groups.forEach(function(age, i){
+    	var age = age.replace("Male", LABELS[LANG].male);
+    	age = age.replace("Female", LABELS[LANG].female);
+    	
       config.series.push({
         name: age,
         data: gData.demography_group_deaths.deaths[i]
