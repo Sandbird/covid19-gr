@@ -34,7 +34,7 @@ const LABELS = {
     total: "Σύνολο: ",
     male: "Ανδ.",
     female: "Γυν.",
-    months: {
+    months_pref: {
 			'Jan': 'Ιαν',
 			'Feb': 'Φεβρ',
 			'Mar': 'Μαρτ',
@@ -47,6 +47,7 @@ const LABELS = {
 			'Oct': 'Οκτ',
 			'Nov': 'Νοε',
 			'Dec': 'Δεκ'},
+		months: ["Ιανουαρίου","Φεβρουαρίου","Μαρτίου","Απριλίου","Μαΐου","Ιουνίου","Ιουλίου","Αυγούστου","Σεπτεμβρίου","Οκτωβρίου","Νοεμβρίου","Δεκεμβρίου"],
     transition: {
       carriers: ["Κρούσματα"],
       active: ["Ενεργά κρούσματα"],
@@ -114,7 +115,7 @@ const LABELS = {
     total: "Total: ",
     male: "Male",
     female: "Fem.",
-    months: {
+    months_pref: {
 			'Jan': 'Jan',
 			'Feb': 'Feb',
 			'Mar': 'Mar',
@@ -127,6 +128,7 @@ const LABELS = {
 			'Oct': 'Oct',
 			'Nov': 'Nov',
 			'Dec': 'Dec'},
+		months: ["January","February","March","April","May","June","July","August","September","October","November","December"],
     transition: {
       carriers: ["Tested Positive"],
       active: ["Active Cases"],
@@ -237,8 +239,7 @@ const init = () => {
   const drawLastDate = ($box, config) => {
     const getDateWithMonthName = (dateString) => {
       let dates = dateString.split("/");
-      let months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-      return dates[1] + " " + months[parseInt(dates[0]) - 1];
+      return dates[1] + " " + LABELS[LANG].months[parseInt(dates[0]) - 1];
     }
 
     let $updated = $box.find("h5.updated");
@@ -1292,7 +1293,7 @@ const init = () => {
     
     var categories_renamed = {};
 		gData.demography_group_cases.categories.forEach(function(cat, index){
-			categories_renamed[index] = LABELS[LANG].months[cat];
+			categories_renamed[index] = LABELS[LANG].months_pref[cat];
 		});
     config.xAxis.categories = categories_renamed;
     //config.xAxis.categories = gData.demography_group_cases.categories;
@@ -1367,7 +1368,7 @@ const init = () => {
     
     var categories_renamed = {};
 		gData.demography_group_deaths.categories.forEach(function(cat, index){
-			categories_renamed[index] = LABELS[LANG].months[cat];
+			categories_renamed[index] = LABELS[LANG].months_pref[cat];
 		});
     config.xAxis.categories = categories_renamed;
     //config.xAxis.categories = gData.demography_group_cases.categories;
