@@ -528,7 +528,7 @@
 	    	<div class="flex-container">
 	    		<div class="flex-row t12">
 	    			<h2>Per Prefecture
-	    				<span class="features simptip-position-right simptip-multiline" data-tooltip="The prefectures colors reflect the epidemiological situation based on covid19.gov.gr. The 14-day trend is divided into 3 categories: red >5%, yellow >0% and <5%, green <0%. Cases per 100,000 inhabitants are based on the sum of cases with a mean of 7 days. The Rj value is calculated without any smoothing, ie it results from the absolute values of the daily cases.">
+	    				<span class="features simptip-position-right simptip-multiline" data-tooltip="The prefecture colors reflect the epidemiological situation based on covid19.gov.gr. The 14-day trend is divided into 3 categories: red >5%, yellow >0% and <5%, green <0%. The values of column 'Last 14 days' are the two moving averages(7 days) of 14 days before and today, and are used to find the percentage increase of the '14-day trend' column. (Percentage Increase = [(Final Value - Starting Value ) / Starting Value) × 100]). Cases per 100,000 inhabitants are based on the sum of cases with a mean of 7 days. The Rj value is calculated without any smoothing, ie it results from the absolute values of the daily cases.">
 	    				<button type="button" class="btn el-tooltip btn-link"><i class="fa fa-info-circle text-info fa-2x info-cursor pl-1 mb-2"></i></button></span>
 	    				<span><small id="pref-updated"></small></span>
 	    				</h2>
@@ -538,8 +538,8 @@
 								<thead>
 									<tr>
 									<th class="active">Prefecture / Risk Levels</th>
-									<th>14-day trend of COVID (moving medium)</th>
-									<th>Last 14 days (moving medium)</th>
+									<th>14-day trend of COVID (mov.average)</th>
+									<th>Last 14 days (mov.average)</th>
 									<th>Total cases</th>
 									<th>Cases per 100,000 (14 days)</th>
 									<th>Rj (before 14 days)</th>

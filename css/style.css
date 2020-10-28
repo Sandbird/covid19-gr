@@ -115,7 +115,7 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
     }
     #container #main-block h2 small{
-    	font-size:0.35em;
+    	font-size:0.4em;
     }
     @media only screen and (min-width: 720px) {
       #container #main-block h2 {
