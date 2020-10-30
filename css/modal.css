@@ -1,0 +1,209 @@
+.root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif!important;
+  color: #000;
+  font-weight: 400;
+  position: absolute;
+  display:none;
+  z-index: 10000;
+}
+
+.StateTooltip {
+  box-sizing: border-box;
+  position: absolute;
+  background: white;
+  backface-visibility: hidden;
+  pointer-events: none;
+  transform: translate3d(-50%, 10px, 0);
+
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, .1);
+}
+
+.Button {
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  background: #eee;
+  padding: 10px;
+  margin: 0;
+  line-height: 12px;
+}
+
+.Button:hover {
+  background: #ddd;
+}
+.Button:active {
+  outline: none;
+  background-color: #eee;
+}
+
+.Row {
+  display: flex;
+}
+
+.Col {
+  flex: 1;
+}
+
+.Title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px 0 10px 0;
+}
+
+.LabeledDataFrame {
+  margin: 5px 0;
+}
+
+.LabeledDataFrame > h3 {
+  font-size: 11px;
+  font-weight: normal;
+  margin: 0 0 5px 0;
+}
+
+.chartText {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.chartSparkline > path {
+  fill: none;
+  stroke: #333;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chartSparkline text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.axis text {
+  font-size: 10px;
+  text-anchor: middle;
+  transform: translate(0, 20px);
+  stroke: none;
+}
+
+.Modal {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+
+  padding: 10px;
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: 4px 0px 25px rgba(0, 0, 0, .1);
+}
+
+.Modal > header {
+  display: flex;
+  align-items: start;
+  border-bottom: 1px solid #eee;
+}
+
+.Modal > header > h1 {
+  flex: 1;
+}
+
+.ModalContent {
+  margin-top: 10px;
+}
+
+.TimeSeriesTitle {
+  font-size: 11px;
+}
+
+.AxisText {
+  color: rgba(0, 0, 0, .5);
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.AxisMidpointLine {
+  stroke: rgba(0, 0, 0, .5);
+  stroke-width: 1;
+  stroke-dasharray: 4px 4px;
+}
+
+.AnnotationLabel {
+  font-size: 10px;
+  font-weight: 400;
+  text-anchor: middle;
+  transform: translate(0, 10px);
+  background: white;
+}
+
+.AnnotationLine {
+  stroke: rgba(0, 0, 0, .4);
+  stroke-width: 1;
+}
+
+.ColorDot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 3px;
+}
+
+.ColorDotFlashing {
+  animation-name: animColorDotFlashing;
+  animation-duration: 1000ms;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+}
+
+@keyframes animColorDotFlashing {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.USMapState {
+  cursor: pointer;
+}
+
+.DataLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.DataLoadingSpinner {
+  border: 2px solid #223;
+  border-right-color: transparent;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  animation: spinner .75s linear infinite;
+  margin: 10px auto;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#PopupContainer
+{
+    position:absolute;
+    left:0;
+    top:0;
+    display:none;
+    z-index: 20000;
+}

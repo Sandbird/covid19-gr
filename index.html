@@ -14,6 +14,7 @@
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP|Roboto&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="css/modal.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="css/table.css"/>
 	<link rel="stylesheet" href="css/jquery.tablesorter/theme.blackice.min.css">
@@ -22,10 +23,11 @@
 	<title>Coronavirus Disease (COVID-19) Situation Report in Greece</title>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-	<script src="js/script.min.js?v=4"></script>
+	<script src="js/script.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="lib/auto-render.min.js"></script>
 	<script src="lib/katex.min.js"></script>
+	<script src="js/jquery.hoverIntent.min.js"></script>
 	<script type="text/javascript" src="js/jquery.tablesorter/jquery.tablesorter.min.js"></script>
 	<script type="text/javascript" src="js/jquery.tablesorter/jquery.tablesorter.widgets.min.js"></script>
 	<script src="https://code.highcharts.com/maps/highmaps.js"></script>
@@ -537,7 +539,7 @@
 							<table class="table tablesorter table-responsive" id="prefectures">
 								<thead>
 									<tr>
-									<th class="active">Νομός / Επίπεδα Επικινδυνότητας</th>
+									<th class="active">Νομοί <small>(Πατήστε πάνω)</small></th>
 									<th>14ημερη τάση της COVID (κιν.μεσο)</th>
 									<th>Τελευταίες 14 μέρες (κιν.μεσο)</th>
 									<th>Σύνολο κρουσμάτων</th>

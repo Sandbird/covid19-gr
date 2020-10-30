@@ -96,7 +96,9 @@ const LABELS = {
     	yellow: "Επίπεδο 2. Επιτήρησης",
     	orange: "Επίπεδο 3. Αυξημένης Επιτήρησης",
     	red: "Επίπεδο 4. Αυξημένου Κινδύνου",
-    	grey: "Δεν υπάρχουν δεδομένα"
+    	grey: "Δεν υπάρχουν δεδομένα",
+    	danger: "Επικινδυνότητα",
+    	latest_cases: "Τελευταίες 14 μέρες (νέα κρούσματα)"
     },
     age: [
       "65+",
@@ -178,7 +180,9 @@ const LABELS = {
     	yellow: "Level 2. Surveillance",
     	orange: "Level 3. Increased Surveillance",
     	red: "Level 4. Increased Risk",
-    	grey: "No available data"
+    	grey: "No available data",
+    	danger: "Risk Level",
+    	latest_cases: "Last 14 days (new cases)"
     },
     age: [
       "65+",
@@ -1700,8 +1704,7 @@ const init = () => {
     let ctx = $canvas.getContext('2d');
     window.myChart = new Chart(ctx, config);
   }
-  
-  
+    
   const drawDemographyChart_deaths = () => {
     $wrapper = $("#demography-chart-deaths").empty().html('<canvas></canvas>');
     $canvas = $wrapper.find("canvas")[0];
@@ -1925,8 +1928,7 @@ const init = () => {
 
     let ctx = $canvas.getContext('2d');
     window.myChart = new Chart(ctx, config);
-  }
-  
+  }  
 
   const drawPrefectureDetails = () => {
 		//This table shows a red, yellow, green scale so you can see progress by key measures by state. Covid+ is the number of positive Covid-19 test cases. ICU capacity is red &gt; 90%, yellow &gt; 70%, green &lt; 70%. Test target is based on a 500K/day goal. 
@@ -1971,7 +1973,7 @@ const init = () => {
 	  	}
 	  	
 			$('#tbodyid').append(`<tr>
-			<td class="${map_color}" title="${titletxt}">${prefname}</td>
+				<td id="box_${i}" class="${map_color} personPopupTrigger" rel="${prefname},${titletxt},${map_color}">${prefname}</td>
 				<td class="${twoweek_class}"><h4 class="m-0 font-weight-bold" style="color: inherit;">${pref.twoweektrendlatest}%</h4><span class="${twoweek_class}">${twoweek_text}</span></td>
 				<td><span id="sparkline${i}"></span></td>
 				<td><h4 class="m-0" style="color: inherit;">${pref.totalcases}</h4></td>
@@ -1997,6 +1999,7 @@ const init = () => {
 	      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 	    });
 	  });
+	  
 		$("#prefectures").tablesorter({
 			theme: 'blackice', 
 			widgets: ["saveSort"],
@@ -2009,6 +2012,257 @@ const init = () => {
 			
 			$("#pref-updated").text(gData.updated.lastprefecture[LANG]);
   }
+  
+	const initPopup = () => {
+	    var hideDelay = 500;
+	    var hideTimer = null;
+	    var ajax = null;
+	    var hideFunction = function()
+	    {
+	        if (hideTimer)
+	            clearTimeout(hideTimer);
+	        hideTimer = setTimeout(function()
+	        {
+	            currentPosition = { left: '0px', top: '0px' };
+	            container.css('display', 'none');
+	        }, hideDelay);
+	    };
+
+	    var currentPosition = { left: '0px', top: '0px' };
+			var container = $(`<div class="root" id="PopupContainer">
+			   <div class="StateTooltip" style="width: 350px;">
+			      <div style="margin-bottom: 9px; border-bottom: 1px solid rgb(238, 238, 238);">
+			         <div class="Row">
+			            <div class="Col">
+			               <div style="font-weight: bold; padding: 0px 0px 5px;">
+			                  <div class="ColorDot ColorDotFlashing colorclass" style=""></div>
+			                  <span id="prefect_name"></span>
+			               </div>
+			            </div>
+	            <div class="Col">
+	               <div id="closetab" style="font-size: 10px; color: #aaa; text-align: right; line-height: 20px;">X</div>
+	            </div>
+			         </div>
+			      </div>
+			      <div class="Row">
+			        <div class="LabeledDataFrame">
+			           <h3>${LABELS[LANG].prefectures.danger}</h3>
+			           <div class="content">
+			              <div class="color"><span id="dangerlevel"></span></div>
+			           </div>
+			        </div>
+			      </div>
+			      <div class="Row">
+			         <div class="LabeledDataFrame" style="width:100%">
+			          <h3>${LABELS[LANG].prefectures.latest_cases}</h3>
+			            <div class="content">
+			               <canvas style="width: 100% !important;height: auto !important;" id="myChart">
+			            </div>
+			         </div>
+			      </div>
+			   </div>
+			</div>`);
+			
+	    const getDateValue = (from, i, isYmd) => {
+	      let dt = new Date(from[0], from[1] - 1, from[2]);
+	          dt.setDate(dt.getDate() + i);
+
+	      let ret = "";
+	      let cy = dt.getFullYear();
+	      let cm = dt.getMonth() + 1;
+	      let cd = dt.getDate();
+
+	      if (isYmd) {
+	        let ymd = (parseInt(cy) * 10000) + (parseInt(cm) * 100) + parseInt(cd);
+	        ret = ymd;
+
+	      } else {
+	        if (LANG === "gr") {
+	          ret = cm + "/" + cd;
+	        }
+
+	        if (LANG === "en") {
+	          ret = cm + "/" + cd;
+	        }
+	      }
+
+	      return ret;
+	    }
+
+	    // function to update our chart
+	    function ajax_chart(chart, region_name) {
+	        var data = {};
+	        	gData["prefectures-details"].forEach(function(row, i){
+	        		if(row[LANG] == region_name){
+	        			chart.legend.display = false;
+		            chart.data.datasets[0].data = gData["prefectures-details"][i].carriers.values;
+		            gData["prefectures-details"][i].carriers.values.forEach(function(val, j){
+		            	chart.data.labels.push(getDateValue(gData["prefectures-details"][i].carriers.from, j, false));
+		          	});	        	
+		            chart.data.datasets[0].data = gData["prefectures-details"][i].carriers.values;
+		            chart.update(); // finally update our chart
+	        		}
+	        	});       	
+	    }
+
+	    $('.personPopupTrigger').on('mouseover', function()
+	    {
+	        if (!$(this).data('hoverIntentAttached'))
+	        {
+	            $(this).data('hoverIntentAttached', true);
+	            $(this).hoverIntent
+	            (
+	                // hoverIntent mouseOver
+	                function()
+	                {
+	                    if (hideTimer)
+	                        clearTimeout(hideTimer);
+
+	                    // format of 'rel' tag: prefect_name,personguid
+	                    var settings = $(this).attr('rel').split(',');
+	                    var prefect_name = settings[0];
+	                    var dangerlevel = settings[1];
+	                    var colorclass = settings[2];
+	                    
+	                    let chartData = {};
+
+	                    // If no guid in url rel tag, don't popup blank
+	                    if (dangerlevel == '')
+	                        return;
+
+	                    var pos = $(this).offset();
+	                    var width = $(this).width();
+	                    var reposition = { left: (pos.left + width) + 'px', top: pos.top - 5 + 'px' };
+
+	                    // If the same popup is already shown, then don't requery
+	                    if (currentPosition.left == reposition.left &&
+	                        currentPosition.top == reposition.top)
+	                        return;
+
+	                    container.css({
+	                        left: reposition.left,
+	                        top: reposition.top
+	                    });
+
+	                    currentPosition = reposition;
+
+	                    $('#prefect_name').html(prefect_name);
+	                    $('#dangerlevel').html(dangerlevel);
+	                    
+	                    var colorarr = {'green':'#12ad2c', 'yellow':'#ffc300', 'orange':'#E5712A', 'red':'#c82d2d', 'grey':'#ccc'};
+
+	                    $(".color").removeAttr('style').css({
+												    'color': colorarr[colorclass], 
+												    'font-weight': 'bold'
+												});
+	                    $(".colorclass").removeAttr('style').css({
+												    'background-color': colorarr[colorclass]
+												});
+
+									   var ctx = $('#myChart');
+									    Chart.defaults.global.defaultFontSize = "10";
+									    
+									    var myChart = new Chart(ctx, {
+									        type: 'bar',
+									        data: {
+									            labels: [],
+									            datasets: [
+									                {
+									                		label: '',
+									                    fill: false,
+									                    lineTension: 0.1,
+									                    backgroundColor: "rgba(75,192,192,0.4)",
+									                    borderColor: "rgba(75,192,192,1)",
+									                    borderCapStyle: 'butt',
+									                    borderDash: [],
+									                    borderDashOffset: 0.0,
+									                    borderJoinStyle: 'miter',
+									                    pointBorderColor: "rgba(75,192,192,1)",
+									                    pointBackgroundColor: "#fff",
+									                    pointBorderWidth: 1,
+									                    pointHoverRadius: 5,
+									                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+									                    pointHoverBorderColor: "rgba(220,220,220,1)",
+									                    pointHoverBorderWidth: 2,
+									                    pointRadius: 1,
+									                    pointHitRadius: 10,
+									                    data: [],
+									                    spanGaps: false,
+									                }
+									            ]
+									        },
+									        options: {
+									        	responsive: true,
+									          legend: {
+									            display: false
+									          },
+									          title: {
+									            display: false
+									          },
+								            tooltips: {
+								                mode: 'index',
+								                intersect: false
+								            },
+								            scales: {
+								                yAxes: [{
+								                    ticks: {
+								                        beginAtZero:true
+								                    }
+								                }]
+								            },
+														animation: {
+										            duration: 500,
+										            easing: "easeOutQuart",
+										            onComplete: function () {
+										                var ctx = this.chart.ctx;
+										                ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, 'bold', Chart.defaults.global.defaultFontFamily);
+										                ctx.textAlign = 'center';
+										                ctx.textBaseline = 'bottom';
+
+										                this.data.datasets.forEach(function (dataset) {
+										                    for (var i = 0; i < dataset.data.length; i++) {
+										                        var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model,
+										                            scale_max = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._yScale.maxHeight;
+										                        ctx.fillStyle = '#444';
+										                        var y_pos = model.y - 5;
+										                        // Make sure data value does not get overflown and hidden
+										                        // when the bar's value is too close to max value of scale
+										                        // Note: The y value is reverse, it counts from top down
+										                        if ((scale_max - model.y) / scale_max >= 0.85)
+										                            y_pos = model.y + 20; 
+										                        ctx.fillText(dataset.data[i], model.x, y_pos);
+										                    }
+										                });               
+										            }
+										        }
+									        }
+									    });
+
+	                    container.css('display', 'block');
+											ajax_chart(myChart, prefect_name);
+	                   
+	                },
+	                // hoverIntent mouseOut
+	                hideFunction
+	            );
+	            // Fire mouseover so hoverIntent can start doing its magic
+	            $(this).trigger('mouseover');
+	        }
+	    });
+	    
+	    $('body').append(container);
+
+	    // Allow mouse over of details without hiding details
+	    $('#PopupContainer').mouseover(function()
+	    {
+	        if (hideTimer)
+	            clearTimeout(hideTimer);
+	    });
+
+	    // Hide after mouseout
+	    $('#PopupContainer').mouseout(hideFunction);
+	    $('#closetab').mouseover(closetab);
+	};
 
   const drawRegionChart = (prefCode) => {
     let $wrapper = $("#region-chart").empty().html('<canvas></canvas>');
@@ -2169,6 +2423,7 @@ const init = () => {
 	    var weekno = today.getWeek();
     	$("#predicted_scroller").animate({scrollLeft: leftPos - (weekno*10)}, 800);
       $("#cover-block").fadeOut();
+      initPopup();
     })
   }
 

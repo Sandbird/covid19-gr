@@ -40,6 +40,7 @@ table{table-layout:fixed;}
 .red{background-color:#c82d2d!important;color: #fff!important;}
 .green{background-color:#12ad2c!important;color: #000!important;}
 .yellow{background-color:#ffc300!important;color: #000!important;}
+.grey{background-color:#ccc!important;color: #000!important;}
 .orange{background-color:#E5712A!important;color: #000!important;}
 
 @media (min-width:961px){
