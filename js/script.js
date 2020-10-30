@@ -95,7 +95,8 @@ const LABELS = {
     	green: "Επίπεδο 1. Ετοιμότητας",
     	yellow: "Επίπεδο 2. Επιτήρησης",
     	orange: "Επίπεδο 3. Αυξημένης Επιτήρησης",
-    	red: "Επίπεδο 4. Αυξημένου Κινδύνου"
+    	red: "Επίπεδο 4. Αυξημένου Κινδύνου",
+    	grey: "Δεν υπάρχουν δεδομένα"
     },
     age: [
       "65+",
@@ -173,10 +174,11 @@ const LABELS = {
     	increasing: "increasing",
     	decreasing: "decreasing",
     	flat: "flat",
-    	green: "Επίπεδο 1. Ετοιμότητας",
-    	yellow: "Επίπεδο 2. Επιτήρησης",
-    	orange: "Επίπεδο 3. Αυξημένης Επιτήρησης",
-    	red: "Επίπεδο 4. Αυξημένου Κινδύνου"
+    	green: "Level 1. Readiness",
+    	yellow: "Level 2. Surveillance",
+    	orange: "Level 3. Increased Surveillance",
+    	red: "Level 4. Increased Risk",
+    	grey: "No available data"
     },
     age: [
       "65+",
