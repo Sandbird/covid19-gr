@@ -93,9 +93,9 @@ const LABELS = {
     	decreasing: "καθοδική",
     	flat: "επίπεδη",
     	green: "Επίπεδο 1. Ετοιμότητας",
-    	yellow: "Επίπεδο 2. Επιτήρησης",
     	orange: "Επίπεδο 3. Αυξημένης Επιτήρησης",
-    	red: "Επίπεδο 4. Αυξημένου Κινδύνου",
+    	yellow: "Επίπεδο Α. Επιτήρησης",
+    	red: "Επίπεδο Β. Αυξημένου Κινδύνου",
     	grey: "Δεν υπάρχουν δεδομένα",
     	danger: "Επικινδυνότητα",
     	latest_cases: "Τελευταίες 14 μέρες (νέα κρούσματα)"
@@ -177,9 +177,9 @@ const LABELS = {
     	decreasing: "decreasing",
     	flat: "flat",
     	green: "Level 1. Readiness",
-    	yellow: "Level 2. Surveillance",
     	orange: "Level 3. Increased Surveillance",
-    	red: "Level 4. Increased Risk",
+    	yellow: "Level 1. Surveillance",
+    	red: "Level 2. Increased Risk",
     	grey: "No available data",
     	danger: "Risk Level",
     	latest_cases: "Last 14 days (new cases)"
