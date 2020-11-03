@@ -10,6 +10,7 @@ let gThresholds = {
 
 
 const LANG = $("html").attr("lang");
+const RANDOMSTRING = Math.random().toString(36).substring(7);
 const SCROLLBAR_WIDTH = window.innerWidth - $(window).width();
 const COLORS = {
   default: "#3DC",
@@ -96,7 +97,8 @@ const LABELS = {
     	orange: "Επίπεδο 3. Αυξημένης Επιτήρησης",
     	yellow: "Επίπεδο Α. Επιτήρησης",
     	red: "Επίπεδο Β. Αυξημένου Κινδύνου",
-    	grey: "Δεν υπάρχουν δεδομένα",
+    	grey: "Επίπεδο Γ. Συναγερμού",
+    	lightgrey: "Δεν υπάρχουν δεδομένα",
     	danger: "Επικινδυνότητα",
     	latest_cases: "Τελευταίες 14 μέρες (νέα κρούσματα)"
     },
@@ -180,7 +182,8 @@ const LABELS = {
     	orange: "Level 3. Increased Surveillance",
     	yellow: "Level 1. Surveillance",
     	red: "Level 2. Increased Risk",
-    	grey: "No available data",
+    	grey: "Level 3. Alert",
+    	lightgrey: "No available data",
     	danger: "Risk Level",
     	latest_cases: "Last 14 days (new cases)"
     },
@@ -2149,7 +2152,7 @@ const init = () => {
 	                    $('#prefect_name').html(prefect_name);
 	                    $('#dangerlevel').html(dangerlevel);
 	                    
-	                    var colorarr = {'green':'#12ad2c', 'yellow':'#ffc300', 'orange':'#E5712A', 'red':'#c82d2d', 'grey':'#ccc'};
+	                    var colorarr = {'green':'#12ad2c', 'yellow':'#ffc300', 'orange':'#E5712A', 'red':'#c82d2d', 'lightgrey':'#ccc', 'grey':'#605f69'};
 
 	                    $(".color").removeAttr('style').css({
 												    'color': colorarr[colorclass], 
@@ -2397,7 +2400,7 @@ const init = () => {
   }
 
   const loadData = () => {
-  	  $.getJSON("https://raw.githubusercontent.com/Sandbird/covid19-Greece/master/greece.json", function(data){
+  	  $.getJSON("https://raw.githubusercontent.com/Sandbird/covid19-Greece/master/greece.json?version=${RANDOMSTRING}", function(data){
       gData = data;
       updateThresholds();
       drawTransitionBoxes();
