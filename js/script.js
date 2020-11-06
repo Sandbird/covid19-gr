@@ -24,7 +24,7 @@ const COLORS = {
   infected_distribution: "#6F6587,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","), 
   predicted_deaths: "#3DC,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","), 
   pcrtests: "#3DC,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","),
-  measures: "#90CFB5,#8FBDE0,#689AAB,#AADCD2,#3DC,#88BBAA,#BADDAD,#BBCDB3,#FAF28C,#DFEA8B,#F3EF89,#F4F4B2,#CCAC8E,#FBDEDE,#F8B2BC,#F59598,#EFA796,#FEBD7D,#CEB4D6,#B5B3DA".split(","),
+  measures: "#90CFB5,#8FBDE0,#689AAB,#AADCD2,#3DC,#88BBAA,#BADDAD,#BBCDB3,#FAF28C,#DFEA8B,#F3EF89,#3BA9B0,#F4F4B2,#CCAC8E,#FBDEDE,#F8B2BC,#F59598,#EFA796,#FEBD7D,#CEB4D6,#B5B3DA".split(","),
   measures2: "#3DC,#FEA,#5987A5,#3BA9B0,#86E18D,#D5F474,#FB8,#EC2,#CAF0F8".split(","),
   dark: "#399",
   selected: "#EC2"
@@ -281,6 +281,7 @@ const init = () => {
         	if (ymd >= 20200720) ret = COLORS.measures[j+2]; //International flights between Greece and Sweeden resumed
         	if (ymd >= 20200815) ret = COLORS.measures[j+6]; //International flights between Albania, NM, Turkey
         	if (ymd >= 20200914) ret = COLORS.measures[j+4]; //Schools reopen
+        	if (ymd >= 20201107) ret = COLORS.measures[j+11]; //2nd Lockdown
         }
 
         if (code === "active") {
