@@ -2164,7 +2164,7 @@ const init = () => {
 												});
 
 									   var ctx = $('#myChart');
-									    Chart.defaults.global.defaultFontSize = "10";
+									    var FontSize = "10"; //Chart.defaults.global.defaultFontSize
 									    
 									    var myChart = new Chart(ctx, {
 									        type: 'bar',
@@ -2219,7 +2219,7 @@ const init = () => {
 										            easing: "easeOutQuart",
 										            onComplete: function () {
 										                var ctx = this.chart.ctx;
-										                ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, 'bold', Chart.defaults.global.defaultFontFamily);
+										                ctx.font = Chart.helpers.fontString(FontSize, 'bold', Chart.defaults.global.defaultFontFamily);
 										                ctx.textAlign = 'center';
 										                ctx.textBaseline = 'bottom';
 
