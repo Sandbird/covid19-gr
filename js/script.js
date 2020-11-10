@@ -22,6 +22,7 @@ const COLORS = {
   deaths: "#FB8",
   serious: "#FEA",
   infected_distribution: "#6F6587,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","), 
+  infected_distribution_men: "#48C7A6,#3BA9B0,#5987A5,#6F6587".split(","), 
   predicted_deaths: "#3DC,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","), 
   pcrtests: "#3DC,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","),
   measures: "#90CFB5,#8FBDE0,#689AAB,#AADCD2,#3DC,#88BBAA,#BADDAD,#BBCDB3,#FAF28C,#DFEA8B,#F3EF89,#3BA9B0,#F4F4B2,#CCAC8E,#FBDEDE,#F8B2BC,#F59598,#EFA796,#FEBD7D,#CEB4D6,#B5B3DA".split(","),
@@ -54,6 +55,14 @@ const LABELS = {
       active: ["Ενεργά κρούσματα"],
       infected_distribution: ["Υπό διερ.η ή άγν. προέλευσης", "Σχετιζ. με ήδη γνωστό κρούσμα", "Σχετιζ. με ταξίδι εξωτερικού"],
       infected_distribution_men: ["0-17", "18-39", "40-64", "65+"],
+      death_distribution_men: ["0-17", "18-39", "40-64", "65+"],
+      intensive_distribution_men: ["0-17", "18-39", "40-64", "65+"],      
+      infected_distribution_total: ["0-17", "18-39", "40-64", "65+"],
+      death_distribution_total: ["0-17", "18-39", "40-64", "65+"],
+      intensive_distribution_total: ["0-17", "18-39", "40-64", "65+"],      
+      infected_distribution_women: ["0-17", "18-39", "40-64", "65+"],
+      death_distribution_women: ["0-17", "18-39", "40-64", "65+"],
+      intensive_distribution_women: ["0-17", "18-39", "40-64", "65+"],
       predicted_deaths: ["χαμηλότερο εύρος", "πρόβλεψη", "ανώτερο εύρος"],
       predicted_true_inf: ["Ημερ. ενημέρωση","Πραγμ. αριθμ."],
       serious: ["Κρίσιμη κατάσταση"],
@@ -70,6 +79,14 @@ const LABELS = {
       active: "",
       infected_distribution: "",
       infected_distribution_men: "",
+      death_distribution_men: "",
+      intensive_distribution_men: "",
+      infected_distribution_total: "",
+			death_distribution_total: "",
+			intensive_distribution_total: "",
+			infected_distribution_women: "",
+			death_distribution_women: "",
+			intensive_distribution_women: "",
       predicted_deaths: "",
       predicted_true_inf: "",
       serious: "",
@@ -138,6 +155,15 @@ const LABELS = {
       carriers: ["Tested Positive"],
       active: ["Active Cases"],
       infected_distribution: ["Still under investigation or of unknown origin", "Related to an already known case", "Related to travel from abroad"],
+      infected_distribution_men: ["0-17", "18-39", "40-64", "65+"],
+      death_distribution_men: ["0-17", "18-39", "40-64", "65+"],
+      intensive_distribution_men: ["0-17", "18-39", "40-64", "65+"],
+      infected_distribution_total: ["0-17", "18-39", "40-64", "65+"],
+      death_distribution_total: ["0-17", "18-39", "40-64", "65+"],
+      intensive_distribution_total: ["0-17", "18-39", "40-64", "65+"],      
+      infected_distribution_women: ["0-17", "18-39", "40-64", "65+"],
+      death_distribution_women: ["0-17", "18-39", "40-64", "65+"],
+      intensive_distribution_women: ["0-17", "18-39", "40-64", "65+"],
       demography_total2: ["","",""],
       predicted_deaths: ["lower range", "projected", "upper range"],
       predicted_true_inf: ["Daily report", "Spec. of newly infected"],
@@ -155,6 +181,15 @@ const LABELS = {
       active: "",
       demography_total2: "",
       infected_distribution: "",
+      infected_distribution_men: "",
+      death_distribution_men: "",
+      intensive_distribution_men: "",
+      infected_distribution_total: "",
+			death_distribution_total: "",
+			intensive_distribution_total: "",
+			infected_distribution_women: "",
+			death_distribution_women: "",
+			intensive_distribution_women: "",
       predicted_deaths: "",
       predicted_true_inf: "",
       serious: "",
@@ -323,6 +358,10 @@ const init = () => {
       
       if (prefCode === "" && code === "infected_distribution") {
         ret = COLORS.infected_distribution[j];
+      }
+      
+      if (prefCode === "" && (code === "infected_distribution_men" || code === "death_distribution_men" || code === "intensive_distribution_men" || code === "infected_distribution_total" || code === "death_distribution_total" || code === "intensive_distribution_total" || code === "infected_distribution_women" || code === "death_distribution_women" || code === "intensive_distribution_women")) {
+        ret = COLORS.infected_distribution_men[j];
       }
       
       if (prefCode === "" && code === "tests") {
@@ -712,7 +751,7 @@ const init = () => {
     }
     
 
-		if(code == 'infected_distribution'){
+		if(code == 'infected_distribution' || code == 'infected_distribution_men' || code == 'death_distribution_men' || code == 'intensive_distribution_men'|| code === "infected_distribution_total" || code === "death_distribution_total" || code === "intensive_distribution_total" || code === "infected_distribution_women" || code === "death_distribution_women" || code === "intensive_distribution_women"){
 			config.options.tooltips.caretSize=0;
 			config.options.tooltips.titleFontSize=12;
 			config.options.tooltips.bodyFontSize=11;
@@ -830,7 +869,7 @@ const init = () => {
           value = 0;
         }
 
-        if (value < 0 && (switchValue === "total" || code === "carriers" || code === "infected_distribution" || code === "predicted_deaths" || code === "deaths" || code === "tests" || code === "agtests")) {
+        if (value < 0 && (switchValue === "total" || code === "carriers" || code === "infected_distribution" || code === "infected_distribution_men" || code === "death_distribution_men" || code === "intensive_distribution_men" || code === "predicted_deaths" || code === "deaths" || code === "tests" || code === "agtests")) {
           value = 0;
         }
 
