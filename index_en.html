@@ -26,7 +26,7 @@
 	<title>Coronavirus Disease (COVID-19) Situation Report in Greece</title>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-	<script src="js/script.min.js?version=3"></script>
+	<script src="js/script.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="lib/auto-render.min.js"></script>
 	<script src="lib/katex.min.js"></script>
@@ -606,6 +606,28 @@
             </div>
           </div>
 	        <div class="flex-row">
+	          <div class="box transition nationwide" code="positivity_rate" pref="">
+	            <h3>Positivity Rate</h3>
+	            <div class="latest">
+	              <div>
+	                <span class="type"></span>
+	                <span class="value"></span>
+	                <span class="unit"></span>
+	              </div>
+	              <div class="change"></div>
+	            </div>
+	            <h5 class="updated"><br /></h5>
+	            <div class="charts-wrapper">
+	              <div class="main-chart-wrapper">
+	                <div class="main-chart"></div>
+	              </div>
+	              <div class="axis-chart"></div>
+	              <div class="axis-cover"></div>
+	            </div>
+	            <p class="notes">The daily positive rate, given as a rolling 7-day average. See <a href="#positive_rate">notes below</a> for further information. <a class="more">READ MORE</a></p>
+	          </div>
+	        </div> 
+	        <div class="flex-row">
 	          <div class="box transition nationwide" code="infection_fatality_rate" pref="">
 	            <h3>Implied Infection Fatality Rate (IIFR)</h3>
 	            <div class="latest">
@@ -699,7 +721,7 @@
                 <div class="axis-chart"></div>
                 <div class="axis-cover"></div>
               </div>
-              <p class="notes">Data Source: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (29-10-2020)</a></p>
+              <p class="notes">Data Source: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (12-11-2020)</a></p>
             </div>
           </div>
         </div>	

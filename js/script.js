@@ -71,7 +71,8 @@ const LABELS = {
       agtests: ["Rapid Ag"],
       rt_repro: ["Βασικός αναπαραγωγικός αριθμός"],
       rj_repro: ["Αναπαραγωγικός αριθμός"],
-      infection_fatality_rate: ["IIFR"]
+      infection_fatality_rate: ["IIFR"],
+      positivity_rate: ["Ποσοστό θετικότητας"]
       //reproduction_rj_infected: ""
     },
     unit: {
@@ -95,7 +96,8 @@ const LABELS = {
       agtests: "",
       rt_repro: "",
       rj_repro: "",
-      infection_fatality_rate: ["%"]
+      infection_fatality_rate: ["%"],
+      positivity_rate: ["%"]
       //reproduction_rj_infected: "",
     },
     demography: {
@@ -174,7 +176,8 @@ const LABELS = {
       rj_repro: ["Reproduction Number"],
       //reproduction_rj_infected: ["Num. of cases"],
       rt_repro: ["Effective Reproduction Number"],
-      infection_fatality_rate: ["IIFR"]
+      infection_fatality_rate: ["IIFR"],
+      positivity_rate: ["Positivity Rate"]
     },
     unit: {
       carriers: "",
@@ -198,7 +201,8 @@ const LABELS = {
       agtests: "",
       rt_repro: "",
       rj_repro: "",
-      infection_fatality_rate: ""
+      infection_fatality_rate: ["%"],
+      positivity_rate: ["%"]
       //reproduction_rj_infected: ""
     },
     demography: {
@@ -470,7 +474,7 @@ const init = () => {
       }
       */
 
-      if ($box.attr("code") === "rj_repro" || $box.attr("code") === "rt_repro" || $box.attr("code") === "infection_fatality_rate") {
+      if ($box.attr("code") === "rj_repro" || $box.attr("code") === "rt_repro" || $box.attr("code") === "infection_fatality_rate" || $box.attr("code") === "positivity_rate") {
         valueTotal  = Math.round(rows[rows.length - 1][0] * 1000) / 1000;
         valueLatest = Math.round((rows[rows.length - 1][0] - rows[rows.length - 2][0]) * 1000) / 1000;
       }
@@ -590,7 +594,7 @@ const init = () => {
     drawLatestValue($box, rows);
 
 		var disableBeginAtZero = true;
-    if (code == "rt_repro" || code == "infection_fatality_rate"){
+    if (code == "rt_repro" || code == "infection_fatality_rate" || code == "positivity_rate"){
       disableBeginAtZero = false;
   	}
 
@@ -651,7 +655,7 @@ const init = () => {
 	                		}
 	                		ret.push(ds.label + ": " + cutval + " " + LABELS[LANG].unit[code]);
 	                	}
-              	}else if(code == 'infection_fatality_rate'){
+              	}else if(code == 'infection_fatality_rate' || code == 'positivity_rate'){
 	                  ret.push(ds.label + ": " + addCommas(ds.data[tooltipItem.index]) + LABELS[LANG].unit[code]);
 	                  total += ds.data[tooltipItem.index];
               	} else{
@@ -812,7 +816,7 @@ const init = () => {
 			
 			//prefecture
 			
-      if (code === "rj_repro" || code === "rt_repro" || code === "infection_fatality_rate") {
+      if (code === "rj_repro" || code === "rt_repro" || code === "infection_fatality_rate" || code === "positivity_rate") {
         let ds = config.data.datasets[config.data.datasets.length - 1];
         ds.type = "line";
         ds.fill = false;
@@ -861,7 +865,7 @@ const init = () => {
           //value = 0;
         }
         
-        if ((prevBarColor !== curBarColor) && (code !== "infection_fatality_rate")) {
+        if ((prevBarColor !== curBarColor) && (code !== "infection_fatality_rate" || code !== "positivity_rate")) {
           //value = 0;
         }
 
@@ -2050,7 +2054,7 @@ const init = () => {
 	      // enable/disable saveSort dynamically
 	      saveSort: true
 	    },
-			sortList: [[0,0]] 
+			sortList: [[4,1]] 
 			});
 			
 			$("#pref-updated").text(gData.updated.lastprefecture[LANG]);
