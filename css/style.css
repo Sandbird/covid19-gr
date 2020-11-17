@@ -106,23 +106,28 @@ body {
         #container #title-block .alert p a {
           color: #ace;
           font-size: 14px;
-          text-decoration: none; }
-  #container #main-block h2 {
-    margin: 32px 8px 8px 8px;
-    font-size: 20px;
-    font-weight: bold;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
+          text-decoration: none; 
+        }
+  	#container #main-block h2 {
+	    margin: 32px 8px 8px 8px;
+	    font-size: 20px;
+	    font-weight: bold;
+	    border: none;
+	    border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
     }
     #container #main-block h2 small{
-    	font-size:0.4em;
+    	font-size:0.5em;
     }
     @media only screen and (min-width: 720px) {
       #container #main-block h2 {
-        font-size: 24px; } }
+        font-size: 24px; 
+      } 
+    }
     @media only screen and (min-width: 1080px) {
       #container #main-block h2 {
-        font-size: 28px; } }
+        font-size: 28px; 
+      } 
+    }
   #container #main-block select {
   font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif;
   font-weight: normal;
@@ -166,10 +171,10 @@ body {
           width: calc(100% / 2); } }
       @media only screen and (min-width: 720px) {
         #container #main-block .flex-container .flex-row.t12 {
-          width: 100%; } }
+          width: 100%!important; } }
       @media only screen and (min-width: 1080px) {
         #container #main-block .flex-container .flex-row.t12 {
-          width: 100%; } }
+          width: 100%!important; } }
   #container #main-block .box {
     position: relative;
     margin: 16px 8px 0 8px;
@@ -428,7 +433,3 @@ body {
           text-align: center;
           color: #666;
           font-size: 13px; }
-
-/*# sourceMappingURL=style.css.map */
-
-
