@@ -1519,7 +1519,28 @@ const init = () => {
 				},
 		    series: [{
 		    	 	stickyTracking: true,
-		        data: data,
+				    data: data.map(elem => {
+				    	var prefvalue;
+				    	var grad = ['#33ddcc', '#48C7A6', '#3BA9B0', '#5987A5', '#6F6587'];
+				    	gData["prefectures-data"].forEach(function(pref, i){
+				    		if (pref.gr === elem[1][1] || pref.en === elem[1][1]) {
+				    			prefvalue = pref.value100k;
+				    			if (prefvalue > 0 && prefvalue <= 200) {
+				    				elem.push(grad[0]);
+				    			} else if (prefvalue > 200 && prefvalue <= 400) {
+				      			elem.push(grad[1]);
+				      		} else if (prefvalue > 400 && prefvalue <= 600) {
+				      			elem.push(grad[2]);
+				      		} else if (prefvalue > 600 && prefvalue <= 800) {
+				      			elem.push(grad[3]);
+				      		} else if (prefvalue > 800) {
+				      			elem.push(grad[4]);
+				      		}
+				    		}
+				    	});			      
+				      return elem;
+				    }),
+				    keys: ['hc-key', 'value', 'color'],
 		        name: '',
             borderColor: 'black',
             borderWidth: 0.1,
@@ -2146,7 +2167,7 @@ const init = () => {
 		            gData["prefectures-details"][i].carriers.values.forEach(function(val, j){
 		            	chart.data.labels.push(getDateValue(gData["prefectures-details"][i].carriers.from, j, false));
 		          	});	        	
-		            chart.data.datasets[0].data = gData["prefectures-details"][i].carriers.values;
+		            //chart.data.datasets[0].data = gData["prefectures-details"][i].carriers.values;
 		            chart.update(); // finally update our chart
 	        		}
 	        	});       	
@@ -2444,7 +2465,7 @@ const init = () => {
   }
 
   const loadData = () => {
-  	  $.getJSON("https://raw.githubusercontent.com/Sandbird/covid19-Greece/master/greece.json?version=${RANDOMSTRING}", function(data){
+  	  $.getJSON("https://raw.githubusercontent.com/Sandbird/covid19-Greece/master/greece.json?version="+RANDOMSTRING, function(data){
       gData = data;
       updateThresholds();
       drawTransitionBoxes();
