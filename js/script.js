@@ -34,6 +34,7 @@ const LABELS = {
   gr: {
     change: "Τελευταία μεταβολή: ",
     total: "Σύνολο: ",
+    daily_cases: "Ημερ. Κρ.: ",
     male: "Ανδ.",
     female: "Γυν.",
     months_pref: {
@@ -137,6 +138,7 @@ const LABELS = {
   en: {
     change: "Daily: ",
     total: "Total: ",
+    daily_cases: "Daily Cases: ",
     male: "Male",
     female: "Fem.",
     months_pref: {
@@ -766,6 +768,7 @@ const init = () => {
 			config.options.tooltips.cornerRadius=2;
 			config.options.tooltips.titleMarginBottom=2;
 		} 
+		
 /*
 		if (code === "predicted_deaths") {
 			config.options.scales.xAxes= [
@@ -1344,6 +1347,7 @@ const init = () => {
       series: []
     };
     
+    
     var categories_renamed = {};
 		gData.demography_group_cases.categories.forEach(function(cat, index){
 			categories_renamed[index] = LABELS[LANG].months_pref[cat];
@@ -1418,6 +1422,7 @@ const init = () => {
       },
       series: []
     };
+    
     
     var categories_renamed = {};
 		gData.demography_group_deaths.categories.forEach(function(cat, index){
@@ -1772,7 +1777,7 @@ const init = () => {
     let ctx = $canvas.getContext('2d');
     window.myChart = new Chart(ctx, config);
   }
-    
+  
   const drawDemographyChart_deaths = () => {
     $wrapper = $("#demography-chart-deaths").empty().html('<canvas></canvas>');
     $canvas = $wrapper.find("canvas")[0];
@@ -1996,8 +2001,8 @@ const init = () => {
 
     let ctx = $canvas.getContext('2d');
     window.myChart = new Chart(ctx, config);
-  }  
-
+  }
+  
   const drawPrefectureDetails = () => {
 		//This table shows a red, yellow, green scale so you can see progress by key measures by state. Covid+ is the number of positive Covid-19 test cases. ICU capacity is red &gt; 90%, yellow &gt; 70%, green &lt; 70%. Test target is based on a 500K/day goal. 
 		//Increasing or decreasing describes the overall Covid+ trend. 
@@ -2060,7 +2065,7 @@ const init = () => {
 				maxSpotColor: !0
 			});
 		});
-				
+			
 	  $("#search-nomous").on("keyup", function() {
 	    var value = $(this).val().toLowerCase();
 	    $("#tbodyid tr").filter(function() {
@@ -2076,9 +2081,9 @@ const init = () => {
 	      saveSort: true
 	    },
 			sortList: [[4,1]] 
-			});
+		});
 			
-			$("#pref-updated").text(gData.updated.lastprefecture[LANG]);
+		$("#pref-updated").text(gData.updated.lastprefecture[LANG]);
   }
   
 	const initPopup = () => {
@@ -2166,7 +2171,7 @@ const init = () => {
 		            chart.data.datasets[0].data = gData["prefectures-details"][i].carriers.values;
 		            gData["prefectures-details"][i].carriers.values.forEach(function(val, j){
 		            	chart.data.labels.push(getDateValue(gData["prefectures-details"][i].carriers.from, j, false));
-		          	});	        	
+		          	});
 		            //chart.data.datasets[0].data = gData["prefectures-details"][i].carriers.values;
 		            chart.update(); // finally update our chart
 	        		}
@@ -2463,6 +2468,90 @@ const init = () => {
     $(".updated-demography-men").text(gData.updated.demography[LANG]);
     $(".updated-demography-women").text(gData.updated.demography[LANG]);
   }
+  
+  const initMap = () => {
+		let dataset = [];
+		let maxsize;
+		let mapsvg;
+		let startday,
+				endday;
+		
+		function mapChange(event, ui) {
+			$.each(dataset, function( index, value ) {
+				//var testdate = new Date(value.prefval[index][0]).getTime() / 1000;
+	  		var region = mapsvg.getRegion(value.prefname);
+				if(region){
+					region.setFill('#'+value.prefval[ui.value][1]);
+					region.setTooltip(value.prefname+'<br><sup>*</sup>'+LABELS[LANG].total+value.prefval[ui.value][2]+'<br>'+LABELS[LANG].daily_cases+value.prefval[ui.value][3]);
+					
+					var cat = (new Date(value.prefval[ui.value][0]).toDateString().split(' ').slice(1).join(' ')).split(' ');
+					cat[0] = LABELS[LANG].months_pref[cat[0]];
+					$("#date_txt").text(cat.join(' '));
+				}
+			});
+		};
+	  	
+		gData.transition["mapepi"].forEach(function(pref, i){
+		 var ar = [];
+		 ar['prefname'] = gData.transition["mapepi"][i].en;
+	   ar['prefval'] = gData.transition["mapepi"][i].percentage.values;
+	   startday = (new Date(gData.transition["mapepi"][i].percentage.from).toDateString()).split(' ').slice(1);
+	   startday[0] = LABELS[LANG].months_pref[startday[0]];
+	   startday = startday.join(' ');
+	   endday = (new Date(gData.transition["mapepi"][i].percentage.to).toDateString()).split(' ').slice(1);
+	   endday[0] = LABELS[LANG].months_pref[endday[0]];
+	   endday = endday.join(' ');
+	   ar['start'] = gData.transition["mapepi"][i].percentage.from;
+	   dataset.push(ar);
+	   maxsize = ar['prefval'].length;
+		});
+		
+		//////////////////
+		var mapsvgobj = $("#mapsvg").mapSvg({width: 580,height: 573,colors: {baseDefault: "#000000",background: "#242A3C",selected: 0,hover: 20,directory: "#fafafa",status: {}},viewBox: [0,-1.8823751724135036,6843.8384,6761.240350344827],tooltips: {mode: "id",on: false,priority: "local",position: "bottom-right"}, source: "lib/mapsvg/maps/not-calibrated\\greece.svg",title: "Not-calibrated\\greece",responsive: true,afterLoad: function(
+		) {
+		  mapsvg = this;
+		  $(".map").show();
+
+		  $( "#slider" ).slider({
+		    range: false,
+		    min: 0,
+		    max: maxsize - 1,
+		    step: 1,
+		    //values: [0],
+		    slide: function( event, ui ) 
+		    {
+		    	mapChange(event, ui);
+		    },
+		    change: function(event, ui) {
+		    	mapChange(event, ui);
+		    },
+		    create: function(event, ui){
+		        $(this).slider('value', maxsize - 1);
+		    }
+		  });
+		  
+		  var pausebool = false;
+		  var intv;
+			var	$pause = $("#pause");				  
+		  $pause.on("click", function() {
+		    pausebool = (pausebool) ? false : true;
+		    if (pausebool == false) {
+		      clearInterval(intv);
+		      $pause.html("Play");
+		    }else{
+			    intv = setInterval(function() {
+			      var cv = $("#slider").slider("value");
+				    var nextValue = (parseInt(cv) + 1);
+			      $("#slider").slider("value", nextValue);
+			      $("#sliderval").val(nextValue);
+			      $pause.html("Pause");
+			    }, 200);
+		    }
+		  });
+		  $( "#date_txt" ).text(endday);
+		}});
+		/////////////////
+  }
 
   const loadData = () => {
   	  $.getJSON("https://raw.githubusercontent.com/Sandbird/covid19-Greece/master/greece.json?version="+RANDOMSTRING, function(data){
@@ -2492,6 +2581,7 @@ const init = () => {
     	$("#predicted_scroller").animate({scrollLeft: leftPos - (weekno*10)}, 800);
       $("#cover-block").fadeOut();
       initPopup();
+      initMap();
     })
   }
 
@@ -2533,7 +2623,6 @@ const init = () => {
       return false;
     });
   }
-
   loadData();
   bindEvents();
 };
@@ -2545,11 +2634,12 @@ Date.prototype.getWeek = function() {
     return Math.ceil(dayOfYear/7)
 };
 
+
 function isInt(value) {
     var er = /^-?[0-9]+$/;
     return er.test(value);
 }
 
 $(function(){
-  init();  
+  init();
 });

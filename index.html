@@ -13,20 +13,24 @@
 	<meta property="og:title" content="Αναφορά κατάστασης για την νόσο του Κορωνοϊού (COVID-19) στην Ελλάδα" />
 	<meta property="og:description" content="Επιβεβαιωμένα κρούσματα COVID-19 στην Ελλάδα. Τα στοιχεία παρέχονται από το Υπουργείο Υγείας." />
 	<meta name="twitter:card" content="summary_large_image" />
+	<title>Coronavirus Disease (COVID-19) Situation Report in Greece</title>
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP|Roboto&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="css/reset.css"/>
 	<link rel="stylesheet" href="css/modal.css"/>
 	<link rel="stylesheet" href="css/style.min.css"/>
 	<link rel="stylesheet" href="css/table.css"/>
 	<link rel="stylesheet" href="css/jquery.tablesorter/theme.blackice.min.css">
 	<link rel="stylesheet" href="css/simptip.min.css"/>
 	<link rel="stylesheet" href="lib/katex.min.css">
-	<title>Coronavirus Disease (COVID-19) Situation Report in Greece</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+	<link href="lib/mapsvg/css/mapsvg.css" rel="stylesheet">
+	<link href="lib/mapsvg/css/nanoscroller.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-	<script src="js/script.min.js"></script>
+	<script src="js/script.min.js?version=2"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="lib/auto-render.min.js"></script>
 	<script src="lib/katex.min.js"></script>
@@ -37,6 +41,10 @@
 	<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
 	<script src="https://code.highcharts.com/mapdata/countries/gr/gr-all.js"></script>
 	<script src="js/dark.js"></script>
+	<script src="lib/mapsvg/js/jquery.mousewheel.min.js"></script>
+	<script src="lib/mapsvg/js/jquery.nanoscroller.min.js"></script>
+	<script src="lib/mapsvg/js/mapsvg.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
 	<script>
 	var html$3 = "\n<style>\ndt-math[block] {\n  display: block;\n}\n</style>\n";
 	var DTMath = function(dom, data) {
@@ -817,7 +825,7 @@
 	    		<div class="flex-row t12">
 	    			<h2>Ανά Νομό
 	    				<span class="features simptip-position-right simptip-multiline" data-tooltip="Τα χρώματα των Νομών αποτυπώνουν την επιδημιολογική κατάσταση με βάση το covid19.gov.gr. Η 14μερη τάση χωρίζεται σε 3 κατηγορίες: κόκκινη >5%, κίτρινη >0% και <5%, πράσινη <0%. Οι τιμές της στήλης 'Τελευταίες 14 μέρες' είναι οι δύο κ.μ.ο (7 ημερ.) 14 ημέρες πριν και σήμερα, και χρησιμοποιούνται στο να βρεθεί η ποσοστιαία αύξηση της 14μερης τάσης (Ποσοστό αύξησης = [(Τελική τιμή - Αρχική τιμή) / Αρχική τιμή)×100]). Τα κρούσματα ανά 100.000 κατοίκους βασίζονται στον αριθμό των νέων κρουσμάτων ανά 100.000 κατοίκους κ.μ.ο (7 ημερ.), τις τελευταίες 14 ημέρες. Η τιμή Rj υπολογίζεται χωρίς κάποια εξομάλυνση στις τιμές των κρουσμάτων, προκύπτει δηλαδή από τις απόλυτες τιμές των ημερήσιων κρουσμάτων.">
-	    				<button type="button" class="btn el-tooltip btn-link"><i class="fa fa-info-circle text-info fa-2x info-cursor pl-1 mb-2"></i></button></span>
+	    				<i class="fa fa-info-circle text-info fa-1x info-cursor pl-1 mb-2"></i></span>
 	    				<span><small id="pref-updated"></small></span>
 	    				</h2>
 	    			<div class="box" id="prefectures-box">
@@ -837,6 +845,41 @@
 								<tbody id="tbodyid">
 								</tbody>
 							</table>
+	    			</div>
+	    		</div>
+	    	</div>
+	    	<div class="flex-container">
+	    		<div class="flex-row t12">
+	    			<h2>Χάρτης επίπτωσης ημερ. κρουσμάτων</h2>
+	    			<div id="map-box" class="box map stretch mapsvg-panel-left">
+							<div width="100%" style="max-width: 720px !important; margin:auto">
+								<div id="mapsvg">
+									<div class="label-bottom label-left">
+										<div class="info legend label-ctrl">
+										<i style="background:#ECECEC"></i> <25<br>
+										<i style="background:#DECED3"></i> 25-50<br>
+										<i style="background:#D1B1BA"></i> 50-100<br>
+										<i style="background:#C393A1"></i> 100-200<br>
+										<i style="background:#B67689"></i> 200-300<br>
+										<i style="background:#A85870"></i> 300-400<br>
+										<i style="background:#9B3B57"></i> 400-500<br>
+										<i style="background:#8D1D3E"></i> 500+<br>
+										</div>
+										<div class="label-bottom2">
+										<div>
+									  	<span id="date_txt" class="date_txt"></span>
+									  	<input type="hidden" id="sliderval" size="100">
+										</div> 
+										<sup>*</sup>Kρούσματα / 100.000<br>
+										(τελευτ. 14 ημερών) 
+										</div>
+									</div>
+								</div>
+								<div id="cntrl">
+								  <div id="l"><div id="slider"></div></div>
+								  <div id="r"><button id="pause">Play</button></div>
+								</div>
+							</div>
 	    			</div>
 	    		</div>
 	    	</div>
