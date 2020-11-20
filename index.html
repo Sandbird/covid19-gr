@@ -45,6 +45,7 @@
 	<script src="lib/mapsvg/js/jquery.nanoscroller.min.js"></script>
 	<script src="lib/mapsvg/js/mapsvg.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 	<script>
 	var html$3 = "\n<style>\ndt-math[block] {\n  display: block;\n}\n</style>\n";
 	var DTMath = function(dom, data) {
@@ -852,18 +853,18 @@
 	    		<div class="flex-row t12">
 	    			<h2>Χάρτης επίπτωσης ημερ. κρουσμάτων</h2>
 	    			<div id="map-box" class="box map stretch mapsvg-panel-left">
-							<div width="100%" style="max-width: 720px !important; margin:auto">
+							<div width="100%" class="mapwrapper">
 								<div id="mapsvg">
 									<div class="label-bottom label-left">
 										<div class="info legend label-ctrl">
-										<i style="background:#ECECEC"></i> <25<br>
-										<i style="background:#DECED3"></i> 25-50<br>
-										<i style="background:#D1B1BA"></i> 50-100<br>
-										<i style="background:#C393A1"></i> 100-200<br>
-										<i style="background:#B67689"></i> 200-300<br>
-										<i style="background:#A85870"></i> 300-400<br>
-										<i style="background:#9B3B57"></i> 400-500<br>
-										<i style="background:#8D1D3E"></i> 500+<br>
+											<div style="white-space: nowrap;"><i style="background:#ECECEC"></i> <25</div>
+											<div style="white-space: nowrap;"><i style="background:#DECED3"></i> 25-50</div>
+											<div style="white-space: nowrap;"><i style="background:#D1B1BA"></i> 50-100</div>
+											<div style="white-space: nowrap;"><i style="background:#C393A1"></i> 100-200</div>
+											<div style="white-space: nowrap;"><i style="background:#B67689"></i> 200-300</div>
+											<div style="white-space: nowrap;"><i style="background:#A85870"></i> 300-400</div>
+											<div style="white-space: nowrap;"><i style="background:#9B3B57"></i> 400-500</div>
+											<div style="white-space: nowrap;"><i style="background:#8D1D3E"></i> 500+</div>
 										</div>
 										<div class="label-bottom2">
 										<div>
@@ -885,7 +886,6 @@
 	    	</div>
 
 		    <div id="footer-block">
-		    	
 		      <p class="notes" id="footer-notes">Σημειώσεις: Οι κινούμενοι μέσοι όροι βγαίνουν από 7 ημέρες προς τα πίσω. Ο αριθμός βασίζεται στην ημερήσια τιμή. Θεωρείται ότι είναι ο ίδιος με την προηγούμενη ημέρα, εάν δεν έχει ενημερωθεί. Τις ημέρες χωρίς συνέχεια από την προηγούμενη, ο αριθμός των "Νέων" κρουσμάτων αντιμετωπίζεται ως 0. Τα δεδομένα μπορεί να διορθωθούν από τον προγραμματιστή όταν βρεθούν ανακρίβειες, όπως αρνητική τιμή στα Κρούσματα.</p>
 		      <p class="notes">Δεδομένα: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Οι ημερομηνίες των μέτρων ελήφθησαν από <a href="https://github.com/Covid-19-Response-Greece/covid19-data-greece/blob/master/data/greece/Measures/greece_social_distancing_measures_timeline.json" target="_blank">Covid-19-Response-Greece</a>. Τα δεδομένα για τους νομούς ελήφθησαν από <a href="https://twitter.com/Nyrros" target="_blank">@Nyrros</a>, <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a> και <a href="http://covid19.gov.gr/" target="_blank">covid19.gov.gr</a>. Οι προβλέψεις ελήφθησαν από <a href="https://covid19-projections.com/greece" target="_blank">covid19-projections.com</a>, <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org</a>. Ο αλγόριθμος του αριθμού αναπαραγωγής Rj προέρχεται από <a href="https://academic.oup.com/aje/article/160/6/509/79472?fbclid=IwAR2nDT0TyBciFQuNOU0vW3z4OcAJBRPh_x1E8HwCI-i9a4y5KLimY5D3aG4" target="blank">American Journal of Epidemiology</a> και από <a href="https://mshfd.github.io/reproduction-number/" target="_blank">Richard Schubert</a>. Χρησιμοποιήθηκε εισαγωγικό κείμενο για τον IIFR από <a href="https://el.wikipedia.org/wiki/%CE%98%CE%BD%CE%B7%CF%84%CF%8C%CF%84%CE%B7%CF%84%CE%B1" target="_blank">wikipedia</a> και ο αλγόριθμος και τα δεδομένα από (<a href="https://covid19-projections.com/estimating-true-infections/" target="_blank">link1</a>, <a href="https://covid19-projections.com/about/#infection-fatality-rate-ifr" target="_blank">link2</a>, <a href="https://github.com/youyanggu/covid19_projections/tree/master/implied_ifr" target="_blank">link3</a>). Χρησιμοποιήθηκαν τα <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> και <a href="https://www.highcharts.com/" target="_blank">highcharts</a> για τα διαγράμματα. Original script by: TOYO KEIZAI ONLINE</p>
 		      <p class="notes"><br><a href="https://github.com/Sandbird/covid19-Greece" target="_blank">Κατεβάστε τα δεδομένα</a></p>

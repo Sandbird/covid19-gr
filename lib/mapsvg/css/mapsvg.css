@@ -1504,7 +1504,11 @@ input[type="checkbox"].ios8-switch-lg:checked + label:after {
   padding-bottom: 3px;
 }
 .map {
-	display:none
+	display:none;
+}
+.mapwrapper {
+  max-width: 720px !important; 
+  margin:auto;
 }
 .map p {
 	border: 0; color: #fff; font-weight: bold;
@@ -1517,17 +1521,36 @@ input[type="checkbox"].ios8-switch-lg:checked + label:after {
 	font-weight: bold;
 }
 
-.mapsvg .label-ctrl{position:relative;z-index:800;pointer-events:visiblePainted;pointer-events:auto;}
+.mapsvg .label-ctrl{position:relative;z-index:800;pointer-events:visiblePainted;pointer-events:auto; margin-left:auto; margin-right:auto;}
 .mapsvg .label-bottom{position:absolute;z-index:1000;pointer-events:none;}
 .mapsvg .label-left{left:0;}
-.mapsvg .label-bottom{bottom:12px;}
 .mapsvg .label-ctrl{float:left;clear:both;}
-.mapsvg .label-left .mapsvg .label-ctrl{float:right;}
-.mapsvg .label-bottom .mapsvg .label-ctrl{margin-bottom:10px;}
-.mapsvg .label-bottom2 {position: absolute; bottom:0;padding-left: 105px;font-size: 10px;white-space: nowrap;}
-.mapsvg .label-left .mapsvg .label-ctrl{margin-right:10px;}
+.mapsvg .label-left .mapsvg.label-ctrl{float:left;}
 .mapsvg .label-ctrl{cursor:auto;}
 .mapsvg .leaflet-touch {box-shadow:none;}
-.mapsvg .info{padding:6px 8px;font:14px/16px Arial, Helvetica, sans-serif;background:white;background:rgba(255,255,255,0.8);box-shadow:0 0 15px rgba(0,0,0,0.2);border-radius:5px;}
+
+@media screen and (max-width: 720px){
+.mapsvg .label-bottom{bottom:0px;}
+.mapsvg .label-bottom .mapsvg.label-ctrl{margin-bottom:0px;}
+.mapsvg .info{padding:6px 8px;font:08px/10px Arial, Helvetica, sans-serif;background:white;background:rgba(255,255,255,0.8);box-shadow:0 0 15px rgba(0,0,0,0.2);border-radius:5px;}
+.mapsvg .legend{text-align:left;line-height:14px;color:#555;}
+.mapsvg .legend i{width:9px;height:9px;float:left;margin-right:4px;opacity:0.7;}
+.mapsvg .label-bottom2 {position: absolute; bottom:0;padding-left: 70px;font-size: 08px;white-space: nowrap;}
+.map .date_txt {border: 0; color: #fff; font-size: 10px; font-weight: bold;}
+}  
+@media only screen and (min-width: 720px) {
+.mapsvg .label-bottom{bottom:12px;}
+.mapsvg .label-bottom .mapsvg.label-ctrl{margin-bottom:10px;}
+.mapsvg .info{padding:6px 8px;font:12px/14px Arial, Helvetica, sans-serif;background:white;background:rgba(255,255,255,0.8);box-shadow:0 0 15px rgba(0,0,0,0.2);border-radius:5px;}
+.mapsvg .legend{text-align:left;line-height:18px;color:#555;}
+.mapsvg .legend i{width:9px;height:9px;float:left;margin-right:4px;opacity:0.7;}
+.mapsvg .label-bottom2 {position: absolute; bottom:0;padding-left: 90px;font-size: 10px;white-space: nowrap;}
+}
+@media only screen and (min-width: 1080px) {
+.mapsvg .label-bottom{bottom:12px;}
+.mapsvg .label-bottom .mapsvg.label-ctrl{margin-bottom:10px;}
+.mapsvg .info{padding:6px 8px;font:12px/14px Arial, Helvetica, sans-serif;background:white;background:rgba(255,255,255,0.8);box-shadow:0 0 15px rgba(0,0,0,0.2);border-radius:5px;}
 .mapsvg .legend{text-align:left;line-height:18px;color:#555;}
 .mapsvg .legend i{width:18px;height:18px;float:left;margin-right:8px;opacity:0.7;}
+.mapsvg .label-bottom2 {position: absolute; bottom:0;padding-left: 105px;font-size: 10px;white-space: nowrap;}
+}
