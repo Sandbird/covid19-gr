@@ -876,7 +876,7 @@ const init = () => {
           value = 0;
         }
 
-        if (value < 0 && (switchValue === "total" || code === "carriers" || code === "infected_distribution" || code === "infected_distribution_men" || code === "death_distribution_men" || code === "intensive_distribution_men" || code === "predicted_deaths" || code === "deaths" || code === "tests" || code === "agtests")) {
+        if (value < 0 && (switchValue === "total" || code === "carriers" || code === "infected_distribution" || code === "infected_distribution_men" || code === "death_distribution_men" || code === "predicted_deaths" || code === "deaths" || code === "tests" || code === "agtests")) {
           value = 0;
         }
 
@@ -2460,7 +2460,7 @@ const init = () => {
 
   const showUpdateDate = () => {
     $(".updated-last").text(gData.updated.last[LANG]);
-    //$(".updated-demography-radar").text(gData.updated.demography[LANG]);
+   // $(".updated-demography-radar").text(gData.updated.demography[LANG]);
     $(".updated-demography-cases").text(gData.updated.demography[LANG]);
     $(".updated-demography-deaths").text(gData.updated.demography[LANG]);
     $(".updated-demography-serious").text(gData.updated.demography[LANG]);
@@ -2507,7 +2507,7 @@ const init = () => {
 		});
 		
 		//////////////////
-		var mapsvgobj = $("#mapsvg").mapSvg({width: 580,height: 573,colors: {baseDefault: "#000000",background: "#242A3C",selected: 0,hover: 20,directory: "#fafafa",status: {}},viewBox: [0,-1.8823751724135036,6843.8384,6761.240350344827],tooltips: {mode: "id",on: false,priority: "local",position: "bottom-right"}, source: "lib/mapsvg/maps/not-calibrated\\greece.svg",title: "Not-calibrated\\greece",responsive: true,afterLoad: function(
+		var mapsvgobj = $("#mapsvg").mapSvg({width: "100%",height: "100%",colors: {baseDefault: "#000000",background: "#242A3C",selected: 0,hover: 20,directory: "#fafafa",status: {}},viewBox: [0,-1.8823751724135036,6843.8384,6761.240350344827],tooltips: {mode: "id",on: false,priority: "local",position: "bottom-right"}, source: "lib/mapsvg/maps/not-calibrated\\greece.svg",title: "Not-calibrated\\greece",responsive: true,afterLoad: function(
 		) {
 		  mapsvg = this;
 		  $(".map").show();
@@ -2558,7 +2558,7 @@ const init = () => {
       gData = data;
       updateThresholds();
       drawTransitionBoxes();
-      	//drawDemographyChart_radar();
+      //drawDemographyChart_radar();
       //drawDemographyChart_cases();
       //drawDemographyChart_deaths();
       drawDemographyChart_group_cases();
@@ -2578,7 +2578,7 @@ const init = () => {
 	    var leftPos = $('#predicted_scroller').scrollLeft();
 	    var today = new Date();
 	    var weekno = today.getWeek();
-    	$("#predicted_scroller").animate({scrollLeft: leftPos - (weekno*10)}, 800);
+    	$("#predicted_scroller").animate({scrollLeft: leftPos - (weekno*6)}, 800);
       $("#cover-block").fadeOut();
       initPopup();
       initMap();
