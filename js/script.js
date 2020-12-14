@@ -2578,7 +2578,7 @@ const init = () => {
 	    var leftPos = $('#predicted_scroller').scrollLeft();
 	    var today = new Date();
 	    var weekno = today.getWeek();
-    	$("#predicted_scroller").animate({scrollLeft: leftPos - (weekno*6)}, 800);
+    	$("#predicted_scroller").animate({scrollLeft: leftPos - (weekno*4)}, 800);
       $("#cover-block").fadeOut();
       initPopup();
       initMap();
