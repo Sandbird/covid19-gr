@@ -1453,6 +1453,71 @@ const init = () => {
 		*/
     $('#demography-chart-group-deaths').highcharts(config);
 	}
+	
+  const drawDemographyChart_group_intensive = () => {
+    $wrapper = $("#demography-chart-group-intensive").empty().html('<canvas></canvas>');
+    $canvas = $wrapper.find("canvas")[0];
+    
+    let config = {
+      navigation: {
+          buttonOptions: {
+              enabled: false
+          }
+      },
+	    credits: {
+	        enabled: false
+	    },
+      chart: {
+          type: 'column'
+      },
+      title: {
+          text: ''
+      },
+      xAxis: {
+          categories: []
+      },
+      yAxis: {
+          min: 0,
+          title: {
+              text: 'Νοσηλείες'
+          }
+      },
+      tooltip: {
+          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+              '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+          footerFormat: '</table>',
+          shared: true,
+          useHTML: true
+      },
+      plotOptions: {
+          column: {
+              pointPadding: 0.2,
+              borderWidth: 0
+          }
+      },
+      series: []
+    };
+    
+    
+    var categories_renamed = {};
+		gData.demography_group_intensive.categories.forEach(function(cat, index){
+			categories_renamed[index] = LABELS[LANG].months_pref[cat];
+		});
+    config.xAxis.categories = categories_renamed;
+    //config.xAxis.categories = gData.demography_group_cases.categories;
+    gData.demography_group_intensive.age_groups.forEach(function(age, i){
+    	var age = age.replace("Male", LABELS[LANG].male);
+    	age = age.replace("Female", LABELS[LANG].female);
+    	
+      config.series.push({
+        name: age,
+        data: gData.demography_group_intensive.intensive[i]
+      });
+    });
+
+    $('#demography-chart-group-intensive').highcharts(config);
+	}
   
   const drawGreeceMap = () => {
     $("#greece-map").empty();
@@ -2480,7 +2545,7 @@ const init = () => {
 			$.each(dataset, function( index, value ) {
 				//var testdate = new Date(value.prefval[index][0]).getTime() / 1000;
 	  		var region = mapsvg.getRegion(value.prefname);
-				if(region){
+				if(typeof region !== "undefined"){
 					region.setFill('#'+value.prefval[ui.value][1]);
 					region.setTooltip(value.prefname+'<br><sup>*</sup>'+LABELS[LANG].total+value.prefval[ui.value][2]+'<br>'+LABELS[LANG].daily_cases+value.prefval[ui.value][3]);
 					
@@ -2563,7 +2628,8 @@ const init = () => {
       //drawDemographyChart_deaths();
       drawDemographyChart_group_cases();
       drawDemographyChart_group_deaths();
-      drawDemographyChart_serious();
+      drawDemographyChart_group_intensive();
+      //drawDemographyChart_serious();
       drawDemographyChart_sum();
       drawDemographyChart_men();
       drawDemographyChart_women();
