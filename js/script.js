@@ -70,6 +70,7 @@ const LABELS = {
       deaths: ["Θάνατοι"],
       tests: ["Δείγματα που ελέγχθ.", "Βρέθηκαν θετικοί"],
       agtests: ["Rapid Ag"],
+      vaccinations: ["Εμβολιασμοί"],
       rt_repro: ["Βασικός αναπαραγωγικός αριθμός"],
       rj_repro: ["Αναπαραγωγικός αριθμός"],
       infection_fatality_rate: ["IIFR"],
@@ -95,6 +96,7 @@ const LABELS = {
       deaths: "",
       tests: "",
       agtests: "",
+      vaccinations: "",
       rt_repro: "",
       rj_repro: "",
       infection_fatality_rate: ["%"],
@@ -175,6 +177,7 @@ const LABELS = {
       deaths: ["Deaths"],
       tests: ["Tested", "Found Positive"],
       agtests: ["Rapid Ag"],
+      vaccinations: ['Vaccinations'],
       rj_repro: ["Reproduction Number"],
       //reproduction_rj_infected: ["Num. of cases"],
       rt_repro: ["Effective Reproduction Number"],
@@ -201,6 +204,7 @@ const LABELS = {
       deaths: "",
       tests: "",
       agtests: "",
+      vaccinations: "",
       rt_repro: "",
       rj_repro: "",
       infection_fatality_rate: ["%"],
@@ -384,6 +388,10 @@ const init = () => {
       }
 
       if (prefCode === "" && code === "agtests") {
+        ret = COLORS.pcrtests[j];
+      }
+      
+      if (prefCode === "" && code === "vaccinations") {
         ret = COLORS.pcrtests[j];
       }
 
@@ -876,7 +884,7 @@ const init = () => {
           value = 0;
         }
 
-        if (value < 0 && (switchValue === "total" || code === "carriers" || code === "infected_distribution" || code === "infected_distribution_men" || code === "death_distribution_men" || code === "predicted_deaths" || code === "deaths" || code === "tests" || code === "agtests")) {
+        if (value < 0 && (switchValue === "total" || code === "carriers" || code === "infected_distribution" || code === "infected_distribution_men" || code === "death_distribution_men" || code === "predicted_deaths" || code === "deaths" || code === "tests" || code === "agtests" || code === "vaccinations")) {
           value = 0;
         }
 
