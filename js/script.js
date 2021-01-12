@@ -267,7 +267,7 @@ const init = () => {
     for (thType in gThresholds) {
       let values = [];
       gData["prefectures-data"].forEach(function(pref, i){
-      	if(pref[thType] === "carriers" || pref[thType] === "deaths"){
+      	if(pref[thType] === "carriers" || pref[thType] === "deaths" || pref[thType] === "vaccinations"){
         	values.push(getValuesTotal(pref[thType].values), pref.code);
       	}
       });
@@ -2125,6 +2125,7 @@ const init = () => {
 				<td><h4 class="m-0" style="color: inherit;">${pref.totalcases}</h4></td>
 				<td><div class="progress"><div role="progressbar" aria-valuenow="${newcasesperweekpop}" aria-valuemin="0" aria-valuemax="200" class="progress-bar ${map_color}" style="width: ${intvalue}%;color: #fff!important;">${newcasesperweekpop}</div></div></td>
 				<td class="${rjclass}"><h4 class="m-0 font-weight-bold" style="color: inherit;">${rj_value}</h4><span>${rjtext}</span></td>
+				<td><h4 class="m-0" style="color: #3DC;">${pref.total_vaccinations}</h4></td>
 				<td><h4 class="m-0" style="color: inherit;">${pref.population}</h4></td>
 			</tr>`);
 			

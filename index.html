@@ -785,6 +785,7 @@
 	          <select id="select-pref-type">
 	            <option value="carriers">Κρούσματα</option>
 	            <option value="deaths">Θάνατοι</option>
+	            <option value="vaccinations">Εμβολιασμοί</option>
 	          </select>
 	          <div class="box" id="region-box">
 	            <div id="greece-map"></div>
@@ -870,6 +871,35 @@
 	                <p class="notes">Πηγή: <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/greece_deaths_v2.csv" target="_blank">iMEdD-Lab</a>.</p>
 	              </div>
 	            </div>
+	            <div class="flex-row t03">
+	              <div class="box transition prefecture" code="vaccinations" pref="">
+	                <h3>Εμβολιασμοί, <span></span></h3>
+	                <div class="latest">
+	                  <div>
+	                    <span class="type"></span>
+	                    <span class="value"></span>
+	                    <span class="unit"></span>
+	                  </div>
+	                  <div class="change"></div>
+	                </div>
+	                <h5 class="updated"><br /></h5>
+	                <div class="switches">
+	                  <div class="switch selected" value="new">ΝΕΑ</div>
+	                  <div class="switch" value="total">ΣΥΝΟΛΟ</div>
+	                </div>
+	                <div class="charts-wrapper">
+	                  <div class="main-chart-wrapper">
+	                    <div class="main-chart"></div>
+	                  </div>
+	                  <div class="axis-chart"></div>
+	                  <div class="axis-cover"></div>
+	                </div>
+	                <div class="checkboxes">
+	                  <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
+	                </div>
+	                <p class="notes">Πηγή: <a href="https://emvolio.gov.gr/vaccinationtracker" target="_blank">emvolio.gov.gr</a>.</p>
+	              </div>
+	            </div>
 	          </div>
 	      	</div>
 	    	</div>
@@ -891,6 +921,7 @@
 									<th>Σύνολο κρουσμ.</th>
 									<th nowrap>Κρουσμ. ανά 100.000 (κ.μ.ο)</th>
 									<th>Τιμή Rj (πριν 14 μέρες)</th>
+									<th>Εμβολιασμοί</th>
 									<th>Πληθυσμός</th>
 									</tr>
 								</thead>

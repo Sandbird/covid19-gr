@@ -775,6 +775,7 @@
             <select id="select-pref-type">
               <option value="carriers">Tested Positive</option>
               <option value="deaths">Deaths</option>
+	            <option value="vaccinations">Vaccinations</option>
             </select>
             <div class="box" id="region-box">
               <div id="greece-map"></div>
@@ -860,6 +861,35 @@
                   <p class="notes">Data source: <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/greece_deaths_v2.csv" target="_blank">iMEdD-Lab</a>.</p>
                 </div>
               </div>
+	            <div class="flex-row t03">
+	              <div class="box transition prefecture" code="vaccinations" pref="">
+	                <h3>Vaccinations, <span></span></h3>
+	                <div class="latest">
+	                  <div>
+	                    <span class="type"></span>
+	                    <span class="value"></span>
+	                    <span class="unit"></span>
+	                  </div>
+	                  <div class="change"></div>
+	                </div>
+	                <h5 class="updated"><br /></h5>
+	                <div class="switches">
+                    <div class="switch selected" value="new">NEW</div>
+                    <div class="switch" value="total">TOTAL</div>
+	                </div>
+	                <div class="charts-wrapper">
+	                  <div class="main-chart-wrapper">
+	                    <div class="main-chart"></div>
+	                  </div>
+	                  <div class="axis-chart"></div>
+	                  <div class="axis-cover"></div>
+	                </div>
+	                <div class="checkboxes">
+	                  <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+	                </div>
+	                <p class="notes">Data source: <a href="https://emvolio.gov.gr/vaccinationtracker" target="_blank">emvolio.gov.gr</a>.</p>
+	              </div>
+	            </div>
             </div>
         </div>
       </div>
@@ -881,6 +911,7 @@
 									<th>Total cases</th>
 									<th>Cases per 100,000 (14 days)</th>
 									<th>Rj (before 14 days)</th>
+									<th>Vaccinations</th>
 									<th>Population</th>
 									</tr>
 								</thead>
