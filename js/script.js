@@ -122,7 +122,9 @@ const LABELS = {
     	grey: "Επίπεδο Γ. Συναγερμού",
     	lightgrey: "Δεν υπάρχουν δεδομένα",
     	danger: "Επικινδυνότητα",
-    	latest_cases: "Τελευταίες 14 μέρες (νέα κρούσματα)"
+    	latest_cases: "Τελευταίες 14 μέρες (νέα κρούσματα)",
+    	new_unemployed: "Νέες αιτήσεις ανέργων",
+    	total_unemployed: "Σύνολο ανέργων"
     },
     age: [
       "65+",
@@ -230,7 +232,9 @@ const LABELS = {
     	grey: "Level 3. Alert",
     	lightgrey: "No available data",
     	danger: "Risk Level",
-    	latest_cases: "Last 14 days (new cases)"
+    	latest_cases: "Last 14 days (new cases)",
+    	new_unemployed: "New unemployment claims",
+    	total_unemployed: "Total Unemployed"
     },
     age: [
       "65+",
@@ -1310,6 +1314,11 @@ const init = () => {
     window.myChart = new Chart(ctx, config);
   }
   
+	const replacechars = function(c){
+			var d = c.split("-");
+	    return LABELS[LANG].months_pref[d[0]] + "-" +d[1] || c;
+	};
+  
   const drawDemographyChart_group_cases = () => {
     $wrapper = $("#demography-chart-group-cases").empty().html('<canvas></canvas>');
     $canvas = $wrapper.find("canvas")[0];
@@ -1358,7 +1367,7 @@ const init = () => {
     
     var categories_renamed = {};
 		gData.demography_group_cases.categories.forEach(function(cat, index){
-			categories_renamed[index] = LABELS[LANG].months_pref[cat];
+			categories_renamed[index] = replacechars(cat);
 		});
     config.xAxis.categories = categories_renamed;
     //config.xAxis.categories = gData.demography_group_cases.categories;
@@ -1429,12 +1438,11 @@ const init = () => {
           }
       },
       series: []
-    };
-    
+    };    
     
     var categories_renamed = {};
 		gData.demography_group_deaths.categories.forEach(function(cat, index){
-			categories_renamed[index] = LABELS[LANG].months_pref[cat];
+			categories_renamed[index] = replacechars(cat);
 		});
     config.xAxis.categories = categories_renamed;
     //config.xAxis.categories = gData.demography_group_cases.categories;
@@ -1510,7 +1518,7 @@ const init = () => {
     
     var categories_renamed = {};
 		gData.demography_group_intensive.categories.forEach(function(cat, index){
-			categories_renamed[index] = LABELS[LANG].months_pref[cat];
+			categories_renamed[index] = replacechars(cat);
 		});
     config.xAxis.categories = categories_renamed;
     //config.xAxis.categories = gData.demography_group_cases.categories;
@@ -1526,6 +1534,152 @@ const init = () => {
 
     $('#demography-chart-group-intensive').highcharts(config);
 	}
+	
+  const getMonthValue = (from, i) => {
+  	//2020, 1, 1
+    let date = new Date(from[0], from[1], from[2]);
+    
+    var d = date.getDate();
+    date.setMonth(date.getMonth() + i);
+    if (date.getDate() != d) {
+      date.setDate(0);
+    }
+  
+    let ret = "";
+    let cy = date.getFullYear();
+    let cm = date.getMonth();
+
+    if (LANG === "gr") {
+      ret = LABELS[LANG].months[cm-1].substr(0, 3) + "/" + cy;
+    }
+
+    if (LANG === "en") {
+      ret = LABELS[LANG].months[cm-1].substr(0, 3) + "/" + cy;
+    }
+    return ret;
+  }
+  
+  const drawUnemployment = (prefCode) => {
+    let $wrapper = $("#unemployment-chart").empty().html('<canvas></canvas>');
+    let $canvas = $wrapper.find("canvas")[0];
+    let dataType = $("#select-unemp-type").val();
+    if(typeof dataType !== "undefined"){
+    }else{
+    	dataType = 1;
+    }
+
+    var config = {
+      type: "bar",
+	    data: {
+	        labels: [],
+	        datasets: [
+	            {
+	                type: 'line',
+	                label: LABELS[LANG].prefectures.new_unemployed,
+	                data: [],
+	                borderColor: '#0CBF12',
+	                backgroundColor: 'rgba(0, 0, 0, 0)',
+	                yAxisID: 'newunemployed',
+	            },
+	            {
+	                label: LABELS[LANG].prefectures.total_unemployed,
+	                data: [],
+	                borderColor: 'rgba(0, 0, 0, 0)',
+	                backgroundColor: '#C5042D',
+	                yAxisID: 'totalunemployed',
+	            }
+	        ]
+	    },
+	    options: {
+	    		maintainAspectRatio: false,
+	        responsive: true,
+	        legend: {
+	          display: true,
+	          labels: {
+	            fontColor: "rgba(255, 255, 255, 0.7)"
+	          }
+	        },
+	        animation: {
+	          duration: 1000
+	        },
+	        scales: {
+		          xAxes: [{
+		            gridLines: {
+		              color: "rgba(255,255,255,0.2)",
+		              zeroLineColor: "rgba(255,255,255,0.2)",
+		              borderDash: [3, 1]
+		            },
+		            ticks: {
+		              suggestedMin: 0,
+		              fontColor: "rgba(255,255,255,0.7)",
+		            }
+		          }],
+	            yAxes: [
+	                {
+	                    id: "newunemployed",
+	                    ticks: {
+	                    	fontColor: "rgba(255,255,255,0.7)",
+	                      beginAtZero: true,
+	                    },
+					            gridLines: {
+					              color: "rgba(255,255,255,0.2)",
+					              zeroLineColor: "rgba(255,255,255,0.2)",
+					              borderDash: [3, 1]
+					            },
+	                    scaleLabel: {
+	                        display: true,
+	                        labelString: LABELS[LANG].prefectures.new_unemployed
+	                      }
+	                },
+	                {
+	                    id: "totalunemployed",
+	                    position: 'right',
+	                    ticks: {
+	                    		fontColor: "rgba(255,255,255,0.7)",
+	                        beginAtZero: true,
+	                    },
+	                    scaleLabel: {
+	                        display: true,
+	                        labelString: LABELS[LANG].prefectures.total_unemployed
+	                    }
+	                },
+	            ]
+	        },
+	    }
+    };
+
+
+ 
+    let prefs = [];
+    //Create labels. Just take the 1st From date and incr. months by size
+    var startdate = gData["regions-unemployment"][0].new_claims.from;
+    var sizemonths = gData["regions-unemployment"][0].new_claims.values.length;
+    var labels = [];
+    for (var i = 0; i < sizemonths; i++) {
+	  	config.data.labels.push(getMonthValue(startdate, i));
+  	};    
+
+    gData["regions-unemployment"].forEach(function(pref, i){
+    	if(pref.code == dataType){
+      prefs.push({
+        name: gData["regions-unemployment"][i][LANG],
+        new_claims: pref.new_claims,
+        total_unemployed: pref.total_unemployed,
+        code: (i).toString()
+      });
+    	}
+    });
+    prefs.forEach(function(pref, i){
+      config.data.datasets[0].data = pref.new_claims.values;
+      config.data.datasets[1].data = pref.total_unemployed.values;
+    });
+    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 1.1;
+    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 1.3;
+    //if (prefCode !== "") config.options.animation.duration = 0;
+
+    let ctx = $canvas.getContext('2d');
+    window.myChart = new Chart(ctx, config);
+  }
   
   const drawGreeceMap = () => {
     $("#greece-map").empty();
@@ -2541,6 +2695,7 @@ const init = () => {
     $(".updated-demography-sum").text(gData.updated.demography[LANG]);
     $(".updated-demography-men").text(gData.updated.demography[LANG]);
     $(".updated-demography-women").text(gData.updated.demography[LANG]);
+    $(".updated-unemployment").text(gData.updated.demography[LANG]);
   }
   
   const initMap = () => {
@@ -2638,6 +2793,7 @@ const init = () => {
       drawDemographyChart_group_cases();
       drawDemographyChart_group_deaths();
       drawDemographyChart_group_intensive();
+      drawUnemployment();
       //drawDemographyChart_serious();
       drawDemographyChart_sum();
       drawDemographyChart_men();
@@ -2675,6 +2831,10 @@ const init = () => {
 
     $("#select-pref-type").on("change", function(){
       drawRegionChart("");
+    });
+    
+    $("#select-unemp-type").on("change", function(){
+     drawUnemployment();
     });
 
     $(".more").on("click",function(){

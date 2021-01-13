@@ -134,6 +134,7 @@ body {
   font-weight: normal;
   font-size: 16px;
   color: #fafafa;
+  outline: none;
   letter-spacing: 0.03em; 
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -186,7 +187,7 @@ body {
     border-radius: 4px; }
     #container #main-block .box h3 {
       margin-left: -2px;
-      margin-right: 120px;
+      margin-right: 100px;
       padding-left: 6px;
       font-size: 16px;
       font-weight: bold;
@@ -198,7 +199,7 @@ body {
       @media only screen and (min-width: 400px) {
         #container #main-block .box h3 {
           padding-left: 6px;
-          font-size: 18px; }
+          font-size: 16px; }
           #container #main-block .box h3 span {
             font-size: 18px; } }
       @media only screen and (min-width: 640px) {
@@ -227,7 +228,7 @@ body {
         font-size: 20px; }
         @media only screen and (min-width: 400px) {
           #container #main-block .box .latest .value {
-            font-size: 22px; } }
+            font-size: 20px; } }
         @media only screen and (min-width: 640px) {
           #container #main-block .box .latest .value {
             font-size: 24px; } }

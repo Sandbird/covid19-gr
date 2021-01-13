@@ -16,6 +16,8 @@ The state of the infection of the new coronavirus (COVID19) in Greece was summar
 - https://github.com/Covid-19-Response-Greece/covid19-data-greece/blob/master/data/greece/Measures/greece_social_distancing_measures_timeline.json
 - https://mshfd.github.io/reproduction-number/
 - https://twitter.com/nyrros
+- https://emvolio.gov.gr/vaccinationtracker
+- http://www.oaed.gr/statistika-stoicheia-ana-mena
 
 ### Update data
 - It will be updated on an irregular basis according to the announcement by the Ministry of Health.
