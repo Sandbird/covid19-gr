@@ -1537,7 +1537,7 @@ const init = () => {
 	
   const getMonthValue = (from, i) => {
   	//2020, 1, 1
-    let date = new Date(from[0], from[1], from[2]);
+    let date = new Date(from[0], from[1]-1, from[2]);  //January is 0. December is 11.
     
     var d = date.getDate();
     date.setMonth(date.getMonth() + i);
@@ -1546,15 +1546,15 @@ const init = () => {
     }
   
     let ret = "";
-    let cy = date.getFullYear();
+    let cy = date.getFullYear().toString().substr(-2);
     let cm = date.getMonth();
 
     if (LANG === "gr") {
-      ret = LABELS[LANG].months[cm-1].substr(0, 3) + "/" + cy;
+      ret = LABELS[LANG].months[cm].substr(0, 3) + "-" + cy;
     }
 
     if (LANG === "en") {
-      ret = LABELS[LANG].months[cm-1].substr(0, 3) + "/" + cy;
+      ret = LABELS[LANG].months[cm].substr(0, 3) + "-" + cy;
     }
     return ret;
   }
