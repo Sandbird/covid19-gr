@@ -435,3 +435,11 @@ body {
           text-align: center;
           color: #666;
           font-size: 13px; }
+
+
+#prefectures th,td{
+	text-align:center;
+}
+#prefectures .smallertext {
+	font-size:0.9em;
+}

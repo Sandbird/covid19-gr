@@ -2246,6 +2246,8 @@ const init = () => {
 	  	var titletxt = LABELS[LANG].prefectures[pref.color];
 	  	var rjclass, rjtext = "";
 	  	var rj_value = Array.isArray(pref.rj_value) ? pref.rj_value[1].slice(-1).pop() : "";
+	  	var newcases = (pref.newcases > 0) ? "+" + pref.newcases : "";
+	  	var newvacc = (pref.newvaccinations > 0) ? "+" + pref.newvaccinations : "";
 	  	
 	  	if(Array.isArray(pref.rj_value)){
 
@@ -2273,13 +2275,13 @@ const init = () => {
 	  	}
 	  	
 			$('#tbodyid').append(`<tr>
-				<td id="box_${i}" class="${map_color} personPopupTrigger" rel="${prefname},${titletxt},${map_color}">${prefname}</td>
-				<td class="${twoweek_class}"><h4 class="m-0 font-weight-bold" style="color: inherit;">${pref.twoweektrendlatest}%</h4><span class="${twoweek_class}">${twoweek_text}</span></td>
+				<td id="box_${i}" class="${map_color} personPopupTrigger" style="text-align:left!important" rel="${prefname},${titletxt},${map_color}">${prefname}</td>
+				<td class="${twoweek_class} smallertext"><h4 class="m-0 font-weight-bold" style="color: inherit;">${pref.twoweektrendlatest}%</h4><span class="${twoweek_class}">${twoweek_text}</span></td>
 				<td><span id="sparkline${i}"></span></td>
-				<td><h4 class="m-0" style="color: inherit;">${pref.totalcases}</h4></td>
+				<td><h4 class="m-0" style="color: inherit;">${pref.totalcases}</h4><div style="font-size: 10px; margin-top: -2px; color: #ffc108">${newcases}</div></td>
 				<td><div class="progress"><div role="progressbar" aria-valuenow="${newcasesperweekpop}" aria-valuemin="0" aria-valuemax="200" class="progress-bar ${map_color}" style="width: ${intvalue}%;color: #fff!important;">${newcasesperweekpop}</div></div></td>
-				<td class="${rjclass}"><h4 class="m-0 font-weight-bold" style="color: inherit;">${rj_value}</h4><span>${rjtext}</span></td>
-				<td><h4 class="m-0" style="color: #3DC;">${pref.total_vaccinations}</h4></td>
+				<td class="${rjclass} smallertext"><h4 class="m-0 font-weight-bold" style="color: inherit;">${rj_value}</h4><span>${rjtext}</span></td>
+				<td><h4 class="m-0" style="color: #3DC;">${pref.total_vaccinations}</h4><div style="font-size: 10px; margin-top: -2px; color: #8bc34a">${newvacc}</div></td>
 				<td><h4 class="m-0" style="color: inherit;">${pref.population}</h4></td>
 			</tr>`);
 			
