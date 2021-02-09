@@ -299,7 +299,7 @@
 	            <div class="checkboxes">
                 <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
 	            </div>
-	            <p class="notes">Data Source: <a href="https://www.data.gov.gr/datasets/mdg_emvolio/" target="_blank">data.gov.gr</a>.</p>
+	            <p class="notes">Data Source: <a href="https://www.data.gov.gr/datasets/mdg_emvolio/" target="_blank">data.gov.gr</a>. (Our data is collated and updated every day after 9pm) <a class="more">READ MORE</a></p>
 	          </div>
 	        </div>
         </div>
@@ -765,7 +765,7 @@
                 <div class="axis-chart"></div>
                 <div class="axis-cover"></div>
               </div>
-              <p class="notes">Data Source: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (28-01-2021)</a></p>
+              <p class="notes">Data Source: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (04-02-2021)</a></p>
             </div>
           </div>
         </div>	
@@ -887,7 +887,7 @@
 	                <div class="checkboxes">
 	                  <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
 	                </div>
-	                <p class="notes">Data Source: <a href="https://www.data.gov.gr/datasets/mdg_emvolio/" target="_blank">data.gov.gr</a>.</p>
+	                <p class="notes">Data Source: <a href="https://emvolio.gov.gr/vaccinationtracker" target="_blank">emvolio.gov.gr</a>.</p>
 	              </div>
 	            </div>
             </div>
@@ -986,7 +986,7 @@
       <div id="footer-block">
         <p class="notes" id="footer-notes">Notes: Moving averages are 7-day backward. The number is based on the daily value. It is assumed to be the same as the previous day if not updated. On the days with no continuity from the previous day due to change of standards, "New" number is treated as 0 and the bar color is changed. Data may be corrected by the developer when it is considered as an obvious misstatement, such as minus value of Tested Positive.</p>
         <p class="notes">Resources: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Measures by <a href="https://github.com/Covid-19-Response-Greece/covid19-data-greece/blob/master/data/greece/Measures/greece_social_distancing_measures_timeline.json" target="_blank">Covid-19-Response-Greece</a>. Data on prefectures was taken from <a href="https://twitter.com/Nyrros" target="_blank">@Nyrros</a>, <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a> and <a href="http://covid19.gov.gr/" target="_blank">covid19.gov.gr</a>. Predictions were taken from c<a href="https://covid19-projections.com/greece" target="_blank">covid19-projections.com</a>, <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org</a>. Used introductory text for IIFR from <a href="https://www.who.int/news-room/commentaries/detail/estimating-mortality-from-covid-19" target="_blank">WHO</a> and prediction model from (<a href="https://covid19-projections.com/estimating-true-infections/" target="_blank">link1</a>, <a href="https://covid19-projections.com/about/#infection-fatality-rate-ifr" target="_blank">link2</a>, <a href="https://github.com/youyanggu/covid19_projections/tree/master/implied_ifr" target="_blank">link3</a>).
-        Effective Reproduction number RJ algorithm taken from <a href="https://academic.oup.com/aje/article/160/6/509/79472?fbclid=IwAR2nDT0TyBciFQuNOU0vW3z4OcAJBRPh_x1E8HwCI-i9a4y5KLimY5D3aG4" target="blank">American Journal of Epidemiology</a> and <a href="https://mshfd.github.io/reproduction-number/" target="_blank">Richard Schubert</a>. Used <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> and <a href="https://www.highcharts.com/" target="_blank">highcharts</a> to draw the charts. Original script by: TOYO KEIZAI ONLINE</p>
+        Effective Reproduction number RJ algorithm taken from <a href="https://academic.oup.com/aje/article/160/6/509/79472?fbclid=IwAR2nDT0TyBciFQuNOU0vW3z4OcAJBRPh_x1E8HwCI-i9a4y5KLimY5D3aG4" target="blank">American Journal of Epidemiology</a> and <a href="https://mshfd.github.io/reproduction-number/" target="_blank">Richard Schubert</a>. Used <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> and <a href="https://www.highcharts.com/" target="_blank">highcharts</a> to draw the charts. Original template by: TOYO KEIZAI ONLINE</p>
         <p class="notes"><br><a href="https://github.com/Sandbird/covid19-Greece" target="_blank">Download CSV data</a></p>
         <div id="faqs">
           <h3>Frequently Asked Questions</h3>
@@ -1051,7 +1051,7 @@
 	        </section>
 	        <section id="positive_rate">
 	          <h4>Q. What is the positivity rate?</h4>
-	          <p>A. The positivity rate is often thought of in terms of the share of tests that yield a positive result. In our calculations is slightly different. It is calculated as the number of confirmed cases (i.e. people with a positive result) divided by the number of tests performed. These differ because people may be tested more than once. A 7-day average is used in all of our calculations, so the same applies here.
+	          <p>A. The positivity rate is often thought of in terms of the share of tests that yield a positive result. In our calculations is slightly different. It is calculated as the number of confirmed cases (i.e. people with a positive result) divided by the number of PCR tests performed. These differ because people may be tested more than once. A 7-day average is used in all of our calculations, so the same applies here.
 	          <dt-math block>{\text{Positivity Rate}~(7day~ma)} = \frac{dailyConfirmedCases~(7day~ma)} {dailyTests~(7day~ma)}</dt-math>
 	          </p>
 	        </section>

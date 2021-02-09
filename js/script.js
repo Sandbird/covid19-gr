@@ -25,6 +25,7 @@ const COLORS = {
   infected_distribution_men: "#48C7A6,#3BA9B0,#5987A5,#6F6587".split(","), 
   predicted_deaths: "#3DC,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","), 
   pcrtests: "#3DC,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","),
+  vaccinations: "#6F6587,#5987A5".split(","),
   measures: "#90CFB5,#8FBDE0,#689AAB,#AADCD2,#3DC,#88BBAA,#BADDAD,#BBCDB3,#FAF28C,#DFEA8B,#F3EF89,#3BA9B0,#F4F4B2,#CCAC8E,#FBDEDE,#F8B2BC,#F59598,#EFA796,#FEBD7D,#CEB4D6,#B5B3DA".split(","),
   measures2: "#3DC,#FEA,#5987A5,#3BA9B0,#86E18D,#D5F474,#FB8,#EC2,#CAF0F8".split(","),
   dark: "#399",
@@ -70,7 +71,7 @@ const LABELS = {
       deaths: ["Θάνατοι"],
       tests: ["Δείγματα που ελέγχθ.", "Βρέθηκαν θετικοί"],
       agtests: ["Rapid Ag"],
-      vaccinations: ["Εμβολιασμοί"],
+      vaccinations: ["Εμβολιασμοί 2ης δόσης", "Εμβολιασμοί 1ης δόσης","Συνολικοί εμβολιασμοί"],
       rt_repro: ["Βασικός αναπαραγωγικός αριθμός"],
       rj_repro: ["Αναπαραγωγικός αριθμός"],
       infection_fatality_rate: ["IIFR"],
@@ -179,7 +180,7 @@ const LABELS = {
       deaths: ["Deaths"],
       tests: ["Tested", "Found Positive"],
       agtests: ["Rapid Ag"],
-      vaccinations: ['Vaccinations'],
+      vaccinations: ["2nd dose vaccinations", "1st dose vaccinations", "Total vaccinations"],
       rj_repro: ["Reproduction Number"],
       //reproduction_rj_infected: ["Num. of cases"],
       rt_repro: ["Effective Reproduction Number"],
@@ -395,8 +396,9 @@ const init = () => {
         ret = COLORS.pcrtests[j];
       }
       
-      if (prefCode === "" && code === "vaccinations") {
-        ret = COLORS.pcrtests[j];
+			//Both vaccination tables      
+      if (code === "vaccinations") {
+      	ret = COLORS.vaccinations[j];
       }
 
       if (code === "rt_repro") {
@@ -644,6 +646,7 @@ const init = () => {
             label: function(tooltipItem, data){
               let ret = [];
               let total = 0;
+              let totalvac = 0;
               data.datasets.forEach(function(ds, i){
               	if(code == 'reproduction_rj_infected'){
               		root_rj = gData.transition['reproduction_rj']['values'];
@@ -652,6 +655,12 @@ const init = () => {
 	                  ret.push(ds.label + ": " + addCommas(ds.data[tooltipItem.index]) + " | " + LABELS[LANG].unit[code] + LABELS[LANG].transition['reproduction_rj'] + ": " + rpnum);
 	                  total += ds.data[tooltipItem.index];
 	                }
+              	}else if(code == 'vaccinations'){
+		                totalvac += parseInt(ds.data[tooltipItem.index]);
+		                if (!hasMovingAverage || i >= 1) {
+		                  ret.push(ds.label + ": " + addCommas(ds.data[tooltipItem.index]) + " " + LABELS[LANG].unit[code]);
+		                  total += ds.data[tooltipItem.index];
+		                }
               	}else if(code == 'predicted_deaths'){
 	                	//dont show prediction text for real values
 	                	root_pd = gData.transition['predicted_deaths']['values'];
@@ -686,6 +695,9 @@ const init = () => {
 	              if (data.datasets.length >= showTotalLength) {
 	                ret.push(LABELS[LANG].total + ": " + addCommas(total) + " " + LABELS[LANG].unit[code]);
 	              }
+            	}
+              if(code == 'vaccinations'){
+              	 ret.push(LABELS[LANG].transition['vaccinations'][2] + ": " + addCommas(total) + " " + LABELS[LANG].unit[code]);
             	}
               return ret;
             }
@@ -2248,6 +2260,12 @@ const init = () => {
 	  	var rj_value = Array.isArray(pref.rj_value) ? pref.rj_value[1].slice(-1).pop() : "";
 	  	var newcases = (pref.newcases > 0) ? "+" + pref.newcases : "";
 	  	var newvacc = (pref.newvaccinations > 0) ? "+" + pref.newvaccinations : "";
+	  	//color switch to white
+	  	if(newcasesperweekpop <= 12){
+	  		var colorswitch = '#fff!important;';
+	  	}else{
+	  		var colorswitch = 'inherit;';
+	  	}
 	  	
 	  	if(Array.isArray(pref.rj_value)){
 
@@ -2279,7 +2297,7 @@ const init = () => {
 				<td class="${twoweek_class} smallertext"><h4 class="m-0 font-weight-bold" style="color: inherit;">${pref.twoweektrendlatest}%</h4><span class="${twoweek_class}">${twoweek_text}</span></td>
 				<td><span id="sparkline${i}"></span></td>
 				<td><h4 class="m-0" style="color: inherit;">${pref.totalcases}</h4><div style="font-size: 10px; margin-top: -2px; color: #ffc108">${newcases}</div></td>
-				<td><div class="progress"><div role="progressbar" aria-valuenow="${newcasesperweekpop}" aria-valuemin="0" aria-valuemax="200" class="progress-bar ${map_color}" style="width: ${intvalue}%;color: #fff!important;">${newcasesperweekpop}</div></div></td>
+				<td><div class="progress"><div role="progressbar" aria-valuenow="${newcasesperweekpop}" aria-valuemin="0" aria-valuemax="200" class="progress-bar ${map_color}" style="width: ${intvalue}%;color: ${colorswitch}">${newcasesperweekpop}</div></div></td>
 				<td class="${rjclass} smallertext"><h4 class="m-0 font-weight-bold" style="color: inherit;">${rj_value}</h4><span>${rjtext}</span></td>
 				<td><h4 class="m-0" style="color: #3DC;">${pref.total_vaccinations}</h4><div style="font-size: 10px; margin-top: -2px; color: #8bc34a">${newvacc}</div></td>
 				<td><h4 class="m-0" style="color: inherit;">${pref.population}</h4></td>
@@ -2336,7 +2354,7 @@ const init = () => {
 			   <div class="StateTooltip" style="width: 350px;">
 			      <div style="margin-bottom: 9px; border-bottom: 1px solid rgb(238, 238, 238);">
 			         <div class="Row">
-			            <div class="Col">
+			            <div class="Col" style="white-space: nowrap;">
 			               <div style="font-weight: bold; padding: 0px 0px 5px;">
 			                  <div class="ColorDot ColorDotFlashing colorclass" style=""></div>
 			                  <span id="prefect_name"></span>
