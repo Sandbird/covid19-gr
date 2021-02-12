@@ -94,6 +94,7 @@
 	      <h1><span>Η εξάπλωση της νόσου του Κορωνοϊού στην Ελλάδα</span></h1>
 	      <p>Επιβεβαιωμένα κρούσματα COVID-19 στην Ελλάδα. Τα στοιχεία παρέχονται από τον Εθνικό Οργανισμό Δημόσιας Υγείας.</p>
 	      <p><a href="index_en.html">English Version</a></p>
+	      <p><a href="#age_distribution">Ηλικιακές κατανομές</a> | <a href="#predictions">Προβλέψεις</a> | <a href="#prefecturestab">Περιφέρειες</a> | <a href="#perprefecture">Ανά Νομό</a> | <a href="#maptab">Χάρτης</a> | <a href="#faqs">Ερωτήσεις</a></p>
 	      <p class="updated-last"><br /></p>
 	    </div>
 	    <div id="main-block">
@@ -303,7 +304,7 @@
 	          </div>
 	        </div>
 	      </div>
-	      <h2>Ηλικιακές κατανομές κρουσμάτων</h2>
+	      <h2 id="age_distribution">Ηλικιακές κατανομές κρουσμάτων</h2>
 	      <div class="flex-container">
 	        <div class="flex-row">
 	          <div class="box" id="demography-box">
@@ -635,7 +636,7 @@
 	        </div>
 	        -->
 	      </div>
-	      <h2>Προβλέψεις/Εκτιμήσεις</h2>
+	      <h2 id="predictions">Προβλέψεις/Εκτιμήσεις</h2>
 	      <div class="flex-container">
 	        <div class="flex-row">
 	          <div class="box transition nationwide" code="rj_repro" pref="">
@@ -781,7 +782,7 @@
 	      </div>	
 	      <div class="flex-container">
 	        <div class="flex-row">
-	          <h2>Περιφέρειες</h2>
+	          <h2 id="prefecturestab">Περιφέρειες</h2>
 	          <select id="select-pref-type">
 	            <option value="carriers">Κρούσματα</option>
 	            <option value="deaths">Θάνατοι</option>
@@ -931,7 +932,7 @@
 	    	</div>
 	    	<div class="flex-container">
 	    		<div class="flex-row t12">
-	    			<h2>Ανά Νομό
+	    			<h2 id="perprefecture">Ανά Νομό 
 	    				<span class="features simptip-position-right simptip-multiline" data-tooltip="Τα χρώματα των Νομών αποτυπώνουν την επιδημιολογική κατάσταση με βάση το covid19.gov.gr. Η 14μερη τάση χωρίζεται σε 3 κατηγορίες: κόκκινη >5%, κίτρινη >0% και <5%, πράσινη <0%. Οι τιμές της στήλης 'Τελευταίες 14 μέρες' είναι οι δύο κ.μ.ο (7 ημερ.) 14 ημέρες πριν και σήμερα, και χρησιμοποιούνται στο να βρεθεί η ποσοστιαία αύξηση της 14μερης τάσης (Ποσοστό αύξησης = [(Τελική τιμή - Αρχική τιμή) / Αρχική τιμή)×100]). Τα κρούσματα ανά 100.000 κατοίκους βασίζονται στον αριθμό των νέων κρουσμάτων ανά 100.000 κατοίκους κ.μ.ο (7 ημερ.), τις τελευταίες 14 ημέρες. Η τιμή Rj υπολογίζεται χωρίς κάποια εξομάλυνση στις τιμές των κρουσμάτων, προκύπτει δηλαδή από τις απόλυτες τιμές των ημερήσιων κρουσμάτων.">
 	    				<i class="fa fa-info-circle text-info fa-1x info-cursor pl-1 mb-2"></i></span>
 	    				<span><small id="pref-updated"></small></span>
@@ -957,7 +958,7 @@
 	    			</div>
 	    		</div>
 	    	</div>
-	    	<div class="flex-container">
+	    	<div class="flex-container" id="maptab">
 	    		<div class="flex-row t12">
 	    			<h2>Χάρτης επίπτωσης ημερ. κρουσμάτων</h2>
 	    			<div id="map-box" class="box map stretch mapsvg-panel-left">

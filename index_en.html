@@ -94,6 +94,7 @@
         <h1><span>Coronavirus Disease (COVID-19) Situation Report in Greece</span></h1>
         <p>Confirmed cases of COVID-19 in Greece. Data provided by the Ministry of Health.</p>
         <p><a href="index.html">Greek Version</a></p>
+	      <p><a href="#age_distribution">Age distribution</a> | <a href="#predictions">Predictions</a> | <a href="#prefecturestab">Prefectures</a> | <a href="#perprefecture">Per Prefecture</a> | <a href="#maptab">Map</a> | <a href="#faqs">FAQ</a></p>
         <p class="updated-last"><br /></p>
       </div>
       <div id="main-block">
@@ -303,7 +304,7 @@
 	          </div>
 	        </div>
         </div>
-        <h2>Age distribution of confirmed cases</h2>
+        <h2 id="age_distribution">Age distribution of confirmed cases</h2>
         <div class="flex-container">
           <div class="flex-row">
             <div class="box" id="demography-box">
@@ -625,7 +626,7 @@
           </div>
 	        -->
         </div>
-        <h2>Predictions</h2>
+        <h2 id="predictions">Predictions</h2>
         <div class="flex-container">
           <div class="flex-row">
             <div class="box transition nationwide" code="rj_repro" pref="">
@@ -771,7 +772,7 @@
         </div>	
         <div class="flex-container">
           <div class="flex-row">
-            <h2>Prefectures</h2>
+            <h2 id="prefecturestab">Prefectures</h2>
             <select id="select-pref-type">
               <option value="carriers">Tested Positive</option>
               <option value="deaths">Deaths</option>
@@ -921,7 +922,7 @@
       </div>
 	    	<div class="flex-container">
 	    		<div class="flex-row t12">
-	    			<h2>Per Prefecture
+	    			<h2 id="perprefecture">Per Prefecture
 	    				<span class="features simptip-position-right simptip-multiline" data-tooltip="The prefecture colors reflect the epidemiological situation based on covid19.gov.gr. The 14-day trend is divided into 3 categories: red >5%, yellow >0% and <5%, green <0%. The values of column 'Last 14 days' are the two moving averages(7 days) of 14 days before and today, and are used to find the percentage increase of the '14-day trend' column. (Percentage Increase = [(Final Value - Starting Value ) / Starting Value) × 100]). Cases per 100,000 is based on a 7-Day Average of New Cases per 100.000 inhabitants, for the last 14 days. The Rj value is calculated without any smoothing, ie it results from the absolute values of the daily cases.">
 	    				<i class="fa fa-info-circle text-info fa-1x info-cursor pl-1 mb-2"></i></span>
 	    				<span><small id="pref-updated"></small></span>
@@ -947,7 +948,7 @@
 	    			</div>
 	    		</div>
 	    	</div>
-	    	<div class="flex-container">
+	    	<div class="flex-container" id="maptab">
 	    		<div class="flex-row t12">
 	    			<h2>Daily incidence map</h2>
 	    			<div id="map-box" class="box map stretch mapsvg-panel-left">
