@@ -2729,7 +2729,7 @@ const init = () => {
 			$.each(dataset, function( index, value ) {
 				//var testdate = new Date(value.prefval[index][0]).getTime() / 1000;
 	  		var region = mapsvg.getRegion(value.prefname);
-				if(typeof region !== "undefined"){
+	  		if(typeof region !== "undefined" && typeof(value.prefval[ui.value]) !== "undefined"){
 					region.setFill('#'+value.prefval[ui.value][1]);
 					region.setTooltip(value.prefname+'<br><sup>*</sup>'+LABELS[LANG].total+value.prefval[ui.value][2]+'<br>'+LABELS[LANG].daily_cases+value.prefval[ui.value][3]);
 					
