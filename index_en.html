@@ -766,7 +766,7 @@
                 <div class="axis-chart"></div>
                 <div class="axis-cover"></div>
               </div>
-              <p class="notes">Data Source: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (04-02-2021)</a></p>
+              <p class="notes">Data Source: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (12-02-2021)</a></p>
             </div>
           </div>
         </div>	
@@ -1005,7 +1005,7 @@
           </section>
           <section id="active_cases">
             <h4>Q. How accurate is the Active Cases section?</h4>
-            <p>A. It is only an estimate based on the assumption that most people recover from mild COVID-19 within two weeks and more serious cases within three weeks (resulting in either death or recovery), giving a absolute median of 17 days. Given the fact that some of the cases are from tourists that tested positive at the borders, some smoothing has to be applied to the number by keeping only ~26% of the final value. (This number is created by finding the percentage of ((Travel from abroad cases / Total cases) * 100) from the Infection Distribution table. To give you an example, the sum of all the cumulative tested positive cases that existed from 17 days before the 7th of August was 1222. Removing about 26.6% of that value gives us 896 active cases. Why remove the foreign cases from the equation? For two reasons. First, they are not permanent residents of this country, meaning they are only staying for a few days to about two weeks (in most cases). Second, since there are strict measures taken by the goverment when it comes to tourists, they will either be placed into quarantine (if tested positive) or return to their respective countries, both cases leading to a very small chance of increasing the active cases rate thus lowering the real active cases value.</p>
+            <p>A. It is only an estimate based on the assumption that most people recover from a mild form of COVID-19 within two weeks and in the most severe cases within three weeks (average), giving an absolute median of 17 days. Subtracting the number of cases that were found positive when entering the country as well as the number of deaths per day from the total number of daily cases we find the average number of active cases per day. To give an example, the sum of all cases from 17 days before the 7th of August was 1222. We also had 13 deaths and a total of 261 cases related to travel from abroad. Subtracting the above 2 values ​​from the total number of cases we have (approximately) 896 active cases.<br>It is worth noting that when this graph reaches zero we can not assume that the epidemic has stopped due to the stochastic nature of the data. However, a rise of the graph after a decline can indicate that a second wave is coming.</p>
           </section>
           <!--
           <section>

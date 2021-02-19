@@ -900,12 +900,15 @@ const init = () => {
           value = 0;
         }
 
-        if (value < 0 && (switchValue === "total" || code === "carriers" || code === "infected_distribution" || code === "infected_distribution_men" || code === "death_distribution_men" || code === "predicted_deaths" || code === "deaths" || code === "tests" || code === "agtests" || code === "vaccinations")) {
+        if (value < 0 && (switchValue === "total" || code === "active" || code === "carriers" || code === "infected_distribution" || code === "infected_distribution_men" || code === "death_distribution_men" || code === "predicted_deaths" || code === "deaths" || code === "tests" || code === "agtests" || code === "vaccinations")) {
           value = 0;
         }
 
         if (switchValue === "total") {
           value = totalValues[j];
+        }
+        if (switchValue === "total" && code === "active" && value < 0) {
+          value = 0;
         }
 
        config.data.datasets[j].data.push(value); 
