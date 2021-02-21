@@ -37,20 +37,20 @@ table{table-layout:fixed;}
 #prefectures-box input {margin-bottom:10px!important;}
 .progress{border-radius:0;height:1rem;}
 
-.red{background-color:#AC242A!important;color: #fff!important;}
+.red{background-color:#c82d2d!important;color: #fff!important;}
 .redplus{background-color:#800000!important;color: #fff!important;}
 .green{background-color:#12ad2c!important;color: #000!important;}
 .yellow{background-color:#ffc300!important;color: #000!important;}
 .grey{background-color:#605f69!important;color: #fff!important;}
 .lightgrey{background-color:#ccc!important;color: #000!important;}
-.orange{background-color:#E5712A!important;color: #000!important;}
+.orange{background-color:#E5712A!important;color: #FAFAFA!important;}
 
 @media (min-width:961px){
 .table-responsive{display:table!important;}
 }
 .table-responsive{display:block;}
 .decreasing,.green-color,.normal{color:#12ad2c!important;}
-.increasing,.red-color{color:#AC242A!important;}
+.increasing,.red-color{color:#c82d2d!important;}
 .flat,.yellow-color{color:#ffc300!important;}
 
 .jqstooltip {position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}
