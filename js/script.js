@@ -117,9 +117,10 @@ const LABELS = {
     	decreasing: "καθοδική",
     	flat: "επίπεδη",
     	green: "Επίπεδο 1. Ετοιμότητας",
-    	orange: "Επίπεδο 3. Αυξημένης Επιτήρησης",
+    	orange: "Επίπεδο Α. Επιτήρησης",
     	yellow: "Επίπεδο Α. Επιτήρησης",
     	red: "Επίπεδο Β. Αυξημένου Κινδύνου",
+    	redplus: "Επίπεδο Γ. Πολύ Αυξημένου Κινδύνου",
     	grey: "Επίπεδο Γ. Συναγερμού",
     	lightgrey: "Δεν υπάρχουν δεδομένα",
     	danger: "Επικινδυνότητα",
@@ -227,9 +228,10 @@ const LABELS = {
     	decreasing: "decreasing",
     	flat: "flat",
     	green: "Level 1. Readiness",
-    	orange: "Level 3. Increased Surveillance",
+    	orange: "Level 1. Surveillance",
     	yellow: "Level 1. Surveillance",
     	red: "Level 2. Increased Risk",
+    	redplus: "Level 3. Very High Risk",
     	grey: "Level 3. Alert",
     	lightgrey: "No available data",
     	danger: "Risk Level",
@@ -1819,7 +1821,8 @@ const init = () => {
     $canvas = $wrapper.find("canvas")[0];
 		var color = Chart.helpers.color;
 		window.chartColors = {
-			red: 'rgb(255, 99, 132)',
+			red: 'rgb(172, 36, 42)',
+			redplus: 'rgb(128, 0, 0)',
 			orange: 'rgb(255, 159, 64)',
 			yellow: 'rgb(255, 205, 86)',
 			green: 'rgb(75, 192, 192)',
@@ -2473,7 +2476,7 @@ const init = () => {
 	                    $('#prefect_name').html(prefect_name);
 	                    $('#dangerlevel').html(dangerlevel);
 	                    
-	                    var colorarr = {'green':'#12ad2c', 'yellow':'#ffc300', 'orange':'#E5712A', 'red':'#c82d2d', 'lightgrey':'#ccc', 'grey':'#605f69'};
+	                    var colorarr = {'green':'#12ad2c', 'yellow':'#ffc300', 'orange':'#E5712A', 'red':'#AC242A', 'redplus':'#800000', 'lightgrey':'#ccc', 'grey':'#605f69'};
 
 	                    $(".color").removeAttr('style').css({
 												    'color': colorarr[colorclass], 
