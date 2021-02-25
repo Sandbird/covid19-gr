@@ -25,6 +25,7 @@ const COLORS = {
   infected_distribution_men: "#48C7A6,#3BA9B0,#5987A5,#6F6587".split(","), 
   predicted_deaths: "#3DC,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","), 
   pcrtests: "#3DC,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","),
+  icu_entry_exit: "#cf8490,#88BBAA".split(","),
   vaccinations: "#6F6587,#5987A5".split(","),
   measures: "#90CFB5,#8FBDE0,#689AAB,#AADCD2,#3DC,#88BBAA,#BADDAD,#BBCDB3,#FAF28C,#DFEA8B,#F3EF89,#3BA9B0,#F4F4B2,#CCAC8E,#FBDEDE,#F8B2BC,#F59598,#EFA796,#FEBD7D,#CEB4D6,#B5B3DA".split(","),
   measures2: "#3DC,#FEA,#5987A5,#3BA9B0,#86E18D,#D5F474,#FB8,#EC2,#CAF0F8".split(","),
@@ -69,6 +70,8 @@ const LABELS = {
       predicted_true_inf: ["Ημερ. ενημέρωση","Πραγμ. αριθμ."],
       serious: ["Κρίσιμη κατάσταση"],
       deaths: ["Θάνατοι"],
+      icu_percentages: ["ΜΕΘ CoViD", "Κλινών CoViD"],
+      icu_entry_exit: ["Εισαγωγές ασθενών", "Εξιτήρια λόγω ίασης"],
       tests: ["Δείγματα που ελέγχθ.", "Βρέθηκαν θετικοί"],
       agtests: ["Rapid Ag"],
       vaccinations: ["Εμβολιασμοί 2ης δόσης", "Εμβολιασμοί 1ης δόσης","Συνολικοί εμβολιασμοί"],
@@ -95,6 +98,8 @@ const LABELS = {
       predicted_true_inf: "",
       serious: "",
       deaths: "",
+      icu_percentages: ["%"],
+      icu_entry_exit: "",
       tests: "",
       agtests: "",
       vaccinations: "",
@@ -179,6 +184,8 @@ const LABELS = {
       predicted_true_inf: ["Daily report", "Spec. of newly infected"],
       serious: ["Serious"],
       deaths: ["Deaths"],
+      icu_percentages: ["ICU Beds coverage", "Non-ICU Beds coverage"],
+      icu_entry_exit: ["Admissions", "Discharges"],
       tests: ["Tested", "Found Positive"],
       agtests: ["Rapid Ag"],
       vaccinations: ["2nd dose vaccinations", "1st dose vaccinations", "Total vaccinations"],
@@ -206,6 +213,8 @@ const LABELS = {
       predicted_true_inf: "",
       serious: "",
       deaths: "",
+      icu_percentages: ["%"],
+      icu_entry_exit: "",
       tests: "",
       agtests: "",
       vaccinations: "",
@@ -389,6 +398,9 @@ const init = () => {
         ret = COLORS.pcrtests[j];
       }
       
+      if (prefCode === "" && code === "icu_entry_exit") {
+        ret = COLORS.icu_entry_exit[j];
+      }
       
       if (prefCode === "" && code === "predicted_deaths") {
         ret = COLORS.predicted_deaths[j];
@@ -508,11 +520,34 @@ const init = () => {
 
       if (valueLatest.charAt(0) !== "-") valueLatest = "+" + valueLatest;
 
-      let $latest = $box.find(".latest");
-          $latest.find(".value").text(about_sign+valueTotal);
-          $latest.find(".unit").text(LABELS[LANG].unit[$box.attr("code")]);
-	      	$latest.find(".type").text(LABELS[LANG].total);        //capitalize($box.find(".switch[value=total]").text())
-          $latest.find(".change").text(LABELS[LANG].change + valueLatest);
+      if ($box.attr("code") === "icu_entry_exit"){
+	      var valueTotal_admissions  = 0;
+	      var valueTotal_discharged = 0;
+	      for (let i = 0; i < rows.length; i++) {   	
+          valueTotal_admissions += rows[i][0];
+          valueTotal_discharged += rows[i][1];
+	      }	      
+      	valueTotal_admissions  = addCommas(valueTotal_admissions);
+      	valueTotal_discharged  = addCommas(valueTotal_discharged);
+      	
+      	if (valueTotal_admissions.charAt(0) !== "-") valueTotal_admissions = "+" + valueTotal_admissions;
+      	if (valueTotal_discharged.charAt(0) !== "-") valueTotal_discharged = "+" + valueTotal_discharged;
+      	
+	      let $latest = $box.find(".latest");
+	          $latest.find(".value").text(about_sign+valueTotal);
+	          $latest.find(".unit").text(LABELS[LANG].unit[$box.attr("code")]);
+		      	$latest.find(".type").text(LABELS[LANG].total);        //capitalize($box.find(".switch[value=total]").text())
+	          $latest.find("#admissions").text(LABELS[LANG].transition.icu_entry_exit[0] + ": " + valueTotal_admissions);
+	          $latest.find("#discharged").text(LABELS[LANG].transition.icu_entry_exit[1] + ": " + valueTotal_discharged);
+      }else{
+	      //Default values
+	      let $latest = $box.find(".latest");
+	          $latest.find(".value").text(about_sign+valueTotal);
+	          $latest.find(".unit").text(LABELS[LANG].unit[$box.attr("code")]);
+		      	$latest.find(".type").text(LABELS[LANG].total);        //capitalize($box.find(".switch[value=total]").text())
+	          $latest.find(".change").text(LABELS[LANG].change + valueLatest);
+	          
+	    }
     }
 
     const drawAxisChart = ($box, mainConfigData, isStacked) => {
@@ -909,7 +944,7 @@ const init = () => {
         if (switchValue === "total") {
           value = totalValues[j];
         }
-        if (switchValue === "total" && code === "active" && value < 0) {
+        if ((switchValue === "total" && value < 0) && (code === "active")) {
           value = 0;
         }
 
@@ -1360,6 +1395,7 @@ const init = () => {
       },
       yAxis: {
           min: 0,
+          gridLineDashStyle: 'shortdash',
           title: {
               text: 'Κρούσματα'
           }
@@ -1374,8 +1410,9 @@ const init = () => {
       },
       plotOptions: {
           column: {
-              pointPadding: 0.2,
-              borderWidth: 0
+              pointPadding: 0.4,
+              borderWidth: 0,
+              pointWidth: 7
           }
       },
       series: []
@@ -1436,6 +1473,7 @@ const init = () => {
       },
       yAxis: {
           min: 0,
+          gridLineDashStyle: 'shortdash',
           title: {
               text: 'Θάνατοι'
           }
@@ -1450,8 +1488,9 @@ const init = () => {
       },
       plotOptions: {
           column: {
-              pointPadding: 0.2,
-              borderWidth: 0
+              pointPadding: 0.4,
+              borderWidth: 0,
+              pointWidth: 7
           }
       },
       series: []
@@ -1511,6 +1550,7 @@ const init = () => {
       },
       yAxis: {
           min: 0,
+          gridLineDashStyle: 'shortdash',
           title: {
               text: 'Νοσηλείες'
           }
@@ -1525,8 +1565,9 @@ const init = () => {
       },
       plotOptions: {
           column: {
-              pointPadding: 0.2,
-              borderWidth: 0
+              pointPadding: 0.4,
+              borderWidth: 0,
+              pointWidth: 7
           }
       },
       series: []
@@ -1574,6 +1615,130 @@ const init = () => {
       ret = LABELS[LANG].months[cm].substr(0, 3) + "-" + cy;
     }
     return ret;
+  }
+  
+  const drawICUChart = (prefCode) => {
+    let $wrapper = $("#icu-chart").empty().html('<canvas></canvas>');
+    let $canvas = $wrapper.find("canvas")[0];
+
+    let config = {
+      type: "horizontalBar",
+      data: {
+        labels: [],
+        datasets: [{
+          label: "",
+          backgroundColor: ["#c45850", "#5987A5"],
+          borderWidth: 0.5,
+          borderColor: "#242a3c",
+          data: []
+        }]
+      },
+      options: {
+        aspectRatio: 0.9,
+        responsive: true,
+	      legend: { display: false },
+	      title: { display: false },
+        tooltips: {
+          xPadding: 24,
+          yPadding: 12,
+          displayColors: true
+        },
+        scales: {
+          xAxes: [{
+            stacked: false,
+            position: "top",
+            gridLines: {
+              color: "rgba(255,255,255,0.2)",
+              zeroLineColor: "rgba(255,255,255,0.2)",
+              borderDash: [3, 1]
+            },
+            ticks: {
+              suggestedMin: 0,
+              fontColor: "rgba(255,255,255,0.7)",
+              callback: function(value, index, values) {
+                return addCommas(value);
+              }
+            }
+          }],
+          yAxes: [{
+            stacked: false,
+            barPercentage: 0.5,
+            gridLines: {
+              color: "rgba(255,255,255,0.1)"
+            },
+            ticks: {
+              fontColor: "rgba(255,255,255,0.7)"
+            }
+          }]
+        },
+		    hover: {
+		      "animationDuration": 0
+		    },
+		    animation: {
+		      "duration": 1,
+		      "onComplete": function() {
+		        var chartInstance = this.chart,
+		        ctx = chartInstance.ctx;
+		        
+		        ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+		        ctx.fillStyle = 'white';
+		        ctx.textAlign = 'right';
+		        ctx.textBaseline = 'bottom';
+
+		        this.data.datasets.forEach(function(dataset, i) {
+		          var meta = chartInstance.controller.getDatasetMeta(i);
+		          meta.data.forEach(function(bar, index) {
+		            var data = dataset.data[index] + "%";
+		            ctx.fillText(data, bar._model.x - 10, bar._model.y + 7);
+		          });
+		        });
+		      }
+		    },
+		    plugins: {
+		      datalabels: {
+		        anchor: 'end',
+		        align: 'top',
+		        formatter: Math.round,
+		        font: {
+		          weight: 'bold'
+		        }
+		      }
+		    },
+      }
+    };
+
+    gData.transition.icu_percentages.values.forEach(function(row, index){
+      for (let i = 0; i < 2; i++) {
+      	config.data.labels.push(LABELS[LANG].transition.icu_percentages[i]);
+      }
+    });
+    gData.transition.icu_percentages.values[0].forEach(function(row, index){
+    	config.data.datasets[0].data.push(row);
+  	});
+
+    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 2.1;
+    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 2.3;
+    let ctx = $canvas.getContext('2d');
+    
+    //Set latest date
+    const getDateWithMonthName = (dates) => {
+	     return dates[2] + " " + LABELS[LANG].months[parseInt(dates[1]) - 1];
+    }
+
+    let $updated = $('#icu_percentages').find("h5.updated");
+    if (!$updated.hasClass("show")) {
+      let lastDate = gData.transition.icu_percentages.from;
+      let updatedDate = {
+        gr: "Στις " + getDateWithMonthName(lastDate),
+        en: "As of " + getDateWithMonthName(lastDate)
+      };
+
+      $updated.text(updatedDate[LANG]);
+      $updated.addClass("show");
+    }
+    
+    
+    window.myChart = new Chart(ctx, config);
   }
   
   const drawUnemployment = (prefCode) => {
@@ -1633,33 +1798,42 @@ const init = () => {
 		          }],
 	            yAxes: [
 	                {
-	                    id: "newunemployed",
+	                    id: "totalunemployed",
+	                    position: 'left',
 	                    ticks: {
-	                    	fontColor: "rgba(255,255,255,0.7)",
-	                      beginAtZero: true,
+	                    		fontColor: "rgba(255,255,255,0.7)",
+	                        beginAtZero: true,
 	                    },
 					            gridLines: {
+					            	display: true,
 					              color: "rgba(255,255,255,0.2)",
 					              zeroLineColor: "rgba(255,255,255,0.2)",
 					              borderDash: [3, 1]
 					            },
 	                    scaleLabel: {
 	                        display: true,
-	                        labelString: LABELS[LANG].prefectures.new_unemployed
-	                      }
-	                },
-	                {
-	                    id: "totalunemployed",
-	                    position: 'right',
-	                    ticks: {
-	                    		fontColor: "rgba(255,255,255,0.7)",
-	                        beginAtZero: true,
-	                    },
-	                    scaleLabel: {
-	                        display: true,
 	                        labelString: LABELS[LANG].prefectures.total_unemployed
 	                    }
 	                },
+	                {
+	                    id: "newunemployed",
+	                    position: 'right',
+	                    ticks: {
+	                    	display: true,
+	                    	fontColor: "rgba(255,255,255,0.7)",
+	                      beginAtZero: true,
+	                    },
+					            gridLines: {
+					            	display: false,
+					              color: "rgba(255,255,255,0.2)",
+					              zeroLineColor: "rgba(255,255,255,0.2)",
+					              borderDash: [3, 1]
+					            },
+	                    scaleLabel: {
+	                        display: false,
+	                        labelString: LABELS[LANG].prefectures.new_unemployed
+	                      }
+	                }
 	            ]
 	        },
 	    }
@@ -2824,6 +2998,7 @@ const init = () => {
       drawDemographyChart_sum();
       drawDemographyChart_men();
       drawDemographyChart_women();
+      drawICUChart();
       drawGreeceMap();
       drawRegionChart("");   //disabled for now
       drawPrefectureCharts("1");

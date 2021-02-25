@@ -213,7 +213,7 @@
 	            <div class="checkboxes">
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
-	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Μερικά δεδομένα λείπουν επειδή ο EODY δεν τα ανακοίνωσε.</p>
+	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>.</p>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -301,6 +301,45 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 	            <p class="notes">Πηγή: <a href="https://www.data.gov.gr/datasets/mdg_emvolio/" target="_blank">data.gov.gr</a>. (Τα δεδομένα ανανεώνονται κάθε ημέρα μετά τις 21:00) <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	          </div>
+	        </div>
+	        <div class="flex-row">
+	          <div class="box transition nationwide" code="icu_entry_exit" pref="">
+	            <h3>Εισαγωγές/Εξιτήρια ασθενών</h3>
+	            <div class="latest">
+	              <div class="change" id="discharged"></div>
+	              <div class="change" id="admissions"></div>
+	            </div>
+	            <h5 class="updated"><br /></h5>
+	            <div class="switches">
+	              <div class="switch" value="new">ΝΕΑ</div>
+	              <div class="switch selected" value="total">ΣΥΝΟΛΟ</div>
+	            </div>
+	            <div class="charts-wrapper">
+	              <div class="main-chart-wrapper">
+	                <div class="main-chart"></div>
+	              </div>
+	              <div class="axis-chart"></div>
+	              <div class="axis-cover"></div>
+	            </div>
+	            <div><br /><br /></div>
+	            <p class="notes">Πηγή: <a href="https://covid19.gov.gr/covid19-live-analytics" target="_blank">covid19.gov.gr</a> (Οι ημερήσιες μεταβολές που αναφέρει ο ΕΟΔΥ αφορούν περιπτώσεις της προηγούμενης μέρας) <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	          </div>
+	        </div>
+	        <div class="flex-row">
+	          <div class="box" code="icu_percentages" id="icu_percentages">
+	            <h3>Κάλυψη κλινών</h3>
+	            <div class="latest">
+	              <div>
+	                <span class="type"></span>
+	                <span class="value"></span>
+	                <span class="unit"></span>
+	              </div>
+	              <div class="change"></div>
+	            </div>
+	            <h5 class="updated"></h5>
+	            <div id="icu-chart"></div>
+	            <p class="notes">Πηγή: <a href="https://covid19.gov.gr/covid19-live-analytics" target="_blank">covid19.gov.gr</a> (Οι ημερήσιες μεταβολές που αναφέρει ο ΕΟΔΥ αφορούν περιπτώσεις της προηγούμενης μέρας) <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
 	          </div>
 	        </div>
 	      </div>
@@ -730,7 +769,7 @@
 	            <div class="checkboxes">
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
-							<p class="notes">Προσθήκη όλων των ημερήσιων θετικών κρουσμάτων πριν από 17 ημέρες έως και σήμερα (Οι περισσότεροι άνθρωποι αναρρώνουν από ήπιας μορφής COVID-19 μέσα σε δύο εβδομάδες και οι πιο σοβαρές περιπτώσεις σε τρείς εβδομάδες, δίνοντας απόλυτη διάμεση τιμή το 17). Κάποια εξομάλυνση στην τελική τιμή έχει επίσης εφαρμοστεί λόγω των θετικών κρουσμάτων που βρέθηκαν στα σύνορα. <a href="#active_cases">Δείτε παρακάτω</a> για περισσότερες πληροφορίες. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+							<p class="notes">Προσθήκη όλων των ημερήσιων θετικών κρουσμάτων πριν από 17 ημέρες έως και σήμερα (Οι περισσότεροι άνθρωποι αναρρώνουν από ήπιας μορφής COVID-19 μέσα σε δύο εβδομάδες και οι πιο σοβαρές περιπτώσεις σε τρείς εβδομάδες, δίνοντας απόλυτη διάμεση τιμή το 17). Κάποια εξομάλυνση στην τελική τιμή έχει επίσης εφαρμοστεί λόγω των θανάτων και των θετικών κρουσμάτων σχετιζόμενα με ταξίδι από το εξωτερικό. <a href="#active_cases">Δείτε παρακάτω</a> για περισσότερες πληροφορίες. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -776,7 +815,7 @@
                 <div class="axis-chart"></div>
                 <div class="axis-cover"></div>
               </div>
-              <p class="notes">Πηγή: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (12-02-2021)</a>. Η διάταξη αναφέρεται στην περίπτωση που δεν ληφθούν επιπρόσθετα μέτρα. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+              <p class="notes">Πηγή: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (20-02-2021)</a>. Η διάταξη αναφέρεται στην περίπτωση που δεν ληφθούν επιπρόσθετα μέτρα. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
             </div>
           </div>
 	      </div>	
