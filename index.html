@@ -30,7 +30,7 @@
 	<link href="lib/mapsvg/css/nanoscroller.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-	<script src="js/script.min.js?version=2"></script>
+	<script src="js/script.min.js?version=3"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="lib/auto-render.min.js"></script>
 	<script src="lib/katex.min.js"></script>
@@ -702,14 +702,20 @@
 	        <div class="flex-row">
 	          <div class="box transition nationwide" code="positivity_rate" pref="">
 	            <h3>Ποσοστό θετικότητας</h3>
-	            <div class="latest">
-	              <div>
-	                <span class="type"></span>
-	                <span class="value"></span>
-	                <span class="unit"></span>
-	              </div>
-	              <div class="change"></div>
-	            </div>
+								<div class="latest" id="pos_pcr">
+									<div>
+									  <span class="type"></span>
+									  <span class="value"></span>
+									  <span class="change" style="vertical-align: super"></span>
+									</div>
+								</div>
+								<div class="latest" id="pos_combined" style="padding-top:20px">
+									<div>
+									  <span class="type"></span>
+									  <span class="value"></span>
+									  <span class="change" style="vertical-align: super"></span>
+									</div>
+								</div>
 	            <h5 class="updated"><br /></h5>
 	            <div class="charts-wrapper">
 	              <div class="main-chart-wrapper">
@@ -720,7 +726,7 @@
 	            </div>
 	            <p class="notes">Ο ημερήσιος ρυθμός θετικότητας, δίνεται με κινούμενο μέσο όρο 7 ημερών. <a href="#positive_rate">Δείτε παρακάτω</a> για περισσότερες πληροφορίες. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
 	          </div>
-	        </div> 
+	        </div>  
 	        <div class="flex-row">
 	          <div class="box transition nationwide" code="infection_fatality_rate" pref="">
 	            <h3>Υπονοούμενο ποσοστό θνητότητας (IIFR)</h3>
@@ -815,7 +821,7 @@
                 <div class="axis-chart"></div>
                 <div class="axis-cover"></div>
               </div>
-              <p class="notes">Πηγή: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (20-02-2021)</a>. Η διάταξη αναφέρεται στην περίπτωση που δεν ληφθούν επιπρόσθετα μέτρα. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+              <p class="notes">Πηγή: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (25-02-2021)</a>. Η διάταξη αναφέρεται στην περίπτωση που δεν ληφθούν επιπρόσθετα μέτρα. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
             </div>
           </div>
 	      </div>	
@@ -1092,7 +1098,7 @@
 		        </section>
 		        <section id="positive_rate">
 		          <h4>Ε. Τι είναι το ποσοστό θετικότητας (positivity rate);</h4>
-		          <p>A. Το ποσοστό θετικότητας είναι απλώς το κλάσμα των δοκιμών(τεστ) που επανέρχονται θετικά. Υπολογίζεται διαιρώντας τον αριθμό των <b style="font-weight:bold!important">θετικών εργαστηριακών δειγμάτων</b> με τον συνολικό αριθμό των τεστ που γίνανε. Επειδή σε όλους τους υπολογισμούς που πραγματοποιούμε όμως χρησιμοποιούμε μέσο όρο 7 ημερών, η παραπάνω διατύπωση διαφοροποιείτα ως εξής:<br>
+		          <p>A. Το ποσοστό θετικότητας είναι απλώς το κλάσμα των δοκιμών(τεστ) που επανέρχονται θετικά. Υπολογίζεται διαιρώντας τον αριθμό των θετικών επιβεβαιωμένων κρουσμάτων με τον συνολικό αριθμό των τεστ που γίνανε. Επειδή σε όλους τους υπολογισμούς που πραγματοποιούμε όμως χρησιμοποιούμε μέσο όρο 7 ημερών, η παραπάνω διατύπωση διαφοροποιείτα ως εξής:<br>
 		          <dt-math block>{\text{Positivity Rate}~(7day~ma)} = \frac{dailyConfirmedCases~(7day~ma)} {dailyTests~(7day~ma)}</dt-math>
 		          </p>
 		        </section>

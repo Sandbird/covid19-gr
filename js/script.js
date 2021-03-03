@@ -78,7 +78,8 @@ const LABELS = {
       rt_repro: ["Βασικός αναπαραγωγικός αριθμός"],
       rj_repro: ["Αναπαραγωγικός αριθμός"],
       infection_fatality_rate: ["IIFR"],
-      positivity_rate: ["Ποσοστό θετικότητας"]
+      positivity_rate: ["Μόνο PCR"],
+      positivity_rate_combined: ["PCR+Rapid"]
       //reproduction_rj_infected: ""
     },
     unit: {
@@ -193,7 +194,8 @@ const LABELS = {
       //reproduction_rj_infected: ["Num. of cases"],
       rt_repro: ["Effective Reproduction Number"],
       infection_fatality_rate: ["IIFR"],
-      positivity_rate: ["Positivity Rate"]
+      positivity_rate: ["Only PCR"],
+      positivity_rate_combined: ["PCR+Rapid"]
     },
     unit: {
       carriers: "",
@@ -465,6 +467,8 @@ const init = () => {
     const drawLatestValue = ($box, rows) => {
       let valueTotal  = 0;
       let valueLatest = 0;
+      let valuecombinedTotal = 0;
+      let valuecombinedLatest = 0;
 
       for (let i = 0; i < rows.length; i++) {   		
         for (let j = 0; j < rows[0].length; j++) {
@@ -504,9 +508,17 @@ const init = () => {
       }
       */
 
-      if ($box.attr("code") === "rj_repro" || $box.attr("code") === "rt_repro" || $box.attr("code") === "infection_fatality_rate" || $box.attr("code") === "positivity_rate") {
+      if ($box.attr("code") === "rj_repro" || $box.attr("code") === "rt_repro" || $box.attr("code") === "infection_fatality_rate") {
         valueTotal  = Math.round(rows[rows.length - 1][0] * 1000) / 1000;
         valueLatest = Math.round((rows[rows.length - 1][0] - rows[rows.length - 2][0]) * 1000) / 1000;
+      }
+      
+      if ($box.attr("code") === "positivity_rate") {
+        valueTotal  = Math.round(rows[rows.length - 1][0] * 1000) / 1000;
+        valueLatest = Math.round((rows[rows.length - 1][0] - rows[rows.length - 2][0]) * 1000) / 1000;
+        
+        valuecombinedTotal  = Math.round(gData.transition["positivity_rate_combined"].values[gData.transition["positivity_rate_combined"].values.length - 1][0] * 1000) / 1000;
+        valuecombinedLatest = Math.round((gData.transition["positivity_rate_combined"].values[gData.transition["positivity_rate_combined"].values.length - 1][0] - gData.transition["positivity_rate_combined"].values[gData.transition["positivity_rate_combined"].values.length - 2][0]) * 1000) / 1000;
       }
       
             
@@ -539,6 +551,21 @@ const init = () => {
 		      	$latest.find(".type").text(LABELS[LANG].total);        //capitalize($box.find(".switch[value=total]").text())
 	          $latest.find("#admissions").text(LABELS[LANG].transition.icu_entry_exit[0] + ": " + valueTotal_admissions);
 	          $latest.find("#discharged").text(LABELS[LANG].transition.icu_entry_exit[1] + ": " + valueTotal_discharged);
+      }else if ($box.attr("code") === "positivity_rate"){
+	      var $latest = $box.find("#pos_pcr");
+	     			var inject = "<span class='unit'>"+LABELS[LANG].unit[$box.attr("code")]+"</span>";
+	          $latest.find(".value").html(about_sign+valueTotal+inject);
+		      	$latest.find(".type").text("PCR: ");
+		      	$latest.find(".change").text("("+valueLatest+")");
+		      	
+	      valuecombinedTotal  = addCommas(valuecombinedTotal);
+	      valuecombinedLatest = addCommas(valuecombinedLatest);
+	      if (valuecombinedLatest.charAt(0) !== "-") valuecombinedLatest = "+" + valuecombinedLatest;
+		    var $latest = $box.find("#pos_combined");
+		    		var inject = "<span class='unit'>"+LABELS[LANG].unit[$box.attr("code")]+"</span>";
+	          $latest.find(".value").html(about_sign+valuecombinedTotal+inject);
+	          $latest.find(".type").text("PCR+Rapid: ");
+	          $latest.find(".change").text("("+valuecombinedLatest+")");
       }else{
 	      //Default values
 	      let $latest = $box.find(".latest");
@@ -647,7 +674,7 @@ const init = () => {
     drawLatestValue($box, rows);
 
 		var disableBeginAtZero = true;
-    if (code == "rt_repro" || code == "infection_fatality_rate" || code == "positivity_rate"){
+	    if (code == "rt_repro" || code == "infection_fatality_rate" || code == "positivity_rate" || code == "positivity_rate_combined"){
       disableBeginAtZero = false;
   	}
 
@@ -986,9 +1013,61 @@ const init = () => {
 
       config.data.datasets.unshift(dataset);
     }
+    
+	  	var isStacked = true;
+	  	if(code == "predicted_true_inf" || code == "positivity_rate" || code == "icu_entry_exit"){
+	  		var isStacked = false;
+	  	}	  	
+	  	//Add combined line
+	    if (code == "positivity_rate") {
+	      let dataset = {
+	        type: "line",
+	        label: LABELS[LANG].transition.positivity_rate_combined,
+	        fill: false,
+	        borderColor: "#FBA",
+	        pointBorderColor: "#EC2",
+	        pointRadius: 2,
+	        data: [],
+	        options: {
+		        scales: {
+		          xAxes: [{
+		            stacked: false,
+		            position: "top",
+		            gridLines: {
+		              color: "rgba(255,255,255,0.2)",
+		              zeroLineColor: "rgba(255,255,255,0.2)",
+		              borderDash: [3, 1]
+		            },
+		            ticks: {
+		              suggestedMin: 0,
+		              fontColor: "rgba(255,255,255,0.7)",
+		              callback: function(value, index, values) {
+		                return addCommas(value);
+		              }
+		            }
+		          }],
+		          yAxes: [{
+		            stacked: false,
+		            barPercentage: 0.5,
+		            gridLines: {
+		              color: "rgba(255,255,255,0.1)"
+		            },
+		            ticks: {
+		              fontColor: "rgba(255,255,255,0.7)"
+		            }
+		          }]
+		        },
+          }
+	      };
+	      
+		    gData.transition.positivity_rate_combined.values.forEach(function(age, i){
+		      	dataset.data.push(age[0]);
+		    });
+	      config.data.datasets.unshift(dataset);
+	    }
 
     drawLastDate($box, config);
-    drawAxisChart($box, $.extend(true, {}, config.data), true);
+    drawAxisChart($box, $.extend(true, {}, config.data), isStacked);
 
     window.myChart = new Chart($canvas.getContext('2d'), config);
   	}
@@ -1412,7 +1491,7 @@ const init = () => {
           column: {
               pointPadding: 0.4,
               borderWidth: 0,
-              pointWidth: 7
+              pointWidth: 5
           }
       },
       series: []
@@ -1490,7 +1569,7 @@ const init = () => {
           column: {
               pointPadding: 0.4,
               borderWidth: 0,
-              pointWidth: 7
+              pointWidth: 5
           }
       },
       series: []
@@ -1567,7 +1646,7 @@ const init = () => {
           column: {
               pointPadding: 0.4,
               borderWidth: 0,
-              pointWidth: 7
+              pointWidth: 5
           }
       },
       series: []

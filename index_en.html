@@ -30,7 +30,7 @@
 	<link href="lib/mapsvg/css/nanoscroller.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-	<script src="js/script.min.js?version=2"></script>
+	<script src="js/script.min.js?version=3"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="lib/auto-render.min.js"></script>
 	<script src="lib/katex.min.js"></script>
@@ -692,14 +692,20 @@
 	        <div class="flex-row">
 	          <div class="box transition nationwide" code="positivity_rate" pref="">
 	            <h3>Positivity Rate</h3>
-	            <div class="latest">
-	              <div>
-	                <span class="type"></span>
-	                <span class="value"></span>
-	                <span class="unit"></span>
-	              </div>
-	              <div class="change"></div>
-	            </div>
+								<div class="latest" id="pos_pcr">
+									<div>
+									  <span class="type"></span>
+									  <span class="value"></span>
+									  <span class="change" style="vertical-align: super"></span>
+									</div>
+								</div>
+								<div class="latest" id="pos_combined" style="padding-top:20px">
+									<div>
+									  <span class="type"></span>
+									  <span class="value"></span>
+									  <span class="change" style="vertical-align: super"></span>
+									</div>
+								</div>
 	            <h5 class="updated"><br /></h5>
 	            <div class="charts-wrapper">
 	              <div class="main-chart-wrapper">
@@ -805,7 +811,7 @@
                 <div class="axis-chart"></div>
                 <div class="axis-cover"></div>
               </div>
-              <p class="notes">Data Source: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (20-02-2021)</a></p>
+              <p class="notes">Data Source: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (25-02-2021)</a></p>
             </div>
           </div>
         </div>	
@@ -1091,7 +1097,7 @@
 	        </section>
 	        <section id="positive_rate">
 	          <h4>Q. What is the positivity rate?</h4>
-	          <p>A. The positivity rate is often thought of in terms of the share of tests that yield a positive result. In our calculations is slightly different. It is calculated as the number of confirmed cases (i.e. people with a positive result) divided by the number of PCR tests performed. These differ because people may be tested more than once. A 7-day average is used in all of our calculations, so the same applies here.
+	          <p>A. The positive rate is just the fraction of the tests that come back positive. It is calculated by dividing the number of positive confirmed cases by the total number of tests performed. A 7-day moving average is used in all of our calculations, so the same applies here.
 	          <dt-math block>{\text{Positivity Rate}~(7day~ma)} = \frac{dailyConfirmedCases~(7day~ma)} {dailyTests~(7day~ma)}</dt-math>
 	          </p>
 	        </section>
