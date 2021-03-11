@@ -1551,6 +1551,6 @@ input[type="checkbox"].ios8-switch-lg:checked + label:after {
 .mapsvg .label-bottom .mapsvg.label-ctrl{margin-bottom:10px;}
 .mapsvg .info{padding:6px 8px;font:12px/14px Arial, Helvetica, sans-serif;background:white;background:rgba(255,255,255,0.8);box-shadow:0 0 15px rgba(0,0,0,0.2);border-radius:5px;}
 .mapsvg .legend{text-align:left;line-height:18px;color:#555;}
-.mapsvg .legend i{width:18px;height:18px;float:left;margin-right:8px;opacity:0.7;}
+.mapsvg .legend i{width:1.2em;height:1.2em;float:left;margin-right:8px;opacity:0.7;}
 .mapsvg .label-bottom2 {position: absolute; bottom:0;padding-left: 105px;font-size: 10px;white-space: nowrap;}
 }

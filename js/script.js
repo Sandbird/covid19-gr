@@ -116,7 +116,7 @@ const LABELS = {
       women: "Γυναίκες",
       cases: "Κρούσμ.",
       deaths: "Θάνατοι",
-      serious: "Διασωλην."
+      serious: "Διασ."
     },
     prefectures: {
     	increasing: "αυξητική",
@@ -1164,15 +1164,19 @@ const init = () => {
               tooltipItem.forEach(function(item, i){
                 total += item.xLabel;
               });
-
               return age + ": " + total + " " + suffix[LANG];
             },
             label: function(tooltipItem, data){
+            	//mortality percentage
+              var percentage_suffix = "";
+							if(tooltipItem.datasetIndex == 1){		
+								percentage_suffix = " ("+ ((data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] / data.datasets[2].data[tooltipItem.index] * 100)).toFixed(1) + "%)";
+							}	
               let suffix = {
                 gr: "",
                 en: " cases"
               };
-              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + suffix[LANG];
+              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + percentage_suffix + suffix[LANG];
             }
           }
         },
@@ -1284,7 +1288,12 @@ const init = () => {
                 gr: "",
                 en: " cases"
               };
-              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + suffix[LANG];
+            	//mortality percentage
+              var percentage_suffix = "";
+							if(tooltipItem.datasetIndex == 1){		
+								percentage_suffix = " ("+ ((data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] / data.datasets[2].data[tooltipItem.index] * 100)).toFixed(1) + "%)";
+							}	
+              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + percentage_suffix + suffix[LANG];
             }
           }
         },
@@ -1396,7 +1405,12 @@ const init = () => {
                 gr: "",
                 en: " cases"
               };
-              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + suffix[LANG];
+            	//mortality percentage
+              var percentage_suffix = "";
+							if(tooltipItem.datasetIndex == 1){		
+								percentage_suffix = " ("+ ((data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] / data.datasets[2].data[tooltipItem.index] * 100)).toFixed(1) + "%)";
+							}	
+              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + percentage_suffix + suffix[LANG];
             }
           }
         },
