@@ -443,3 +443,13 @@ body {
 #prefectures .smallertext {
 	font-size:0.9em;
 }
+
+.fa-link {font-size: 14px; vertical-align: middle;}
+.embedwin{position:absolute;width:90%;max-width:553px;height:80%;max-height:390px;left:5%;top:5%;background-color:#FFFFFF;border:1px solid #ccc;cursor:default;display:none;margin-top: 15px;text-align:left;z-index:50;padding:1em;}
+.embedwin a {font-size: 16px; color: #333;}
+.embedwin h2, .embedwin p {color: #000; margin: 0!important;}
+.embedwin h2 {font-size: 1.2em!important }
+.embedwin p{margin-bottom:.5em; }
+.embedwin textarea{width:100%;height:70%; max-width: 100% !important; resize: vertical; max-height: 200px;}
+
+

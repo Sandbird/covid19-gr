@@ -78,7 +78,7 @@ const LABELS = {
       rt_repro: ["Βασικός αναπαραγωγικός αριθμός"],
       rj_repro: ["Αναπαραγωγικός αριθμός"],
       infection_fatality_rate: ["IIFR"],
-      positivity_rate: ["Μόνο PCR"],
+      positivity_rate: ["Μόνο με βάση τα PCR"],
       positivity_rate_combined: ["PCR+Rapid"]
       //reproduction_rj_infected: ""
     },
@@ -194,7 +194,7 @@ const LABELS = {
       //reproduction_rj_infected: ["Num. of cases"],
       rt_repro: ["Effective Reproduction Number"],
       infection_fatality_rate: ["IIFR"],
-      positivity_rate: ["Only PCR"],
+      positivity_rate: ["Using only PCR"],
       positivity_rate_combined: ["PCR+Rapid"]
     },
     unit: {
@@ -325,6 +325,50 @@ const init = () => {
       $updated.text(updatedDate[LANG]);
       $updated.addClass("show");
     }
+  }
+  
+  const drawEmbedLink = ($box) => {
+    var $embed = $box.find(".embed");
+    var $tag = $box.attr("code");
+    var $width = '520px';
+    var $height = '448px';
+    switch ($tag) {
+    	case 'prefectures-box':
+    		 $width = '100%';
+    	break;
+    	case 'icu_percentages':
+    	case 'demography_sum':
+    	case 'demography_men':
+    	case 'demography_men':
+	    	$height = '327px';
+    	break;
+    	case 'icu_entry_exit':
+	    	$height = '440px';
+    	break;
+    	case 'demography_group_cases':
+    	case 'demography_group_deaths':
+    	case 'demography_group_intensive':
+	    	$height = '500px';
+    	break;
+    	case 'rj_repro':
+    	case 'positivity_rate':
+    	case 'infection_fatality_rate':
+    	case 'predicted_deaths':
+	    	$height = '357px';
+    	break;
+    	case 'predicted_true_inf':
+	    	$height = '405px';
+    	break;
+    	case 'unemployment':
+    		$width = '100%';
+	    	$height = '395px';
+    	break;
+    	case 'map-box':
+	    	$height = '535px';
+    	break;
+    }
+    var prepare = '<iframe src="https://covid19-greece.tk/embed/?by=code&tag='+$box.attr("code")+'&lang='+LANG+'" loading="lazy" style="width: '+$width+'; height: '+$height+'; border: 0px none;"></iframe>';
+    $embed.val(prepare);
   }
 
   const drawTransitionChart = ($box, code, prefCode, hasDuration = false) => {
@@ -1067,6 +1111,7 @@ const init = () => {
 	    }
 
     drawLastDate($box, config);
+    drawEmbedLink($box);
     drawAxisChart($box, $.extend(true, {}, config.data), isStacked);
 
     window.myChart = new Chart($canvas.getContext('2d'), config);
@@ -1097,6 +1142,10 @@ const init = () => {
 
   const getPrefColor = (pref) => {
     let type = $("#select-pref-type").val();
+    if(typeof type !== "undefined"){
+    }else{
+    	type = 'carriers';
+    }
     let ret = "rgba(90, 90, 90, 0.6)";
     let value = getValuesTotal(gData["prefectures-data"][parseInt(pref.code) - 1][type].values, pref.code);
 
@@ -1112,6 +1161,7 @@ const init = () => {
   const drawDemographyChart_sum = () => {
     $wrapper = $("#demography-chart").empty().html('<canvas></canvas>');
     $canvas = $wrapper.find("canvas")[0];
+    let $box = $("#demography-box");
 
     let config = {
       type: "horizontalBar",
@@ -1221,13 +1271,17 @@ const init = () => {
       }
     });
 
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
+		if(typeof $canvas !== "undefined"){
+    	let ctx = $canvas.getContext('2d');
+    	window.myChart = new Chart(ctx, config);
+  	}
+  	drawEmbedLink($box);
   }
   
   const drawDemographyChart_men = () => {
     $wrapper = $("#demography-chart-men").empty().html('<canvas></canvas>');
     $canvas = $wrapper.find("canvas")[0];
+    let $box = $("#demography-box-men");
 
     let config = {
       type: "horizontalBar",
@@ -1338,13 +1392,17 @@ const init = () => {
       }
     });
 
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
+		if(typeof $canvas !== "undefined"){
+    	let ctx = $canvas.getContext('2d');
+    	window.myChart = new Chart(ctx, config);
+  	}
+  	drawEmbedLink($box);
   }
   
   const drawDemographyChart_women = () => {
     $wrapper = $("#demography-chart-women").empty().html('<canvas></canvas>');
     $canvas = $wrapper.find("canvas")[0];
+    let $box = $("#demography-box-women");
 
     let config = {
       type: "horizontalBar",
@@ -1455,8 +1513,11 @@ const init = () => {
       }
     });
 
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
+		if(typeof $canvas !== "undefined"){
+    	let ctx = $canvas.getContext('2d');
+    	window.myChart = new Chart(ctx, config);
+  	}
+  	drawEmbedLink($box);
   }
   
 	const replacechars = function(c){
@@ -1465,8 +1526,7 @@ const init = () => {
 	};
   
   const drawDemographyChart_group_cases = () => {
-    $wrapper = $("#demography-chart-group-cases").empty().html('<canvas></canvas>');
-    $canvas = $wrapper.find("canvas")[0];
+    let $box = $("#demography-box-group-cases");
     
     let config = {
       navigation: {
@@ -1539,12 +1599,14 @@ const init = () => {
       }
     });
 		*/
-    $('#demography-chart-group-cases').highcharts(config);
+		if($("#demography-chart-group-cases").length != 0) {
+    	$('#demography-chart-group-cases').highcharts(config);
+  	}
+  	drawEmbedLink($box);
 	}
 	
   const drawDemographyChart_group_deaths = () => {
-    $wrapper = $("#demography-chart-group-deaths").empty().html('<canvas></canvas>');
-    $canvas = $wrapper.find("canvas")[0];
+    let $box = $("#demography-box-group-deaths");
     
     let config = {
       navigation: {
@@ -1616,12 +1678,14 @@ const init = () => {
       }
     });
 		*/
-    $('#demography-chart-group-deaths').highcharts(config);
+		if($("#demography-chart-group-deaths").length != 0) {
+    	$('#demography-chart-group-deaths').highcharts(config);
+  	}
+  	drawEmbedLink($box);
 	}
 	
   const drawDemographyChart_group_intensive = () => {
-    $wrapper = $("#demography-chart-group-intensive").empty().html('<canvas></canvas>');
-    $canvas = $wrapper.find("canvas")[0];
+    let $box = $("#demography-box-group-intensive");
     
     let config = {
       navigation: {
@@ -1683,7 +1747,10 @@ const init = () => {
       });
     });
 
-    $('#demography-chart-group-intensive').highcharts(config);
+		if($("#demography-chart-group-intensive").length != 0) {
+    	$('#demography-chart-group-intensive').highcharts(config);
+  	}
+  	drawEmbedLink($box);
 	}
 	
   const getMonthValue = (from, i) => {
@@ -1713,6 +1780,7 @@ const init = () => {
   const drawICUChart = (prefCode) => {
     let $wrapper = $("#icu-chart").empty().html('<canvas></canvas>');
     let $canvas = $wrapper.find("canvas")[0];
+    let $box = $("#icu_percentages");
 
     let config = {
       type: "horizontalBar",
@@ -1811,7 +1879,6 @@ const init = () => {
 
     if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 2.1;
     if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 2.3;
-    let ctx = $canvas.getContext('2d');
     
     //Set latest date
     const getDateWithMonthName = (dates) => {
@@ -1831,10 +1898,15 @@ const init = () => {
     }
     
     
-    window.myChart = new Chart(ctx, config);
+		if(typeof $canvas !== "undefined"){
+    	let ctx = $canvas.getContext('2d');
+    	window.myChart = new Chart(ctx, config);
+  	}
+  	drawEmbedLink($box);
   }
   
   const drawUnemployment = (prefCode) => {
+  	let $box = $("#unemployment");
     let $wrapper = $("#unemployment-chart").empty().html('<canvas></canvas>');
     let $canvas = $wrapper.find("canvas")[0];
     let dataType = $("#select-unemp-type").val();
@@ -1931,8 +2003,6 @@ const init = () => {
 	        },
 	    }
     };
-
-
  
     let prefs = [];
     //Create labels. Just take the 1st From date and incr. months by size
@@ -1961,8 +2031,11 @@ const init = () => {
     if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 1.3;
     //if (prefCode !== "") config.options.animation.duration = 0;
 
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
+		if(typeof $canvas !== "undefined"){
+    	let ctx = $canvas.getContext('2d');
+    	window.myChart = new Chart(ctx, config);
+  	}
+  	drawEmbedLink($box);
   }
   
   const drawGreeceMap = () => {
@@ -1989,7 +2062,7 @@ const init = () => {
 		];
 
 		// Create the chart
-		Highcharts.mapChart('greece-map', {
+    let config = {
         navigation: {
             buttonOptions: {
                 enabled: false
@@ -2078,7 +2151,11 @@ const init = () => {
 	            }
           	}
 		    }]
-		});
+		};
+		
+		if($("#greece-map").length != 0) {
+			Highcharts.mapChart('greece-map', config);
+		}
 
   }
   
@@ -2172,8 +2249,10 @@ const init = () => {
         config.data.datasets[i].data.push(age[i]);
       }
     });
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
+		if(typeof $canvas !== "undefined"){
+    	let ctx = $canvas.getContext('2d');
+    	window.myChart = new Chart(ctx, config);
+  	}
   }
   
 	//krousmata kata fulo
@@ -2286,8 +2365,10 @@ const init = () => {
       }
     });
 
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
+		if(typeof $canvas !== "undefined"){
+    	let ctx = $canvas.getContext('2d');
+    	window.myChart = new Chart(ctx, config);
+  	}
   }
   
   const drawDemographyChart_deaths = () => {
@@ -2399,8 +2480,10 @@ const init = () => {
       }
     });
 
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
+		if(typeof $canvas !== "undefined"){
+    	let ctx = $canvas.getContext('2d');
+    	window.myChart = new Chart(ctx, config);
+  	}
   }
 
   const drawDemographyChart_serious = () => {
@@ -2511,11 +2594,14 @@ const init = () => {
       }
     });
 
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
+		if(typeof $canvas !== "undefined"){
+    	let ctx = $canvas.getContext('2d');
+    	window.myChart = new Chart(ctx, config);
+  	}
   }
   
   const drawPrefectureDetails = () => {
+  	 let $box = $("#prefectures-box");
 		//This table shows a red, yellow, green scale so you can see progress by key measures by state. Covid+ is the number of positive Covid-19 test cases. ICU capacity is red &gt; 90%, yellow &gt; 70%, green &lt; 70%. Test target is based on a 500K/day goal. 
 		//Increasing or decreasing describes the overall Covid+ trend. 
 		//Covid+ % is red > 15%, yellow > 5%, green > 5%.
@@ -2605,6 +2691,7 @@ const init = () => {
 		});
 			
 		$("#pref-updated").text(gData.updated.lastprefecture[LANG]);
+		drawEmbedLink($box);
   }
   
 	const initPopup = () => {
@@ -2862,6 +2949,10 @@ const init = () => {
     let $wrapper = $("#region-chart").empty().html('<canvas></canvas>');
     let $canvas = $wrapper.find("canvas")[0];
     let dataType = $("#select-pref-type").val();
+    if(typeof dataType !== "undefined"){
+    }else{
+    	dataType = 'carriers';
+    }
 
     let config = {
       type: "horizontalBar",
@@ -2965,8 +3056,10 @@ const init = () => {
       }
     });
 
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
+		if(typeof $canvas !== "undefined"){
+    	let ctx = $canvas.getContext('2d');
+    	window.myChart = new Chart(ctx, config);
+  	}
   }
 
   const drawPrefectureCharts = (prefCode) => {
@@ -2992,6 +3085,7 @@ const init = () => {
   }
   
   const initMap = () => {
+  	let $box = $("#map-box");
 		let dataset = [];
 		let maxsize;
 		let mapsvg;
@@ -3029,49 +3123,52 @@ const init = () => {
 		});
 		
 		//////////////////
-		var mapsvgobj = $("#mapsvg").mapSvg({width: "100%",height: "100%",colors: {baseDefault: "#000000",background: "#242A3C",selected: 0,hover: 20,directory: "#fafafa",status: {}},viewBox: [0,-1.8823751724135036,6843.8384,6761.240350344827],tooltips: {mode: "id",on: false,priority: "local",position: "bottom-right"}, source: "lib/mapsvg/maps/not-calibrated\\greece.svg",title: "Not-calibrated\\greece",responsive: true,afterLoad: function(
-		) {
-		  mapsvg = this;
-		  $(".map").show();
+		if($("#mapsvg").length != 0) {
+			var mapsvgobj = $("#mapsvg").mapSvg({width: "100%",height: "100%",colors: {baseDefault: "#000000",background: "#242A3C",selected: 0,hover: 20,directory: "#fafafa",status: {}},viewBox: [0,-1.8823751724135036,6843.8384,6761.240350344827],tooltips: {mode: "id",on: false,priority: "local",position: "bottom-right"}, source: "/lib/mapsvg/maps/not-calibrated\\greece.svg",title: "Not-calibrated\\greece",responsive: true,afterLoad: function(
+			) {
+			  mapsvg = this;
+			  $(".map").show();
 
-		  $( "#slider" ).slider({
-		    range: false,
-		    min: 0,
-		    max: maxsize - 1,
-		    step: 1,
-		    //values: [0],
-		    slide: function( event, ui ) 
-		    {
-		    	mapChange(event, ui);
-		    },
-		    change: function(event, ui) {
-		    	mapChange(event, ui);
-		    },
-		    create: function(event, ui){
-		        $(this).slider('value', maxsize - 1);
-		    }
-		  });
-		  
-		  var pausebool = false;
-		  var intv;
-			var	$pause = $("#pause");				  
-		  $pause.on("click", function() {
-		    pausebool = (pausebool) ? false : true;
-		    if (pausebool == false) {
-		      clearInterval(intv);
-		      $pause.html("Play");
-		    }else{
-			    intv = setInterval(function() {
-			      var cv = $("#slider").slider("value");
-				    var nextValue = (parseInt(cv) + 1);
-			      $("#slider").slider("value", nextValue);
-			      $("#sliderval").val(nextValue);
-			      $pause.html("Pause");
-			    }, 200);
-		    }
-		  });
-		  $( "#date_txt" ).text(endday);
-		}});
+			  $( "#slider" ).slider({
+			    range: false,
+			    min: 0,
+			    max: maxsize - 1,
+			    step: 1,
+			    //values: [0],
+			    slide: function( event, ui ) 
+			    {
+			    	mapChange(event, ui);
+			    },
+			    change: function(event, ui) {
+			    	mapChange(event, ui);
+			    },
+			    create: function(event, ui){
+			        $(this).slider('value', maxsize - 1);
+			    }
+			  });
+			  
+			  var pausebool = false;
+			  var intv;
+				var	$pause = $("#pause");				  
+			  $pause.on("click", function() {
+			    pausebool = (pausebool) ? false : true;
+			    if (pausebool == false) {
+			      clearInterval(intv);
+			      $pause.html("Play");
+			    }else{
+				    intv = setInterval(function() {
+				      var cv = $("#slider").slider("value");
+					    var nextValue = (parseInt(cv) + 1);
+				      $("#slider").slider("value", nextValue);
+				      $("#sliderval").val(nextValue);
+				      $pause.html("Pause");
+				    }, 200);
+			    }
+			  });
+			  $( "#date_txt" ).text(endday);
+			}});
+		}
+		drawEmbedLink($box);
 		/////////////////
   }
 
@@ -3171,4 +3268,37 @@ function isInt(value) {
 
 $(function(){
   init();
+  
+  //Embed popup action
+  //Remove this and all references to drawEmbedLink if you dont need it.
+  //Also <div class="embedwin">...</div> references in the index files.
+  //Or just do $('.embedbut').hide();
+  function deselect(e) {
+	  $('.embedwin').slideFadeToggle(function() {
+	    e.removeClass('selected');
+	  });    
+	}
+
+	$(function() {
+	  $('.embedbut').on('click', function() {
+	    if($(this).hasClass('selected')) {
+	      deselect($(this));               
+	    } else {
+	      $(this).addClass('selected');
+	      $('.embedwin').slideFadeToggle();
+	    }
+	    return false;
+	  });
+
+	  $('.close').on('click', function() {
+	    deselect($('.embedbut'));
+	    return false;
+	  });
+	});
+
+	$.fn.slideFadeToggle = function(easing, callback) {
+	  return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
+	};
+	//Embed
+	//////////////////
 });

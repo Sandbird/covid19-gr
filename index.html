@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="css/reset.css"/>
 	<link rel="stylesheet" href="css/modal.css"/>
 	<link rel="stylesheet" href="css/style.min.css"/>
+	<link rel="stylesheet" href="css/stylebars.css"/>
 	<link rel="stylesheet" href="css/table.css"/>
 	<link rel="stylesheet" href="css/jquery.tablesorter/theme.blackice.min.css">
 	<link rel="stylesheet" href="css/simptip.min.css"/>
@@ -30,7 +31,7 @@
 	<link href="lib/mapsvg/css/nanoscroller.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-	<script src="js/script.min.js?version=3"></script>
+	<script src="js/script.min.js?version=4"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="lib/auto-render.min.js"></script>
 	<script src="lib/katex.min.js"></script>
@@ -98,7 +99,7 @@
 	      <p class="updated-last"><br /></p>
 	    </div>
 	    <div id="main-block">
-	      <h2>Η Εξέλιξη των Κρουσμάτων</h2>
+	      <h2>Η Εξέλιξη των Κρουσμάτων <i class="fas fa-link embedbut"></i></h2>
 	      <div class="flex-container">
 	        <div class="flex-row">
 	          <div class="box transition nationwide" code="carriers" pref="">
@@ -127,6 +128,7 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Στις <span style="color:#8FBDE0">28 Μαρτίου</span>, όλες οι πτήσεις προς και από τη Γερμανία και την Ολλανδία, εξαιρουμένων των πτήσεων από τη Γερμανία προς την Αθήνα, τέθηκαν σε αναστολή. Στις <span style="color:#AADCD2">1η Ιουνίου</span> συνεχίστηκαν οι διεθνείς πτήσεις προς και από το Διεθνές Αεροδρόμιο Αθηνών για τις χώρες της ΕΕ+, εξαιρουμένων των πτήσεων μεταξύ Ελλάδας και Ιταλίας, Ισπανίας, Σουηδίας, Ηνωμένου Βασιλείου και Ολλανδίας. Στις <span style="color:#88BBAA">15 Ιουνίου</span> συνεχίστηκαν οι διεθνείς πτήσεις μεταξύ Ελλάδας και Αλβανίας, Ιταλίας, Βόρειας Μακεδονίας, Ισπανίας και Ολλανδίας, καθώς επίσης και οι διεθνείς πτήσεις από και προς το αεροδρόμιο Μακεδονία Θεσσαλονίκης. Επίσης, άνοιξαν ξανά τα σύνορα με τη Βουλγαρία για όλα τα μη απαραίτητα ταξίδια. Στις <span style="color:#BBCDB3">1η Ιουλίου</span> συνεχίστηκαν οι διεθνείς πτήσεις μεταξύ Ελλάδας και Αλγερίας, Αυστραλίας, Καναδά, Γεωργίας, Ιαπωνίας, Μαυροβουνίου, Μαρόκου, Νέας Ζηλανδίας, Ρουάντα, Σερβίας, Νότιας Κορέας, Ταϊλάνδης, Τυνησίας και Ουρουγουάης. Επίσης, ξεκίνησαν τα διεθνή θαλάσσια ταξίδια μεταξύ Ιταλίας, Πατρών και Ηγουμενίτσας. Στις <span style="color:#DFEA8B">15 Ιουλίου</span> άνοιξαν τα σύνορα για Σέρβους πολίτες, και οι διεθνείς πτήσεις μεταξύ Ελλάδας και Ηνωμένου Βασιλείου. Στις <span style="color:#689AAB">20 Ιουλίου</span> συνεχίστηκαν οι διεθνείς πτήσεις μεταξύ Ελλάδας και Σουηδίας. Στις <span style="color:#BADDAD">15 Αυγούστου</span> συνεχίστηκαν οι διεθνείς πτήσεις μεταξύ Ελλάδας και Αλβανίας, Βόρειας Μακεδονίας, και Τουρκίας. Στις <span style="color:#3DC">14 Σεπτεμβρίου</span> άνοιξαν τα σχολεία. Στις <span style="color:#3BA9B0">07 Νοεμβρίου</span> ξεκίνησε το 2o Lockdown. <a href="#discrepancies">Δείτε παρακάτω</a> για περισσότερες πληροφορίες.<a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -156,6 +158,7 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. <a href="#negative">Δείτε παρακάτω</a> για περισσότερες πληροφορίες.</p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -185,6 +188,7 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a></p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -214,6 +218,7 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>.</p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -243,6 +248,7 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Στις <span style="color:#3DC">6 Σεπτεμβρίου</span> ο ΕΟΔΥ σταμάτησε την ενημέρωση για τον αριθμό των κρουσμάτων που βρέθηκαν θετικά. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -271,7 +277,8 @@
 	            <div class="checkboxes">
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
-	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. </p>
+	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>.</p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -301,6 +308,7 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 	            <p class="notes">Πηγή: <a href="https://www.data.gov.gr/datasets/mdg_emvolio/" target="_blank">data.gov.gr</a>. (Τα δεδομένα ανανεώνονται κάθε ημέρα μετά τις 21:00) <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -324,6 +332,7 @@
 	            </div>
 	            <div><br /><br /></div>
 	            <p class="notes">Πηγή: <a href="https://covid19.gov.gr/covid19-live-analytics" target="_blank">covid19.gov.gr</a> (Οι ημερήσιες μεταβολές που αναφέρει ο ΕΟΔΥ αφορούν περιπτώσεις της προηγούμενης μέρας) <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -340,33 +349,37 @@
 	            <h5 class="updated"></h5>
 	            <div id="icu-chart"></div>
 	            <p class="notes">Πηγή: <a href="https://covid19.gov.gr/covid19-live-analytics" target="_blank">covid19.gov.gr</a> (Οι ημερήσιες μεταβολές που αναφέρει ο ΕΟΔΥ αφορούν περιπτώσεις της προηγούμενης μέρας) <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	      </div>
-	      <h2 id="age_distribution">Ηλικιακές κατανομές κρουσμάτων</h2>
+	      <h2 id="age_distribution">Ηλικιακές κατανομές κρουσμάτων <i class="fas fa-link embedbut"></i></h2>
 	      <div class="flex-container">
 	        <div class="flex-row">
-	          <div class="box" id="demography-box">
+	          <div class="box" id="demography-box" code="demography_sum">
 	            <h3>Ποσοστιαία κατανομή (σύνολο)</h3>
 	            <h5 class="updated-demography-sum"><br></h5>
 	            <div id="demography-chart"></div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Τα στοιχεία αφορούν τα κρούσματα εκείνα για τα οποία είναι γνωστή και επιβεβαιωμένη η ηλικία τους. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
-	          <div class="box" id="demography-box-men">
+	          <div class="box" id="demography-box-men" code="demography_men">
 	            <h3>Ποσοστιαία κατανομή (άνδρες)</h3>
 	            <h5 class="updated-demography-men"><br></h5>
 	            <div id="demography-chart-men"></div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Τα στοιχεία αφορούν τα κρούσματα εκείνα για τα οποία είναι γνωστή και επιβεβαιωμένη η ηλικία τους. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
-	          <div class="box" id="demography-box-women">
+	          <div class="box" id="demography-box-women" code="demography_women">
 	            <h3>Ποσοστιαία κατανομή (γυναίκες)</h3>
 	            <h5 class="updated-demography-women"><br></h5>
 	            <div id="demography-chart-women"></div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Τα στοιχεία αφορούν τα κρούσματα εκείνα για τα οποία είναι γνωστή και επιβεβαιωμένη η ηλικία τους. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -396,6 +409,7 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>.</p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -425,6 +439,7 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>.</p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -454,6 +469,7 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>.</p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -483,6 +499,7 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>.</p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -512,6 +529,7 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>.</p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -541,6 +559,7 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>.</p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -570,6 +589,7 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>.</p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -599,6 +619,7 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>.</p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -628,40 +649,34 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 	            <p class="notes">Πηγή: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>.</p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
-	        <!--
 	        <div class="flex-row">
-	          <div class="box" id="demography-box-radar">
-	            <h3>Κρούσματα κατά φύλο</h3>
-	            <h5 class="updated-demography-radar"><br></h5>
-	            <div id="demography-chart-radar"></div>
-	            <p class="notes"></p>
-	          </div>
-	        </div>
-	        -->
-	        <div class="flex-row">
-	          <div class="box" id="demography-box-group-cases">
+	          <div class="box" id="demography-box-group-cases" code="demography_group_cases">
 	            <h3>Κρούσματα κατά φύλο (σύνολο)</h3>
               <h5 class="updated_dont_show"><br /></h5>
 	            <div id="demography-chart-group-cases"></div>
 	            <p class="notes"></p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
-	          <div class="box" id="demography-box-group-deaths">
+	          <div class="box" id="demography-box-group-deaths" code="demography_group_deaths">
 	            <h3>Θάνατοι κατά φύλο (σύνολο)</h3>
               <h5 class="updated_dont_show"><br /></h5>
 	            <div id="demography-chart-group-deaths"></div>
 	            <p class="notes"></p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
-	          <div class="box" id="demography-box-group-intensive">
+	          <div class="box" id="demography-box-group-intensive" code="demography_group_intensive">
 	            <h3>Νοσηλείες κατά φύλο (σύνολο)</h3>
               <h5 class="updated_dont_show"><br /></h5>
 	            <div id="demography-chart-group-intensive"></div>
 	            <p class="notes"></p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <!--
@@ -675,7 +690,7 @@
 	        </div>
 	        -->
 	      </div>
-	      <h2 id="predictions">Προβλέψεις/Εκτιμήσεις</h2>
+	      <h2 id="predictions">Προβλέψεις/Εκτιμήσεις <i class="fas fa-link embedbut"></i></h2>
 	      <div class="flex-container">
 	        <div class="flex-row">
 	          <div class="box transition nationwide" code="rj_repro" pref="">
@@ -697,6 +712,7 @@
 	              <div class="axis-cover"></div>
 	            </div>
 	            <p class="notes">Η καμπύλη επιδημίας που εμφανίζεται περιλαμβάνει όλα τα καταγεγραμμένα κρούσματα που έχουν ανατεθεί στην εκτιμώμενη ημερομηνία έναρξης των συμπτωμάτων τους. Ο μαθηματικός αλγόριθμος χρησιμοποιεί: Με βάση τα επιλεγμένα δεδομένα, έχουν εφαρμοστεί <dt-math>\Delta(=5)</dt-math> (ένας μέσος όρος μετατόπισης σε ημέρες για την εκχώρηση των κρουσμάτων στην εκτιμώμενη ημερομηνία έναρξης των συμπτωμάτων), <dt-math>numofincubationdays=5</dt-math> (αριθμός επώασης σε ημέρες), <dt-math>infectivityperiodDays=5</dt-math> (περίοδο μολυσματικότητας σε ημέρες). <a href="#rj-notes">Δείτε παρακάτω</a> για περισσότερες πληροφορίες. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -725,6 +741,7 @@
 	              <div class="axis-cover"></div>
 	            </div>
 	            <p class="notes">Ο ημερήσιος ρυθμός θετικότητας, δίνεται με κινούμενο μέσο όρο 7 ημερών. <a href="#positive_rate">Δείτε παρακάτω</a> για περισσότερες πληροφορίες. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>  
 	        <div class="flex-row">
@@ -747,6 +764,7 @@
 	              <div class="axis-cover"></div>
 	            </div>
 	            <p class="notes">Χρησιμοποιώντας τις εκτιμήσεις των «πραγματικών» κρουσμάτων μπορούμε να υπολογίσουμε το υπονοούμενο ποσοστό θνητότητας (IIFR), λαμβάνοντας τους αναφερόμενους θανάτους από 28 ημέρες στο μέλλον (μέσο όρο 7 ημερών) και διαιρώντας τον αριθμό αυτό με τις «πραγματικές» λοιμώξεις (μέσο όρο 7 ημερών). Σημειώστε ότι η χρήση του όρου IFR αναφέρεται σε αληθινούς θανάτους διαιρεμένους με αληθινές λοιμώξεις. <b>Δεν είναι προσαρμοσμένος ηλικιακά</b>. Ως αποτέλεσμα, εάν υπάρχει ένας αυξανόμενος επιπολασμός της νόσου σε έναν νεότερο πληθυσμό, τότε το IFR θα μειωθεί, παρά του ότι η θνησιμότητα του ιού παραμένει αμετάβλητη σε μια συγκεκριμένη ηλικιακή ομάδα. <a href="#ifr_notes">Δείτε παρακάτω</a> για περισσότερες πληροφορίες. <a href="https://covid19-projections.com/about/#infection-fatality-rate-ifr" target="_blank">covid19-projections.com</a> για όλες τις υποθέσεις που έγιναν για τον ορισμό της τιμής. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+	            <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div> 
 	        <div class="flex-row">
@@ -776,6 +794,7 @@
 	              <div class="checkbox moving-average on"><div><div></div></div>Εμφάνιση κινούμενου μέσου όρου</div>
 	            </div>
 							<p class="notes">Προσθήκη όλων των ημερήσιων θετικών κρουσμάτων πριν από 17 ημέρες έως και σήμερα (Οι περισσότεροι άνθρωποι αναρρώνουν από ήπιας μορφής COVID-19 μέσα σε δύο εβδομάδες και οι πιο σοβαρές περιπτώσεις σε τρείς εβδομάδες, δίνοντας απόλυτη διάμεση τιμή το 17). Κάποια εξομάλυνση στην τελική τιμή έχει επίσης εφαρμοστεί λόγω των θανάτων και των θετικών κρουσμάτων σχετιζόμενα με ταξίδι από το εξωτερικό. <a href="#active_cases">Δείτε παρακάτω</a> για περισσότερες πληροφορίες. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+							<div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	        <div class="flex-row">
@@ -801,6 +820,7 @@
 	              <div class="axis-cover"></div>
 	            </div>
 							<p class="notes">Η βασική ιδέα πίσω από τη μέθοδο που παραγάγει τις παραπάνω τιμές είναι ότι μπορούμε να χρησιμοποιήσουμε το <a href="#positive_rate">ποσοστό θετικότητας (positivity rate)</a> για να προσδιορίσουμε περίπου την αναλογία των πραγματικών μολύνσεων προς τις αναφερόμενες από τον ΕΟΔΥ περιπτώσεις. Η υπόθεση είναι ότι όσο αυξάνεται ο ρυθμός θετικότητας, τόσο υψηλότερος είναι ο πραγματικός επιπολασμός σε μια περιοχή σε σχέση με τις αναφερόμενες περιπτώσεις. Για όλες τις τιμές, χρησιμοποιήθηκε μέσος όρος 7 ημερών επιβεβαιωμένων περιπτώσεων και ποσοστών θετικότητας. <a href="#true_infection">Δείτε παρακάτω</a> για περισσότερες πληροφορίες. <a href="https://covid19-projections.com/estimating-true-infections/" target="_blank">covid19-projections.com</a> για όλες τις υποθέσεις που έγιναν για τον ορισμό της τιμής. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+							<div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>	   			
           <div class="flex-row">
@@ -821,12 +841,13 @@
                 <div class="axis-chart"></div>
                 <div class="axis-cover"></div>
               </div>
-              <p class="notes">Πηγή: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (25-02-2021)</a>. Η διάταξη αναφέρεται στην περίπτωση που δεν ληφθούν επιπρόσθετα μέτρα. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+              <p class="notes">Πηγή: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (06-03-2021)</a>. Η διάταξη αναφέρεται στην περίπτωση που δεν ληφθούν επιπρόσθετα μέτρα. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+              <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
             </div>
           </div>
 	      </div>	
 	      <div class="flex-container">
-	        <div class="flex-row">
+	        <div class="flex-row" id="prefectures-tab">
 	          <h2 id="prefecturestab">Περιφέρειες</h2>
 	          <select id="select-pref-type">
 	            <option value="carriers">Κρούσματα</option>
@@ -949,8 +970,8 @@
 	          </div>
 	      	</div>
 	        <div class="flex-row t12">
-	          <div class="box transition nationwide" code="unemployment" pref="">
-		          <h3>Ανεργία
+	          <div class="box transition nationwide" id="unemployment" code="unemployment" pref="">
+		          <h3>Ανεργία <i class="fas fa-link embedbut"></i>
 	    				<span class="features simptip-position-right simptip-multiline" data-tooltip="Νέες αιτήσεις ανέργων για επιδότηση / Σύνολο ανέργων ανά Περιφέρεια">
 	    				<i class="fa fa-info-circle text-info fa-1x info-cursor pl-1 mb-2"></i></span>
 		          </h3>
@@ -972,17 +993,18 @@
 		          </select>
 	            <div id="unemployment-chart"></div>
 		          <p class="notes">Πηγή: <a href="http://www.oaed.gr/statistika-stoicheia-ana-mena" target="_blank">oaed.gr</a>.</p>
+		          <div class="embedwin" style="top:20px;left: 20px"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	          </div>
 	        </div>
 	    	</div>
 	    	<div class="flex-container">
 	    		<div class="flex-row t12">
-	    			<h2 id="perprefecture">Ανά Νομό 
+	    			<h2 id="perprefecture">Ανά Νομό <i class="fas fa-link embedbut"></i>
 	    				<span class="features simptip-position-right simptip-multiline" data-tooltip="Τα χρώματα των Νομών αποτυπώνουν την επιδημιολογική κατάσταση με βάση το covid19.gov.gr. Η 14μερη τάση χωρίζεται σε 3 κατηγορίες: κόκκινη >5%, κίτρινη >0% και <5%, πράσινη <0%. Οι τιμές της στήλης 'Τελευταίες 14 μέρες' είναι οι δύο κ.μ.ο (7 ημερ.) 14 ημέρες πριν και σήμερα, και χρησιμοποιούνται στο να βρεθεί η ποσοστιαία αύξηση της 14μερης τάσης (Ποσοστό αύξησης = [(Τελική τιμή - Αρχική τιμή) / Αρχική τιμή)×100]). Τα κρούσματα ανά 100.000 κατοίκους βασίζονται στον αριθμό των νέων κρουσμάτων ανά 100.000 κατοίκους κ.μ.ο (7 ημερ.), τις τελευταίες 14 ημέρες. Η τιμή Rj υπολογίζεται χωρίς κάποια εξομάλυνση στις τιμές των κρουσμάτων, προκύπτει δηλαδή από τις απόλυτες τιμές των ημερήσιων κρουσμάτων.">
 	    				<i class="fa fa-info-circle text-info fa-1x info-cursor pl-1 mb-2"></i></span>
 	    				<span><small id="pref-updated"></small></span>
 	    				</h2>
-	    			<div class="box" id="prefectures-box">
+	    			<div class="box" id="prefectures-box" code="prefectures-box">
 							<span><input id="search-nomous" type="text" placeholder="Αναζήτηση.."></span>
 							<table class="table tablesorter table-responsive" id="prefectures">
 								<thead>
@@ -999,14 +1021,15 @@
 								</thead>
 								<tbody id="tbodyid">
 								</tbody>
+								<div class="embedwin" style="top:20px;left: 15px"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 							</table>
 	    			</div>
 	    		</div>
 	    	</div>
 	    	<div class="flex-container" id="maptab">
 	    		<div class="flex-row t12">
-	    			<h2>Χάρτης επίπτωσης ημερ. κρουσμάτων</h2>
-	    			<div id="map-box" class="box map stretch mapsvg-panel-left">
+	    			<h2>Χάρτης επίπτωσης ημερ. κρουσμάτων <i class="fas fa-link embedbut"></i></h2>
+	    			<div id="map-box" class="box map stretch mapsvg-panel-left" code="map-box">
 							<div width="100%" class="mapwrapper">
 								<div id="mapsvg">
 									<div class="label-bottom label-left">
@@ -1035,6 +1058,7 @@
 								  <div id="r"><button id="pause">Play</button></div>
 								</div>
 							</div>
+							<div class="embedwin" style="top:0px;left: 15px; max-height:312px"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
 	    			</div>
 	    		</div>
 	    	</div>
