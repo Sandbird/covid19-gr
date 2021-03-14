@@ -7,7 +7,7 @@ include('simple_html_dom.php');
 $tag  = (isset($_GET['tag'])) ? $_GET['tag'] : "carriers"; //by default show daily cases
 $lang = (isset($_GET['lang'])) ? $_GET['lang'] : "gr";		 //b.d show greek version
 $by = (isset($_GET['by'])) ? $_GET['by'] : "code";				 //b.d select code elements
-$file = ($lang == 'en') ? '_en' : "_local";
+$file = ($lang == 'en') ? '_en' : "";
 $source_txt = ($lang == "gr") ? "Πηγή" : "Source";
 
 function getBodyContent($doc, $elem)
