@@ -31,7 +31,7 @@
 	<link href="lib/mapsvg/css/nanoscroller.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-	<script src="js/script.min.js?version=4"></script>
+	<script src="js/script.min.js?version=5"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="lib/auto-render.min.js"></script>
 	<script src="lib/katex.min.js"></script>
@@ -721,15 +721,22 @@
 								<div class="latest" id="pos_pcr">
 									<div>
 									  <span class="type"></span>
-									  <span class="value"></span>
-									  <span class="change" style="vertical-align: super"></span>
+									  <span class="valuesmall"></span>
+									  <span class="change"></span>
 									</div>
 								</div>
-								<div class="latest" id="pos_combined" style="padding-top:20px">
+								<div class="latest" id="pos_combined" style="padding-top:15px">
 									<div>
 									  <span class="type"></span>
-									  <span class="value"></span>
-									  <span class="change" style="vertical-align: super"></span>
+									  <span class="valuesmall"></span>
+									  <span class="change"></span>
+									</div>
+								</div>
+								<div class="latest" id="pos_daily" style="padding-top:30px">
+									<div>
+									  <span class="type"></span>
+									  <span class="valuesmall"></span>
+									  <span class="change"></span>
 									</div>
 								</div>
 	            <h5 class="updated"><br /></h5>
@@ -740,7 +747,7 @@
 	              <div class="axis-chart"></div>
 	              <div class="axis-cover"></div>
 	            </div>
-	            <p class="notes">The daily positive rate, given as a rolling 7-day average. See <a href="#positive_rate">notes below</a> for further information. <a class="more">READ MORE</a></p>
+	            <p class="notes">The positivity rate is given with a rolling 7-day average, except in the case of 'Daily PCR+Rapid' which is expressed based on daily values. See <a href="#positive_rate">notes below</a> for further information. <a class="more">READ MORE</a></p>
 	            <div class="embedwin"><h2>Embed</h2><p>Paste this into any HTML page:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Cancel</a></p></div>
 	          </div>
 	        </div> 
@@ -841,7 +848,7 @@
                 <div class="axis-chart"></div>
                 <div class="axis-cover"></div>
               </div>
-              <p class="notes">Data Source: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (06-03-2021)</a></p>
+              <p class="notes">Data Source: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (17-03-2021)</a></p>
               <div class="embedwin"><h2>Embed</h2><p>Paste this into any HTML page:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Cancel</a></p></div>
             </div>
           </div>
@@ -906,7 +913,7 @@
                   <div class="checkboxes">
                     <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
                   </div>
-	                <p class="notes">Data Source: <a href="https://twitter.com/Nyrros" target="_blank">@Nyrros</a>.</p>
+	                <p class="notes">Data Source: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>.</p>
                 </div>
               </div>
               <div class="flex-row t03">
@@ -1065,7 +1072,7 @@
 
       <div id="footer-block">
         <p class="notes" id="footer-notes">Notes: Moving averages are 7-day backward. The number is based on the daily value. It is assumed to be the same as the previous day if not updated. On the days with no continuity from the previous day due to change of standards, "New" number is treated as 0 and the bar color is changed. Data may be corrected by the developer when it is considered as an obvious misstatement, such as minus value of Tested Positive.</p>
-        <p class="notes">Resources: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Measures by <a href="https://github.com/Covid-19-Response-Greece/covid19-data-greece/blob/master/data/greece/Measures/greece_social_distancing_measures_timeline.json" target="_blank">Covid-19-Response-Greece</a>. Data on prefectures was taken from <a href="https://twitter.com/Nyrros" target="_blank">@Nyrros</a>, <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a> and <a href="http://covid19.gov.gr/" target="_blank">covid19.gov.gr</a>. Predictions were taken from c<a href="https://covid19-projections.com/greece" target="_blank">covid19-projections.com</a>, <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org</a>. Used introductory text for IIFR from <a href="https://www.who.int/news-room/commentaries/detail/estimating-mortality-from-covid-19" target="_blank">WHO</a> and prediction model from (<a href="https://covid19-projections.com/estimating-true-infections/" target="_blank">link1</a>, <a href="https://covid19-projections.com/about/#infection-fatality-rate-ifr" target="_blank">link2</a>, <a href="https://github.com/youyanggu/covid19_projections/tree/master/implied_ifr" target="_blank">link3</a>).
+        <p class="notes">Resources: <a href="https://eody.gov.gr/epidimiologika-statistika-dedomena/ektheseis-covid-19/" target="_blank">EODY</a>. Measures by <a href="https://github.com/Covid-19-Response-Greece/covid19-data-greece/blob/master/data/greece/Measures/greece_social_distancing_measures_timeline.json" target="_blank">Covid-19-Response-Greece</a>. Data on prefectures was taken from <a href="https://github.com/iMEdD-Lab/open-data/blob/master/COVID-19/regions_greece_cases.csv" target="_blank">iMEdD-Lab</a> and <a href="http://covid19.gov.gr/" target="_blank">covid19.gov.gr</a>. Predictions were taken from c<a href="https://covid19-projections.com/greece" target="_blank">covid19-projections.com</a>, <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org</a>. Used introductory text for IIFR from <a href="https://www.who.int/news-room/commentaries/detail/estimating-mortality-from-covid-19" target="_blank">WHO</a> and prediction model from (<a href="https://covid19-projections.com/estimating-true-infections/" target="_blank">link1</a>, <a href="https://covid19-projections.com/about/#infection-fatality-rate-ifr" target="_blank">link2</a>, <a href="https://github.com/youyanggu/covid19_projections/tree/master/implied_ifr" target="_blank">link3</a>).
         Effective Reproduction number RJ algorithm taken from <a href="https://academic.oup.com/aje/article/160/6/509/79472?fbclid=IwAR2nDT0TyBciFQuNOU0vW3z4OcAJBRPh_x1E8HwCI-i9a4y5KLimY5D3aG4" target="blank">American Journal of Epidemiology</a> and <a href="https://mshfd.github.io/reproduction-number/" target="_blank">Richard Schubert</a>. Used <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> and <a href="https://www.highcharts.com/" target="_blank">highcharts</a> to draw the charts. Original template by: TOYO KEIZAI ONLINE</p>
         <p class="notes"><br><a href="https://github.com/Sandbird/covid19-Greece" target="_blank">Download CSV data</a></p>
         <div id="faqs">

@@ -30,7 +30,8 @@ const COLORS = {
   measures: "#90CFB5,#8FBDE0,#689AAB,#AADCD2,#3DC,#88BBAA,#BADDAD,#BBCDB3,#FAF28C,#DFEA8B,#F3EF89,#3BA9B0,#F4F4B2,#CCAC8E,#FBDEDE,#F8B2BC,#F59598,#EFA796,#FEBD7D,#CEB4D6,#B5B3DA".split(","),
   measures2: "#3DC,#FEA,#5987A5,#3BA9B0,#86E18D,#D5F474,#FB8,#EC2,#CAF0F8".split(","),
   dark: "#399",
-  selected: "#EC2"
+  selected: "#EC2",
+  positivity_rate: ["rgba(61, 207, 255)", "rgba(89, 135, 165)"]
 };
 const LABELS = {
   gr: {
@@ -78,8 +79,9 @@ const LABELS = {
       rt_repro: ["Βασικός αναπαραγωγικός αριθμός"],
       rj_repro: ["Αναπαραγωγικός αριθμός"],
       infection_fatality_rate: ["IIFR"],
-      positivity_rate: ["Μόνο με βάση τα PCR"],
-      positivity_rate_combined: ["PCR+Rapid"]
+      positivity_rate: ["Μόνο με PCR"],
+      positivity_rate_combined: ["PCR+Rapid"],
+      positivity_rate_daily: ["Ημερ. τιμή (PCR+Rapid)"]
       //reproduction_rj_infected: ""
     },
     unit: {
@@ -195,7 +197,8 @@ const LABELS = {
       rt_repro: ["Effective Reproduction Number"],
       infection_fatality_rate: ["IIFR"],
       positivity_rate: ["Using only PCR"],
-      positivity_rate_combined: ["PCR+Rapid"]
+      positivity_rate_combined: ["PCR+Rapid"],
+      positivity_rate_daily: ["Daily PCR+Rapid"]
     },
     unit: {
       carriers: "",
@@ -513,6 +516,8 @@ const init = () => {
       let valueLatest = 0;
       let valuecombinedTotal = 0;
       let valuecombinedLatest = 0;
+      let valuedailyTotal = 0;
+      let valuedailyLatest = 0;
 
       for (let i = 0; i < rows.length; i++) {   		
         for (let j = 0; j < rows[0].length; j++) {
@@ -563,6 +568,9 @@ const init = () => {
         
         valuecombinedTotal  = Math.round(gData.transition["positivity_rate_combined"].values[gData.transition["positivity_rate_combined"].values.length - 1][0] * 1000) / 1000;
         valuecombinedLatest = Math.round((gData.transition["positivity_rate_combined"].values[gData.transition["positivity_rate_combined"].values.length - 1][0] - gData.transition["positivity_rate_combined"].values[gData.transition["positivity_rate_combined"].values.length - 2][0]) * 1000) / 1000;
+                
+        valuedailyTotal  = Math.round(gData.transition["positivity_rate_daily"].values[gData.transition["positivity_rate_daily"].values.length - 1][0] * 1000) / 1000;
+        valuedailyLatest = Math.round((gData.transition["positivity_rate_daily"].values[gData.transition["positivity_rate_daily"].values.length - 1][0] - gData.transition["positivity_rate_daily"].values[gData.transition["positivity_rate_daily"].values.length - 2][0]) * 1000) / 1000;
       }
       
             
@@ -598,18 +606,28 @@ const init = () => {
       }else if ($box.attr("code") === "positivity_rate"){
 	      var $latest = $box.find("#pos_pcr");
 	     			var inject = "<span class='unit'>"+LABELS[LANG].unit[$box.attr("code")]+"</span>";
-	          $latest.find(".value").html(about_sign+valueTotal+inject);
-		      	$latest.find(".type").text("PCR: ");
-		      	$latest.find(".change").text("("+valueLatest+")");
+	          $latest.find(".valuesmall").html(about_sign+valueTotal+inject);
+		      	$latest.find(".type").text(LABELS[LANG].transition.positivity_rate +": ").css('color', '#EC2'); 
+		      	$latest.find(".change").text("("+valueLatest+")").css('font-size','10px');
 		      	
 	      valuecombinedTotal  = addCommas(valuecombinedTotal);
 	      valuecombinedLatest = addCommas(valuecombinedLatest);
+	      valuedailyLatest = addCommas(valuedailyLatest);
+	      
 	      if (valuecombinedLatest.charAt(0) !== "-") valuecombinedLatest = "+" + valuecombinedLatest;
+	      if (valuedailyLatest.charAt(0) !== "-") valuedailyLatest = "+" + valuedailyLatest;
+	      
 		    var $latest = $box.find("#pos_combined");
 		    		var inject = "<span class='unit'>"+LABELS[LANG].unit[$box.attr("code")]+"</span>";
-	          $latest.find(".value").html(about_sign+valuecombinedTotal+inject);
-	          $latest.find(".type").text("PCR+Rapid: ");
-	          $latest.find(".change").text("("+valuecombinedLatest+")");
+	          $latest.find(".valuesmall").html(about_sign+valuecombinedTotal+inject); 
+	          $latest.find(".type").text(LABELS[LANG].transition.positivity_rate_combined +": ").css('color', COLORS.positivity_rate[0]);
+	          $latest.find(".change").text("("+valuecombinedLatest+")").css('font-size','10px');
+	          
+		    var $latest = $box.find("#pos_daily");
+		    		var inject = "<span class='unit'>"+LABELS[LANG].unit[$box.attr("code")]+"</span>";
+	          $latest.find(".valuesmall").html(about_sign+valuedailyTotal+inject); 
+	          $latest.find(".type").text(LABELS[LANG].transition.positivity_rate_daily +": ").css('color', '#ace');
+	          $latest.find(".change").text("("+valuedailyLatest+")").css('font-size','10px');
       }else{
 	      //Default values
 	      let $latest = $box.find(".latest");
@@ -617,7 +635,6 @@ const init = () => {
 	          $latest.find(".unit").text(LABELS[LANG].unit[$box.attr("code")]);
 		      	$latest.find(".type").text(LABELS[LANG].total);        //capitalize($box.find(".switch[value=total]").text())
 	          $latest.find(".change").text(LABELS[LANG].change + valueLatest);
-	          
 	    }
     }
 
@@ -718,7 +735,7 @@ const init = () => {
     drawLatestValue($box, rows);
 
 		var disableBeginAtZero = true;
-	    if (code == "rt_repro" || code == "infection_fatality_rate" || code == "positivity_rate" || code == "positivity_rate_combined"){
+	    if (code == "rt_repro" || code == "infection_fatality_rate" || code == "positivity_rate"){
       disableBeginAtZero = false;
   	}
 
@@ -1062,53 +1079,58 @@ const init = () => {
 	  	if(code == "predicted_true_inf" || code == "positivity_rate" || code == "icu_entry_exit"){
 	  		var isStacked = false;
 	  	}	  	
-	  	//Add combined line
-	    if (code == "positivity_rate") {
-	      let dataset = {
-	        type: "line",
-	        label: LABELS[LANG].transition.positivity_rate_combined,
-	        fill: false,
-	        borderColor: "#FBA",
-	        pointBorderColor: "#EC2",
-	        pointRadius: 2,
-	        data: [],
-	        options: {
-		        scales: {
-		          xAxes: [{
+	  	//Add combined line / daily positivity rate
+	  	if (code == "positivity_rate") {
+	  		var positivity_cases = ["positivity_rate_combined", "positivity_rate_daily"];
+	  		positivity_cases.forEach(function(item, i){
+				  //set color variations
+				  var typebar = (item == "positivity_rate_combined") ? "line" : "bar";
+				  //First box has 1 opacity, next 0.5
+				  var boxColor_with_alpha = (item == "positivity_rate_combined") ? COLORS.positivity_rate[0].replace(/rgba?(\(\s*\d+\s*,\s*\d+\s*,\s*\d+)(?:\s*,.+?)?\)/, 'rgba$1,1)') : COLORS.positivity_rate[1].replace(/rgba?(\(\s*\d+\s*,\s*\d+\s*,\s*\d+)(?:\s*,.+?)?\)/, 'rgba$1,0.5)');
+		      var dataset = {
+		        type: typebar,
+		        label: LABELS[LANG].transition[item],
+		        fill: false,
+			      pointBorderColor: COLORS.positivity_rate[i],
+			      borderColor: COLORS.positivity_rate[i],
+            backgroundColor: boxColor_with_alpha,
+		        pointRadius: 2,
+		        data: [],
+		      };
+			    gData.transition[item].values.forEach(function(age, i){
+			      	dataset.data.push(age[0]);
+			    });
+					config.options.scales.xAxes= [
+						{
 		            stacked: false,
-		            position: "top",
 		            gridLines: {
-		              color: "rgba(255,255,255,0.2)",
-		              zeroLineColor: "rgba(255,255,255,0.2)",
-		              borderDash: [3, 1]
+		              display: false,
+		              zeroLineColor: "rgba(255,255,0,0.7)"
 		            },
 		            ticks: {
-		              suggestedMin: 0,
 		              fontColor: "rgba(255,255,255,0.7)",
-		              callback: function(value, index, values) {
-		                return addCommas(value);
+		              maxRotation: 0,
+		              minRotation: 0,
+		              callback: (label) => {
+		                return " " + label + " ";
 		              }
 		            }
-		          }],
-		          yAxes: [{
-		            stacked: false,
-		            barPercentage: 0.5,
-		            gridLines: {
-		              color: "rgba(255,255,255,0.1)"
-		            },
-		            ticks: {
-		              fontColor: "rgba(255,255,255,0.7)"
-		            }
-		          }]
-		        },
-          }
-	      };
-	      
-		    gData.transition.positivity_rate_combined.values.forEach(function(age, i){
-		      	dataset.data.push(age[0]);
-		    });
-	      config.data.datasets.unshift(dataset);
-	    }
+		        }];
+					config.options.scales.yAxes= [{
+	          location: "bottom",
+	          stacked: false,
+	          gridLines: {
+	            display: true,
+	            zeroLineColor: "rgba(255,255,255,0.7)",
+	            borderDash: [3, 1],
+	            color: "rgba(255, 255, 255, 0.3)"
+	          },
+	        }];
+	        //config.options.tooltips.displayColors = true; 
+		      config.data.datasets.unshift(dataset);
+				
+				});
+	  	}
 
     drawLastDate($box, config);
     drawEmbedLink($box);

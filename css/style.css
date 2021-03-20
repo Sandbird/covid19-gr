@@ -232,6 +232,14 @@ body {
         @media only screen and (min-width: 640px) {
           #container #main-block .box .latest .value {
             font-size: 24px; } }
+      #container #main-block .box .latest .valuesmall {
+        font-size: 12px; }
+        @media only screen and (min-width: 400px) {
+          #container #main-block .box .latest .valuesmall {
+            font-size: 12px; } }
+        @media only screen and (min-width: 640px) {
+          #container #main-block .box .latest .valuesmall {
+            font-size: 14px; } }
       #container #main-block .box .latest .type, #container #main-block .box .latest .unit, #container #main-block .box .latest .change {
         font-size: 13px;
         color: #ccc; }
