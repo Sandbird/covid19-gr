@@ -27,4 +27,4 @@ The state of the infection of the new coronavirus (COVID19) in Greece was summar
 - Original script by: TOYO KEIZAI ONLINE
 - The developer assumes no responsibility arising from this project.
 
-![preview](https://user-images.githubusercontent.com/204934/108517875-9d22ce00-72d0-11eb-845c-4783164fee3b.png)
+![preview](https://user-images.githubusercontent.com/204934/112356127-f7032300-8cd6-11eb-9316-be8b43cabb8c.png)
