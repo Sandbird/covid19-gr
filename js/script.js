@@ -2639,8 +2639,15 @@ const init = () => {
 	  	var titletxt = LABELS[LANG].prefectures[pref.color];
 	  	var rjclass, rjtext = "";
 	  	var rj_value = Array.isArray(pref.rj_value) ? pref.rj_value[1].slice(-1).pop() : "";
-	  	var newcases = (pref.newcases > 0) ? "+" + pref.newcases : "";
-	  	var newvacc = (pref.newvaccinations > 0) ? "+" + pref.newvaccinations : "";
+	  	//if x is a string/non-number, use parseInt/parseFloat to convert to a number.
+	  	var newcases = (pref.newcases > 0) ? "+" + parseInt(pref.newcases).toLocaleString('en-GB', {minimumFractionDigits: 0, maximumFractionDigits: 2}) : "";
+	  	var newvacc = (pref.newvaccinations > 0) ? "+" + parseInt(pref.newvaccinations).toLocaleString('en-GB', {minimumFractionDigits: 0, maximumFractionDigits: 2}) : "";
+	  	var total_cases = parseInt(pref.totalcases).toLocaleString('en-GB', {minimumFractionDigits: 0, maximumFractionDigits: 2});
+	  	var total_vaccinations = parseInt(pref.total_vaccinations).toLocaleString('en-GB', {minimumFractionDigits: 0, maximumFractionDigits: 2});
+	  	var population = parseInt(pref.population).toLocaleString('en-GB', {minimumFractionDigits: 0, maximumFractionDigits: 2});
+	  	var first_dose = pref.firstdose_percentage + "%";
+	  	var second_dose = pref.seconddose_percentage + "%";
+	  	
 	  	//color switch to white
 	  	if(newcasesperweekpop <= 12){
 	  		var colorswitch = '#fff!important;';
@@ -2677,11 +2684,13 @@ const init = () => {
 				<td id="box_${i}" class="${map_color} personPopupTrigger" style="text-align:left!important" rel="${prefname},${titletxt},${map_color}">${prefname}</td>
 				<td class="${twoweek_class} smallertext"><h4 class="m-0 font-weight-bold" style="color: inherit;">${pref.twoweektrendlatest}%</h4><span class="${twoweek_class}">${twoweek_text}</span></td>
 				<td><span id="sparkline${i}"></span></td>
-				<td><h4 class="m-0" style="color: inherit;">${pref.totalcases}</h4><div style="font-size: 10px; margin-top: -2px; color: #ffc108">${newcases}</div></td>
+				<td><h4 class="m-0" style="color: inherit;">${total_cases}</h4><div style="font-size: 10px; margin-top: -2px; color: #ffc108">${newcases}</div></td>
 				<td><div class="progress"><div role="progressbar" aria-valuenow="${newcasesperweekpop}" aria-valuemin="0" aria-valuemax="200" class="progress-bar ${map_color}" style="width: ${intvalue}%;color: ${colorswitch}">${newcasesperweekpop}</div></div></td>
 				<td class="${rjclass} smallertext"><h4 class="m-0 font-weight-bold" style="color: inherit;">${rj_value}</h4><span>${rjtext}</span></td>
-				<td><h4 class="m-0" style="color: #3DC;">${pref.total_vaccinations}</h4><div style="font-size: 10px; margin-top: -2px; color: #8bc34a">${newvacc}</div></td>
-				<td><h4 class="m-0" style="color: inherit;">${pref.population}</h4></td>
+				<td><h4 class="m-0" style="color: #3DC;">${total_vaccinations}</h4><div style="font-size: 10px; margin-top: -2px; color: #8bc34a">${newvacc}</div></td>
+				<td><h4 class="m-0" style="color: #3DC;">${first_dose}</h4></td>
+				<td><h4 class="m-0" style="color: #3DC;">${second_dose}</h4></td>
+				<td><h4 class="m-0" style="color: inherit;">${population}</h4></td>					
 			</tr>`);
 			
 			$('#sparkline'+i).sparkline(myvalues, {
