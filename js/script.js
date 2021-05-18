@@ -26,8 +26,8 @@ const COLORS = {
   predicted_deaths: "#3DC,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","), 
   pcrtests: "#3DC,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","),
   icu_entry_exit: "#cf8490,#88BBAA".split(","),
-  vaccinations: "#6F6587,#5987A5".split(","),
-  measures: "#90CFB5,#8FBDE0,#689AAB,#AADCD2,#3DC,#88BBAA,#BADDAD,#BBCDB3,#FAF28C,#DFEA8B,#F3EF89,#3BA9B0,#F4F4B2,#CCAC8E,#FBDEDE,#F8B2BC,#F59598,#EFA796,#FEBD7D,#CEB4D6,#B5B3DA".split(","),
+  vaccinations: "#48C7A6,#3BA9B0,#6F6587".split(","),
+  measures: "#90CFB5,#8FBDE0,#689AAB,#AADCD2,#3DC,#88BBAA,#BADDAD,#BBCDB3,#FAF28C,#DFEA8B,#F3EF89,#3BA9B0,#F4F4B2,#CCAC8E,#FBDEDE,#F8B2BC,#F59598,#EFA796,#FEBD7D,#CEB4D6,#B5B3DA,#88BBAA".split(","),
   measures2: "#3DC,#FEA,#5987A5,#3BA9B0,#86E18D,#D5F474,#FB8,#EC2,#CAF0F8".split(","),
   dark: "#399",
   selected: "#EC2",
@@ -75,7 +75,7 @@ const LABELS = {
       icu_entry_exit: ["Εισαγωγές ασθενών", "Εξιτήρια λόγω ίασης"],
       tests: ["Δείγματα που ελέγχθ.", "Βρέθηκαν θετικοί"],
       agtests: ["Rapid Ag"],
-      vaccinations: ["Εμβολιασμοί 2ης δόσης", "Εμβολιασμοί 1ης δόσης","Συνολικοί εμβολιασμοί"],
+      vaccinations: ["Σύν. ολοκληρωμένων εμβ.", "Σύν. με τουλάχιστον 1 δόση", "Σύνολο εμβολιασμών"],
       rt_repro: ["Βασικός αναπαραγωγικός αριθμός"],
       rj_repro: ["Αναπαραγωγικός αριθμός"],
       infection_fatality_rate: ["IIFR"],
@@ -191,7 +191,7 @@ const LABELS = {
       icu_entry_exit: ["Admissions", "Discharges"],
       tests: ["Tested", "Found Positive"],
       agtests: ["Rapid Ag"],
-      vaccinations: ["2nd dose vaccinations", "1st dose vaccinations", "Total vaccinations"],
+      vaccinations: ["Completed vaccinations", "With at least 1 dose", "Total vaccinations given"],
       rj_repro: ["Reproduction Number"],
       //reproduction_rj_infected: ["Num. of cases"],
       rt_repro: ["Effective Reproduction Number"],
@@ -390,8 +390,9 @@ const init = () => {
         	if (ymd >= 20200715) ret = COLORS.measures[j+9]; //Borders opened to Serbian citizens, International flights between Greece and the United Kingdom resumed
         	if (ymd >= 20200720) ret = COLORS.measures[j+2]; //International flights between Greece and Sweeden resumed
         	if (ymd >= 20200815) ret = COLORS.measures[j+6]; //International flights between Albania, NM, Turkey
-        	if (ymd >= 20200914) ret = COLORS.measures[j+4]; //Schools reopen
+        	if (ymd >= 20200914) ret = COLORS.measures[j+21]; //Schools reopen
         	if (ymd >= 20201107) ret = COLORS.measures[j+11]; //2nd Lockdown
+        	if (ymd >= 20210514) ret = COLORS.default; //End of 2nd lockdown
         }
 
         if (code === "active") {
@@ -603,6 +604,31 @@ const init = () => {
 		      	$latest.find(".type").text(LABELS[LANG].total);        //capitalize($box.find(".switch[value=total]").text())
 	          $latest.find("#admissions").text(LABELS[LANG].transition.icu_entry_exit[0] + ": " + valueTotal_admissions);
 	          $latest.find("#discharged").text(LABELS[LANG].transition.icu_entry_exit[1] + ": " + valueTotal_discharged);
+      }else if ($box.attr("code") === "vaccinations"){
+      	var valueTotal_totalvax = 0;
+	      var valueTotal_totaldose1  = 0;
+	      var valueTotal_completed = 0;
+	      for (let i = 0; i < rows.length; i++) {
+          valueTotal_totalvax = rows[i][0];
+          valueTotal_totaldose1 = rows[i][1];
+          valueTotal_completed = rows[i][2];
+	      }	      
+      	valueTotal_totaldose1  = addCommas(valueTotal_totaldose1);
+      	valueTotal_completed  = addCommas(valueTotal_completed);
+      	valueTotal_totalvax  	 = addCommas(valueTotal_totalvax);
+      	
+      	if (valueTotal_totaldose1.charAt(0) !== "-") valueTotal_totaldose1 = "+" + valueTotal_totaldose1;
+      	if (valueTotal_completed.charAt(0) !== "-") valueTotal_completed = "+" + valueTotal_completed;
+      	if (valueTotal_totalvax.charAt(0) !== "-") valueTotal_totalvax = "+" + valueTotal_totalvax;
+      	
+	      let $latest = $box.find(".latest");
+	          $latest.find(".value").text(about_sign+valueTotal);
+	          $latest.find(".unit").text(LABELS[LANG].unit[$box.attr("code")]);
+		      	$latest.find(".type").text(LABELS[LANG].total);        //capitalize($box.find(".switch[value=total]").text())
+		      	//if ($box.attr("code") === "carriers" && prefCode == 16) {
+	          $latest.find(".total_vaccinations").text(LABELS[LANG].transition.vaccinations[0] + ": " + valueTotal_totalvax);
+	          $latest.find(".totaldose1").text(LABELS[LANG].transition.vaccinations[1] + ": " + valueTotal_totaldose1);
+	          $latest.find(".vaccompleted").text(LABELS[LANG].transition.vaccinations[2] + ": " + valueTotal_completed);
       }else if ($box.attr("code") === "positivity_rate"){
 	      var $latest = $box.find("#pos_pcr");
 	     			var inject = "<span class='unit'>"+LABELS[LANG].unit[$box.attr("code")]+"</span>";
@@ -735,7 +761,7 @@ const init = () => {
     drawLatestValue($box, rows);
 
 		var disableBeginAtZero = true;
-	    if (code == "rt_repro" || code == "infection_fatality_rate" || code == "positivity_rate"){
+	    if (code == "rt_repro" || code == "infection_fatality_rate" || code == "positivity_rate" || code == "vaccinations"){
       disableBeginAtZero = false;
   	}
 
@@ -780,12 +806,14 @@ const init = () => {
 	                  ret.push(ds.label + ": " + addCommas(ds.data[tooltipItem.index]) + " | " + LABELS[LANG].unit[code] + LABELS[LANG].transition['reproduction_rj'] + ": " + rpnum);
 	                  total += ds.data[tooltipItem.index];
 	                }
-              	}else if(code == 'vaccinations'){
-		                totalvac += parseInt(ds.data[tooltipItem.index]);
-		                if (!hasMovingAverage || i >= 1) {
-		                  ret.push(ds.label + ": " + addCommas(ds.data[tooltipItem.index]) + " " + LABELS[LANG].unit[code]);
-		                  total += ds.data[tooltipItem.index];
-		                }
+		              /*  
+	              	}else if(code == 'vaccinations'){
+			                totalvac += parseInt(ds.data[tooltipItem.index]);
+			                if (!hasMovingAverage || i >= 1) {
+			                  ret.push(ds.label + ": " + addCommas(ds.data[tooltipItem.index]) + " " + LABELS[LANG].unit[code]);
+			                  total += ds.data[tooltipItem.index];
+			                }
+									*/	
               	}else if(code == 'predicted_deaths'){
 	                	//dont show prediction text for real values
 	                	root_pd = gData.transition['predicted_deaths']['values'];
@@ -821,9 +849,9 @@ const init = () => {
 	                ret.push(LABELS[LANG].total + ": " + addCommas(total) + " " + LABELS[LANG].unit[code]);
 	              }
             	}
-              if(code == 'vaccinations'){
-              	 ret.push(LABELS[LANG].transition['vaccinations'][2] + ": " + addCommas(total) + " " + LABELS[LANG].unit[code]);
-            	}
+              //if(code == 'vaccinations'){
+              //	 ret.push(LABELS[LANG].transition['vaccinations'][2] + ": " + addCommas(total) + " " + LABELS[LANG].unit[code]);
+            	//}
               return ret;
             }
           }
@@ -1076,7 +1104,7 @@ const init = () => {
     }
     
 	  	var isStacked = true;
-	  	if(code == "predicted_true_inf" || code == "positivity_rate" || code == "icu_entry_exit"){
+	  	if(code == "predicted_true_inf" || code == "positivity_rate" || code == "icu_entry_exit" || code == "vaccinations"){
 	  		var isStacked = false;
 	  	}	  	
 	  	//Add combined line / daily positivity rate
