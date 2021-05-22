@@ -23,7 +23,7 @@
 	<link rel="stylesheet" href="css/modal.css"/>
 	<link rel="stylesheet" href="css/style.min.css"/>
 	<link rel="stylesheet" href="css/stylebars.css"/>
-	<link rel="stylesheet" href="css/table.css"/>
+	<link rel="stylesheet" href="css/table.css?v=1"/>
 	<link rel="stylesheet" href="css/jquery.tablesorter/theme.blackice.min.css">
 	<link rel="stylesheet" href="css/simptip.min.css"/>
 	<link rel="stylesheet" href="lib/katex.min.css">
@@ -32,7 +32,7 @@
 	<link href="lib/mapsvg/css/nanoscroller.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-	<script src="js/script.min.js?version=8"></script>
+	<script src="js/script.min.js?version=9"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="lib/auto-render.min.js"></script>
 	<script src="lib/katex.min.js"></script>
@@ -843,7 +843,7 @@
                 <div class="axis-chart"></div>
                 <div class="axis-cover"></div>
               </div>
-              <p class="notes">Πηγή: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (14-05-2021)</a>. Η διάταξη αναφέρεται στην περίπτωση που δεν ληφθούν επιπρόσθετα μέτρα. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
+              <p class="notes">Πηγή: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (21-05-2021)</a>. Η διάταξη αναφέρεται στην περίπτωση που δεν ληφθούν επιπρόσθετα μέτρα. <a class="more">ΠΕΡΙΣΣΟΤΕΡΑ</a></p>
               <div class="embedwin"><h2>Ενσωμάτωση</h2><p>Επικολλήστε τον κώδικα στην HTML του ιστότοπού σας:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Ακύρωση</a></p></div>
             </div>
           </div>
@@ -999,7 +999,7 @@
 	    	<div class="flex-container">
 	    		<div class="flex-row t12">
 	    			<h2 id="perprefecture">Ανά Νομό <i class="fas fa-link embedbut"></i>
-	    				<span class="features simptip-position-right simptip-multiline" data-tooltip="Τα χρώματα των Νομών αποτυπώνουν την επιδημιολογική κατάσταση με βάση το covid19.gov.gr. Η 14μερη τάση χωρίζεται σε 3 κατηγορίες: κόκκινη >5%, κίτρινη >0% και <5%, πράσινη <0%. Οι τιμές της στήλης 'Τελευταίες 14 μέρες' είναι οι δύο κ.μ.ο (7 ημερ.) 14 ημέρες πριν και σήμερα, και χρησιμοποιούνται στο να βρεθεί η ποσοστιαία αύξηση της 14μερης τάσης (Ποσοστό αύξησης = [(Τελική τιμή - Αρχική τιμή) / Αρχική τιμή)×100]). Τα κρούσματα ανά 100.000 κατοίκους βασίζονται στον αριθμό των νέων κρουσμάτων ανά 100.000 κατοίκους κ.μ.ο (7 ημερ.), τις τελευταίες 14 ημέρες. Η τιμή Rj υπολογίζεται χωρίς κάποια εξομάλυνση στις τιμές των κρουσμάτων, προκύπτει δηλαδή από τις απόλυτες τιμές των ημερήσιων κρουσμάτων.">
+	    				<span class="features simptip-position-right simptip-multiline" data-tooltip="Τα χρώματα των Νομών αποτυπώνουν την επιδημιολογική κατάσταση με βάση την κατηγοριοποίηση του ECDC, σε σχέση με τις τιμές της στήλης 'Κρουσμ. ανά 100.000 (κ.μ.ο)'. Η '14μερη τάση' χωρίζεται σε 3 κατηγορίες: κόκκινη >5%, κίτρινη >0% και <5%, πράσινη <0%. Οι τιμές της στήλης 'Τελευταίες 14 μέρες' είναι οι δύο κ.μ.ο (7 ημερ.) 14 ημέρες πριν και σήμερα, και χρησιμοποιούνται στο να βρεθεί η ποσοστιαία αύξηση της 14μερης τάσης (Ποσοστό αύξησης = [(Τελική τιμή - Αρχική τιμή) / Αρχική τιμή)×100]). Τα 'Κρουσμ. ανά 100.000 (κ.μ.ο)' βασίζονται στον αριθμό των νέων κρουσμάτων ανά 100.000 κατοίκους κ.μ.ο (7 ημερ.), τις τελευταίες 14 ημέρες. Η τιμή Rj υπολογίζεται χωρίς κάποια εξομάλυνση στις τιμές των κρουσμάτων, προκύπτει δηλαδή από τις απόλυτες τιμές των ημερήσιων κρουσμάτων.">
 	    				<i class="fa fa-info-circle text-info fa-1x info-cursor pl-1 mb-2"></i></span>
 	    				<span><small id="pref-updated"></small></span>
 	    				</h2>

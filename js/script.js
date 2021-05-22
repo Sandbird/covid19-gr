@@ -123,15 +123,15 @@ const LABELS = {
     prefectures: {
     	increasing: "αυξητική",
     	decreasing: "καθοδική",
-    	flat: "επίπεδη",
-    	green: "Επίπεδο 1. Ετοιμότητας",
-    	orange: "Επίπεδο Α. Επιτήρησης",
-    	yellow: "Επίπεδο Α. Επιτήρησης",
-    	red: "Επίπεδο Β. Αυξημένου Κινδύνου",
-    	redplus: "Επίπεδο Γ. Πολύ Αυξημένου Κινδύνου",
-    	grey: "Επίπεδο Γ. Συναγερμού",
+    	flat: "επίπεδη",    	
+    	less25: "Ετοιμότητας",
+    	less50: "Επιτήρησης",
+    	less150: "Επιτήρησης",
+    	less500: "Αυξημένου Κινδύνου",
+    	over500: "Πολύ Αυξημένου Κινδύνου",
+    	grey: "Δεν υπάρχουν δεδομένα",    	
     	lightgrey: "Δεν υπάρχουν δεδομένα",
-    	danger: "Επικινδυνότητα",
+    	danger: "Επίπεδο Επικινδυνότητας",
     	latest_cases: "Τελευταίες 14 μέρες (νέα κρούσματα)",
     	new_unemployed: "Νέες αιτήσεις ανέργων",
     	total_unemployed: "Σύνολο ανέργων"
@@ -241,11 +241,11 @@ const LABELS = {
     	increasing: "increasing",
     	decreasing: "decreasing",
     	flat: "flat",
-    	green: "Level 1. Readiness",
-    	orange: "Level 1. Surveillance",
-    	yellow: "Level 1. Surveillance",
-    	red: "Level 2. Increased Risk",
-    	redplus: "Level 3. Very High Risk",
+    	less25: "Readiness",
+    	less50: "Surveillance",
+    	less150: "Surveillance",
+    	less500: "Increased Risk",
+    	over500: "Very High Risk",
     	grey: "Level 3. Alert",
     	lightgrey: "No available data",
     	danger: "Risk Level",
@@ -2889,7 +2889,7 @@ const init = () => {
 	                    $('#prefect_name').html(prefect_name);
 	                    $('#dangerlevel').html(dangerlevel);
 	                    
-	                    var colorarr = {'green':'#12ad2c', 'yellow':'#ffc300', 'orange':'#E5712A', 'red':'#c82d2d', 'redplus':'#800000', 'lightgrey':'#ccc', 'grey':'#605f69'};
+	                    var colorarr = {'less25':'#0a8a20', 'less50':'#ffc300', 'less150':'#E5712A', 'less500':'#c82d2d', 'over500':'#800000', 'grey':'#605f69'};
 
 	                    $(".color").removeAttr('style').css({
 												    'color': colorarr[colorclass], 

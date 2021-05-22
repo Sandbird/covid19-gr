@@ -45,6 +45,13 @@ table{table-layout:fixed;}
 .lightgrey{background-color:#ccc!important;color: #000!important;}
 .orange{background-color:#E5712A!important;color: #FAFAFA!important;}
 
+.less25{background-color:#0a8a20!important;color: #fff!important;}
+.less50{background-color:#ffc300!important;color: #000!important;}
+.less150{background-color:#E5712A!important;color: #fff!important;}
+.less500{background-color:#c82d2d!important;color: #fff!important;}
+.over500{background-color:#800000!important;color: #fff!important;}
+
+
 @media (min-width:961px){
 .table-responsive{display:table!important;}
 }

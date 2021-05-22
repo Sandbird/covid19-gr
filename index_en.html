@@ -23,7 +23,7 @@
 	<link rel="stylesheet" href="css/modal.css"/>
 	<link rel="stylesheet" href="css/style.min.css"/>
 	<link rel="stylesheet" href="css/stylebars.css"/>
-	<link rel="stylesheet" href="css/table.css"/>
+	<link rel="stylesheet" href="css/table.css?v=1"/>
 	<link rel="stylesheet" href="css/jquery.tablesorter/theme.blackice.min.css">
 	<link rel="stylesheet" href="css/simptip.min.css"/>
 	<link rel="stylesheet" href="lib/katex.min.css">
@@ -32,7 +32,7 @@
 	<link href="lib/mapsvg/css/nanoscroller.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-	<script src="js/script.min.js?version=8"></script>
+	<script src="js/script.min.js?version=9"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="lib/auto-render.min.js"></script>
 	<script src="lib/katex.min.js"></script>
@@ -843,7 +843,7 @@
                 <div class="axis-chart"></div>
                 <div class="axis-cover"></div>
               </div>
-              <p class="notes">Data Source: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (14-05-2021)</a></p>
+              <p class="notes">Data Source: <a href="https://covid19.healthdata.org/greece?view=daily-deaths&tab=trend" target="_blank">covid19.healthdata.org (21-05-2021)</a></p>
               <div class="embedwin"><h2>Embed</h2><p>Paste this into any HTML page:</p><textarea readonly="" class="embed"></textarea><a class="close" href="/">Cancel</a></p></div>
             </div>
           </div>
@@ -999,7 +999,7 @@
 	    	<div class="flex-container">
 	    		<div class="flex-row t12">
 	    			<h2 id="perprefecture">Per Prefecture <i class="fas fa-link embedbut"></i>
-	    				<span class="features simptip-position-right simptip-multiline" data-tooltip="The prefecture colors reflect the epidemiological situation based on covid19.gov.gr. The 14-day trend is divided into 3 categories: red >5%, yellow >0% and <5%, green <0%. The values of column 'Last 14 days' are the two moving averages(7 days) of 14 days before and today, and are used to find the percentage increase of the '14-day trend' column. (Percentage Increase = [(Final Value - Starting Value ) / Starting Value) × 100]). Cases per 100,000 is based on a 7-Day Average of New Cases per 100.000 inhabitants, for the last 14 days. The Rj value is calculated without any smoothing, ie it results from the absolute values of the daily cases.">
+	    				<span class="features simptip-position-right simptip-multiline" data-tooltip="The prefecture colors reflect the epidemiological situation based on the categorization of ECDC and the values of column 'Cases per 100,000'. The 14-day trend is divided into 3 categories: red >5%, yellow >0% and <5%, green <0%. The values of column 'Last 14 days' are the two moving averages(7 days) of 14 days before and today, and are used to find the percentage increase of the '14-day trend' column. (Percentage Increase = [(Final Value - Starting Value ) / Starting Value) × 100]). 'Cases per 100,000' is based on a 7-Day Average of New Cases per 100.000 inhabitants, for the last 14 days. The Rj value is calculated without any smoothing, ie it results from the absolute values of the daily cases.">
 	    				<i class="fa fa-info-circle text-info fa-1x info-cursor pl-1 mb-2"></i></span>
 	    				<span><small id="pref-updated"></small></span>
 	    				</h2>
