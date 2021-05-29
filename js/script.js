@@ -246,7 +246,7 @@ const LABELS = {
     	less150: "Surveillance",
     	less500: "Increased Risk",
     	over500: "Very High Risk",
-    	grey: "Level 3. Alert",
+    	grey: "Alert",
     	lightgrey: "No available data",
     	danger: "Risk Level",
     	latest_cases: "Last 14 days (new cases)",
@@ -2658,11 +2658,12 @@ const init = () => {
   	
   	gData["prefectures-details"].forEach(function(pref, i){
 	  	var prefname = gData["prefectures-details"][i][LANG];
-	  	var pref_twoweek = pref.twoweektrendlatest
+	  	var pref_twoweek = pref.twoweektrendlatest;
 	  	var newcasesperweekpop = pref.newcasesperweekpop;
 	  	var intvalue = Math.floor( newcasesperweekpop );
 	  	var twoweek_class, twoweek_text;
-	  	var myvalues = pref.last14days_rolling.values;
+	  	var last14days_cases = pref.last14days_rolling.values;
+	  	var last14days_vac = pref.last14days_rolling_vax.values;
 	  	var map_color = pref.color;
 	  	var titletxt = LABELS[LANG].prefectures[pref.color];
 	  	var rjclass, rjtext = "";
@@ -2716,15 +2717,26 @@ const init = () => {
 				<td><div class="progress"><div role="progressbar" aria-valuenow="${newcasesperweekpop}" aria-valuemin="0" aria-valuemax="200" class="progress-bar ${map_color}" style="width: ${intvalue}%;color: ${colorswitch}">${newcasesperweekpop}</div></div></td>
 				<td class="${rjclass} smallertext"><h4 class="m-0 font-weight-bold" style="color: inherit;">${rj_value}</h4><span>${rjtext}</span></td>
 				<td><h4 class="m-0" style="color: #3DC;">${total_vaccinations}</h4><div style="font-size: 10px; margin-top: -2px; color: #8bc34a">${newvacc}</div></td>
+				<td><span id="sparkline_vac${i}"></span></td>
 				<td><h4 class="m-0" style="color: #3DC;">${first_dose}</h4></td>
 				<td><h4 class="m-0" style="color: #3DC;">${second_dose}</h4></td>
 				<td><h4 class="m-0" style="color: inherit;">${population}</h4></td>					
 			</tr>`);
 			
-			$('#sparkline'+i).sparkline(myvalues, {
+			$('#sparkline'+i).sparkline(last14days_cases, {
 				type: "line",
 				width: 100,
-				height: 50,
+				height: 30,
+				lineColor: "#0083CD",
+				fillColor: "rgba(0,131,205,0.2)",
+				minSpotColor: !0,
+				maxSpotColor: !0
+			});
+			
+			$('#sparkline_vac'+i).sparkline(last14days_vac, {
+				type: "line",
+				width: 100,
+				height: 30,
 				lineColor: "#0083CD",
 				fillColor: "rgba(0,131,205,0.2)",
 				minSpotColor: !0,
@@ -2751,6 +2763,17 @@ const init = () => {
 			
 		$("#pref-updated").text(gData.updated.lastprefecture[LANG]);
 		drawEmbedLink($box);
+		
+		$.protip({
+			observer:true,
+			defaults:{
+				width: '310!',
+				scheme: 'blue',
+				size: 'small',
+				gravity: true,
+				position: 'bottom'
+			}
+		});
   }
   
 	const initPopup = () => {

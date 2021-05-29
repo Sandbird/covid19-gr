@@ -27,12 +27,13 @@
 	<link rel="stylesheet" href="css/jquery.tablesorter/theme.blackice.min.css">
 	<link rel="stylesheet" href="css/simptip.min.css"/>
 	<link rel="stylesheet" href="lib/katex.min.css">
+	<link rel="stylesheet" href="//min.gitcdn.xyz/repo/DoclerLabs/Protip/master/protip.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
 	<link href="lib/mapsvg/css/mapsvg.css" rel="stylesheet">
 	<link href="lib/mapsvg/css/nanoscroller.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-	<script src="js/script.min.js?version=9"></script>
+	<script src="js/script.min.js?version=10"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="lib/auto-render.min.js"></script>
 	<script src="lib/katex.min.js"></script>
@@ -48,6 +49,7 @@
 	<script src="lib/mapsvg/js/mapsvg.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+	<script src="//min.gitcdn.xyz/repo/DoclerLabs/Protip/master/protip.min.js"></script>
 	<script>
 	var html$3 = "\n<style>\ndt-math[block] {\n  display: block;\n}\n</style>\n";
 	var DTMath = function(dom, data) {
@@ -999,7 +1001,7 @@
 	    	<div class="flex-container">
 	    		<div class="flex-row t12">
 	    			<h2 id="perprefecture">Per Prefecture <i class="fas fa-link embedbut"></i>
-	    				<span class="features simptip-position-right simptip-multiline" data-tooltip="The prefecture colors reflect the epidemiological situation based on the categorization of ECDC and the values of column 'Cases per 100,000'. The 14-day trend is divided into 3 categories: red >5%, yellow >0% and <5%, green <0%. The values of column 'Last 14 days' are the two moving averages(7 days) of 14 days before and today, and are used to find the percentage increase of the '14-day trend' column. (Percentage Increase = [(Final Value - Starting Value ) / Starting Value) × 100]). 'Cases per 100,000' is based on a 7-Day Average of New Cases per 100.000 inhabitants, for the last 14 days. The Rj value is calculated without any smoothing, ie it results from the absolute values of the daily cases.">
+	    			<span class="protip" data-pt-title="&#183; The prefecture colors reflect the epidemiological situation based on the categorization of ECDC and the values of column 'Cases per 100,000'.<br>&#183; The 14-day trend is divided into 3 categories: red >5%, yellow >0% and <5%, green <0%.<br>&#183; The values of column 'Last 14 days' are the two moving averages(7 days) of 14 days before and today, and are used to find the percentage increase of the '14-day trend' column. (Percentage Increase = [(Final Value - Starting Value ) / Starting Value) × 100]).<br>&#183; 'Cases per 100,000' is based on a 7-Day Average of New Cases per 100.000 inhabitants, for the last 14 days.<br>&#183; The Rj value is calculated without any smoothing, ie it results from the absolute values of the daily cases.</li>">
 	    				<i class="fa fa-info-circle text-info fa-1x info-cursor pl-1 mb-2"></i></span>
 	    				<span><small id="pref-updated"></small></span>
 	    				</h2>
@@ -1008,15 +1010,16 @@
 							<table class="table tablesorter table-responsive" id="prefectures">
 								<thead>
 									<tr>
-									<th width="10%" class="active" nowrap>Prefectures <small>(click for more)</small></th>
-									<th width="10%">14-day trend of COVID (mov.average)</th>
-									<th width="10%">Last 14 days (mov.average)</th>
+									<th width="12%" class="active" nowrap>Prefectures <small>(click for more)</small></th>
+									<th>14-day trend of<br>COVID (mov.average)</th>
+									<th>Last 14 days (mov.average)</th>
 									<th width="8%">Total cases</th>
-									<th width="15%">Cases per 100,000 (14 days)</th>
-									<th width="10%">Rj (before 14 days)</th>
-									<th width="10%">Total vaccinations</th>
-									<th width="10%">% with at least 1 dose</th>
-									<th width="10%">% of completed vaccinations</th>
+									<th width="12%">Cases per 100,000 (14 days)</th>
+									<th>Rj (before 14 days)</th>
+									<th>Total vaccinations</th>
+									<th>Total vaccinations<br>last 14 days (mov.average)</th>
+									<th>% with at least 1 dose</th>
+									<th>% of completed vaccinations</th>
 									<th>Population</th>
 									</tr>
 								</thead>

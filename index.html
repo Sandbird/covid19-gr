@@ -27,12 +27,13 @@
 	<link rel="stylesheet" href="css/jquery.tablesorter/theme.blackice.min.css">
 	<link rel="stylesheet" href="css/simptip.min.css"/>
 	<link rel="stylesheet" href="lib/katex.min.css">
+	<link rel="stylesheet" href="//min.gitcdn.xyz/repo/DoclerLabs/Protip/master/protip.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
 	<link href="lib/mapsvg/css/mapsvg.css" rel="stylesheet">
 	<link href="lib/mapsvg/css/nanoscroller.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-	<script src="js/script.min.js?version=9"></script>
+	<script src="js/script.min.js?version=10"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="lib/auto-render.min.js"></script>
 	<script src="lib/katex.min.js"></script>
@@ -48,6 +49,7 @@
 	<script src="lib/mapsvg/js/mapsvg.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+	<script src="//min.gitcdn.xyz/repo/DoclerLabs/Protip/master/protip.min.js"></script>
 	<script>
 	var html$3 = "\n<style>\ndt-math[block] {\n  display: block;\n}\n</style>\n";
 	var DTMath = function(dom, data) {
@@ -999,7 +1001,7 @@
 	    	<div class="flex-container">
 	    		<div class="flex-row t12">
 	    			<h2 id="perprefecture">Ανά Νομό <i class="fas fa-link embedbut"></i>
-	    				<span class="features simptip-position-right simptip-multiline" data-tooltip="Τα χρώματα των Νομών αποτυπώνουν την επιδημιολογική κατάσταση με βάση την κατηγοριοποίηση του ECDC, σε σχέση με τις τιμές της στήλης 'Κρουσμ. ανά 100.000 (κ.μ.ο)'. Η '14μερη τάση' χωρίζεται σε 3 κατηγορίες: κόκκινη >5%, κίτρινη >0% και <5%, πράσινη <0%. Οι τιμές της στήλης 'Τελευταίες 14 μέρες' είναι οι δύο κ.μ.ο (7 ημερ.) 14 ημέρες πριν και σήμερα, και χρησιμοποιούνται στο να βρεθεί η ποσοστιαία αύξηση της 14μερης τάσης (Ποσοστό αύξησης = [(Τελική τιμή - Αρχική τιμή) / Αρχική τιμή)×100]). Τα 'Κρουσμ. ανά 100.000 (κ.μ.ο)' βασίζονται στον αριθμό των νέων κρουσμάτων ανά 100.000 κατοίκους κ.μ.ο (7 ημερ.), τις τελευταίες 14 ημέρες. Η τιμή Rj υπολογίζεται χωρίς κάποια εξομάλυνση στις τιμές των κρουσμάτων, προκύπτει δηλαδή από τις απόλυτες τιμές των ημερήσιων κρουσμάτων.">
+	    			<span class="protip" data-pt-title="&#183; Τα χρώματα των Νομών αποτυπώνουν την επιδημιολογική κατάσταση με βάση την κατηγοριοποίηση του ECDC, σε σχέση με τις τιμές της στήλης 'Κρουσμ. ανά 100.000 (κ.μ.ο)'.<br>&#183; Η '14μερη τάση' χωρίζεται σε 3 κατηγορίες: κόκκινη >5%, κίτρινη >0% ~ <5%, πράσινη <0%.<br>&#183; Η στήλη 'Τελευταίες 14 μέρες' εκφράζεται με κ.μ.ο (7 ημερ.), και οι τιμές (πρώτη και τελευταία τιμή) χρησιμοποιούνται στον υπολογισμό της '14μερης τάσης' (Ποσοστό αύξησης = [(Τελική τιμή - Αρχική τιμή) / Αρχική τιμή)×100]).<br>&#183; Τα 'Κρουσμ. ανά 100.000 (κ.μ.ο)' βασίζονται στον αριθμό των νέων κρουσμάτων ανά 100.000 κατοίκους κ.μ.ο (7 ημερ.) για τις τελευταίες 14 ημέρες.<br>&#183; Η τιμή Rj υπολογίζεται χωρίς κάποια εξομάλυνση στις τιμές των κρουσμάτων, προκύπτει δηλαδή από τις απόλυτες τιμές των ημερήσιων κρουσμάτων.</li>">
 	    				<i class="fa fa-info-circle text-info fa-1x info-cursor pl-1 mb-2"></i></span>
 	    				<span><small id="pref-updated"></small></span>
 	    				</h2>
@@ -1009,14 +1011,15 @@
 								<thead>
 									<tr>
 									<th width="10%" class="active" nowrap>Νομοί (πατήστε επάνω)</th>
-									<th width="10%">14ημερη τάση της COVID (κ.μ.ο)</th>
-									<th width="10%">Τελευτ. 14 μέρες (κ.μ.ο)</th>
+									<th>14ημερη τάση<br>της COVID (κ.μ.ο)</th>
+									<th>Τελευτ. 14 μέρες (κ.μ.ο)</th>
 									<th width="8%">Σύνολο κρουσμ.</th>
-									<th width="15%" nowrap>Κρουσμ. ανά 100.000 (κ.μ.ο)</th>
-									<th width="10%">Τιμή Rj (πριν 14 μέρες)</th>
-									<th width="10%">Σύνολο εμβολιασμών</th>
-									<th width="10%">% εμβ. με τουλάχιστον 1 δόση</th>
-									<th width="10%">% ολοκληρωμ. εμβολιασμών</th>
+									<th width="12%" nowrap>Κρουσμ. ανά 100.000 (κ.μ.ο)</th>
+									<th>Τιμή Rj (πριν 14 μέρες)</th>
+									<th>Σύνολο εμβολιασμών</th>
+									<th>Σύνολο εμβολιασμών<br>τελευτ. 14 μέρες (κ.μ.ο)</th>
+									<th>% εμβ. με τουλάχιστον 1 δόση</th>
+									<th>% ολοκληρωμ. εμβολιασμών</th>
 									<th>Πληθυσμός</th>
 									</tr>
 								</thead>
