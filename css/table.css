@@ -30,7 +30,7 @@ h4{line-height:1.45em;margin-bottom:15px;}
 .table>tbody>tr>td{color:#fff}
 .table>thead>tr>th{border-bottom-width:1px;font-size:12px;font-weight:700;border:0;color:#fff;}
 .table>tbody>tr>td,.table>thead>tr>th{border-color:hsla(0,0%,100%,.1);padding:9px 7px;vertical-align:middle;}
-.table>tbody>tr{position:relative;}
+/*.table>tbody>tr{position:relative;}*/
 .table-responsive{overflow:auto;padding-bottom:10px;}
 .table-responsive th.orderable{cursor:pointer;}
 table{table-layout:fixed;}
