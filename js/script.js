@@ -1053,7 +1053,7 @@ const init = () => {
           value = 0;
         }
 
-        if (value < 0 && (switchValue === "total" || code === "active" || code === "carriers" || code === "infected_distribution" || code === "infected_distribution_men" || code === "death_distribution_men" || code === "predicted_deaths" || code === "deaths" || code === "tests" || code === "agtests" || code === "vaccinations")) {
+        if (value < 0 && (switchValue === "total" || code === "active" || code === "carriers" || code === "infected_distribution" || code === "infected_distribution_total" || code === "infected_distribution_men" || code === "infected_distribution_women" || code === "death_distribution_total" || code === "death_distribution_men" || code === "death_distribution_women" || code === "predicted_deaths" || code === "deaths" || code === "tests" || code === "agtests" || code === "vaccinations" || code === "positivity_rate")) {
           value = 0;
         }
 
