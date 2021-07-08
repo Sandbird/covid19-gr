@@ -895,6 +895,46 @@ const init = () => {
       }
     };
     
+	    //Fix for vaccinations y-axis not displaying proper values
+	    if(code == 'vaccinations'){
+	    	hasMovingAverage = false;
+				config.options.scales.xAxes= [
+					{	
+						stacked: true,
+						gridLines: {
+	              display: false,
+	              zeroLineColor: "rgba(255,255,0,0.7)"
+						},
+						ticks: {
+	            	beginAtZero: disableBeginAtZero,
+	              fontColor: "rgba(255,255,255,0.7)",
+	              maxRotation: 0,
+	              minRotation: 0,
+	              callback: (label) => {
+	                return " " + label + " ";
+	              }
+	            }
+					}];
+				config.options.scales.yAxes= [{	
+	          location: "bottom",
+						stacked: true,
+						gridLines: {
+							display:true,
+	            zeroLineColor: "rgba(255,255,255,0.7)",
+	            borderDash: [3, 1],
+	            color: "rgba(255, 255, 255, 0.3)"
+							},
+						ticks: {
+							fontColor: "transparent",
+							userCallback: function(value, index, values) {
+								value = value.toString();
+								value = value.split(/(?=(?:...)*$)/);
+								value = value.join(',');
+								return value; },
+						},
+				}];	
+	    }
+    
     if(code == 'predicted_true_inf'){
 			config.options.scales.xAxes= [
 				{	
