@@ -724,10 +724,10 @@ const init = () => {
         label = "";
       });
 
-      window.myChart = new Chart($canvas.getContext('2d'), axisConfig);
+      window.prefAxisChart = new Chart($canvas.getContext('2d'), axisConfig);
 
-      let axisMax = window.myChart.scales.axisScale.max;
-      let axisMin = window.myChart.scales.axisScale.min;
+      let axisMax = window.prefAxisChart.scales.axisScale.max;
+      let axisMin = window.prefAxisChart.scales.axisScale.min;
       let axisMaxLength = Math.max(axisMax.toString().length, axisMin.toString().length);
       let axisCoverWidth = 0;
       switch(axisMaxLength) {
@@ -1164,7 +1164,8 @@ const init = () => {
     drawEmbedLink($box);
     drawAxisChart($box, $.extend(true, {}, config.data), isStacked);
 
-    window.myChart = new Chart($canvas.getContext('2d'), config);
+    //window.prefAxisChart && window.prefAxisChart.destroy();
+    window.prefAxisChart = new Chart($canvas.getContext('2d'), config);
   	}
   }
 
@@ -1323,7 +1324,8 @@ const init = () => {
 
 		if(typeof $canvas !== "undefined"){
     	let ctx = $canvas.getContext('2d');
-    	window.myChart = new Chart(ctx, config);
+    	window.DemographyChartSum  && window.DemographyChartSum.destroy();
+    	window.DemographyChartSum = new Chart(ctx, config);
   	}
   	drawEmbedLink($box);
   }
@@ -1444,7 +1446,8 @@ const init = () => {
 
 		if(typeof $canvas !== "undefined"){
     	let ctx = $canvas.getContext('2d');
-    	window.myChart = new Chart(ctx, config);
+    	window.DemographyChartMen  && window.DemographyChartMen.destroy();
+    	window.DemographyChartMen = new Chart(ctx, config);
   	}
   	drawEmbedLink($box);
   }
@@ -1565,7 +1568,8 @@ const init = () => {
 
 		if(typeof $canvas !== "undefined"){
     	let ctx = $canvas.getContext('2d');
-    	window.myChart = new Chart(ctx, config);
+    	window.DemographyChartWomen  && window.DemographyChartWomen.destroy();
+    	window.DemographyChartWomen = new Chart(ctx, config);
   	}
   	drawEmbedLink($box);
   }
@@ -1950,7 +1954,8 @@ const init = () => {
     
 		if(typeof $canvas !== "undefined"){
     	let ctx = $canvas.getContext('2d');
-    	window.myChart = new Chart(ctx, config);
+    	window.ICUChart  && window.ICUChart.destroy();
+    	window.ICUChart = new Chart(ctx, config);
   	}
   	drawEmbedLink($box);
   }
@@ -2083,7 +2088,8 @@ const init = () => {
 
 		if(typeof $canvas !== "undefined"){
     	let ctx = $canvas.getContext('2d');
-    	window.myChart = new Chart(ctx, config);
+    	window.UnemploymentChart  && window.UnemploymentChart.destroy();
+    	window.UnemploymentChart = new Chart(ctx, config);
   	}
   	drawEmbedLink($box);
   }
@@ -2925,7 +2931,8 @@ const init = () => {
 									   var ctx = $('#myChart');
 									    var FontSize = "10"; //Chart.defaults.global.defaultFontSize
 									    
-									    var myChart = new Chart(ctx, {
+									    window.popUpChart && window.popUpChart.destroy();
+									    var popUpChart = new Chart(ctx, {
 									        type: 'bar',
 									        data: {
 									            labels: [],
@@ -3002,7 +3009,7 @@ const init = () => {
 									    });
 
 	                    container.css('display', 'block');
-											ajax_chart(myChart, prefect_name);
+											ajax_chart(popUpChart, prefect_name);
 	                   
 	                },
 	                // hoverIntent mouseOut
@@ -3140,7 +3147,8 @@ const init = () => {
 
 		if(typeof $canvas !== "undefined"){
     	let ctx = $canvas.getContext('2d');
-    	window.myChart = new Chart(ctx, config);
+    	window.RegionChart  && window.RegionChart.destroy();
+    	window.RegionChart = new Chart(ctx, config);
   	}
   }
 
@@ -3256,24 +3264,33 @@ const init = () => {
 
   const loadData = () => {
   	  $.getJSON("https://raw.githubusercontent.com/Sandbird/covid19-Greece/master/greece.json?version="+RANDOMSTRING, function(data){
+  	  gData = null;
       gData = data;
+      all_chart_destroy();
       updateThresholds();
       drawTransitionBoxes();
+    	if(isAppleDevice()){
+				setTimeout(function() {
+				    $("#cover-block").fadeOut();
+				}, 5000);
+    	}else{
+    		$("#not_iphones").show();
+	      drawUnemployment();
+	      drawRegionChart("");   //disabled for now
+	      drawPrefectureCharts("1");
+    	}
       //drawDemographyChart_radar();
       //drawDemographyChart_cases();
       //drawDemographyChart_deaths();
       drawDemographyChart_group_cases();
       drawDemographyChart_group_deaths();
       drawDemographyChart_group_intensive();
-      drawUnemployment();
       //drawDemographyChart_serious();
       drawDemographyChart_sum();
       drawDemographyChart_men();
       drawDemographyChart_women();
       drawICUChart();
       drawGreeceMap();
-      drawRegionChart("");   //disabled for now
-      drawPrefectureCharts("1");
       drawPrefectureDetails();
       showUpdateDate();
       updateAxisChartHeight();
@@ -3288,6 +3305,26 @@ const init = () => {
       initMap();
     })
   }
+  
+	function isAppleDevice(){
+	    return (
+	        (navigator.userAgent.toLowerCase().indexOf("ipad") > -1) ||
+	        (navigator.userAgent.toLowerCase().indexOf("iphone") > -1) ||
+	        (navigator.userAgent.toLowerCase().indexOf("ipod") > -1)
+	    );
+	}
+	
+	function all_chart_destroy() {
+		window.myChart  && window.myChart.destroy();
+		//window.nationalAxisChart  && window.nationalAxisChart.destroy();
+		window.prefAxisChart  && window.prefAxisChart.destroy();
+		window.DemographyChartSum  && window.DemographyChartSum.destroy();
+		window.DemographyChartMen  && window.DemographyChartMen.destroy();
+		window.DemographyChartWomen  && window.DemographyChartWomen.destroy();
+		window.ICUChart  && window.ICUChart.destroy();
+		window.UnemploymentChart  && window.UnemploymentChart.destroy();
+		window.RegionChart  && window.RegionChart.destroy();
+	}
 
   const bindEvents = () => {
     $(".transition").find(".switch").on("click",function(){
